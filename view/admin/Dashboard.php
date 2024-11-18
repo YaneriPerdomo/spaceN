@@ -184,35 +184,37 @@
     .operations>a {
         display: inline
     }
+
+    .configurationProfile>div {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .personalInformation>.information>.imgUser>img {
+        background: #ff4343;
+        height: 150px;
+        min-width: 200px;
+        max-width: 500px;
+        clip-path: circle(40% at 50% 50%);
+    }
+
+    .information {
+        display: flex;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+    }
+
+    .information>div>label {
+        margin-bottom: 0.3rem;
+    }
 </style>
 
 <body>
 
-    <header>
-        <a class="btn btn-primary offCanvasSpaceN" data-bs-toggle="offcanvas" href="#offCanvasSpaceN" role="button"
-            aria-controls="offCanvasSpaceN">
-            <img src="../../img/burgerMenu.png" class="img-fluid burgerMenu" alt="">
-        </a>
-        <section class="logo">
-            <figure>
-                <img src="" alt="">
-            </figure>
-        </section>
-        <section class="searchChilds">
-            <span>Busqueda</span>
-            <button type="button" class=" " data-bs-toggle="modal" data-bs-target="#searchChilds">
-                <input type="search" name="" id="" placeholder="Buscar niños">
-            </button>
-        </section>
-        <section class="userPerfil">
-            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
-                aria-controls="offcanvasRight"><img src="../../img/for/representative.png" class="img-fluid userImg"
-                    alt="">
-            </button>
-        </section>
-    </header>
+    <?php include './../include/admin/header.php' ?>
 
-    <main>
+    <main class="">
         <div class="row h-100">
             <div class="col-3 h-100">
                 <section class="historyChilds">
@@ -394,11 +396,11 @@
                                 </td>
                                 <td>Activo</td>
                                 <td class="operations">
-                                    <button>Eliminar</button>
-                                    <a href="#modify"><button>Editar</button></a><br>
-                                    <a href="#progressChild"><button>Progreso</button></a>
-                                    <button data-bs-toggle="modal" data-bs-target="#sendNotificationChild">Enviar
-                                        notificacion</button>
+                                    <button><i class="bi bi-trash"></i></button>
+                                    <a href="#modify"><button><i class="bi bi-person-lines-fill"></i></button></a><br>
+                                    <a href="#progressChild"><button><i class="bi bi-bar-chart"></i></button></a>
+                                    <button data-bs-toggle="modal" data-bs-target="#sendNotificationChild"><i
+                                            class="bi bi-send-plus"></i></button>
                                 </td>
                             </tr>
                         </tbody>
@@ -414,146 +416,21 @@
             </div>
         </div>
     </main>
-    <footer class="py-2">
-        <div>
-            <div class="mt-3 text-center">
-                <p class="text-white">© 2024 Espacio N | Todos los derechos reservados | Política de privacidad | Aviso
-                    legal | Política de cookies | Contacto</p>
-            </div>
-        </div>
-    </footer>
+    <?php include './../include/admin/footer.php' ?>
+
 </body>
 
-<div class="offcanvas offcanvas-start" tabindex="-1" id="offCanvasSpaceN" aria-labelledby="offCanvasSpaceN">
-    <div class="offcanvas-header">
-        <div class="d-flex">
-            <div class="d-flex">
-                <img src="../../img/for/representative.png" class="img-fluid LogoImg" alt="">
-            </div>
-        </div>
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-    <hr style="margin:0.1rem">
-    <div class="offcanvas-body">
-        <a href="#Dashbord">
-            <i class="bi bi-house"></i>
-            Casa
-        </a>
-        <a href="#activity">
-            <i class="bi bi-arrow-clockwise"></i>
-            Actividad
-        </a>
-        <a href="#reports">
-            <i class="bi bi-filetype-pdf"></i>
-            Reportes
-        </a>
-    </div>
-</div>
-<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-    <div class="offcanvas-header">
-        <div class="d-flex">
-            <div class="d-flex">
-                <img src="../../img/for/representative.png" class="img-fluid userImg" alt="">
-                <div class="d-flex flex-column">
-                    <span><strong>Yane3</strong></span>
-                    <span class="text-secondary">Yaneri Perdomo</span>
-                </div>
-            </div>
-        </div>
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-    <hr style="margin:0.1rem">
-    <div class="offcanvas-body">
-        <a href="#profile">
-            <i class="bi bi-person"></i>
-            Tu Perfil
-        </a>
-        <a href="#help">
-            <i class="bi bi-question-circle"></i>
-            Ayuda
-        </a>
-        <a href="#signOut">
-            <i class="bi bi-box-arrow-right"></i>
-            Desconectar
-        </a>
-
-    </div>
-</div>
-<!-- Button trigger modal -->
+<?php include "../include/admin/offcanvasAplication.php" ?>
+<?php include "../include/admin/offcanvasUser.php" ?>
+<?php include "../include/admin/detailsActivity.php" ?>
+<?php include "../include/admin/sendNotificationChild.php" ?>
+<?php include "../include/admin/searchChilds.php" ?>
 
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">Detalles de la actividad del niño</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <span>Emily3 completó la lección número 2</span><br>
-                <small><data value="">20/20/2025</data></small><br>
-                <small> <time datetime="">10:20p.m</time></small>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Ok</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<div class="modal fade" id="sendNotificationChild" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <div class="text-center w-100">
-                    <h1 class="modal-title fs-5 text-center" id="exampleModalLabel"><b>Envio de notificacion</b></h1>
-                    <small>Puedes enviarle una notificación para "nombre de usuario del niño"</small>
-                </div>
-            </div>
-            <div class="modal-body">
-                <select class="w-100">
-                    <option value="lesson_completed">✅ ¡Felicidades! Has completado una lección mas. </option>
-                    <option value="stars_gained"> ¡Genial! Has ganado más estrellas. ✨</option>
-                    <option value="stage1_passed"> ¡Lo lograste! Has superado la etapa 1. </option>
-                    <option value="stage2_passed"> ¡Sigue así! Has pasado a la etapa 2. </option>
-                    <option value="learning_completed"> ¡Enhorabuena! Has completado todo el aprendizaje. </option>
-                    <option value="ranking_up">⬆️ ¡Ascendiste en la tabla de clasificación! Estás más cerca de la cima. </option>
-                    <option value="ranking_entered"> ¡Bienvenid@! Has entrado en la tabla de clasificación. </option>
-                </select>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-success">Enviar</button>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="searchChilds" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <i class="bi bi-search"></i>
-                <input type="search" name="" placeholder="Buscar usuario" id="">
-                <select>
-                    <option value="" selected>Todos</option>
-                    <option value="">Pre-numérico</option>
-                    <option value="">Numérico emergente</option>
-                    <option value="">Numérico en Desarrollo</option>
-                </select>
-                <button>Buscar</button>
-            </div>
-            <div class="modal-body">
-                <span>Emily3 completó la lección número 2</span><br>
-                <small><data value="">20/20/2025</data></small><br>
-                <small> <time datetime="">10:20p.m</time></small>
-            </div>
-        </div>
-    </div>
-</div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
+
+
 
 </html>
