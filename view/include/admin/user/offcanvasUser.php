@@ -5,9 +5,18 @@
             <div class="d-flex">
                 <img src="../../../img/for/representative.png" class="img-fluid userImg" alt="">
                 <div class="d-flex flex-column">
-                    <span><strong>Yane3</strong></span>
-                    <span class="text-secondary">Yaneri Perdomo</span>
-                </div>
+                <span><strong><?php if (isset($_SESSION)) {
+                        echo $_SESSION['usuario'];
+                    } else {
+                        echo "Tu Usuario";
+                    } ?></strong></span>
+                    <span class="text-secondary">
+                    <?php if (isset($_SESSION)) {
+                        echo $_SESSION['nombre'] . " " . $_SESSION["apellido"];
+                    } else {
+                        echo "Tu Usuario";
+                    } ?>
+                    </span></div>
             </div>
         </div>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>

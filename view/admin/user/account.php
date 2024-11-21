@@ -250,8 +250,7 @@
                                     como de las aplicaciones móviles. Todos los usuarios que hayas dado de alta también
                                     serán eliminados por lo que tampoco podrán acceder a la plataforma.
                                 </p>
-                                <form action="">
-                                    <input type="hidden" name="id" value="yane">
+                                <form action="./../../../php/account.php" method="post">
                                     <button>Eliminar</button>
                                 </form>
                             </div>

@@ -232,14 +232,14 @@
                 </div>
             </div>
             <div class="col-9">
-                <form action="">
+                <form action="./../../../php/changesPassword.php" method="post">
                     <legend>Cambiar contraseña</legend>
                     <label for="">Contraseña actual</label><br>
-                    <input type="password" name="" id=""><br>
+                    <input type="text" name="oldPassword" id=""><br>
                     <label for="">Contrasena nueva</label><br>
-                    <input type="password" name="" id=""><br>
+                    <input type="text" name="newPassword" id=""><br>
                     <label for="">Confirmar contrasena nueva</label><br>
-                    <input type="password" name="" id=""><br>
+                    <input type="text" name="passwordAgain" id=""><br>
                     <input type="submit" value="Cambiar">
                 </form>
             </div>

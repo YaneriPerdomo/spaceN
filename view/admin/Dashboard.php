@@ -1,5 +1,11 @@
+<?php
+
+session_start();
+
+?>
+
 <!DOCTYPE html>
-<html lang="ea">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">

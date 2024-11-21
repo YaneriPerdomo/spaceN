@@ -12,6 +12,8 @@ if ($conn->connect_error) {
     die("connection failed: " . $conn->connect_error);
 }
 
+
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user = $_POST["user"];
     $name = $_POST["name"];
@@ -27,6 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sqlSearchMail = "SELECT COUNT(*) FROM profesionales WHERE correo_electronico = '$mail'";
     $result2 = $conn->query($sqlSearchMail);
 
+    
     // Obtener el número de filas (el resultado de COUNT(*))
     $row = $result->fetch_row();
     $num_filas = $row[0];

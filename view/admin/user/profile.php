@@ -1,3 +1,9 @@
+<?php
+session_start();
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="ea">
 
@@ -235,8 +241,7 @@
                         <h1>Perfil</h1>
                         <hr>
                         <p>Cambia tu foto de perfil y edita tu información personal</p>
-                        <form action="/php/ProfileAdmin.php" class="personalInformation" method="POST">
-                            <input type="hidden" name="call" value="1" />
+                        <form action="./../../../php/actualizar.php" class="personalInformation" method="POST">
                             <div class="information">
                                 <div class="imgUser">
                                     <img src="" class="img-fluid" alt=""><br>
@@ -244,36 +249,33 @@
                                 </div>
                                 <div class="oneInformation">
                                     <label for="usuario">Usuario</label><br>
-                                    <input id="usuario" name="usuario" type="text" placeholder="Ingrese tu usuario"
+                                    <input id="usuario" name="user" type="text" placeholder="Ingrese tu usuario"
                                         value="<?php echo $_SESSION['usuario'] ?? '' ?>" />
                                     <br>
                                     <label for="">Nombre</label><br>
-                                    <input id="nombre" name="nombre" type="text" placeholder="Ingrese tu nombre"
+                                    <input id="nombre" name="name" type="text" placeholder="Ingrese tu nombre"
                                         value="<?php echo $_SESSION['nombre'] ?? '' ?>" />
                                     <br>
                                     <label for="apellido">Apellido</label><br>
-                                    <input id="apellido" name="apellido" type="text" placeholder="Ingrese tu apellido"
+                                    <input id="apellido" name="lastname" type="text" placeholder="Ingrese tu apellido"
                                         value="<?php echo $_SESSION['apellido'] ?? '' ?>" />
                                 </div>
                                 <div class="twoInformation">
                                     <label for="correo">Correo Electronico</label><br>
-                                    <input id="correo" name="correo" type="text"
+                                    <input id="correo" name="mail" type="text"
                                         placeholder="Ingrese tu correo electronico"
                                         value="<?php echo $_SESSION['correo'] ?? '' ?>" />
                                     <br>
                                     <div class="cargos">
                                         <label for="cargo">Cargo Profesional</label><br>
-                                        <select id="cargo" class="mt-1" name="cargo">
+                                        <select id="cargo" class="mt-1" name="professionalPosition">
                                             <?php
-                                            // Opciones de cargo
-                                            $charge_options = [
-                                                ["id" => 1, "label" => "Docente"],
-                                                ["id" => 2, "label" => "Terapeuta"],
-                                            ];
-
-                                            foreach ($charge_options as $option) {
-                                                $selected = ($option['id'] === $_SESSION['cargo']) ? 'selected' : '';
-                                                echo "<option value='{$option['id']}' $selected>{$option['label']}</option>";
+                                            if($_SESSION["id_cargo"] == "1"){
+                                                echo "<option value='1' $selected>Docente</option>
+                                                      <option value='2'>Terapeuta</option>";
+                                            }else{
+                                                echo "<option value='2' $selected>Terapeuta</option>
+                                                <option value='1'>Docente</option>";
                                             }
                                             ?>
                                         </select>
@@ -285,7 +287,7 @@
                                         Nombre del Centro escolar o
                                         profesional
                                     </label><br>
-                                    <input id="centro" type="text" class="nombre_centro_escolar" name="centro"
+                                    <input id="centro" type="text" class="nombre_centro_escolar" name="center"
                                         placeholder="Nombre del Centro escolar o profesional"
                                         value="<?php echo $_SESSION['centro'] ?? '' ?>">
                                     <br data-br-delete>
