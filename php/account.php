@@ -1,35 +1,40 @@
 <?php
 
-session_start();
+// Incluimos el archivo de conexión a la base de datos
+require './connectionBD.php';
 
-
-
-$host = "localhost"; // Servidor de la base de datos
-$port =  3306; // Database port
-$dbname =  "eres_capaz"; // Nombre de la base de datos
-$username =  "root"; // Nombre de usuario de la base de datos
-$password = ""; 
-
-$conn = new mysqli($host, $username, $password, $dbname,  $port);
-
-
-if($conn->connect_error){
-    die("connection failed: " . $conn->connect_error);
+// Verificamos si hubo algún error al conectar a la base de datos
+if ($pdo->errorCode() != 0) {
+    // Si hay un error, mostramos un mensaje con el detalle del error
+    echo "Error de conexión: " . $pdo->errorInfo()[2];
 }
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Verificamos si se ha enviado un formulario (método POST)
 
-if($_SERVER["REQUEST_METHOD"] == "POST"){
-    
+    $id = $_SESSION["id_usuario"]; // Obtenemos el ID del usuario de la sesión
 
-    $id =  $_SESSION["id_usuario"];
-    $sql = "UPDATE usuarios SET estado = 0  WHERE id_usuario = $id";
+    // Preparamos la consulta SQL para desactivar la cuenta del usuario
+    $sql = "UPDATE usuarios SET estado = 0 WHERE id_usuario = :id";
 
+    // Preparamos la sentencia SQL para evitar inyecciones SQL
+    $stmt = $pdo->prepare($sql);
 
-    if(    $conn->query($sql) === true){
+    // Vinculamos el parámetro :id a la variable $id (el ID del usuario)
+    $stmt->bindParam(':id', $id, PDO::PARAM_INT); // El ID es un entero
+
+    // Ejecutamos la consulta
+    $stmt->execute();
+
+    // Verificamos si se actualizó alguna fila
+    if ($stmt->rowCount() > 0) {
+        // Si se actualizó una fila, significa que la cuenta se desactivó correctamente
         echo "<script>alert('Cuenta eliminada'); window.location.href = '../view/login.php';</script>";
-    }else{
-        echo "error";
+    } else {
+        // Si no se actualizó ninguna fila, algo salió mal
+        echo 'No se pudo eliminar tu contraseña.';
     }
-}
 
-$conn->close();
+    // Cerramos la conexión a la base de datos
+    $pdo = null; // Liberamos los recursos asociados a la conexión
+}
 ?>
