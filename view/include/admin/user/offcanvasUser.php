@@ -31,7 +31,7 @@
             <i class="bi bi-question-circle"></i>
             Ayuda
         </a>
-        <a href="#signOut">
+        <a  href="./../../php/signOut.php">
             <i class="bi bi-box-arrow-right"></i>
             Desconectar
         </a>

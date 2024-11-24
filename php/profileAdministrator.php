@@ -1,16 +1,15 @@
 <?php
 
-$host = "localhost"; // Servidor de la base de datos
-$port = 3306; // Database port
-$dbname = "eres_capaz"; // Nombre de la base de datos
-$username = "root"; // Nombre de usuario de la base de datos
-$password = "";
+// Incluimos el archivo donde se establece la conexión a la base de datos
+include "./connectionBD.php";
 
-$conn = new mysqli($host, $username, $password, $dbname, $port);
-
-if ($conn->connect_error) {
-    die("connection failed: " . $conn->connect_error);
+// Verificamos si hubo algún error al conectar a la base de datos
+if ($pdo->errorCode() != 0) {
+    // Si hay un error, mostramos un mensaje con el detalle del error
+    echo "Error de conexión: " . $pdo->errorInfo()[2];
+    // Aquí podrías agregar lógica adicional para manejar el error, como redirigir a una página de error o enviar un correo electrónico al administrador.
 }
+
 
 
 
@@ -22,60 +21,57 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $professionalPosition = $_POST["professionalPosition"];
     $center = $_POST["center"];
     $password = $_POST["password"];
-    
-    $sqlSearchUser = "SELECT COUNT(*) FROM usuarios WHERE usuario = '$user'";
-    $result = $conn->query($sqlSearchUser);
 
-    $sqlSearchMail = "SELECT COUNT(*) FROM profesionales WHERE correo_electronico = '$mail'";
-    $result2 = $conn->query($sqlSearchMail);
-
-    
-    // Obtener el número de filas (el resultado de COUNT(*))
-    $row = $result->fetch_row();
-    $num_filas = $row[0];
-
-     // Obtener el número de filas (el resultado de COUNT(*))
-     $row2 = $result2->fetch_row();
-     $num_filas2 = $row2[0];
+    $sqlCount = 'SELECT count(*) FROM `usuarios`';
+    $id = $pdo->prepare($sqlCount);
+    $id->execute();
+    $idUserAdmin = $id->fetchColumn() + 1; // Incrementamos en 1 para obtener el siguiente ID disponible
 
 
-    if($num_filas < 0 || $num_filas2 < 0){
     // Primera consulta: Insertar usuario
-    $sql1 = "INSERT INTO usuarios (id_rol, usuario, clave, estado, permisos, fecha_creacion)
+    $sqlAddUser = "INSERT INTO usuarios (id_usuario, id_rol, usuario, clave, estado, permisos, fecha_hora_creacion)
     VALUES (
-        '1', 
-        '$user', 
-        '$password', 
+        :id_usuario,
+        1, 
+        :user, 
+        :clue, 
         1, 
         1, 
         NOW()
     )";
+    $stmt = $pdo->prepare($sqlAddUser);
+    $stmt->bindParam('id_usuario',$idUserAdmin, PDO::PARAM_INT);
+    $stmt->bindParam('user',$user, PDO::PARAM_STR);
+    $stmt->bindParam('clue',$password, PDO::PARAM_STR);
+    $stmt->execute();
 
-    if ($conn->query($sql1) === TRUE) {
-        $ultimo_id_usuario = $conn->insert_id; // Obtener el último ID insertado
 
-        // Segunda consulta: Insertar profesional
-        $sql2 = "INSERT INTO profesionales (id_usuario, id_cargo, nombre, apellido, correo_electronico, centro_educativo_profesional)
+    // Segunda consulta: Insertar profesional
+    $sqlAddPro = "INSERT INTO profesionales (id_usuario, id_cargo, nombre, apellido, correo_electronico, centro_educativo_profesional)
         VALUES (
-            $ultimo_id_usuario,
+            $idUserAdmin,
             (SELECT id_cargo FROM cargos WHERE id_cargo = '1'), 
-            '$name',
-            '$lastName',
-            '$mail',
-            '$center'
+            :nombre,
+            :lastname,
+            :mail,
+            :center
         )";
 
-        if ($conn->query($sql2) === TRUE) {
-            // Ambas inserciones fueron exitosas
-            echo "Nueva cuenta creada correctamente.";
-        } else {
-            echo "Error a crear una nueva cuenta " . $conn->error;
-        }
-    } else {
-        echo "Error al insertar el usuario: " . $conn->error;
-    }
+    $stmt2 = $pdo->prepare($sqlAddPro);
+    $stmt2->bindParam('nombre',$name, PDO::PARAM_STR);
+    $stmt2->bindParam('lastname',$lastName, PDO::PARAM_STR);
+    $stmt2->bindParam('mail', $mail, PDO::PARAM_STR);
+    $stmt2->bindParam('center', $center, PDO::PARAM_STR);
+    $stmt2->execute();
+
+    if($stmt->rowCount() > 0 || $stmt2->rowCount() > 0){
+        echo "cuenta ya creada";
     }else{
-        echo "<script>alert('Usuario o gmail existente.'); window.location.href = '../view/createAccount.php';</script>";
+        echo "cuenta no creada";
     }
-    $conn->close();
+    
+
+    $pdo = null;
 }
+
+?>

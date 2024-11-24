@@ -2,6 +2,13 @@
 
 session_start();
 
+// Verificamos si el usuario está autenticado (ejemplo: si existe una variable de sesión 'usuario_logueado')
+if (!isset($_SESSION['id_admin'])) {
+    // Si no está autenticado, redireccionamos a la página de login
+    header('Location: ./../../index.php');
+    exit();
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -374,7 +381,7 @@ session_start();
                             <span>Registros</span>
                         </div>
                         <div>
-                            <a href="#addChild">Agregar niño</a>
+                            <a href="./child/add.php">Agregar niño</a>
                         </div>
                     </div>
                 </section>
@@ -413,7 +420,7 @@ session_start();
                     </table>
                     <nav class="Page navigation">
                         <ul class="pagination">
-                            <li>Enterior</li>
+                            <li>Anterior</li>
                             <li>1/2</li>
                             <li>Siguiente</li>
                         </ul>

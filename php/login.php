@@ -32,11 +32,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $rol = $row["id_rol"];
         $status = $row["estado"];
 
-        $_SESSION["id_usuario"] = $row["id_usuario"];
+        $_SESSION["id_admin"] = $row["id_usuario"];
         $_SESSION["usuario"] = $user;
         $sql2 = "SELECT * FROM profesionales WHERE id_usuario=$id_usuario";
         $result2 = $conn->query($sql2);
         $row2 = $result2->fetch_assoc();
+        $_SESSION["id_profesional"] = $row2["id_profesional"];
         $_SESSION["nombre"] = $row2["nombre"];
         $_SESSION["apellido"] = $row2["apellido"];
         $_SESSION["id_cargo"] = $row2["id_cargo"];

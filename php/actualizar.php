@@ -30,27 +30,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Preparamos la consulta para actualizar la tabla "profesionales"
     $sqlUpdateProfesional = "UPDATE profesionales SET 
-                                id_cargo = :cargo,
-                                nombre = :nombre,
-                                apellido = :lastname,
-                                correo_electronico = :mail,
-                                centro_educativo_profesional = :center
-                            WHERE id_usuario = :userId"; //Consulta mysql
-    $stmt2 = $pdo->prepare($sqlUpdateProfesional); //Preparacion
-    //Vinculamos los parametros necesarios de la consulta
-    $stmt2->bindParam(':cargo', $cargo, PDO::PARAM_INT); 
-    $stmt2->bindParam(':nombre', $name, PDO::PARAM_INT); 
-    $stmt2->bindParam(':lastname', $lastName, PDO::PARAM_INT); 
-    $stmt2->bindParam(':mail', $mail, PDO::PARAM_INT); 
-    $stmt2->bindParam(':center', $center, PDO::PARAM_INT); 
-    $stmt2->bindParam(':userId', $userId, PDO::PARAM_INT);  
-    $stmt2->execute(); //La ejecutamos
+        id_cargo = :cargo,
+        nombre = :nombre,
+        apellido = :lastname,
+        correo_electronico = :mail,
+        centro_educativo_profesional = :center
+        WHERE id_usuario = :userId";
+
+    $stmt2 = $pdo->prepare($sqlUpdateProfesional); //Preparamos la consulta
+    // Vinculamos los parámetros con los tipos de datos correctos
+    $stmt2->bindParam(':cargo', $cargo, PDO::PARAM_INT);
+    $stmt2->bindParam(':nombre', $name, PDO::PARAM_STR);
+    $stmt2->bindParam(':lastname', $lastName, PDO::PARAM_STR);
+    $stmt2->bindParam(':mail', $mail, PDO::PARAM_STR);
+    $stmt2->bindParam(':center', $center, PDO::PARAM_STR);
+    $stmt2->bindParam(':userId', $userId, PDO::PARAM_INT);
+    $stmt2->execute(); //Ejecutamos la consulta
 
     // Verificamos si ambas actualizaciones se realizaron correctamente
-    if ($stmt->rowCount() > 0 && $stmt2->rowCount() > 0) {
+    if ($stmt->rowCount() > 0 || $stmt2->rowCount() > 0) {
         echo 'Los datos se actualizaron correctamente.';
+        $_SESSION["usuario"] = $user;
+        $_SESSION["nombre"] = $name;
+        $_SESSION["apellido"] = $lastName;
+        $_SESSION["id_cargo"] = $cargo;
+        $_SESSION['correo'] = $mail;
+        $_SESSION['centro'] = $center;
     } else {
-        echo 'Hubo un error al actualizar los datos.';
+        // Obtener información más detallada del error
+        $errorInfo = $stmt->errorInfo();
+        echo "Error al actualizar los datos: " . $errorInfo[2];
     }
 
     // Cerramos la conexión a la base de datos
