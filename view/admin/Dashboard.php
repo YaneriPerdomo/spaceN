@@ -223,6 +223,48 @@ if (!isset($_SESSION['id_admin'])) {
     .information>div>label {
         margin-bottom: 0.3rem;
     }
+
+    .containerSendNotification {
+        width: 100vw;
+        height: 100vh;
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        background: green;
+        align-items: center;
+        background: rgb(0, 0, 0, 0.5);
+    }
+
+    .containerSendNotification>.content {
+        max-width: 500px;
+        padding: 1rem;
+        background: white;
+        min-width: 200px;
+    }
+
+    .openModal {
+       animation: openModal 0.5s;
+    }
+
+    @keyframes openModal {
+        0%{
+            transform: translateY(-15%);
+            opacity: 0; 
+                       transition: opacity 0.5s ease-in-out;
+
+        }
+
+        100%{
+            transform: translateY(0%);
+            opacity: 1;
+        }
+    }
+
+    .cancelModal {
+        opacity: 0;
+        /* transform: translateY(100%); */
+        transition: all 0.3s ease-in-out;
+    }
 </style>
 
 <body>
@@ -400,7 +442,8 @@ if (!isset($_SESSION['id_admin'])) {
                         </thead>
                         <?php
 
-                        function showChilds(){
+                        function showChilds()
+                        {
                             // Incluimos el archivo de conexión a la base de datos
                             include '../../php/connectionBD.php';
 
@@ -424,11 +467,21 @@ if (!isset($_SESSION['id_admin'])) {
                                 // Iteramos sobre cada fila del resultado
                                 foreach ($result as $row) {
                                     // Obtenemos la categoría de actividad y la asignamos a una variable
-                                    match ($row["id_categoria_actividades"]) {
-                                        1 => $showA = "Pre Numerico",
-                                        2 => $showA = "Numerico Emergente",
-                                        3 => $showA = "Desarrollo Numerico"
-                                    };
+                        
+                                    switch ($row["id_categoria_actividades"]) {
+                                        case 1:
+                                            $showA = "Pre Numerico";
+                                            break;
+                                        case 2:
+                                            $showA = "Numerico Emergente";
+                                            break;
+                                        case 3:
+                                            $showA = "Desarrollo Numerico";
+                                            break;
+                                        default:
+                                            $showA = "Categoría desconocida";
+                                    }
+
                                     $fecha_nacimiento = $row["fecha_nacimiento"];
                                     $fecha_actual = date("Y-m-d"); // Obtener la fecha actual completa
                                     // Convertir ambas fechas a timestamps
@@ -447,9 +500,9 @@ if (!isset($_SESSION['id_admin'])) {
                                     echo "<td>" . $showA . "</td>";
                                     echo "<td class='operations'>";
                                     echo "<button data-id='" . $row['id_nino'] . "'><i class='bi bi-trash'></i></button>";
-                                    echo "<a href='#modify'><button><i class='bi bi-person-lines-fill'></i></button></a>";
-                                    echo "<a href='#progressChild'><button><i class='bi bi-bar-chart'></i></button></a>";
-                                    echo "<button class='sendN' data-bs-toggle='modal' data-id=".$row['id_nino']." data-bs-target='#sendNotificationChild'><i class='bi bi-send-plus'></i></button>";
+                                    echo "<a href='child/modify.php?id=" . $row['id_nino'] . "'><button><i class='bi bi-person-lines-fill'></i></button></a>";
+                                    echo "<button><i class='bi bi-bar-chart'></i></button></a>";
+                                    echo "<button class='OpenSendNotificationChild' data-idS='" .$row['id_nino'] . "' > <i class='bi bi-send-plus'></i></button> ";
                                     echo "</td>";
                                     echo "</tr>";
                                 }
@@ -469,6 +522,43 @@ if (!isset($_SESSION['id_admin'])) {
     </main>
     <?php include './../include/admin/footer.php' ?>
 
+    <div class="containerSendNotification" style="display:none">
+        <div class="modal-content content">
+            <div class="modal-header">
+                <div class="text-center w-100">
+                    <h1 class="modal-title fs-5 text-center" id="exampleModalLabel"><b>Envio de notificacion</b></h1>
+                    <small>Puedes enviarle una notificación para <small class="nameChildS"></small></small>
+                </div>
+            </div>
+            <form action="./../../php/sendNotificationChild.php" method="post">
+                <div class="modal-body">
+                    <input type="hidden" name="id_child" class="id_child" value="">
+                    <input type="hidden" name="id_profesional" value="<?php echo $_SESSION["id_profesional"] ?> ">
+                    <select name="messenger" class="w-100">
+                        <option selected value="¡Felicidades! Has completado una leccion mas.">¡Felicidades! Has
+                            completado una lección mas. </option>
+                        <option value="¡Genial! Has ganado mas estrellas."> ¡Genial! Has ganado más estrellas. ✨
+                        </option>
+                        <option value="¡Lo lograste! Has superado la etapa 1."> ¡Lo lograste! Has superado la etapa 1.
+                        </option>
+                        <option value="¡Sigue asi! Has pasado a la etapa 2."> ¡Sigue así! Has pasado a la etapa 2.
+                        </option>
+                        <option value="¡Enhorabuena! Has completado todo el aprendizaje."> ¡Enhorabuena! Has completado
+                            todo el aprendizaje. </option>
+                        <option value="¡Ascendiste en la tabla de clasificación! Estás más cerca de la cima.">
+                            ¡Ascendiste en la tabla de clasificación! Estás más cerca de la cima.
+                        </option>
+                        <option value="ranking_entered"> ¡Bienvenid@! Has entrado en la tabla de clasificación.
+                        </option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary CanceSendN">Cancelar</button>
+                    <button type="submit" class="btn btn-success">Enviar</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </body>
 
 
@@ -481,11 +571,28 @@ if (!isset($_SESSION['id_admin'])) {
 
 
 <script>
-    let $htmlIdChild =document.querySelector('.id_child');
-    document.addEventListener("click", async e  => {
+    let $containerSendNotification = document.querySelector(".containerSendNotification");
+    let $contentSend = document.querySelector(".containerSendNotification > .content")
+    let $htmlIdChild = document.querySelector('.id_child');
+    let $nameChildS = document.querySelector(".nameChildS");
+    document.addEventListener("click", e => {
 
-        if(e.target.matches(".sendN")){
-            $htmlIdChild.value = `${e.target.getAttribute("data-id")}`; 
+        if (e.target.matches(".CanceSendN")) {
+            $containerSendNotification.style.display = "none";
+        }
+
+        if (e.target.matches(".OpenSendNotificationChild")) {
+            $containerSendNotification.removeAttribute("style");
+            $contentSend.classList.add("openModal")
+            $nameChildS.innerHTML = e.target.getAttribute("data-nameS")
+            $htmlIdChild.value = e.target.getAttribute("data-idS");
+        }
+        if (e.target.matches(`.sendNotificationChild`)) {
+            setTimeout(() => {
+                alert("hol")
+                console.log(`hola ${e.target.getAttribute("data-id")}`);
+                $htmlIdChild.value = `${e.target.getAttribute("data-id")}`;
+            }, 1000);
         }
 
     })
@@ -496,4 +603,5 @@ if (!isset($_SESSION['id_admin'])) {
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
+
 </html>
