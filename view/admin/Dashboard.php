@@ -9,6 +9,8 @@ if (!isset($_SESSION['id_admin'])) {
     exit();
 }
 
+
+
 ?>
 
 <!DOCTYPE html>
@@ -226,7 +228,6 @@ if (!isset($_SESSION['id_admin'])) {
 <body>
 
     <?php include './../include/admin/header.php' ?>
-
     <main class="">
         <div class="row h-100">
             <div class="col-3 h-100">
@@ -394,37 +395,74 @@ if (!isset($_SESSION['id_admin'])) {
                                 <th>Apellido</th>
                                 <th>Edad</th>
                                 <th>Aprendizaje</th>
-                                <th>Estado</th>
                                 <th>Operaciones</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td><a href="#">Moises3</a></td>
-                                <td>Moises</td>
-                                <td>Bastos</td>
-                                <td>10</td>
-                                <td>
-                                    Pre-numerico
-                                </td>
-                                <td>Activo</td>
-                                <td class="operations">
-                                    <button><i class="bi bi-trash"></i></button>
-                                    <a href="#modify"><button><i class="bi bi-person-lines-fill"></i></button></a><br>
-                                    <a href="#progressChild"><button><i class="bi bi-bar-chart"></i></button></a>
-                                    <button data-bs-toggle="modal" data-bs-target="#sendNotificationChild"><i
-                                            class="bi bi-send-plus"></i></button>
-                                </td>
-                            </tr>
-                        </tbody>
+                        <?php
+
+                        function showChilds(){
+                            // Incluimos el archivo de conexión a la base de datos
+                            include '../../php/connectionBD.php';
+
+                            // Preparamos la consulta SQL para obtener información de los niños
+                            // Se realiza una unión entre las tablas 'ninos' y 'usuarios' para obtener más datos
+                            // Se filtra por el id_profesional para obtener los niños de un profesional específico (en este caso, el de ID 7)
+                            $sqlSelect = 'SELECT id_nino, usuario, nombre, apellido, id_categoria_actividades, fecha_nacimiento FROM ninos 
+                            INNER JOIN usuarios ON ninos.id_usuario = usuarios.id_usuario WHERE id_profesional = 7';
+
+                            // Preparamos la sentencia SQL para evitar inyección SQL
+                            $stmt = $pdo->prepare($sqlSelect);
+
+                            // Ejecutamos la consulta
+                            $stmt->execute();
+
+                            // Verificamos si se encontraron resultados
+                            if ($stmt->rowCount() > 0) {
+                                // Si hay resultados, los obtenemos en un array asociativo
+                                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                                // Iteramos sobre cada fila del resultado
+                                foreach ($result as $row) {
+                                    // Obtenemos la categoría de actividad y la asignamos a una variable
+                                    match ($row["id_categoria_actividades"]) {
+                                        1 => $showA = "Pre Numerico",
+                                        2 => $showA = "Numerico Emergente",
+                                        3 => $showA = "Desarrollo Numerico"
+                                    };
+                                    $fecha_nacimiento = $row["fecha_nacimiento"];
+                                    $fecha_actual = date("Y-m-d"); // Obtener la fecha actual completa
+                                    // Convertir ambas fechas a timestamps
+                                    $timestamp_nacimiento = strtotime($fecha_nacimiento);
+                                    $timestamp_actual = strtotime($fecha_actual);
+                                    // Calcular la diferencia en segundos
+                                    $diferencia_segundos = $timestamp_actual - $timestamp_nacimiento;
+                                    // Convertir la diferencia de segundos a años (aproximado)
+                                    $edad_en_anos = floor($diferencia_segundos / (60 * 60 * 24 * 365.25));
+                                    // Generamos una fila en una tabla HTML con los datos del niño
+                                    echo "<tr>";
+                                    echo "<td>" . $row['usuario'] . "</td>";
+                                    echo "<td>" . $row['nombre'] . "</td>";
+                                    echo "<td>" . $row['apellido'] . "</td>";
+                                    echo "<td>" . $edad_en_anos . "</td>";
+                                    echo "<td>" . $showA . "</td>";
+                                    echo "<td class='operations'>";
+                                    echo "<button data-id='" . $row['id_nino'] . "'><i class='bi bi-trash'></i></button>";
+                                    echo "<a href='#modify'><button><i class='bi bi-person-lines-fill'></i></button></a>";
+                                    echo "<a href='#progressChild'><button><i class='bi bi-bar-chart'></i></button></a>";
+                                    echo "<button class='sendN' data-bs-toggle='modal' data-id=".$row['id_nino']." data-bs-target='#sendNotificationChild'><i class='bi bi-send-plus'></i></button>";
+                                    echo "</td>";
+                                    echo "</tr>";
+                                }
+                            } else {
+                                // Si no hay resultados, mostramos un mensaje
+                                echo "<br>";
+                                echo "<p>No hay registros disponibles en este momento.</p>";
+                            }
+                        }
+                        showChilds();
+                        ?>
+
                     </table>
-                    <nav class="Page navigation">
-                        <ul class="pagination">
-                            <li>Anterior</li>
-                            <li>1/2</li>
-                            <li>Siguiente</li>
-                        </ul>
-                    </nav>
                 </section>
             </div>
         </div>
@@ -433,6 +471,7 @@ if (!isset($_SESSION['id_admin'])) {
 
 </body>
 
+
 <?php include "../include/admin/offcanvasAplication.php" ?>
 <?php include "../include/admin/offcanvasUser.php" ?>
 <?php include "../include/admin/detailsActivity.php" ?>
@@ -440,10 +479,21 @@ if (!isset($_SESSION['id_admin'])) {
 <?php include "../include/admin/searchChilds.php" ?>
 
 
+
+<script>
+    let $htmlIdChild =document.querySelector('.id_child');
+    document.addEventListener("click", async e  => {
+
+        if(e.target.matches(".sendN")){
+            $htmlIdChild.value = `${e.target.getAttribute("data-id")}`; 
+        }
+
+    })
+
+</script>
+
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
-
-
-
 </html>

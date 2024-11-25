@@ -33,13 +33,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     // Preparamos la consulta SQL para insertar un nuevo usuario (el padre o tutor)
     $sqlUser = "INSERT INTO usuarios (id_usuario, id_rol, usuario, clave, estado, permisos, fecha_hora_creacion)
                VALUES (
-                   :id_user,  // ID del nuevo usuario (autoincrementable)
-                   2,         // ID del rol (2 en este caso)
-                   :user,      // Valor del campo 'usuario' (bindParam para prevenir inyección SQL)
-                   :clue,      // Valor del campo 'clave' (bindParam para prevenir inyección SQL)
-                   1,         // Estado del usuario (1: activo)
-                   1,         // Permisos del usuario (1: permisos básicos)
-                   NOW()       // Fecha y hora de creación actual
+                   :id_user,  
+                   2,        
+                   :user,      
+                   :clue,      
+                   1,        
+                   1,         
+                   NOW()     
                )";
 
     // Preparamos la sentencia y vinculamos los parámetros
