@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-11-2024 a las 15:48:15
+-- Tiempo de generación: 26-11-2024 a las 03:49:35
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -114,8 +114,8 @@ CREATE TABLE `notificaciones` (
   `id_notificacion` int(10) NOT NULL,
   `id_nino` int(10) NOT NULL,
   `id_profesional` int(10) NOT NULL,
-  `mensaje` text DEFAULT NULL,
-  `fecha_envio` datetime DEFAULT NULL,
+  `mensaje` varchar(50) DEFAULT NULL,
+  `fecha_hora_envio` datetime DEFAULT NULL,
   `estado` enum('pendiente','leido') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -141,7 +141,22 @@ CREATE TABLE `profesionales` (
 --
 
 INSERT INTO `profesionales` (`id_profesional`, `id_usuario`, `id_cargo`, `nombre`, `apellido`, `correo_electronico`, `centro_educativo_profesional`) VALUES
-(7, 2, 1, 'Yaneri', 'Perdomo', 'perdombarrio@gmail.com', 'josefina de acosta');
+(8, 1, 1, 'Yaireli', 'Perdomo', 'yayiperdomo@gmail.com', '234');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `progresos`
+--
+
+DROP TABLE IF EXISTS `progresos`;
+CREATE TABLE `progresos` (
+  `id_progreso` int(10) NOT NULL,
+  `id_usuario` int(10) NOT NULL,
+  `porcentaje` int(5) DEFAULT 0,
+  `fecha_hora_inicio` datetime DEFAULT NULL,
+  `fecha_hora_fin` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -185,8 +200,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id_usuario`, `id_rol`, `usuario`, `clave`, `estado`, `permisos`, `fecha_hora_creacion`) VALUES
-(1, 2, 'dustin', '232', b'1', b'1', '2024-11-23 23:30:05'),
-(2, 1, 'yane', '123', b'1', b'1', '2024-11-24 09:00:02');
+(1, 1, 'Yayi33', '123', b'1', b'1', '2024-11-25 22:29:44');
 
 --
 -- Índices para tablas volcadas
@@ -238,6 +252,13 @@ ALTER TABLE `profesionales`
   ADD KEY `id_cargo` (`id_cargo`);
 
 --
+-- Indices de la tabla `progresos`
+--
+ALTER TABLE `progresos`
+  ADD PRIMARY KEY (`id_progreso`),
+  ADD KEY `id_usuario` (`id_usuario`);
+
+--
 -- Indices de la tabla `roles`
 --
 ALTER TABLE `roles`
@@ -277,19 +298,25 @@ ALTER TABLE `generos`
 -- AUTO_INCREMENT de la tabla `ninos`
 --
 ALTER TABLE `ninos`
-  MODIFY `id_nino` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_nino` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `notificaciones`
 --
 ALTER TABLE `notificaciones`
-  MODIFY `id_notificacion` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_notificacion` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `profesionales`
 --
 ALTER TABLE `profesionales`
-  MODIFY `id_profesional` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_profesional` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT de la tabla `progresos`
+--
+ALTER TABLE `progresos`
+  MODIFY `id_progreso` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
@@ -301,7 +328,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
+  MODIFY `id_usuario` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
 
 --
 -- Restricciones para tablas volcadas
@@ -329,6 +356,12 @@ ALTER TABLE `notificaciones`
 ALTER TABLE `profesionales`
   ADD CONSTRAINT `profesionales_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`),
   ADD CONSTRAINT `profesionales_ibfk_2` FOREIGN KEY (`id_cargo`) REFERENCES `cargos` (`id_cargo`);
+
+--
+-- Filtros para la tabla `progresos`
+--
+ALTER TABLE `progresos`
+  ADD CONSTRAINT `progresos_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`);
 
 --
 -- Filtros para la tabla `usuarios`

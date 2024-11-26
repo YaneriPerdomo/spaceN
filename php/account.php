@@ -11,7 +11,7 @@ if ($pdo->errorCode() != 0) {
 if($_SERVER["REQUEST_METHOD"] == "POST") {
     // Verificamos si se ha enviado un formulario (método POST)
 
-    $id = $_SESSION["id_usuario"]; // Obtenemos el ID del usuario de la sesión
+    $id = $_SESSION["id_admin"]; // Obtenemos el ID del usuario de la sesión
 
     // Preparamos la consulta SQL para desactivar la cuenta del usuario
     $sql = "UPDATE usuarios SET estado = 0 WHERE id_usuario = :id";

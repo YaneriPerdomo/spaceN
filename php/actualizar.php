@@ -13,7 +13,7 @@ if ($pdo->errorCode() != 0) {
 // Verificamos si se ha enviado un formulario (método POST)
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Obtenemos los datos enviados desde el formulario
-    $userId = $_SESSION["id_usuario"]; 
+    $userId = $_SESSION["id_admin"]; 
     $user = $_POST["user"];
     $cargo = $_POST["professionalPosition"];
     $name = $_POST["name"];

@@ -31,9 +31,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $totalFilas = $id->fetchColumn() + 1; // Incrementamos en 1 para obtener el siguiente ID disponible
 
     // Preparamos la consulta SQL para insertar un nuevo usuario (el padre o tutor)
-    $sqlUser = "INSERT INTO usuarios (id_usuario, id_rol, usuario, clave, estado, permisos, fecha_hora_creacion)
-               VALUES (
-                   :id_user,  
+    $sqlUser = "INSERT INTO usuarios (id_rol, usuario, clave, estado, permisos, fecha_hora_creacion)
+               VALUES (  
                    2,        
                    :user,      
                    :clue,      
@@ -44,11 +43,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     // Preparamos la sentencia y vinculamos los parámetros
     $stmt = $pdo->prepare($sqlUser); //Preparamos la consulta
-    $stmt->bindParam('id_user', $totalFilas, PDO::PARAM_INT); //Vinculamos el parametro id_usuario en la consultada preparada
     $stmt->bindParam('user', $user, PDO::PARAM_STR);
     $stmt->bindParam('clue', $clue, PDO::PARAM_STR);
     $stmt->execute(); //Ejecutamos la consulta
 
+    $last_id = $pdo->lastInsertId();
     // Preparamos la consulta SQL para insertar un nuevo niño
     $sqlChild = "INSERT INTO ninos (id_genero, id_categoria_actividades, id_usuario , id_profesional, 
                                 nombre, apellido, fecha_nacimiento)
@@ -64,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $stmt2 = $pdo->prepare($sqlChild);
     $stmt2->bindParam(':id_genero', $gender, PDO::PARAM_INT);
     $stmt2->bindParam('id_accessLevel', $accessLevel, PDO::PARAM_INT);
-    $stmt2->bindParam('id_user', $totalFilas, PDO::PARAM_INT);
+    $stmt2->bindParam('id_user', $last_id, PDO::PARAM_INT);
     $stmt2->bindParam('id_profesional',$idProfesional, PDO::PARAM_INT);
     $stmt2->bindParam('nombre', $name, PDO::PARAM_STR);
     $stmt2->bindParam('lastname',$lastName, PDO::PARAM_STR);

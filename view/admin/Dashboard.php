@@ -224,7 +224,7 @@ if (!isset($_SESSION['id_admin'])) {
         margin-bottom: 0.3rem;
     }
 
-    .containerSendNotification {
+    .containerSendNotification , .containerDeleteChild{
         width: 100vw;
         height: 100vh;
         position: absolute;
@@ -235,7 +235,7 @@ if (!isset($_SESSION['id_admin'])) {
         background: rgb(0, 0, 0, 0.5);
     }
 
-    .containerSendNotification>.content {
+    .containerSendNotification>.content, .containerDeleteChild > .content {
         max-width: 500px;
         padding: 1rem;
         background: white;
@@ -243,18 +243,18 @@ if (!isset($_SESSION['id_admin'])) {
     }
 
     .openModal {
-       animation: openModal 0.5s;
+        animation: openModal 0.5s;
     }
 
     @keyframes openModal {
-        0%{
+        0% {
             transform: translateY(-15%);
-            opacity: 0; 
-                       transition: opacity 0.5s ease-in-out;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
 
         }
 
-        100%{
+        100% {
             transform: translateY(0%);
             opacity: 1;
         }
@@ -416,12 +416,12 @@ if (!isset($_SESSION['id_admin'])) {
                     <h1>Panel administrativo</h1>
                     <div class="showAndAddChild">
                         <div>
-                            <span>Mostrar</span>
-                            <select name="" id="">
-                                <option value="5">5</option>
-                                <option value="10">10</option>
-                            </select>
-                            <span>Registros</span>
+                            <div class="input-group mb-3">
+                                <input type="search" class="form-control" placeholder="Buscar..." aria-label="Username"
+                                    aria-describedby="basic-addon1">
+                                    <span class="input-group-text" id="basic-addon1">@</span>
+                            </div>
+
                         </div>
                         <div>
                             <a href="./child/add.php">Agregar niño</a>
@@ -446,16 +446,16 @@ if (!isset($_SESSION['id_admin'])) {
                         {
                             // Incluimos el archivo de conexión a la base de datos
                             include '../../php/connectionBD.php';
-
+                            $id_admin = $_SESSION["id_profesional"];
                             // Preparamos la consulta SQL para obtener información de los niños
                             // Se realiza una unión entre las tablas 'ninos' y 'usuarios' para obtener más datos
                             // Se filtra por el id_profesional para obtener los niños de un profesional específico (en este caso, el de ID 7)
-                            $sqlSelect = 'SELECT id_nino, usuario, nombre, apellido, id_categoria_actividades, fecha_nacimiento FROM ninos 
-                            INNER JOIN usuarios ON ninos.id_usuario = usuarios.id_usuario WHERE id_profesional = 7';
+                            $sqlSelect = 'SELECT id_nino, ninos.id_usuario as id_usuario_nino, usuario, nombre, apellido, id_categoria_actividades, fecha_nacimiento FROM ninos 
+                            INNER JOIN usuarios ON ninos.id_usuario = usuarios.id_usuario WHERE id_profesional = :id';
 
                             // Preparamos la sentencia SQL para evitar inyección SQL
                             $stmt = $pdo->prepare($sqlSelect);
-
+                            $stmt->bindParam('id', $id_admin , PDO::PARAM_INT);
                             // Ejecutamos la consulta
                             $stmt->execute();
 
@@ -499,10 +499,10 @@ if (!isset($_SESSION['id_admin'])) {
                                     echo "<td>" . $edad_en_anos . "</td>";
                                     echo "<td>" . $showA . "</td>";
                                     echo "<td class='operations'>";
-                                    echo "<button data-id='" . $row['id_nino'] . "'><i class='bi bi-trash'></i></button>";
+                                    echo "<button class='OpenDeleteChild' data-idc='" . $row['id_nino'] . "' data-idu='" . $row['id_usuario_nino'] . "'><i class='bi bi-trash'></i></button>";
                                     echo "<a href='child/modify.php?id=" . $row['id_nino'] . "'><button><i class='bi bi-person-lines-fill'></i></button></a>";
                                     echo "<button><i class='bi bi-bar-chart'></i></button></a>";
-                                    echo "<button class='OpenSendNotificationChild' data-idS='" .$row['id_nino'] . "' > <i class='bi bi-send-plus'></i></button> ";
+                                    echo "<button class='OpenSendNotificationChild' data-idS='" . $row['id_nino'] . "' > <i class='bi bi-send-plus'></i></button> ";
                                     echo "</td>";
                                     echo "</tr>";
                                 }
@@ -521,6 +521,27 @@ if (!isset($_SESSION['id_admin'])) {
         </div>
     </main>
     <?php include './../include/admin/footer.php' ?>
+
+    <div class="containerDeleteChild" style="display:none">
+        <div class="modal-content content">
+            <div class="modal-header">
+                <div class="text-center w-100">
+                    <h1 class="modal-title fs-5 text-center" id="exampleModalLabel"><b>Envio de notificacion</b></h1>
+                    <small>Puedes enviarle una notificación para <small class="nameChildS"></small></small>
+                </div>
+            </div>
+            <form action="./../../php/DeleteChild.php" method="post">
+                <div class="modal-body">
+                    <input type="hidden" name="id_childC" value="">
+                    <input type="hidden" name="id_childU">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary CancelModalDelet">Cancelar</button>
+                    <button type="submit" class="btn btn-success">Eliminar</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
     <div class="containerSendNotification" style="display:none">
         <div class="modal-content content">
@@ -571,14 +592,28 @@ if (!isset($_SESSION['id_admin'])) {
 
 
 <script>
+    let $containerDeleteChild = document.querySelector(".containerDeleteChild");
     let $containerSendNotification = document.querySelector(".containerSendNotification");
-    let $contentSend = document.querySelector(".containerSendNotification > .content")
+    let $contentSend = document.querySelector(".containerSendNotification > .content");
+    let $contentDelete =document.querySelector(".containerDeleteChild > .content");
     let $htmlIdChild = document.querySelector('.id_child');
+    let $idChildDelete =document.querySelector("[name='id_childC']")
     let $nameChildS = document.querySelector(".nameChildS");
+    let $idChildD =document.querySelector(`[name="id_childU"]`)
     document.addEventListener("click", e => {
 
         if (e.target.matches(".CanceSendN")) {
             $containerSendNotification.style.display = "none";
+        }
+        if(e.target.matches(".OpenDeleteChild")){
+            $containerDeleteChild.removeAttribute("style");
+            $contentDelete.classList.add("openModal");
+            $idChildDelete.value = e.target.getAttribute("data-idc");
+            $idChildD.value = e.target.getAttribute("data-idu");
+        }
+
+        if(e.target.matches(".CancelModalDelet")){
+            $containerDeleteChild.style.display = "none";
         }
 
         if (e.target.matches(".OpenSendNotificationChild")) {
