@@ -1,3 +1,6 @@
+<?php
+    include './../../php/validations/authorizedUser.php';
+?>
 <!DOCTYPE html>
 <html lang="ea">
 
@@ -23,6 +26,7 @@
     }
 
     body {
+        background: #f2f2f2;
         display: flex;
         flex-direction: column;
         width: 100vw;
@@ -33,6 +37,8 @@
 
     main {
         flex-grow: 2;
+        display: flex;
+    justify-content: center;
     }
 
     .userPerfil>button {
@@ -208,13 +214,23 @@
     .information>div>label {
         margin-bottom: 0.3rem;
     }
+
+    .content{
+        background: white;
+        padding: 1rem;
+        border-radius: 1rem;
+        border: solid 1px #e8d8ff;
+        margin:1rem;
+        max-width: 700px;
+    }
 </style>
 
 <body>
     <?php include "./../include/admin/headerHelp.php" ?>
     <main class="">
-        <div>
-            <h2>Report</h2>
+        <div class="content">
+            <h1><b>Reportes</b></h1>
+            
         </div>
     </main>
     <?php include "./../include/admin/footer.php" ?>

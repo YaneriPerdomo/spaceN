@@ -5,7 +5,7 @@
             <div class="d-flex">
                 <img src="../../../img/for/representative.png" class="img-fluid userImg" alt="">
                 <div class="d-flex flex-column">
-                <span><strong><?php if (isset($_SESSION)) {
+                    <span><strong><?php if (isset($_SESSION)) {
                         echo $_SESSION['usuario'];
                     } else {
                         echo "Tu Usuario";
@@ -16,14 +16,15 @@
                     } else {
                         echo "Tu Usuario";
                     } ?>
-                    </span></div>
+                    </span>
+                </div>
             </div>
         </div>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <hr style="margin:0.1rem">
     <div class="offcanvas-body">
-        <a href="./profile.php">
+        <a href="../user/profile.php">
             <i class="bi bi-person"></i>
             Tu Perfil
         </a>

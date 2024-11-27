@@ -1,3 +1,6 @@
+<?php
+    include './../../../php/validations/authorizedUser.php';
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -23,6 +26,7 @@
     }
 
     body {
+        background: #f2f2f2;
         display: flex;
         flex-direction: column;
         width: 100vw;
@@ -179,16 +183,26 @@
 
     main>div {
         width: 100vw;
+        padding: 1rem;
+
     }
 
     .operations>a {
         display: inline
     }
 
-    .configurationProfile>div {
+    .configurationProfile .content >div {
         display: flex;
         align-items: center;
         gap: 0.5rem;
+    }
+
+    
+    .content{
+        background: white;
+        padding: 1rem;
+        border-radius: 1rem;
+        border: solid 1px #e8d8ff;
     }
 
     .personalInformation>.information>.imgUser>img {
@@ -208,6 +222,7 @@
     .information>div>label {
         margin-bottom: 0.3rem;
     }
+
 </style>
 
 <body>
@@ -217,6 +232,7 @@
     <main class="">
         <div class="row h-100">
             <div class="col-3 configurationProfile h-100">
+                <div class="content">
                 <h2>Configuraciones</h2>
                 <div class="profile">
                     <i class="bi bi-person"></i>
@@ -230,18 +246,21 @@
                     <i class="bi bi-lock"></i>
                     <a href="./profile.php">Cuenta</a>
                 </div>
+                </div>
             </div>
             <div class="col-9">
+                <div class="content">
                 <form action="./../../../php/changesPassword.php" method="post">
                     <legend>Cambiar contraseña</legend>
                     <label for="">Contraseña actual</label><br>
-                    <input type="text" name="oldPassword" id=""><br>
+                    <input type="password" name="oldPassword" id=""><br>
                     <label for="">Contrasena nueva</label><br>
-                    <input type="text" name="newPassword" id=""><br>
+                    <input type="password" name="newPassword" id=""><br>
                     <label for="">Confirmar contrasena nueva</label><br>
-                    <input type="text" name="passwordAgain" id=""><br>
+                    <input type="password" name="passwordAgain" id=""><br>
                     <input type="submit" value="Cambiar">
                 </form>
+                </div>
             </div>
         </div>
     </main>

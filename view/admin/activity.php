@@ -1,3 +1,6 @@
+<?php
+    include './../../php/validations/authorizedUser.php';
+?>
 <!DOCTYPE html>
 <html lang="ea">
 
@@ -23,6 +26,7 @@
     }
 
     body {
+        background: #f2f2f2;
         display: flex;
         flex-direction: column;
         width: 100vw;
@@ -33,6 +37,8 @@
 
     main {
         flex-grow: 2;
+        display: flex;
+    justify-content: center;
     }
 
     .userPerfil>button {
@@ -208,13 +214,26 @@
     .information>div>label {
         margin-bottom: 0.3rem;
     }
+
+    .content{
+        background: white;
+        padding: 1rem;
+        border-radius: 1rem;
+        border: solid 1px #e8d8ff;
+        margin:1rem;
+        max-width: 700px;
+    }
 </style>
 
 <body>
     <?php include "./../include/admin/headerHelp.php" ?>
     <main class="">
-        <div>
-            <h2>Actividad</h2>
+        <div class="content">
+            <h1><b>Recientes</b></h1>
+            <p>
+            La aplicación web <em>"Eres capaz"</em> te muestra actualizaciones en vivo 
+            de las actividades que tus niños pueden realizar en la plataforma de aprendizaje.
+            </p>
         </div>
     </main>
     <?php include "./../include/admin/footer.php" ?>

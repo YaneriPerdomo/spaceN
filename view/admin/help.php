@@ -1,3 +1,6 @@
+<?php
+    include './../../php/validations/authorizedUser.php';
+?>
 <!DOCTYPE html>
 <html lang="ea">
 
@@ -23,6 +26,7 @@
     }
 
     body {
+        background: #f2f2f2;
         display: flex;
         flex-direction: column;
         width: 100vw;
@@ -33,6 +37,8 @@
 
     main {
         flex-grow: 2;
+        display: flex;
+    justify-content: center;
     }
 
     .userPerfil>button {
@@ -208,28 +214,32 @@
     .information>div>label {
         margin-bottom: 0.3rem;
     }
+
+    .content{
+        background: white;
+        padding: 1rem;
+        border-radius: 1rem;
+        border: solid 1px #e8d8ff;
+        margin:1rem;
+        max-width: 700px;
+    }
 </style>
 
 <body>
-<?php include './../include/admin/headerHelp.php' ?>    
+    <?php include "./../include/admin/headerHelp.php" ?>
     <main class="">
-        <div>
-            <h1>Ayuda</h1>
+        <div class="content">
+            <h1><b>Ayuda</b></h1>
         </div>
     </main>
-    <?php include './../include/admin/footer.php' ?>
-
+    <?php include "./../include/admin/footer.php" ?>
 </body>
-
-<?php include "../include/admin/offcanvasAplication.php" ?>
-<?php include "../include/admin/offcanvasUser.php" ?>
-<?php include "../include/admin/detailsActivity.php" ?>
-<?php include "../include/admin/sendNotificationChild.php" ?>
-<?php include "../include/admin/searchChilds.php" ?>
-
+<?php include "./../include/admin/offcanvasAplication.php" ?>
+<?php include "./../include/admin/offcanvasUser.php" ?>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
+
 
 
 </html>

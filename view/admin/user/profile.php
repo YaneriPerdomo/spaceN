@@ -1,7 +1,5 @@
 <?php
-session_start();
-
-
+    include './../../../php/validations/authorizedUser.php';
 ?>
 
 <!DOCTYPE html>
@@ -29,6 +27,7 @@ session_start();
     }
 
     body {
+        background: #f2f2f2;
         display: flex;
         flex-direction: column;
         width: 100vw;
@@ -39,6 +38,11 @@ session_start();
 
     main {
         flex-grow: 2;
+    }
+
+    main > div{
+        padding: 1rem;
+
     }
 
     .userPerfil>button {
@@ -191,7 +195,7 @@ session_start();
         display: inline
     }
 
-    .configurationProfile>div {
+    .configurationProfile .content >div {
         display: flex;
         align-items: center;
         gap: 0.5rem;
@@ -214,6 +218,13 @@ session_start();
     .information>div>label {
         margin-bottom: 0.3rem;
     }
+
+    .content{
+        background: white;
+        padding: 1rem;
+        border-radius: 1rem;
+        border: solid 1px #e8d8ff;
+    }
 </style>
 
 <body>
@@ -221,6 +232,7 @@ session_start();
     <main class="">
         <div class="row h-100">
             <div class="col-3 configurationProfile h-100">
+                <div class="content">
                 <h2>Configuraciones</h2>
                 <div class="profile">
                     <i class="bi bi-person"></i>
@@ -234,19 +246,16 @@ session_start();
                     <i class="bi bi-lock"></i>
                     <a href="./account.php">Cuenta</a>
                 </div>
+                </div>
             </div>
             <div class="col-9">
-                <div>
+                <div class="content">
                     <div class="">
                         <h1>Perfil</h1>
                         <hr>
-                        <p>Cambia tu foto de perfil y edita tu información personal</p>
+                        <p>Actualizar tu información personal</p>
                         <form action="./../../../php/actualizar.php" class="personalInformation" method="POST">
                             <div class="information">
-                                <div class="imgUser">
-                                    <img src="" class="img-fluid" alt=""><br>
-                                    <input type="file" class="file" id="" placeholder="Cambiar foto">
-                                </div>
                                 <div class="oneInformation">
                                     <label for="usuario">Usuario</label><br>
                                     <input id="usuario" name="user" type="text" placeholder="Ingrese tu usuario"

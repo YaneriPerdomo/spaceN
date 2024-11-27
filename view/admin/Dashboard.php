@@ -1,16 +1,5 @@
 <?php
-
-session_start();
-
-// Verificamos si el usuario está autenticado (ejemplo: si existe una variable de sesión 'usuario_logueado')
-if (!isset($_SESSION['id_admin'])) {
-    // Si no está autenticado, redireccionamos a la página de login
-    header('Location: ./../../index.php');
-    exit();
-}
-
-
-
+    include './../../php/validations/authorizedUser.php';
 ?>
 
 <!DOCTYPE html>
@@ -20,13 +9,18 @@ if (!isset($_SESSION['id_admin'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <style>
     :root {
-        --colorHF: #9470f7;
+        --colorHF: #8560ec;
         --colorBlack: rgb(47, 47, 47)
     }
 
@@ -35,6 +29,7 @@ if (!isset($_SESSION['id_admin'])) {
         justify-content: space-between;
         padding: 0.5rem;
         background: var(--colorHF);
+
     }
 
     body {
@@ -44,10 +39,22 @@ if (!isset($_SESSION['id_admin'])) {
         height: 100vh;
         background-size: contain;
         background-repeat: repeat;
+        font-family: "Roboto", sans-serif;
+            font-weight: 100;
+            font-style: normal;
+            font-weight: 400;
     }
 
     main {
         flex-grow: 2;
+        background: #f2f2f2;
+    }
+
+    .col-9>div{
+        background: white;
+        padding: 1rem;
+        border-radius: 1rem;
+        border: solid 1px #e8d8ff;
     }
 
     .userPerfil>button {
@@ -75,10 +82,16 @@ if (!isset($_SESSION['id_admin'])) {
     }
 
     .historyChilds {
-        height: 100%;
-        overflow-y: scroll !important;
         overflow-x: hidden;
-        padding: 1rem;
+  padding: 1rem;
+  background: white;
+  border-radius: 1rem;
+  border: solid 1px #e8d8ff;
+
+    }
+
+    .row{
+        padding:1rem;
     }
 
     .burgerMenu {
@@ -134,6 +147,13 @@ if (!isset($_SESSION['id_admin'])) {
 
     .dataTable tbody tr {
         display: table-cell;
+
+    }
+
+
+    thead>tr {
+        background: #b195ff !important;
+          color: white !important;
     }
 
     .dataTable tbody td {
@@ -224,7 +244,8 @@ if (!isset($_SESSION['id_admin'])) {
         margin-bottom: 0.3rem;
     }
 
-    .containerSendNotification , .containerDeleteChild{
+    .containerSendNotification,
+    .containerDeleteChild {
         width: 100vw;
         height: 100vh;
         position: absolute;
@@ -235,7 +256,8 @@ if (!isset($_SESSION['id_admin'])) {
         background: rgb(0, 0, 0, 0.5);
     }
 
-    .containerSendNotification>.content, .containerDeleteChild > .content {
+    .containerSendNotification>.content,
+    .containerDeleteChild>.content {
         max-width: 500px;
         padding: 1rem;
         background: white;
@@ -266,9 +288,14 @@ if (!isset($_SESSION['id_admin'])) {
         transition: all 0.3s ease-in-out;
     }
 
-    [type="search"]:focus{
+    [type="search"]{
+        background: #f9f9f9;
+  border-left: 0rem;
+    }
+    [type="search"]:focus {
+        
         filter: drop-shadow(0.0rem 0.0rem 0.2rem var(--colorHF)) !important;
-     }
+    }
 </style>
 
 <body>
@@ -415,112 +442,114 @@ if (!isset($_SESSION['id_admin'])) {
 
             </div>
             <div class="col-9">
-                <section class="childs">
-                    <br>
-                    <h1>Panel administrativo</h1>
-                    <div class="showAndAddChild">
-                        <div>
-                            <div class="input-group mb-3">
-                            <span class="input-group-text" id="basic-addon1">@</span>
-                            <input type="search" class="form-control" placeholder="Buscar..." aria-label="Username"
-                                    aria-describedby="basic-addon1">
+                <div>
+                    <section class="childs">
+                        <br>
+                        <h1>Panel administrativo</h1>
+                        <div class="showAndAddChild">
+                            <div>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="basic-addon1"><i class="bi bi-search"></i></span>
+                                    <input type="search" class="form-control" placeholder="Buscar..."
+                                        aria-label="Username" aria-describedby="basic-addon1">
+                                </div>
+
                             </div>
-
+                            <div>
+                                <a href="./child/add.php">Agregar niño</a>
+                            </div>
                         </div>
-                        <div>
-                            <a href="./child/add.php">Agregar niño</a>
-                        </div>
-                    </div>
-                </section>
-                <section class="table">
-                    <table class="dataTable">
-                        <thead>
-                            <tr>
-                                <th>Usuario</th>
-                                <th>Nombre</th>
-                                <th>Apellido</th>
-                                <th>Edad</th>
-                                <th>Aprendizaje</th>
-                                <th>Operaciones</th>
-                            </tr>
-                        </thead>
-                        <?php
+                    </section>
+                    <section class="table">
+                        <table class="dataTable">
+                            <thead>
+                                <tr>
+                                    <th>Usuario</th>
+                                    <th>Nombre</th>
+                                    <th>Apellido</th>
+                                    <th>Edad</th>
+                                    <th>Aprendizaje</th>
+                                    <th>Operaciones</th>
+                                </tr>
+                            </thead>
+                            <?php
 
-                        function showChilds()
-                        {
-                            // Incluimos el archivo de conexión a la base de datos
-                            include '../../php/connectionBD.php';
-                            $id_admin = $_SESSION["id_profesional"];
-                            // Preparamos la consulta SQL para obtener información de los niños
-                            // Se realiza una unión entre las tablas 'ninos' y 'usuarios' para obtener más datos
-                            // Se filtra por el id_profesional para obtener los niños de un profesional específico (en este caso, el de ID 7)
-                            $sqlSelect = 'SELECT id_nino, ninos.id_usuario as id_usuario_nino, usuario, nombre, apellido, id_categoria_actividades, fecha_nacimiento FROM ninos 
+                            function showChilds()
+                            {
+                                // Incluimos el archivo de conexión a la base de datos
+                                include '../../php/connectionBD.php';
+                                $id_admin = $_SESSION["id_profesional"];
+                                // Preparamos la consulta SQL para obtener información de los niños
+                                // Se realiza una unión entre las tablas 'ninos' y 'usuarios' para obtener más datos
+                                // Se filtra por el id_profesional para obtener los niños de un profesional específico (en este caso, el de ID 7)
+                                $sqlSelect = 'SELECT id_nino, ninos.id_usuario as id_usuario_nino, usuario, nombre, apellido, id_categoria_actividades, fecha_nacimiento FROM ninos 
                             INNER JOIN usuarios ON ninos.id_usuario = usuarios.id_usuario WHERE id_profesional = :id';
 
-                            // Preparamos la sentencia SQL para evitar inyección SQL
-                            $stmt = $pdo->prepare($sqlSelect);
-                            $stmt->bindParam('id', $id_admin , PDO::PARAM_INT);
-                            // Ejecutamos la consulta
-                            $stmt->execute();
+                                // Preparamos la sentencia SQL para evitar inyección SQL
+                                $stmt = $pdo->prepare($sqlSelect);
+                                $stmt->bindParam('id', $id_admin, PDO::PARAM_INT);
+                                // Ejecutamos la consulta
+                                $stmt->execute();
 
-                            // Verificamos si se encontraron resultados
-                            if ($stmt->rowCount() > 0) {
-                                // Si hay resultados, los obtenemos en un array asociativo
-                                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                                // Verificamos si se encontraron resultados
+                                if ($stmt->rowCount() > 0) {
+                                    // Si hay resultados, los obtenemos en un array asociativo
+                                    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-                                // Iteramos sobre cada fila del resultado
-                                foreach ($result as $row) {
-                                    // Obtenemos la categoría de actividad y la asignamos a una variable
-                        
-                                    switch ($row["id_categoria_actividades"]) {
-                                        case 1:
-                                            $showA = "Pre Numerico";
-                                            break;
-                                        case 2:
-                                            $showA = "Numerico Emergente";
-                                            break;
-                                        case 3:
-                                            $showA = "Desarrollo Numerico";
-                                            break;
-                                        default:
-                                            $showA = "Categoría desconocida";
+                                    // Iteramos sobre cada fila del resultado
+                                    foreach ($result as $row) {
+                                        // Obtenemos la categoría de actividad y la asignamos a una variable
+                            
+                                        switch ($row["id_categoria_actividades"]) {
+                                            case 1:
+                                                $showA = "Pre Numerico";
+                                                break;
+                                            case 2:
+                                                $showA = "Numerico Emergente";
+                                                break;
+                                            case 3:
+                                                $showA = "Desarrollo Numerico";
+                                                break;
+                                            default:
+                                                $showA = "Categoría desconocida";
+                                        }
+
+                                        $fecha_nacimiento = $row["fecha_nacimiento"];
+                                        $fecha_actual = date("Y-m-d"); // Obtener la fecha actual completa
+                                        // Convertir ambas fechas a timestamps
+                                        $timestamp_nacimiento = strtotime($fecha_nacimiento);
+                                        $timestamp_actual = strtotime($fecha_actual);
+                                        // Calcular la diferencia en segundos
+                                        $diferencia_segundos = $timestamp_actual - $timestamp_nacimiento;
+                                        // Convertir la diferencia de segundos a años (aproximado)
+                                        $edad_en_anos = floor($diferencia_segundos / (60 * 60 * 24 * 365.25));
+                                        // Generamos una fila en una tabla HTML con los datos del niño
+                                        echo "<tr class='show'>";
+                                        echo "<td >" . $row['usuario'] . "</td>";
+                                        echo "<td>" . $row['nombre'] . "</td>";
+                                        echo "<td>" . $row['apellido'] . "</td>";
+                                        echo "<td>" . $edad_en_anos . "</td>";
+                                        echo "<td>" . $showA . "</td>";
+                                        echo "<td class='operations'>";
+                                        echo "<button class='OpenDeleteChild' data-idc='" . $row['id_nino'] . "' data-idu='" . $row['id_usuario_nino'] . "'><i class='bi bi-trash'></i></button>";
+                                        echo "<a href='child/modify.php?id=" . $row['id_nino'] . "'><button><i class='bi bi-person-lines-fill'></i></button></a>";
+                                        echo "<button><i class='bi bi-bar-chart'></i></button></a>";
+                                        echo "<button class='OpenSendNotificationChild' data-idS='" . $row['id_nino'] . "' > <i class='bi bi-send-plus'></i></button> ";
+                                        echo "</td>";
+                                        echo "</tr>";
                                     }
-
-                                    $fecha_nacimiento = $row["fecha_nacimiento"];
-                                    $fecha_actual = date("Y-m-d"); // Obtener la fecha actual completa
-                                    // Convertir ambas fechas a timestamps
-                                    $timestamp_nacimiento = strtotime($fecha_nacimiento);
-                                    $timestamp_actual = strtotime($fecha_actual);
-                                    // Calcular la diferencia en segundos
-                                    $diferencia_segundos = $timestamp_actual - $timestamp_nacimiento;
-                                    // Convertir la diferencia de segundos a años (aproximado)
-                                    $edad_en_anos = floor($diferencia_segundos / (60 * 60 * 24 * 365.25));
-                                    // Generamos una fila en una tabla HTML con los datos del niño
-                                    echo "<tr class='show'>";
-                                    echo "<td >" . $row['usuario'] . "</td>";
-                                    echo "<td>" . $row['nombre'] . "</td>";
-                                    echo "<td>" . $row['apellido'] . "</td>";
-                                    echo "<td>" . $edad_en_anos . "</td>";
-                                    echo "<td>" . $showA . "</td>";
-                                    echo "<td class='operations'>";
-                                    echo "<button class='OpenDeleteChild' data-idc='" . $row['id_nino'] . "' data-idu='" . $row['id_usuario_nino'] . "'><i class='bi bi-trash'></i></button>";
-                                    echo "<a href='child/modify.php?id=" . $row['id_nino'] . "'><button><i class='bi bi-person-lines-fill'></i></button></a>";
-                                    echo "<button><i class='bi bi-bar-chart'></i></button></a>";
-                                    echo "<button class='OpenSendNotificationChild' data-idS='" . $row['id_nino'] . "' > <i class='bi bi-send-plus'></i></button> ";
-                                    echo "</td>";
-                                    echo "</tr>";
+                                } else {
+                                    // Si no hay resultados, mostramos un mensaje
+                                    echo "<br>";
+                                    echo "<p>No hay registros disponibles en este momento.</p>";
                                 }
-                            } else {
-                                // Si no hay resultados, mostramos un mensaje
-                                echo "<br>";
-                                echo "<p>No hay registros disponibles en este momento.</p>";
                             }
-                        }
-                        showChilds();
-                        ?>
+                            showChilds();
+                            ?>
 
-                    </table>
-                </section>
+                        </table>
+                    </section>
+                </div>
             </div>
         </div>
     </main>
@@ -599,24 +628,24 @@ if (!isset($_SESSION['id_admin'])) {
     let $containerDeleteChild = document.querySelector(".containerDeleteChild");
     let $containerSendNotification = document.querySelector(".containerSendNotification");
     let $contentSend = document.querySelector(".containerSendNotification > .content");
-    let $contentDelete =document.querySelector(".containerDeleteChild > .content");
+    let $contentDelete = document.querySelector(".containerDeleteChild > .content");
     let $htmlIdChild = document.querySelector('.id_child');
-    let $idChildDelete =document.querySelector("[name='id_childC']")
+    let $idChildDelete = document.querySelector("[name='id_childC']")
     let $nameChildS = document.querySelector(".nameChildS");
-    let $idChildD =document.querySelector(`[name="id_childU"]`)
+    let $idChildD = document.querySelector(`[name="id_childU"]`)
     document.addEventListener("click", e => {
 
         if (e.target.matches(".CanceSendN")) {
             $containerSendNotification.style.display = "none";
         }
-        if(e.target.matches(".OpenDeleteChild")){
+        if (e.target.matches(".OpenDeleteChild")) {
             $containerDeleteChild.removeAttribute("style");
             $contentDelete.classList.add("openModal");
             $idChildDelete.value = e.target.getAttribute("data-idc");
             $idChildD.value = e.target.getAttribute("data-idu");
         }
 
-        if(e.target.matches(".CancelModalDelet")){
+        if (e.target.matches(".CancelModalDelet")) {
             $containerDeleteChild.style.display = "none";
         }
 
@@ -638,7 +667,7 @@ if (!isset($_SESSION['id_admin'])) {
 
 </script>
 
-<script src="./../../js/helpers/searchChilds.js" ></script>
+<script src="./../../js/helpers/searchChilds.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
