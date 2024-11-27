@@ -265,6 +265,10 @@ if (!isset($_SESSION['id_admin'])) {
         /* transform: translateY(100%); */
         transition: all 0.3s ease-in-out;
     }
+
+    [type="search"]:focus{
+        filter: drop-shadow(0.0rem 0.0rem 0.2rem var(--colorHF)) !important;
+     }
 </style>
 
 <body>
@@ -417,9 +421,9 @@ if (!isset($_SESSION['id_admin'])) {
                     <div class="showAndAddChild">
                         <div>
                             <div class="input-group mb-3">
-                                <input type="search" class="form-control" placeholder="Buscar..." aria-label="Username"
+                            <span class="input-group-text" id="basic-addon1">@</span>
+                            <input type="search" class="form-control" placeholder="Buscar..." aria-label="Username"
                                     aria-describedby="basic-addon1">
-                                    <span class="input-group-text" id="basic-addon1">@</span>
                             </div>
 
                         </div>
@@ -492,8 +496,8 @@ if (!isset($_SESSION['id_admin'])) {
                                     // Convertir la diferencia de segundos a años (aproximado)
                                     $edad_en_anos = floor($diferencia_segundos / (60 * 60 * 24 * 365.25));
                                     // Generamos una fila en una tabla HTML con los datos del niño
-                                    echo "<tr>";
-                                    echo "<td>" . $row['usuario'] . "</td>";
+                                    echo "<tr class='show'>";
+                                    echo "<td >" . $row['usuario'] . "</td>";
                                     echo "<td>" . $row['nombre'] . "</td>";
                                     echo "<td>" . $row['apellido'] . "</td>";
                                     echo "<td>" . $edad_en_anos . "</td>";
@@ -634,7 +638,7 @@ if (!isset($_SESSION['id_admin'])) {
 
 </script>
 
-
+<script src="./../../js/helpers/searchChilds.js" ></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>

@@ -16,4 +16,5 @@ $pdo = new PDO($dsn, $user, $password);
 
 // Esto indica que los resultados de las consultas se devolverán como objetos de PHP
 $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 ?>

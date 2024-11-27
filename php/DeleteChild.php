@@ -13,23 +13,25 @@ if ($pdo->errorCode() != 0) {
     exit();
 }
 
+try {
+    
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     $id_childC = $_POST["id_childC"];
     $id_childU = $_POST["id_childU"];
-    $sqlDeleteChild = "DELETE FROM ninos WHERE `ninos`.`id_nino` = :id_usuario";
-    $stmt = $pdo->prepare($sqlDeleteChild);
-    $stmt->bindParam(':id_usuario', $id_childC, PDO::PARAM_INT);
-    $stmt->execute();
-
-    $sqlDeleteChildN = "DELETE FROM notificaciones WHERE `id_nino` = :id_usuario";
+    $sqlDeleteChildN = "DELETE FROM notificaciones WHERE id_nino = :id";
     $stmt3 = $pdo->prepare($sqlDeleteChildN);
-    $stmt3->bindParam(':id_usuario', $id_childC, PDO::PARAM_INT);
+    $stmt3->bindParam('id', $id_childC, PDO::PARAM_INT);
     $stmt3->execute();
 
-    $sqlDeleteUser = "DELETE FROM usuarios WHERE `usuarios`.`id_usuario` = :id_usuario";
+    $sqlDeleteChild = "DELETE FROM ninos WHERE `id_nino` = :id_usuario";
+    $stmt = $pdo->prepare($sqlDeleteChild);
+    $stmt->bindParam('id_usuario', $id_childC, PDO::PARAM_INT);
+    $stmt->execute();
+   
+    $sqlDeleteUser = "DELETE FROM usuarios WHERE `id_usuario` = :id_usuario";
     $stmt2 = $pdo->prepare($sqlDeleteUser);
-    $stmt2->bindParam(':id_usuario', $id_childU, PDO::PARAM_INT);
+    $stmt2->bindParam('id_usuario', $id_childU, PDO::PARAM_INT);
     $stmt2->execute();
 
     if(($stmt->rowCount() > 0 && $stmt2->rowCount() > 0) || $stmt3->rowCount() > 0){
@@ -37,5 +39,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     }
 
     $pdo = null;
+}
+} catch (PDOException  $ex) {
+    echo $ex->getMessage();
 }
 ?>
