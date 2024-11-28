@@ -1,0 +1,88 @@
+.containerSendNotification,
+.containerDeleteChild {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    background: green;
+    align-items: center;
+    background: rgb(0, 0, 0, 0.5);
+}
+
+.containerSendNotification>.content,
+.containerDeleteChild>.content {
+    max-width: 500px;
+    background: white;
+    min-width: 200px;
+    border-radius: 1rem !important;
+
+}
+
+.modalTitleDetele {
+    background: #ff4b4b;
+    padding: 1rem;
+    color: white;
+}
+
+.openModal {
+    animation: openModal 0.5s;
+}
+
+@keyframes openModal {
+    0% {
+        transform: translateY(-15%);
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
+
+    }
+
+    100% {
+        transform: translateY(0%);
+        opacity: 1;
+    }
+}
+
+.cancelModal {
+    opacity: 0;
+    /* transform: translateY(100%); */
+    transition: all 0.3s ease-in-out;
+}
+
+.containerSendNotification,
+.containerDeleteChild {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    background: green;
+    align-items: center;
+    background: rgb(0, 0, 0, 0.5);
+}
+
+.containerSendNotification>.content,
+.containerDeleteChild>.content {
+    max-width: 500px;
+    background: white;
+    min-width: 200px;
+    border-radius: 1rem !important;
+
+}
+
+.yesButtonDelete {
+    background: #ff4b4b;
+    color: white;
+    border: 0rem;
+}
+
+.yesButtonDelete:hover {
+    transition: all 0.5s;
+    background: rgb(215, 59, 59) !important;
+    color: white !important;
+}
+
+.containerDeleteChild>div>div>div>p {
+    padding: 0.5rem;
+    margin: 0rem;
+}

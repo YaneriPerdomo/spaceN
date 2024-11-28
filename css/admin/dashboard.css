@@ -1,0 +1,52 @@
+ 
+    a {
+        margin: 0.5rem 0rem;
+        display: block;
+        color: var(--colorBlack);
+        text-decoration: none;
+    }
+
+    .historyChilds {
+        overflow-x: hidden;
+        padding: 1rem;
+        background: white;
+        border-radius: 1rem;
+        border: solid 1px #e8d8ff;
+
+    }
+
+    .searchChilds {
+        flex-grow: 2;
+        align-content: center;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+
+    }
+
+    .searchAndAddChilds {
+        align-content: space-between;
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+    }
+
+
+    .operations>a {
+        display: inline
+    }
+    
+
+    [type="search"] {
+        background: #f9f9f9;
+        border-left: 0rem;
+    }
+
+    [type="search"]:focus {
+
+        filter: drop-shadow(0.0rem 0.0rem 0.2rem var(--colorHF)) !important;
+    }
+
+    form {
+        padding: 1rem;
+    }

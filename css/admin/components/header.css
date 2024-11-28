@@ -1,0 +1,10 @@
+.userPerfil>button {
+    border: none;
+    background: var(--colorHF)
+}
+
+.userImg,
+.LogoImg {
+    width: 70px;
+    clip-path: circle(34% at 50% 50%);
+}

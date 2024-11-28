@@ -17,316 +17,16 @@ include './../../php/validations/authorizedUser.php';
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="../../css/admin/components/table.css">
+    <link rel="stylesheet" href="../../css/admin/components/offcanvas.css">
+    <link rel="stylesheet" href="../../css/admin/components/modalWindows.css">
+    <link rel="stylesheet" href="../../css/admin/components/header.css">
+    <link rel="stylesheet" href="../../css/admin/components/semanticTag.css">
+    <link rel="stylesheet" href="../../css/admin/components/row.css">
+    <link rel="stylesheet" href="../../css/admin/dashboard.css">
+
 </head>
-<style>
-    :root {
-        --colorHF: #8560ec;
-        --colorBlack: rgb(47, 47, 47)
-    }
-
-    header {
-        display: flex;
-        justify-content: space-between;
-        padding: 0.5rem;
-        background: var(--colorHF);
-
-    }
-
-    body {
-        display: flex;
-        flex-direction: column;
-        width: 100vw;
-        height: 100vh;
-        background-size: contain;
-        background-repeat: repeat;
-        font-family: "Roboto", sans-serif;
-        font-weight: 100;
-        font-style: normal;
-        font-weight: 400;
-    }
-
-    main {
-        flex-grow: 2;
-        background: #f2f2f2;
-    }
-
-    .col-9>div {
-        background: white;
-        padding: 1rem;
-        border-radius: 1rem;
-        border: solid 1px #e8d8ff;
-    }
-
-    .userPerfil>button {
-        border: none;
-        background: var(--colorHF)
-    }
-
-    .userImg,
-
-    .LogoImg {
-        width: 70px;
-        clip-path: circle(34% at 50% 50%);
-    }
-
-    a {
-        margin: 0.5rem 0rem;
-        display: block;
-        color: var(--colorBlack);
-        text-decoration: none;
-    }
-
-    footer {
-        background: rgb(48, 48, 48);
-        width: 100vw;
-    }
-
-    .historyChilds {
-        overflow-x: hidden;
-        padding: 1rem;
-        background: white;
-        border-radius: 1rem;
-        border: solid 1px #e8d8ff;
-
-    }
-
-    .row {
-        padding: 1rem;
-    }
-
-    .burgerMenu {
-        width: 40px;
-        height: 39px;
-        background: none;
-    }
-
-    .offCanvasSpaceN {
-        border: none;
-        background: none;
-        padding: 0rem;
-    }
-
-    .dataTable {
-        display: block;
-        width: 100%;
-        margin: 1em 0;
-    }
-
-    .dataTable thead,
-    .dataTable tbody,
-    .dataTable thead tr,
-    .dataTable th {
-        display: block;
-    }
-
-    .dataTable thead {
-        float: left;
-    }
-
-    .dataTable tbody {
-        width: auto;
-        position: relative;
-        overflow-x: auto;
-    }
-
-    .dataTable td,
-    .dataTable th {
-        padding: .625em;
-        line-height: 1.5em;
-        border-bottom: 1px dashed #ccc;
-        box-sizing: border-box;
-        overflow-x: hidden;
-        overflow-y: auto;
-    }
-
-    .dataTable th {
-        text-align: left;
-        background: rgba(0, 0, 0, 0.14);
-        border-bottom: 1px dashed #aaa;
-    }
-
-    .dataTable tbody tr {
-        display: table-cell;
-
-    }
-
-
-    thead>tr {
-        background: #b195ff !important;
-        color: white !important;
-    }
-
-    .dataTable tbody td {
-        display: block;
-    }
-
-    .dataTable tr:nth-child(odd) {
-        background: rgba(0, 0, 0, 0.07);
-    }
-
-    @media screen and (min-width: 50em) {
-
-        .dataTable {
-            display: table;
-        }
-
-        .dataTable thead {
-            display: table-header-group;
-            float: none;
-        }
-
-        .dataTable tbody {
-            display: table-row-group;
-        }
-
-        .dataTable thead tr,
-        .dataTable tbody tr {
-            display: table-row;
-        }
-
-        .dataTable th,
-        .dataTable tbody td {
-            display: table-cell;
-        }
-
-        .dataTable td,
-        .dataTable th {
-            width: auto;
-        }
-
-    }
-
-    .searchChilds {
-        flex-grow: 2;
-        align-content: center;
-        align-items: center;
-        justify-content: center;
-        display: flex;
-
-    }
-
-    .showAndAddChild {
-        align-content: space-between;
-        align-items: center;
-        display: flex;
-        justify-content: space-between;
-    }
-
-    main>div {
-        width: 100vw;
-    }
-
-    .operations>a {
-        display: inline
-    }
-
-    .configurationProfile>div {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-    }
-
-    .personalInformation>.information>.imgUser>img {
-        background: #ff4343;
-        height: 150px;
-        min-width: 200px;
-        max-width: 500px;
-        clip-path: circle(40% at 50% 50%);
-    }
-
-    .information {
-        display: flex;
-        gap: 1.5rem;
-        flex-wrap: wrap;
-    }
-
-    .information>div>label {
-        margin-bottom: 0.3rem;
-    }
-
-    .containerSendNotification,
-    .containerDeleteChild {
-        width: 100vw;
-        height: 100vh;
-        position: absolute;
-        display: flex;
-        justify-content: center;
-        background: green;
-        align-items: center;
-        background: rgb(0, 0, 0, 0.5);
-    }
-
-    .containerSendNotification>.content,
-    .containerDeleteChild>.content {
-        max-width: 500px;
-        background: white;
-        min-width: 200px;
-        border-radius: 1rem !important;
-
-    }
-
-    .modalTitleDetele {
-        background: #ff4b4b;
-        padding: 1rem;
-        color: white;
-    }
-
-    .openModal {
-        animation: openModal 0.5s;
-    }
-
-    @keyframes openModal {
-        0% {
-            transform: translateY(-15%);
-            opacity: 0;
-            transition: opacity 0.5s ease-in-out;
-
-        }
-
-        100% {
-            transform: translateY(0%);
-            opacity: 1;
-        }
-    }
-
-    .cancelModal {
-        opacity: 0;
-        /* transform: translateY(100%); */
-        transition: all 0.3s ease-in-out;
-    }
-
-    [type="search"] {
-        background: #f9f9f9;
-        border-left: 0rem;
-    }
-
-    [type="search"]:focus {
-
-        filter: drop-shadow(0.0rem 0.0rem 0.2rem var(--colorHF)) !important;
-    }
-
-    form {
-        padding: 1rem;
-    }
-
-    .containerDeleteChild>div>div>div>p {
-        padding: 0.5rem;
-        margin: 0rem;
-    }
-
-    .yesButtonDelete {
-        background: #ff4b4b;
-        color:white;
-        border: 0rem;
-    }
-
-    .yesButtonDelete:hover{
-        transition: all 0.5s;
-        background: rgb(215, 59, 59) !important; 
-        color: white !important;       
-    }
-</style>
-
 <body>
 
     <?php include './../include/admin/header.php' ?>
@@ -468,14 +168,13 @@ include './../../php/validations/authorizedUser.php';
                     </div>
                     <a href="#allHistoryChilds"> Ver todas</a>
                 </section>
-
             </div>
             <div class="col-9">
                 <div>
                     <section class="childs">
                         <br>
                         <h1><b>Panel administrativo</b></h1>
-                        <div class="showAndAddChild">
+                        <div class="searchAndAddChilds">
                             <div>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text" id="basic-addon1"><i class="bi bi-search"></i></span>
@@ -657,51 +356,8 @@ include './../../php/validations/authorizedUser.php';
 <?php include "../include/admin/searchChilds.php" ?>
 
 
-
-<script>
-    let $containerDeleteChild = document.querySelector(".containerDeleteChild");
-    let $containerSendNotification = document.querySelector(".containerSendNotification");
-    let $contentSend = document.querySelector(".containerSendNotification > .content");
-    let $contentDelete = document.querySelector(".containerDeleteChild > .content");
-    let $htmlIdChild = document.querySelector('.id_child');
-    let $idChildDelete = document.querySelector("[name='id_childC']")
-    let $nameChildS = document.querySelector(".nameChildS");
-    let $idChildD = document.querySelector(`[name="id_childU"]`)
-    document.addEventListener("click", e => {
-
-        if (e.target.matches(".CanceSendN")) {
-            $containerSendNotification.style.display = "none";
-        }
-        if (e.target.matches(".OpenDeleteChild")) {
-            $containerDeleteChild.removeAttribute("style");
-            $contentDelete.classList.add("openModal");
-            $idChildDelete.value = e.target.getAttribute("data-idc");
-            $idChildD.value = e.target.getAttribute("data-idu");
-        }
-
-        if (e.target.matches(".CancelModalDelet")) {
-            $containerDeleteChild.style.display = "none";
-        }
-
-        if (e.target.matches(".OpenSendNotificationChild")) {
-            $containerSendNotification.removeAttribute("style");
-            $contentSend.classList.add("openModal")
-            $nameChildS.innerHTML = e.target.getAttribute("data-nameS")
-            $htmlIdChild.value = e.target.getAttribute("data-idS");
-        }
-        if (e.target.matches(`.sendNotificationChild`)) {
-            setTimeout(() => {
-                alert("hol")
-                console.log(`hola ${e.target.getAttribute("data-id")}`);
-                $htmlIdChild.value = `${e.target.getAttribute("data-id")}`;
-            }, 1000);
-        }
-
-    })
-
-</script>
-
 <script src="./../../js/helpers/searchChilds.js"></script>
+<script src="./../../js/helpers/modalWindows.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
