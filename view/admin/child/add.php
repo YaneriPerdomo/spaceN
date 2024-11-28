@@ -260,10 +260,11 @@ include './../../../php/validations/authorizedUser.php';
             <h1><b>Registrar usuario</b></h1>
             <p><em>¡Crea una cuenta para tu niño/a</em> y ayúdale a superar 
                 los desafíos de las matemáticas! Nuestra plataforma de aprendizaje ofrece 
-                ejercicios personalizados <em>segun sus necesidades</em>
+                ejercicios personalizados <em>segun sus necesidades.</em>
             </p><hr>
-            <form action="../../../php/addChild.php" method="post">
+            <form action="../../../php/admin/child.php" method="post">
                 <input type="hidden" value="<?php echo $_SESSION["id_profesional"]; ?>">
+                <input type="hidden" name="valueFunction" value="add">
                 <div class="row">
                     <div class="col-4">
                         <label for="">Datos personales:</label><br>
@@ -273,7 +274,7 @@ include './../../../php/validations/authorizedUser.php';
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="basic-addon1"><i class="bi bi-person"></i></span>
                             <input type="text" name="name" class="form-control"
-                                placeholder="¿Como se llama el niño/a? 🤔" aria-label="Username"
+                                placeholder="¿Como se llama tu niño/a? 🤔" aria-label="Username"
                                 aria-describedby="basic-addon1">
                         </div>
 
@@ -294,7 +295,9 @@ include './../../../php/validations/authorizedUser.php';
                         </div>
                         <label for="">Genero<span>*</span></label><br>
                         <p>
-                            <label><input type="radio" name="gender" value="1"> M</label>
+                            <label for="M">
+                                <input type="radio" id="M" name="gender" value="1" > M
+                            </label>
                             <label><input type="radio" name="gender" value="2"> F</label>
                         </p>
                         <br>
@@ -312,7 +315,7 @@ include './../../../php/validations/authorizedUser.php';
                     <i class="bi bi-person-workspace"></i></i>
                     </span>
                     <input type="text" name="user" class="form-control"
-                                placeholder="¡Oh 😲...! Un nombre de usuario auténtico 🌟" aria-label="Username"
+                                placeholder="¡Oh 😲...!" aria-label="Username"
                                 aria-describedby="basic-addon1">
                 </div>
                 <label for="">Nivel de acceso<span>*</span></label><br>
@@ -359,7 +362,7 @@ include './../../../php/validations/authorizedUser.php';
                 <a href="./../dashboard.php"></a>
                 <div class="d-flex justify-content-center gap-4 align-items-center">
                     <div class="">
-                        <a href="./../dashboard.php"><span><i class="bi bi-arrow-left-square"></i> Volver</span></a>
+                        <a href="./../dashboard.php"><span><i class="bi bi-arrow-left-square"></i>  Volver</span></a>
                     </div>
                     <div class="">
                         <input type="submit" class='purpleButton' value="Registrar">

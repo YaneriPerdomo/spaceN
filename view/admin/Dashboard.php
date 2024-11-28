@@ -1,5 +1,5 @@
 <?php
-    include './../../php/validations/authorizedUser.php';
+include './../../php/validations/authorizedUser.php';
 ?>
 
 <!DOCTYPE html>
@@ -40,9 +40,9 @@
         background-size: contain;
         background-repeat: repeat;
         font-family: "Roboto", sans-serif;
-            font-weight: 100;
-            font-style: normal;
-            font-weight: 400;
+        font-weight: 100;
+        font-style: normal;
+        font-weight: 400;
     }
 
     main {
@@ -50,7 +50,7 @@
         background: #f2f2f2;
     }
 
-    .col-9>div{
+    .col-9>div {
         background: white;
         padding: 1rem;
         border-radius: 1rem;
@@ -83,15 +83,15 @@
 
     .historyChilds {
         overflow-x: hidden;
-  padding: 1rem;
-  background: white;
-  border-radius: 1rem;
-  border: solid 1px #e8d8ff;
+        padding: 1rem;
+        background: white;
+        border-radius: 1rem;
+        border: solid 1px #e8d8ff;
 
     }
 
-    .row{
-        padding:1rem;
+    .row {
+        padding: 1rem;
     }
 
     .burgerMenu {
@@ -153,7 +153,7 @@
 
     thead>tr {
         background: #b195ff !important;
-          color: white !important;
+        color: white !important;
     }
 
     .dataTable tbody td {
@@ -259,9 +259,16 @@
     .containerSendNotification>.content,
     .containerDeleteChild>.content {
         max-width: 500px;
-        padding: 1rem;
         background: white;
         min-width: 200px;
+        border-radius: 1rem !important;
+
+    }
+
+    .modalTitleDetele {
+        background: #ff4b4b;
+        padding: 1rem;
+        color: white;
     }
 
     .openModal {
@@ -288,13 +295,35 @@
         transition: all 0.3s ease-in-out;
     }
 
-    [type="search"]{
+    [type="search"] {
         background: #f9f9f9;
-  border-left: 0rem;
+        border-left: 0rem;
     }
+
     [type="search"]:focus {
-        
+
         filter: drop-shadow(0.0rem 0.0rem 0.2rem var(--colorHF)) !important;
+    }
+
+    form {
+        padding: 1rem;
+    }
+
+    .containerDeleteChild>div>div>div>p {
+        padding: 0.5rem;
+        margin: 0rem;
+    }
+
+    .yesButtonDelete {
+        background: #ff4b4b;
+        color:white;
+        border: 0rem;
+    }
+
+    .yesButtonDelete:hover{
+        transition: all 0.5s;
+        background: rgb(215, 59, 59) !important; 
+        color: white !important;       
     }
 </style>
 
@@ -445,7 +474,7 @@
                 <div>
                     <section class="childs">
                         <br>
-                        <h1>Panel administrativo</h1>
+                        <h1><b>Panel administrativo</b></h1>
                         <div class="showAndAddChild">
                             <div>
                                 <div class="input-group mb-3">
@@ -559,18 +588,22 @@
         <div class="modal-content content">
             <div class="modal-header">
                 <div class="text-center w-100">
-                    <h1 class="modal-title fs-5 text-center" id="exampleModalLabel"><b>Envio de notificacion</b></h1>
-                    <small>Puedes enviarle una notificación para <small class="nameChildS"></small></small>
+                    <h2 class="modal-title modalTitleDetele fs-5" id="exampleModalLabel"><b>Eliminar Registro</b></h2>
+                    <p>
+                        Antes de confirmar, tenga en cuenta que al eliminar este registro perderá el
+                        acceso a su plan de aprendizaje, incluido su historial de aprendizaje.
+                    </p>
                 </div>
             </div>
-            <form action="./../../php/DeleteChild.php" method="post">
+            <form action="./../../php/admin/child.php" method="post">
                 <div class="modal-body">
                     <input type="hidden" name="id_childC" value="">
                     <input type="hidden" name="id_childU">
+                    <input type="hidden" name="valueFunction" value="delete">
                 </div>
-                <div class="modal-footer">
+                <div class="modal-footer d-flex justify-content-center gap-4 align-items-center">
                     <button type="button" class="btn btn-secondary CancelModalDelet">Cancelar</button>
-                    <button type="submit" class="btn btn-success">Eliminar</button>
+                    <button type="submit" class="btn yesButtonDelete">Si, eliminar</button>
                 </div>
             </form>
         </div>
@@ -584,8 +617,9 @@
                     <small>Puedes enviarle una notificación para <small class="nameChildS"></small></small>
                 </div>
             </div>
-            <form action="./../../php/sendNotificationChild.php" method="post">
+            <form action="./../../php/admin/child.php" method="post">
                 <div class="modal-body">
+                    <input type="hidden" name="valueFunction" value="sendNotification">
                     <input type="hidden" name="id_child" class="id_child" value="">
                     <input type="hidden" name="id_profesional" value="<?php echo $_SESSION["id_profesional"] ?> ">
                     <select name="messenger" class="w-100">

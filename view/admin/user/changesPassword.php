@@ -250,7 +250,8 @@
             </div>
             <div class="col-9">
                 <div class="content">
-                <form action="./../../../php/changesPassword.php" method="post">
+                <form action="./../../../php/admin/user.php" method="post">
+                <input type="hidden" name="valueFunction" value="changesPassword">
                     <legend>Cambiar contraseña</legend>
                     <label for="">Contraseña actual</label><br>
                     <input type="password" name="oldPassword" id=""><br>

@@ -254,7 +254,8 @@
                         <h1>Perfil</h1>
                         <hr>
                         <p>Actualizar tu información personal</p>
-                        <form action="./../../../php/actualizar.php" class="personalInformation" method="POST">
+                        <form action="./../../../php/admin/user.php" class="personalInformation" method="POST">
+                            <input type="hidden" name="valueFunction" value="update">
                             <div class="information">
                                 <div class="oneInformation">
                                     <label for="usuario">Usuario</label><br>

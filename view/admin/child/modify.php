@@ -327,8 +327,10 @@ function showChild()
    <h1>Registrar usuario</h1>
         <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsa sunt officia totam temporibus sint repellat
             voluptas adipisci, ut omnis a deserunt, distinctio vitae maxime, vel nam quos? Ad, labore recusandae!</p>
-            <form action="../../../php/modifyChild.php" method="post">
+            <form action="../../../php/admin/child.php" method="post">
+            <input type="hidden" name="valueFunction" value="modify">
             <?php
+            
             showChild();
             ?><br>
             <input type="submit" value="Actualizar">
