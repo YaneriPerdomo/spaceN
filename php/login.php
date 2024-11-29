@@ -43,7 +43,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION["id_cargo"] = $row2["id_cargo"];
         $_SESSION['correo'] = $row2["correo_electronico"];
         $_SESSION['centro'] = $row2["centro_educativo_profesional"];
-
         if ($rol == "1") {
             if ($status == "1") {
                 header("Location: ../view/admin/dashboard.php?page=1");

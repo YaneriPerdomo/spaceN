@@ -137,8 +137,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $stmt2->execute();
 
             if (($stmt->rowCount() > 0 && $stmt2->rowCount() > 0) || $stmt3->rowCount() > 0) {
-                echo "<script>window.location.href = './../../view/admin/dashboard.php?page=1';</script>";
+                echo "<script>window.location.href = './../../view/admin/dashboard.php';</script>";
 
+            }else{
+                echo 'ocurrio un error';
             }
             break;
         case 'sendNotification':

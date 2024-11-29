@@ -1,5 +1,5 @@
 <?php
-    include './../../../php/validations/authorizedUser.php';
+include './../../../php/validations/authorizedUser.php';
 ?>
 
 <!DOCTYPE html>
@@ -18,8 +18,6 @@
     <link rel="stylesheet" href="../../../css/admin/components/semanticTag.css">
     <link rel="stylesheet" href="../../../css/admin/profile.css">
 </head>
-
-
 <body>
     <?php include "./../../include/admin/user/header.php" ?>
     <main class="">
@@ -27,69 +25,94 @@
             <?php include "./../../include/admin/user/configurationProfile.php" ?>
             <div class="col-9">
                 <div class="content">
-                    <div class="">
-                        <h2>Perfil</h2>
-                        <hr>
-                        <p>Actualizar tu información personal</p>
-                        <form action="./../../../php/admin/user.php" class="personalInformation" method="POST">
-                            <input type="hidden" name="valueFunction" value="update">
-                            <div class="information">
-                                <div class="oneInformation">
-                                    <label for="usuario">Usuario</label><br>
-                                    <input id="usuario" name="user" type="text" placeholder="Ingrese tu usuario"
-                                        value="<?php echo $_SESSION['usuario'] ?? '' ?>" />
-                                    <br>
-                                    <label for="">Nombre</label><br>
-                                    <input id="nombre" name="name" type="text" placeholder="Ingrese tu nombre"
-                                        value="<?php echo $_SESSION['nombre'] ?? '' ?>" />
-                                    <br>
-                                    <label for="apellido">Apellido</label><br>
-                                    <input id="apellido" name="lastname" type="text" placeholder="Ingrese tu apellido"
-                                        value="<?php echo $_SESSION['apellido'] ?? '' ?>" />
-                                </div>
-                                <div class="twoInformation">
-                                    <label for="correo">Correo Electronico</label><br>
-                                    <input id="correo" name="mail" type="text"
-                                        placeholder="Ingrese tu correo electronico"
-                                        value="<?php echo $_SESSION['correo'] ?? '' ?>" />
-                                    <br>
-                                    <div class="cargos">
-                                        <label for="cargo">Cargo Profesional</label><br>
-                                        <select id="cargo" class="mt-1" name="professionalPosition">
-                                            <?php
-                                            if($_SESSION["id_cargo"] == "1"){
-                                                echo "<option value='1' $selected>Docente</option>
+                    <form action="./../../../php/admin/user.php" class="personalInformation" method="POST">
+                    <legend class="p-0 m-1">Perfil</legend>
+                    <p>
+                    Controla tu información protegiendo tu privacidad y recuerda que puedes actualizar tu perfil en cualquier momento.
+                    </p>
+                    <hr>
+                    <input type="hidden" name="valueFunction" value="update">
+                    <div class="row">
+                        <div class="col-4">
+                            <label for="">Datos personales:</label><br>
+                        </div>
+                        <div class="col-8">
+                            <label for="">Nombre<span>*</span></label><br>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1"><i class="bi bi-person"></i></span>
+                                <input type="text" name="name" class="form-control"
+                                    placeholder="¿Como se llama tu niño/a? 🤔" aria-label="Username"
+                                    aria-describedby="basic-addon1" value="<?php echo $_SESSION['nombre'] ?? '' ?>">
+                            </div>
+                            <label for="">Apellido<span>*</span></label><br>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1"><i class="bi bi-person"></i></span>
+                                <input type="text" name="lastname" class="form-control"
+                                    placeholder="¿Como se llama tu niño/a? 🤔" aria-label="Username"
+                                    aria-describedby="basic-addon1" value="<?php echo $_SESSION['apellido'] ?? '' ?>">
+                            </div>
+                            <label for="">Correo electronico<span>*</span></label><br>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1"><i class="bi bi-envelope"></i></span>
+                                <input type="text" name="mail" class="form-control"
+                                    placeholder="¿Como se llama tu niño/a? 🤔" aria-label="Username"
+                                    aria-describedby="basic-addon1" value="<?php echo $_SESSION['correo'] ?? '' ?>">
+                            </div>
+                            <label for="">Cargo Profesional<span>*</span></label><br>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">
+                                <i class="bi bi-person-vcard"></i>
+                                </span>
+                                <select id="cargo" class="mt-1 form-control"  name="professionalPosition">
+                                <?php
+                                if ($_SESSION["id_cargo"] == "1") {
+                                    echo "<option value='1' $selected>Docente</option>
                                                       <option value='2'>Terapeuta</option>";
-                                            }else{
-                                                echo "<option value='2' $selected>Terapeuta</option>
+                                } else {
+                                    echo "<option value='2' $selected>Terapeuta</option>
                                                 <option value='1'>Docente</option>";
-                                            }
-                                            ?>
-                                        </select>
-                                        <br>
-                                    </div>
-                                </div>
-                                <div class="threeInformation">
-                                    <label for="centro" class="nombre_centro_escolar">
-                                        Nombre del Centro escolar o
-                                        profesional
-                                    </label><br>
-                                    <input id="centro" type="text" class="nombre_centro_escolar" name="center"
-                                        placeholder="Nombre del Centro escolar o profesional"
-                                        value="<?php echo $_SESSION['centro'] ?? '' ?>">
-                                    <br data-br-delete>
-                                    <label for="tipocuenta">Tipo de cuenta Eres capaz</label><br>
-                                    <input id="tipocuenta" type="text" value="Profesional" name="tipocuenta" readonly
-                                        class="tipo--cuenta">
-                                </div>
+                                }
+                                ?>
+                            </select><br>                            </div>
+
+                            <label for=""> Nombre del Centro escolar o profesional<span>*</span></label><br>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">
+                                <i class="bi bi-building"></i>
+                                </span>
+                                <input type="text" name="center" class="form-control"
+                                    placeholder="¿Como se llama tu niño/a? 🤔" aria-label="Username"
+                                    aria-describedby="basic-addon1" value="<?php echo $_SESSION['centro'] ?? '' ?>">
                             </div>
-                            <hr>
-                            <div class="form-btn-keep">
-                                <input type="submit" value="Actualizar perfil">
-                                <br>
-                            </div>
-                        </form>
+                        </div>
                     </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-4">
+                            <label for="">Datos de la cuenta:</label>
+                        </div>
+                        <div class="col-8">
+                        <label for="">Usuario<span>*</span></label><br>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1"><i class="bi bi-person"></i></span>
+                                <input type="text" name="user" class="form-control"
+                                    placeholder="¿Como se llama tu niño/a? 🤔" aria-label="Username"
+                                    aria-describedby="basic-addon1" value="<?php echo $_SESSION['usuario'] ?? '' ?>">
+                            </div>
+                            <label for="">Tipo de cuenta</label><br>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">
+                                <i class="bi bi-upc"></i>
+                                </span>
+                                <input type="text" name="TypeP" class="form-control"
+                                    placeholder="¿Como se llama tu niño/a? 🤔" aria-label="Username"
+                                    aria-describedby="basic-addon1" value="Profesional" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                        <input type="submit" value="Actualizar perfil" class='purpleButton'>
+                    </form>
                 </div>
             </div>
         </div>
@@ -101,21 +124,5 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
-<script>
-    let file = document.querySelector(".file");
-    const allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
-    file.addEventListener("change", e => {
-        const file = event.target.files[0];
-        const fileType = file.type;
-        if (allowedTypes.includes(fileType)) {
-            alert("formato valido")
-        } else {
-            e.target.value = ""
-            alert("formato no valido")
-        }
-    })
-</script>
-
-
 
 </html>

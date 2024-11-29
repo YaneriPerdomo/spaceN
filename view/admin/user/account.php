@@ -32,19 +32,21 @@
                 <div class="accordion accordion-flush content" id="accordionFlushExample">
                     <div class="accordion-item">
                         <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                           <button class="p-0 m-1 accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#flush-collapseOne" aria-expanded="false"
                                 aria-controls="flush-collapseOne">
-                                Eliminar tu cuenta
+                                                         <legend>
+  Eliminar tu cuenta                           </legend>
+
                             </button>
                         </h2>
                         <div id="flush-collapseOne" class="accordion-collapse collapse"
                             data-bs-parent="#accordionFlushExample">
                             <div class="accordion-body">
-                                <p>Mediante esta opción puedes eliminar completamente tu cuenta de Profesional en Eres Capaz
-                                    Al eliminar tu cuenta, dejarás de tener acceso a Tu puedes tanto a través de la web
-                                    como de las aplicaciones móviles. Todos los usuarios que hayas dado de alta también
-                                    serán eliminados por lo que tampoco podrán acceder a la plataforma.
+                                <p>Mediante esta opción podrás eliminar por completo tu cuenta Profesional en "Eres Capaz"
+                                    <b>al eliminar tu cuenta, ya no tendrás acceso, teniendo en cuenta que todos los usuarios
+                                    que hayas creado, también serán eliminados</b> por lo que no podrán acceder a la plataforma
+                                    de aprendizaje.
                                 </p>
                                 <form action="./../../../php/admin/user.php" method="post">
                                     <input type="hidden" name="valueFunction" value="deleteAccount">

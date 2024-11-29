@@ -27,3 +27,30 @@ h1{
     font-size: calc(1.325rem + .6vw) !important;
     margin: 0.1rem;
 }
+
+.purpleButton{
+    background: #8f6cf2;
+    padding: 0.5rem 2rem;
+    color: white;
+    border: 0rem;
+}
+
+.col-4 > label{
+    font-weight: bold;
+    color: #7d5bd9;
+}
+
+.col-8 > label{
+    font-weight: 500;
+}
+label > span{
+    color: #ff5d5d;
+}
+
+.content > p{
+    color: #6f6f6f;
+}
+
+[name]:not(:nth-child(0)){
+    max-width: 50%;
+}

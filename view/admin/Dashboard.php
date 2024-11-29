@@ -1,4 +1,5 @@
 <?php
+
 include './../../php/validations/authorizedUser.php';
 ?>
 
@@ -284,7 +285,6 @@ include './../../php/validations/authorizedUser.php';
                             }
                         } else {
                             // Si no hay resultados, mostramos un mensaje
-                            echo "<br>";
                             echo "<p>No hay registros disponibles en este momento.</p>";
                         }
 

@@ -11,7 +11,7 @@
         if (e.target.matches(".CanceSendN")) {
             $containerSendNotification.style.display = "none";
         }
-        if (e.target.matches(".OpenDeleteChild > i")) {
+        if (e.target.matches(".OpenDeleteChild")) {
             $containerDeleteChild.removeAttribute("style");
             $contentDelete.classList.add("openModal");
             $idChildDelete.value = e.target.getAttribute("data-idc");

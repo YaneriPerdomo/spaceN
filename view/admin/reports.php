@@ -1,5 +1,5 @@
 <?php
-    include './../../php/validations/authorizedUser.php';
+include './../../php/validations/authorizedUser.php';
 ?>
 <!DOCTYPE html>
 <html lang="ea">
@@ -23,14 +23,36 @@
     <link rel="stylesheet" href="../../css/admin/components/offcanvas.css">
     <link rel="stylesheet" href="../../css/admin/helpReportsActivity.css">
 </head>
- 
+
 
 <body>
     <?php include "./../include/admin/headerHelp.php" ?>
     <main class="">
         <div class="content">
             <h1><b>Reportes</b></h1>
-            
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quaerat corporis eveniet, exercitationem iusto
+                quam dolore harum dolores numquam autem quae facilis natus fuga ratione libero alias consectetur
+                laboriosam commodi nesciunt.</p>
+            <hr>
+            <div class='w-100 h-100 d-flex justify-content-center align-content-center'>
+                <form action="../../php/admin/reports.php" method="post">
+                    <p>
+                        <label for="1">
+                            <input type="radio" id="1" name="accessLevel" value="1"> 
+                            Pre numerico
+                        </label><br>
+                        <label for="2"><input type="radio" id="2" name="accessLevel" value="2"> 
+                            numerico_emergente
+                        </label><br>
+                        <label for="3">
+                            <input type="radio" id="3" name="accessLevel" value="3">
+                            Desarrollo Numerico
+                        </label><br>
+                    </p>
+
+                    <input type="submit" value="Generar reportes">
+                </form>
+            </div>
         </div>
     </main>
     <?php include "./../include/admin/footer.php" ?>

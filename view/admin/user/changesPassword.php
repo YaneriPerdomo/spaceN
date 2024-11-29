@@ -1,5 +1,5 @@
 <?php
-    include './../../../php/validations/authorizedUser.php';
+include './../../../php/validations/authorizedUser.php';
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -17,8 +17,6 @@
     <link rel="stylesheet" href="../../../css/admin/components/semanticTag.css">
     <link rel="stylesheet" href="../../../css/admin/profile.css">
 </head>
-
-
 <body>
 
     <?php include "./../../include/admin/user/header.php" ?>
@@ -28,17 +26,39 @@
             <?php include "./../../include/admin/user/configurationProfile.php" ?>
             <div class="col-9">
                 <div class="content">
-                <form action="./../../../php/admin/user.php" method="post">
-                <input type="hidden" name="valueFunction" value="changesPassword">
-                    <legend>Cambiar contraseña</legend>
-                    <label for="">Contraseña actual</label><br>
-                    <input type="password" name="oldPassword" id=""><br>
-                    <label for="">Contrasena nueva</label><br>
-                    <input type="password" name="newPassword" id=""><br>
-                    <label for="">Confirmar contrasena nueva</label><br>
-                    <input type="password" name="passwordAgain" id=""><br>
-                    <input type="submit" value="Cambiar">
-                </form>
+                    <form action="./../../../php/admin/user.php" method="post">
+                        <input type="hidden" name="valueFunction" value="changesPassword">
+                        <legend class="p-0 m-1">Cambiar contraseña</legend>
+        <p>Actualiza tu contraseña de forma regular para mantener tu cuenta segura. Puedes hacerlo en cualquier momento, con solo unos clics.</p>
+                        <hr>
+                        <label for="">Contraseña Actual<span>*</span></label><br>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">
+                                <i class="bi bi-person-lock"></i>
+                            </span>
+                            <input type="password" name="oldPassword" class="form-control"
+                                placeholder="¿Como se llama tu niño/a? 🤔" aria-label="Username"
+                                aria-describedby="basic-addon1">
+                        </div>
+                        <label for="">Contraseña Nueva<span>*</span></label><br>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">
+                                <i class="bi bi-key"></i></i>
+                            </span>
+                            <input type="password" name="newPassword" class="form-control"
+                                placeholder="¿Como se llama tu niño/a? 🤔" aria-label="Username"
+                                aria-describedby="basic-addon1">
+                        </div><label for="">Confirmar contraseña<span>*</span></label><br>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">
+                                <i class="bi bi-key"></i></i>
+                            </span>
+                            <input type="password" name="passwordAgain" class="form-control"
+                                placeholder="¿Como se llama tu niño/a? 🤔" aria-label="Username"
+                                aria-describedby="basic-addon1">
+                        </div><hr>
+                        <input type="submit" value="Cambiar">
+                    </form>
                 </div>
             </div>
         </div>
@@ -48,7 +68,7 @@
 
 <?php include "./../../include/admin/user/offcanvasAplication.php" ?>
 <?php include "./../../include/admin/user/offcanvasUser.php" ?>
- 
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
