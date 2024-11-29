@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($rol == "1") {
             if ($status == "1") {
-                header("Location: ../view/admin/dashboard.php");
+                header("Location: ../view/admin/dashboard.php?page=1");
 
             } else {
                 echo "Tu cuenta ha sido eliminada";

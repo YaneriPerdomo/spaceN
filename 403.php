@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página no encontrada 404</title>
+    <title>Página no encontrada 403</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -40,10 +40,11 @@
 <body>
     <main class="w-100 h-100 ">
         <div class="content">
-            <h1>Página no encontrada (404)</h1>
-            <p>Lo sentimos, la página que estás buscando no existe.</p><br>
-            <a href="./index.php">Ir a la página principal</a>
+            <h1>Página no encontrada (403)</h1>
+            <p>Lo sentimos, la página que estás buscando no está disponible o no tienes los permisos necesarios para
+                verla.</p>
         </div>
+        <a href="./index.php">Ir a la pagina principal</a>
     </main>
 </body>
 

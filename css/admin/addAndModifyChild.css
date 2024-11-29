@@ -1,0 +1,44 @@
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+a {
+    margin: 0.5rem 0rem;
+    display: block;
+    color: var(--colorBlack);
+    text-decoration: none;
+}
+
+.content {
+    background: white;
+    padding: 1rem;
+    border-radius: 1rem;
+    border: solid 1px #e8d8ff;
+    margin: 1rem;
+    max-width: 700px;
+}
+
+.purpleButton{
+    background: #8f6cf2;
+    padding: 0.5rem 2rem;
+    color: white;
+    border: 0rem;
+}
+
+.col-4 > label{
+    font-weight: bold;
+    color: #7d5bd9;
+}
+
+.col-8 > label{
+    font-weight: 500;
+}
+label > span{
+    color: #ff5d5d;
+}
+
+.content > p{
+    color: #6f6f6f;
+}

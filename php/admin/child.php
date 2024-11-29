@@ -76,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
             // Verificamos si se insertó correctamente al menos un registro
             if ($stmt->rowCount() > 0 && $stmt2->rowCount() > 0) {
-                echo "<script> window.location.href = './../view/admin/dashboard.php';</script>";
+                echo "<script> window.location.href = './../../view/admin/dashboard.php?page=1';</script>";
             }
             $pdo = null;
             break;
@@ -84,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $id_user = $_POST["id_user"];
             $user = $_POST["user"];
             $name = $_POST["name"];
-            $lastName = $_POST["lastname"];
+            $lastName = $_POST["lastName"];
             $date = $_POST["date"];
             $accessLevel = $_POST["accessLevel"];
             $gender = $_POST["gender"];
@@ -111,9 +111,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
             $stmt2->execute();
             if ($stmt->rowCount() > 0 || $stmt2->rowCount() > 0) {
-                echo "window.location.href = './../../view/admin/dashboard.php.php';</script>";
+                echo "<script>window.location.href = './../../view/admin/dashboard.php?page=1';</script>";
             } else {
-                echo "<script>alert('Eror de actualizacion'); window.location.href = './../../view/admin/dashboard.php.php';</>";
+                echo "<script>alert('Eror de actualizacion'); window.location.href = '../../view/admin/dashboard.php';</>";
             }
             // Cerramos la conexión a la base de datos
             $pdo = null; // Liberamos los recursos asociados a la conexión
@@ -137,7 +137,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $stmt2->execute();
 
             if (($stmt->rowCount() > 0 && $stmt2->rowCount() > 0) || $stmt3->rowCount() > 0) {
-                echo "<script>window.location.href = './../../view/admin/dashboard.php';</script>";
+                echo "<script>window.location.href = './../../view/admin/dashboard.php?page=1';</script>";
 
             }
             break;
@@ -164,7 +164,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $stmt->execute();
 
             if ($stmt->rowCount() > 0) {
-                echo "<script>alert('Notificacion enviada con exito'); window.location.href = './../view/admin/dashboard.php.php';</script>";
+                echo "<script>alert('Notificacion enviada con exito'); window.location.href = './../view/admin/dashboard.php.php?page=1';</script>";
             }
 
             break;

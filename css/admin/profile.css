@@ -1,0 +1,29 @@
+a {
+    margin: 0.5rem 0rem;
+    display: block;
+    color: var(--colorBlack);
+    text-decoration: none;
+}
+
+main>div {
+    width: 100vw;
+    padding: 1rem;
+}
+
+.configurationProfile .content >div {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.content{
+    background: white;
+    padding: 1rem;
+    border-radius: 1rem;
+    border: solid 1px #e8d8ff;
+}
+
+h1{
+    font-size: calc(1.325rem + .6vw) !important;
+    margin: 0.1rem;
+}

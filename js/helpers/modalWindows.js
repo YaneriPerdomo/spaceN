@@ -11,7 +11,7 @@
         if (e.target.matches(".CanceSendN")) {
             $containerSendNotification.style.display = "none";
         }
-        if (e.target.matches(".OpenDeleteChild")) {
+        if (e.target.matches(".OpenDeleteChild > i")) {
             $containerDeleteChild.removeAttribute("style");
             $contentDelete.classList.add("openModal");
             $idChildDelete.value = e.target.getAttribute("data-idc");
@@ -22,7 +22,7 @@
             $containerDeleteChild.style.display = "none";
         }
 
-        if (e.target.matches(".OpenSendNotificationChild")) {
+        if (e.target.matches(".OpenSendNotificationChild > i")) {
             $containerSendNotification.removeAttribute("style");
             $contentSend.classList.add("openModal")
             $nameChildS.innerHTML = e.target.getAttribute("data-nameS")

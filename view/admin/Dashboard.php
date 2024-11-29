@@ -27,6 +27,7 @@ include './../../php/validations/authorizedUser.php';
     <link rel="stylesheet" href="../../css/admin/dashboard.css">
 
 </head>
+
 <body>
 
     <?php include './../include/admin/header.php' ?>
@@ -172,8 +173,7 @@ include './../../php/validations/authorizedUser.php';
             <div class="col-9">
                 <div>
                     <section class="childs">
-                        <br>
-                        <h1><b>Panel administrativo</b></h1>
+                        <h1 class="m-2"><b>Panel administrativo</b></h1>
                         <div class="searchAndAddChilds">
                             <div>
                                 <div class="input-group mb-3">
@@ -188,8 +188,19 @@ include './../../php/validations/authorizedUser.php';
                             </div>
                         </div>
                     </section>
-                    <section class="table">
-                        <table class="dataTable">
+                    <?php
+
+                    function showChilds()
+                    {
+                        // Incluimos el archivo de conexión a la base de datos
+                        include '../../php/connectionBD.php';
+                        $id_admin = $_SESSION["id_profesional"];
+                        // Preparamos la consulta SQL para obtener información de los niños
+                        // Se realiza una unión entre las tablas 'ninos' y 'usuarios' para obtener más datos
+                        // Se filtra por el id_profesional para obtener los niños de un profesional específico (en este caso, el de ID 7)
+                    
+                        echo " <section class='table'>
+                        <table class='dataTable'>
                             <thead>
                                 <tr>
                                     <th>Usuario</th>
@@ -199,84 +210,125 @@ include './../../php/validations/authorizedUser.php';
                                     <th>Aprendizaje</th>
                                     <th>Operaciones</th>
                                 </tr>
-                            </thead>
-                            <?php
+                            </thead>";
 
-                            function showChilds()
-                            {
-                                // Incluimos el archivo de conexión a la base de datos
-                                include '../../php/connectionBD.php';
-                                $id_admin = $_SESSION["id_profesional"];
-                                // Preparamos la consulta SQL para obtener información de los niños
-                                // Se realiza una unión entre las tablas 'ninos' y 'usuarios' para obtener más datos
-                                // Se filtra por el id_profesional para obtener los niños de un profesional específico (en este caso, el de ID 7)
-                                $sqlSelect = 'SELECT id_nino, ninos.id_usuario as id_usuario_nino, usuario, nombre, apellido, id_categoria_actividades, fecha_nacimiento FROM ninos 
-                            INNER JOIN usuarios ON ninos.id_usuario = usuarios.id_usuario WHERE id_profesional = :id';
+                        $pagina_actual = isset($_GET['pagina']) && is_numeric($_GET['pagina']) ? $_GET['pagina'] : 1;
+                        $sqlCount = 'SELECT COUNT(*) as total FROM ninos WHERE id_profesional = :id';
+                        $count = $pdo->prepare($sqlCount);
+                        $count->bindParam('id', $id_admin, PDO::PARAM_INT);
+                        $count->execute();
+                        $total = $count->fetch(PDO::FETCH_ASSOC);
+                        $total_registros = $total["total"];
+                        $registros_por_pagina = 5;
+                        $total_paginas = ceil($total_registros / $registros_por_pagina);
+                        // Verificamos si se encontraron resultados
+                    
+                        $sqlSelect = 'SELECT id_nino, ninos.id_usuario as id_usuario_nino, usuario, nombre, apellido, id_categoria_actividades, fecha_nacimiento FROM ninos 
+                                INNER JOIN usuarios ON ninos.id_usuario = usuarios.id_usuario WHERE id_profesional = :id
+                                LIMIT :inicio, :registros_por_pagina
+                                ';
+                        $inicio = ($pagina_actual - 1) * $registros_por_pagina;
 
-                                // Preparamos la sentencia SQL para evitar inyección SQL
-                                $stmt = $pdo->prepare($sqlSelect);
-                                $stmt->bindParam('id', $id_admin, PDO::PARAM_INT);
-                                // Ejecutamos la consulta
-                                $stmt->execute();
+                        // Preparamos la sentencia SQL para evitar inyección SQL
+                        $stmt = $pdo->prepare($sqlSelect);
+                        $stmt->bindParam('id', $id_admin, PDO::PARAM_INT);
+                        $stmt->bindValue(':inicio', $inicio, PDO::PARAM_INT);
+                        $stmt->bindValue(':registros_por_pagina', $registros_por_pagina, PDO::PARAM_INT);
+                        // Ejecutamos la consulta
+                        $stmt->execute();
 
-                                // Verificamos si se encontraron resultados
-                                if ($stmt->rowCount() > 0) {
-                                    // Si hay resultados, los obtenemos en un array asociativo
-                                    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-                                    // Iteramos sobre cada fila del resultado
-                                    foreach ($result as $row) {
-                                        // Obtenemos la categoría de actividad y la asignamos a una variable
-                            
-                                        switch ($row["id_categoria_actividades"]) {
-                                            case 1:
-                                                $showA = "Pre Numerico";
-                                                break;
-                                            case 2:
-                                                $showA = "Numerico Emergente";
-                                                break;
-                                            case 3:
-                                                $showA = "Desarrollo Numerico";
-                                                break;
-                                            default:
-                                                $showA = "Categoría desconocida";
-                                        }
-
-                                        $fecha_nacimiento = $row["fecha_nacimiento"];
-                                        $fecha_actual = date("Y-m-d"); // Obtener la fecha actual completa
-                                        // Convertir ambas fechas a timestamps
-                                        $timestamp_nacimiento = strtotime($fecha_nacimiento);
-                                        $timestamp_actual = strtotime($fecha_actual);
-                                        // Calcular la diferencia en segundos
-                                        $diferencia_segundos = $timestamp_actual - $timestamp_nacimiento;
-                                        // Convertir la diferencia de segundos a años (aproximado)
-                                        $edad_en_anos = floor($diferencia_segundos / (60 * 60 * 24 * 365.25));
-                                        // Generamos una fila en una tabla HTML con los datos del niño
-                                        echo "<tr class='show'>";
-                                        echo "<td >" . $row['usuario'] . "</td>";
-                                        echo "<td>" . $row['nombre'] . "</td>";
-                                        echo "<td>" . $row['apellido'] . "</td>";
-                                        echo "<td>" . $edad_en_anos . "</td>";
-                                        echo "<td>" . $showA . "</td>";
-                                        echo "<td class='operations'>";
-                                        echo "<button class='OpenDeleteChild' data-idc='" . $row['id_nino'] . "' data-idu='" . $row['id_usuario_nino'] . "'><i class='bi bi-trash'></i></button>";
-                                        echo "<a href='child/modify.php?id=" . $row['id_nino'] . "'><button><i class='bi bi-person-lines-fill'></i></button></a>";
-                                        echo "<button><i class='bi bi-bar-chart'></i></button></a>";
-                                        echo "<button class='OpenSendNotificationChild' data-idS='" . $row['id_nino'] . "' > <i class='bi bi-send-plus'></i></button> ";
-                                        echo "</td>";
-                                        echo "</tr>";
-                                    }
-                                } else {
-                                    // Si no hay resultados, mostramos un mensaje
-                                    echo "<br>";
-                                    echo "<p>No hay registros disponibles en este momento.</p>";
+                        if ($stmt->rowCount() > 0) {
+                            // Si hay resultados, los obtenemos en un array asociativo
+                            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                            // Iteramos sobre cada fila del resultado
+                            foreach ($result as $row) {
+                                // Obtenemos la categoría de actividad y la asignamos a una variable
+                    
+                                switch ($row["id_categoria_actividades"]) {
+                                    case 1:
+                                        $showA = "Pre Numerico";
+                                        break;
+                                    case 2:
+                                        $showA = "Numerico Emergente";
+                                        break;
+                                    case 3:
+                                        $showA = "Desarrollo Numerico";
+                                        break;
+                                    default:
+                                        $showA = "Categoría desconocida";
                                 }
-                            }
-                            showChilds();
-                            ?>
 
-                        </table>
-                    </section>
+                                $fecha_nacimiento = $row["fecha_nacimiento"];
+                                $fecha_actual = date("Y-m-d"); // Obtener la fecha actual completa
+                                // Convertir ambas fechas a timestamps
+                                $timestamp_nacimiento = strtotime($fecha_nacimiento);
+                                $timestamp_actual = strtotime($fecha_actual);
+                                // Calcular la diferencia en segundos
+                                $diferencia_segundos = $timestamp_actual - $timestamp_nacimiento;
+                                // Convertir la diferencia de segundos a años (aproximado)
+                                $edad_en_anos = floor($diferencia_segundos / (60 * 60 * 24 * 365.25));
+                                // Generamos una fila en una tabla HTML con los datos del niño
+                                echo "<tr class='show'>";
+                                echo "<td >" . $row['usuario'] . "</td>";
+                                echo "<td>" . $row['nombre'] . "</td>";
+                                echo "<td>" . $row['apellido'] . "</td>";
+                                echo "<td>" . $edad_en_anos . "</td>";
+                                echo "<td>" . $showA . "</td>";
+                                echo "<td class='operations'>";
+                                echo "<button class='OpenDeleteChild' data-idc='" . $row['id_nino'] . "' data-idu='" . $row['id_usuario_nino'] . "'><i class='bi bi-trash'></i></button>";
+                                echo "<a href='child/modify.php?id=" . $row['id_nino'] . "'><button><i class='bi bi-person-lines-fill'></i></button></a>";
+                                echo "<button><i class='bi bi-bar-chart'></i></button></a>";
+                                echo "<button class='OpenSendNotificationChild' data-idS='" . $row['id_nino'] . "' > <i class='bi bi-send-plus'></i></button> ";
+                                echo "</td>";
+                                echo "</tr>";
+                            }
+                        } else {
+                            // Si no hay resultados, mostramos un mensaje
+                            echo "<br>";
+                            echo "<p>No hay registros disponibles en este momento.</p>";
+                        }
+
+                        // ... (código de conexión y cálculos anteriores)
+                        echo " </table> </section>";
+                        // Enlaces de paginación  
+                        echo "<section class='d-flex justify-content-between align-items-center'>";
+                        if($total_registros == 0){
+
+                        }else if ($total_registros == 1) {
+                            $userRegistration = 'registro disponible';
+                            echo "<span class='messengerShowUsers'>Mostrando " . $total_registros . " de " . $registros_por_pagina . " 
+                                    <span class='userRegistration'> " . $userRegistration . "</span></span>";
+                            if ($pagina_actual > 1) {
+                                echo "<a href='?page=" . ($pagina_actual - 1) . "'>Anterior</a> ";
+                            }
+                            for ($i = 1; $i <= $total_paginas; $i++) {
+                                echo "<a href='?page=$i'>" . ($i == $pagina_actual ? '<b>' . $i . '</b>' : $i) . "</a> ";
+                            }
+                            if ($pagina_actual < $total_paginas) {
+                                echo "<a href='?page=" . ($pagina_actual + 1) . "'>Siguiente</a>";
+                            }
+                            echo " </section>";
+                        } else {
+                            $userRegistration = 'registros disponibles';
+                            echo "<span class='messengerShowUsers'>Mostrando " . $total_registros . " de " . $registros_por_pagina . " 
+                                        <span class='userRegistration'> " . $userRegistration . "</span></span>";
+                            if ($pagina_actual > 1) {
+                                echo "<a href='?page=" . ($pagina_actual - 1) . "'>Anterior</a> ";
+                            }
+                            for ($i = 1; $i <= $total_paginas; $i++) {
+                                echo "<a href='?page=$i'>" . ($i == $pagina_actual ? '<b>' . $i . '</b>' : $i) . "</a> ";
+                            }
+                            if ($pagina_actual < $total_paginas) {
+                                echo "<a href='?page=" . ($pagina_actual + 1) . "'>Siguiente</a>";
+                            }
+                            echo " </section>";
+                        }
+
+                    }
+                    showChilds();
+                    ?>
+
+
                 </div>
             </div>
         </div>

@@ -1,1 +1,13 @@
-ErrorDocument 404 http://localhost/eres_capaz/404.php
+ErrorDocument 404 /404.php
+ErrorDocument 403 /403.php
+
+RewriteEngine On
+RewriteBase /
+
+RewriteCond %{REQUEST_URI} ^/404/$
+RewriteRule ^(.*)$ ./404.php [L]
+
+RewriteCond %{REQUEST_URI} ^/403/$
+RewriteRule ^(.*)$ ./403.php [L]
+
+Options All -Indexes
