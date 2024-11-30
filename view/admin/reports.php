@@ -21,36 +21,9 @@ include './../../php/validations/authorizedUser.php';
     <link rel="stylesheet" href="../../css/admin/components/semanticTag.css">
     <link rel="stylesheet" href="../../css/admin/components/row.css">
     <link rel="stylesheet" href="../../css/admin/components/offcanvas.css">
+    <link rel="stylesheet" href="../../css/admin/components/purpleButton.css">
     <link rel="stylesheet" href="../../css/admin/helpReportsActivity.css">
-    <style>
-        img {
-            max-width: 100px;
-        }
-
-        label {
-            padding: 0.5rem;
-            border-radius: 1rem;
-            border: solid 1px #6f6f6f;
-            color: #6f6f6f;
-            font-weight: bold;
-            text-align: center;
-            flex-basis: 150px;
-            background: #f5f7f9;
-        }
-
-        [type='radio'] {
-            display: none;
-        }
-
-        .checked {
-            border: solid 2px rgb(47, 47, 47);
-            color: rgb(47, 47, 47);
-        }
-
-       .content > p{
-        color: #6f6f6f;
-       }
-    </style>
+    <link rel="stylesheet" href="../../css/admin/reports.css">
 </head>
 
 
@@ -88,29 +61,12 @@ include './../../php/validations/authorizedUser.php';
     </main>
     <?php include "./../include/admin/footer.php" ?>
 </body>
-
-<script>
-
-    let $dataChecked = document.querySelectorAll("label");
-    document.addEventListener("click", e => {
-        if (e.target.matches("label")) {
-            for (let i = 0; i < $dataChecked.length; i++) {
-                $dataChecked[i].removeAttribute("data-checked");
-                $dataChecked[i].classList.remove("checked")
-
-            }
-            e.target.classList.add("checked");
-            e.target.setAttribute("data-checked", "true");
-
-        }
-    })
-</script>
 <?php include "./../include/admin/offcanvasAplication.php" ?>
 <?php include "./../include/admin/offcanvasUser.php" ?>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
-
+<script src="../../js/helpers/clickAccessLevel.js"></script>
 
 
 </html>

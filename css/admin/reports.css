@@ -1,0 +1,28 @@
+img {
+    max-width: 100px;
+}
+
+label {
+    padding: 0.5rem;
+    border-radius: 1rem;
+    border: solid 1px #6f6f6f;
+    color: #6f6f6f;
+    font-weight: bold;
+    text-align: center;
+    flex-basis: 150px;
+    background: #f5f7f9;
+    cursor: pointer;
+}
+
+[type='radio'] {
+    display: none;
+}
+
+.checked {
+    border: solid 2px rgb(47, 47, 47);
+    color: rgb(47, 47, 47);
+}
+
+.content > p{
+color: #6f6f6f;
+}

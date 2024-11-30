@@ -22,10 +22,9 @@
             $containerDeleteChild.style.display = "none";
         }
 
-        if (e.target.matches(".OpenSendNotificationChild > i")) {
+        if (e.target.matches(".OpenSendNotificationChild")) {
             $containerSendNotification.removeAttribute("style");
             $contentSend.classList.add("openModal")
-            $nameChildS.innerHTML = e.target.getAttribute("data-nameS")
             $htmlIdChild.value = e.target.getAttribute("data-idS");
         }
         if (e.target.matches(`.sendNotificationChild`)) {

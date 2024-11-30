@@ -26,7 +26,39 @@ include './../../php/validations/authorizedUser.php';
     <link rel="stylesheet" href="../../css/admin/components/semanticTag.css">
     <link rel="stylesheet" href="../../css/admin/components/row.css">
     <link rel="stylesheet" href="../../css/admin/dashboard.css">
+    <style>
+        .modalTitleNotification {
+            margin: 0rem;
+            background: #2e7bcc;
+            padding: 1rem;
+            color: white;
+        }
 
+        .yesButtonSend {
+            background: #2e7bcc;
+            color: white;
+        }
+
+        .yesButtonSend:hover{
+            transition: all 0.5s;
+            background: #1d5c9f !important;
+            color: white !important;
+        }
+        [name="messenger"] {
+            color: rgb(47, 47, 47);
+        }
+
+        .containerSendNotifiacion>div>form {
+            padding: 1rem;
+            padding-top: 1rem;
+            padding-top: 0.5rem;
+        }
+
+        .containerSendNotifiacion>div>form>p {
+            padding: 0.5rem;
+            margin: 0rem;
+        }
+    </style>
 </head>
 
 <body>
@@ -175,15 +207,7 @@ include './../../php/validations/authorizedUser.php';
                 <div>
                     <section class="childs">
                         <h1 class="m-2"><b>Panel administrativo</b></h1>
-                        <div class="searchAndAddChilds">
-                            <div>
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text" id="basic-addon1"><i class="bi bi-search"></i></span>
-                                    <input type="search" class="form-control" placeholder="Buscar..."
-                                        aria-label="Username" aria-describedby="basic-addon1">
-                                </div>
-
-                            </div>
+                        <div class="containerAddChilds">
                             <div>
                                 <a href="./child/add.php">Agregar niño</a>
                             </div>
@@ -292,9 +316,9 @@ include './../../php/validations/authorizedUser.php';
                         echo " </table> </section>";
                         // Enlaces de paginación  
                         echo "<section class='d-flex justify-content-between align-items-center'>";
-                        if($total_registros == 0){
+                        if ($total_registros == 0) {
 
-                        }else if ($total_registros == 1) {
+                        } else if ($total_registros == 1) {
                             $userRegistration = 'registro disponible';
                             echo "<span class='messengerShowUsers'>Mostrando " . $total_registros . " de " . $registros_por_pagina . " 
                                     <span class='userRegistration'> " . $userRegistration . "</span></span>";
@@ -364,8 +388,7 @@ include './../../php/validations/authorizedUser.php';
         <div class="modal-content content">
             <div class="modal-header">
                 <div class="text-center w-100">
-                    <h1 class="modal-title fs-5 text-center" id="exampleModalLabel"><b>Envio de notificacion</b></h1>
-                    <small>Puedes enviarle una notificación para <small class="nameChildS"></small></small>
+                    <h1 class="modal-title modalTitleNotification fs-5 text-center" id="exampleModalLabel"><b>Enviar notificacion</b></h1>
                 </div>
             </div>
             <form action="./../../php/admin/child.php" method="post">
@@ -373,7 +396,9 @@ include './../../php/validations/authorizedUser.php';
                     <input type="hidden" name="valueFunction" value="sendNotification">
                     <input type="hidden" name="id_child" class="id_child" value="">
                     <input type="hidden" name="id_profesional" value="<?php echo $_SESSION["id_profesional"] ?> ">
-                    <select name="messenger" class="w-100">
+                    <p class="text-center">Permite que el niño reciba notificacion personalizado en tiempo real que lo anima a
+                        alcanzar sus objetivos.</p>
+                    <select name="messenger" class="form-select" aria-label="Default select example">
                         <option selected value="¡Felicidades! Has completado una leccion mas.">¡Felicidades! Has
                             completado una lección mas. </option>
                         <option value="¡Genial! Has ganado mas estrellas."> ¡Genial! Has ganado más estrellas. ✨
@@ -391,9 +416,10 @@ include './../../php/validations/authorizedUser.php';
                         </option>
                     </select>
                 </div>
-                <div class="modal-footer">
+                <div class="modal-footer d-flex justify-content-center gap-4 align-items-center"
+                    style='  padding-top: 1rem;'>
                     <button type="button" class="btn btn-secondary CanceSendN">Cancelar</button>
-                    <button type="submit" class="btn btn-success">Enviar</button>
+                    <button type="submit" class="btn yesButtonSend">Si, enviar</button>
                 </div>
             </form>
         </div>
