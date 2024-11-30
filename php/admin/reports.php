@@ -20,7 +20,7 @@ $valuesChilds = "";
  
 
 if($pdfE->rowCount() == 0){
-    echo "<script> alert('No existen registros de este tipo para generar un reporte')
+    echo "<script> alert('No existen registros.')
          window.location.href = './../../view/admin/reports.php'
     </script>";
     exit();
