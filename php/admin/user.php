@@ -1,6 +1,6 @@
 <?php
-
 session_start();
+require_once './../../dompdf/autoload.inc.php';
 
 // Incluimos el archivo donde se establece la conexión a la base de datos
 include "../connectionBD.php";
@@ -126,7 +126,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 # code...
                 break;
         }
-   } catch (\PDOException $e) {
+   } catch (PDOException $e) {
         echo $e->getMessage();
    }
     $pdo = null;

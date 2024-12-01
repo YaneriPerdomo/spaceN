@@ -27,10 +27,11 @@ include './../../../php/validations/authorizedUser.php';
     <main>
         <div class="content">
             <h1><b>Registrar usuario</b></h1>
-            <p><em>¡Crea una cuenta para tu niño/a</em> y ayúdale a superar 
-                los desafíos de las matemáticas! Nuestra plataforma de aprendizaje ofrece 
+            <p><em>¡Crea una cuenta para tu niño/a</em> y ayúdale a superar
+                los desafíos de las matemáticas! Nuestra plataforma de aprendizaje ofrece
                 ejercicios personalizados <em>segun sus necesidades.</em>
-            </p><hr>
+            </p>
+            <hr>
             <form action="../../../php/admin/child.php" method="post">
                 <input type="hidden" value="<?php echo $_SESSION["id_profesional"]; ?>">
                 <input type="hidden" name="valueFunction" value="add">
@@ -58,18 +59,20 @@ include './../../../php/validations/authorizedUser.php';
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="basic-addon1"><i
                                     class="bi bi-calendar3-event"></i></span>
-                            <input type="date" name="date" class="form-control"
-                               aria-label="Username"
+                            <input type="date" name="date" class="form-control" aria-label="Username"
                                 aria-describedby="basic-addon1">
                         </div>
                         <label for="">Genero<span>*</span></label><br>
-                        <p>
-                            <label for="M">
-                                <input type="radio" id="M" name="gender" value="1" > M
+                        <p class="d-flex gap-2 selectionGender">
+                            <label for="M" data-checked="true">
+                                <input type="radio" id="M" name="gender" value="1" ckecked>
+                                <img src="../../../img/childs/boy.png" alt="" class="checked">
                             </label>
-                            <label><input type="radio" name="gender" value="2"> F</label>
+                            <label for="F">
+                                <input type="radio" id="F" name="gender" value="2">
+                                <img src="../../../img/childs/girl.png" alt="">
+                            </label>
                         </p>
-                        <br>
                     </div>
                 </div>
                 <hr>
@@ -79,59 +82,52 @@ include './../../../php/validations/authorizedUser.php';
                     </div>
                     <div class="col-8">
                         <label for="">Nombre de usuario<span>*</span></label><br>
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="basic-addon1">
-                    <i class="bi bi-person-workspace"></i></i>
-                    </span>
-                    <input type="text" name="user" class="form-control"
-                                placeholder="¡Oh 😲...!" aria-label="Username"
-                                aria-describedby="basic-addon1">
-                </div>
-                <label for="">Nivel de acceso<span>*</span></label><br>
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="basic-addon1">
-                        <i class="bi bi-door-open"></i>
-                    </span>
-                    <select name="accessLevel" class="form-control" id=""><br>
-                        <option value="1">Pre numerico</option>
-                        <option value="2">Numerico emergente</option>
-                        <option value="3">Desarrollo numerico</option>
-                    </select><br>
-                </div>
-                <label for="">Contraseña<span>*</span></label>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">
+                                <i class="bi bi-person-workspace"></i></i>
+                            </span>
+                            <input type="text" name="user" class="form-control" placeholder="¡Oh 😲...!"
+                                aria-label="Username" aria-describedby="basic-addon1">
+                        </div>
+                        <label for="">Nivel de acceso<span>*</span></label><br>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">
+                                <i class="bi bi-door-open"></i>
+                            </span>
+                            <select name="accessLevel" class="form-control" id=""><br>
+                                <option value="1">Pre numerico</option>
+                                <option value="2">Numerico emergente</option>
+                                <option value="3">Desarrollo numerico</option>
+                            </select><br>
+                        </div>
+                        <label for="">Contraseña<span>*</span></label>
 
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="basic-addon1">
-                        <i class="bi bi-key"></i></i>
-                    </span>
-                    <input 
-                        type="password" 
-                        name="password" 
-                        class="form-control"
-                        placeholder="Es importante tener una contraseña fuerte✊" aria-label="Username"
-                        aria-describedby="basic-addon1">
-                    <br>
-                </div>
-                <label for="">Confirma tu contraseña<span>*</span></label>
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="basic-addon1">
-                        <i class="bi bi-key"></i></i>
-                    </span>
-                    <input 
-                        type="password" 
-                        name="passwordAgain" 
-                        class="form-control"
-                        placeholder="Para mas seguridad ✊🤐 " aria-label="Username"
-                        aria-describedby="basic-addon1">
-                    <br>
-                </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">
+                                <i class="bi bi-key"></i></i>
+                            </span>
+                            <input type="password" name="password" class="form-control"
+                                placeholder="Es importante tener una contraseña fuerte✊" aria-label="Username"
+                                aria-describedby="basic-addon1">
+                            <br>
+                        </div>
+                        <label for="">Confirma tu contraseña<span>*</span></label>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">
+                                <i class="bi bi-key"></i></i>
+                            </span>
+                            <input type="password" name="passwordAgain" class="form-control"
+                                placeholder="Para mas seguridad ✊🤐 " aria-label="Username"
+                                aria-describedby="basic-addon1">
+                            <br>
+                        </div>
                     </div>
                 </div>
                 <hr>
                 <a href="./../dashboard.php"></a>
                 <div class="d-flex justify-content-center gap-4 align-items-center">
                     <div class="">
-                        <a href="./../dashboard.php"><span><i class="bi bi-arrow-left-square"></i>  Volver</span></a>
+                        <a href="./../dashboard.php"><span><i class="bi bi-arrow-left-square"></i> Volver</span></a>
                     </div>
                     <div class="">
                         <input type="submit" class='purpleButton' value="Registrar">
@@ -143,9 +139,26 @@ include './../../../php/validations/authorizedUser.php';
     </main>
     <?php include "./../../include/admin/footer.php" ?>
 </body>
+<script>
+
+    let $dataChecked = document.querySelectorAll(".selectionGender > label > img");
+    document.addEventListener("click", e => {
+        if (e.target.matches(".selectionGender > label > img")) {
+            for (let i = 0; i < $dataChecked.length; i++) {
+                $dataChecked[i].removeAttribute("data-checked");
+                $dataChecked[i].classList.remove("checked")
+
+            }
+            e.target.classList.add("checked");
+            e.target.setAttribute("data-checked", "true");
+
+        }
+    })
+</script>
 <?php include "./../../include/admin/user/offcanvasAplication.php" ?>
 <?php include "./../../include/admin/user/offcanvasUser.php" ?>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
+
 </html>

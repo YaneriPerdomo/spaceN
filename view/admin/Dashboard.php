@@ -26,39 +26,6 @@ include './../../php/validations/authorizedUser.php';
     <link rel="stylesheet" href="../../css/admin/components/semanticTag.css">
     <link rel="stylesheet" href="../../css/admin/components/row.css">
     <link rel="stylesheet" href="../../css/admin/dashboard.css">
-    <style>
-        .modalTitleNotification {
-            margin: 0rem;
-            background: #2e7bcc;
-            padding: 1rem;
-            color: white;
-        }
-
-        .yesButtonSend {
-            background: #2e7bcc;
-            color: white;
-        }
-
-        .yesButtonSend:hover{
-            transition: all 0.5s;
-            background: #1d5c9f !important;
-            color: white !important;
-        }
-        [name="messenger"] {
-            color: rgb(47, 47, 47);
-        }
-
-        .containerSendNotifiacion>div>form {
-            padding: 1rem;
-            padding-top: 1rem;
-            padding-top: 0.5rem;
-        }
-
-        .containerSendNotifiacion>div>form>p {
-            padding: 0.5rem;
-            margin: 0rem;
-        }
-    </style>
 </head>
 
 <body>

@@ -5,6 +5,7 @@ session_start();
 // Incluimos el archivo donde se establece la conexión a la base de datos
 include "../connectionBD.php";
 
+         
 $accessLevel = $_POST["accessLevel"];
 $id_admin = $_SESSION["id_profesional"];
 

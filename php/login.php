@@ -32,25 +32,52 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $rol = $row["id_rol"];
         $status = $row["estado"];
 
-        $_SESSION["id_admin"] = $row["id_usuario"];
-        $_SESSION["usuario"] = $user;
-        $sql2 = "SELECT * FROM profesionales WHERE id_usuario=$id_usuario";
-        $result2 = $conn->query($sql2);
-        $row2 = $result2->fetch_assoc();
-        $_SESSION["id_profesional"] = $row2["id_profesional"];
-        $_SESSION["nombre"] = $row2["nombre"];
-        $_SESSION["apellido"] = $row2["apellido"];
-        $_SESSION["id_cargo"] = $row2["id_cargo"];
-        $_SESSION['correo'] = $row2["correo_electronico"];
-        $_SESSION['centro'] = $row2["centro_educativo_profesional"];
         if ($rol == "1") {
-            if ($status == "1") {
+            if ($status == "1") {               
+            $_SESSION["id_admin"] = $row["id_usuario"];
+            $_SESSION["usuario"] = $user;
+            $sql2 = "SELECT * FROM profesionales WHERE id_usuario=$id_usuario";
+            $result2 = $conn->query($sql2);
+            $row2 = $result2->fetch_assoc();
+            $_SESSION["id_profesional"] = $row2["id_profesional"];
+            $_SESSION["nombre"] = $row2["nombre"];
+            $_SESSION["apellido"] = $row2["apellido"];
+            $_SESSION["id_cargo"] = $row2["id_cargo"];
+            $_SESSION['correo'] = $row2["correo_electronico"];
+            $_SESSION['centro'] = $row2["centro_educativo_profesional"];
                 header("Location: ../view/admin/dashboard.php?page=1");
-
             } else {
                 echo "Tu cuenta ha sido eliminada";
             }
-        } else {
+        }else if($rol == "2"){
+            $sql3 = "SELECT * FROM ninos WHERE id_usuario=$id_usuario";
+            $result3 = $conn->query($sql3);
+            $row3 = $result3->fetch_assoc();
+            switch ($row3["id_categoria_actividades"]) {
+                case '1':
+                    echo 'Pre numerico';
+                    $sql4 = "UPDATE  ninos set ultimo_acceso = now() WHERE id_usuario=$id_usuario";
+                    $result4 = $conn->query($sql4);
+                    header("Location: ../view/user/preNumerical/welcome.php");
+                break;
+                case '2':
+                    echo 'Numerico emergente';
+                    $sql4 = "UPDATE  ninos set ultimo_acceso = now() WHERE id_usuario=$id_usuario";
+                    $result4 = $conn->query($sql4);
+                    header("Location: ../view/user/numericoEmerging/welcome.php");
+                break;
+                case '3':
+                    echo 'Desarrollo numerico';
+                    $sql4 = "UPDATE  ninos set ultimo_acceso = now() WHERE id_usuario=$id_usuario";
+                    $result4 = $conn->query($sql4);
+                    header("Location: ../view/user/numericalDevelopment/welcome.php");                    
+                break;
+                default:
+                    # code...
+                    break;
+            }
+            echo "Eres un niño" . $row3["id_categoria_actividades"];
+        }else{
             echo "nombre no encontrado";
         }
 

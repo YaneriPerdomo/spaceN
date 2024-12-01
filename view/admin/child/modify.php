@@ -26,16 +26,29 @@ function showChild()
 
         switch ($row["id_genero"]) {
             case 1:
-                $gender = "<p>
-        <label><input type='radio' name='gender' value='1' checked> Masculino</label>
-        <label><input type='radio' name='gender' value='2'> Femenino</label>
-        </p>";
+                $gender = "<p class='d-flex gap-2 selectionGender'>
+                                <label for='M'>
+                                    <input type='radio' name='gender' id='M' value='1' checked> 
+                                    <img src='../../../img/childs/boy.jpg' alt='' class='checked'>
+                                </label>
+                                <label for='F'>
+                                    <input type='radio' id='F' name='gender' value='2'> 
+                                    <img src='../../../img/childs/girl.jpg' alt='' class=''>
+                                </label>
+                            </p>";
                 break;
             case 2:
-                $gender = "<p>
-        <label><input type='radio' name='gender' value='1' > Masculino</label>
-        <label><input type='radio' name='gender' value='2' checked> Femenino</label>
-        </p>";
+                $gender = "<p class='d-flex gap-2 selectionGender'>
+                                <label for='M'>
+                                    <input type='radio' name='gender' id='M' value='1' > 
+                                    <img src='../../../img/childs/boy.jpg' alt='' class=''>
+                                </label>
+                                <label for='F'>
+                                    <input type='radio' id='F' name='gender' value='2' checked> 
+                                    <img src='../../../img/childs/girl.jpg' alt='' class='checked'>
+                                </label>
+                            </p>"
+        ;
                 break;
         }
         switch ($row["id_categoria_actividades"]) {
@@ -87,7 +100,7 @@ function showChild()
         echo "</div>";
         echo "<label for=''>Genero<span>*</span></label><br>";
         echo $gender;
-        echo "<br></div></div><hr>";
+        echo "</div></div><hr>";
         echo "<div class='row'>";
         echo "<div class='col-4'>";
         echo "<label for=''>Datos para la plataforma:</label><br>";
@@ -159,6 +172,25 @@ function showChild()
     <link rel="stylesheet" href="../../../css/admin/components/header.css">
     <link rel="stylesheet" href="../../../css/admin/components/semanticTag.css">
     <link rel="stylesheet" href="../../../css/admin/addAndModifyChild.css">
+    <style>
+           img{
+            width: 100px;
+            clip-path: circle();
+        }
+
+        
+        .checked {
+            border: solid 2px rgb(47, 47, 47);
+            color: rgb(47, 47, 47);
+        }
+
+        [type='radio']{
+           display:none; 
+        } 
+        .selectionGender{
+            padding-top: 0.5rem;
+        }
+    </style>
 </head>
  
 
@@ -191,6 +223,21 @@ function showChild()
 </body>
 <?php include "./../../include/admin/user/offcanvasAplication.php" ?>
 <?php include "./../../include/admin/user/offcanvasUser.php" ?>
+<script>
+    let $dataChecked = document.querySelectorAll(".selectionGender > label > img");
+document.addEventListener("click", e => {
+    if (e.target.matches(".selectionGender > label > img")) {
+        for (let i = 0; i < $dataChecked.length; i++) {
+            $dataChecked[i].removeAttribute("data-checked");
+            $dataChecked[i].classList.remove("checked")
+
+        }
+        e.target.classList.add("checked");
+        e.target.setAttribute("data-checked", "true");
+
+    }
+})
+</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>

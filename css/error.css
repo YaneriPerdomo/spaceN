@@ -1,0 +1,21 @@
+body {
+    font-family: "Roboto", sans-serif;
+    font-weight: 100;
+    font-style: normal;
+    background: rgb(122,85,225);
+background: linear-gradient(0deg, rgba(122,85,225,1) 35%, rgba(113,76,215,1) 86%); 
+    color: white;
+    height: 98vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+a {
+    padding: 1rem;
+    background: #ff9423;
+    text-decoration: navajowhite;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+}
