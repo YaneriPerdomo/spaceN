@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user = $_POST["user"];
     $name = $_POST["name"];
     $lastName = $_POST["lastName"];
-    $mail = $_POST["main"];
+    $mail = $_POST["mail"];
     $professionalPosition = $_POST["professionalPosition"];
     $center = $_POST["center"];
     $password = $_POST["password"];

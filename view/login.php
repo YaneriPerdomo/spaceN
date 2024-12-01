@@ -42,6 +42,7 @@
             background-image: url(../img/background-main.png);
             background-size: contain;
             background-repeat: repeat;
+            background: #8f6cf2;
         }
 
         .imgs {
@@ -104,9 +105,9 @@
             font-weight: bold;
         }
 
-        .carousel-item>img {
-            border: solid 1rem white;
-            transform: perspective(1rem) rotateZ(2deg);
+       
+        #carouselExampleCaptions{
+            width: 90%;
         }
     </style>
 </head>
@@ -114,9 +115,66 @@
 <body>
     <main class="h-100">
         <div class="row m-0 h-100 gap-0">
-            <div class="col-6 imgs">
-                <section>
-                </section>
+        <div class="col-6 imgs">
+                <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0"
+                            class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                            aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                            aria-label="Slide 3"></button>
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3"
+                            aria-label="Slide 4"></button>
+                    </div>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="../img/backgroundPurple.png" class="d-block w-100" alt="...">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5><b>Panel de control para profesionales</b></h5>
+                                <p>Los profesionales pueden crear cuentas personalizadas para sus hijos, establecer
+                                    metas de aprendizaje y monitorear su progreso.</p>
+                            </div>
+                        </div>
+
+                        <div class="carousel-item">
+                            <img src="../img/backgroundPurple.png" class="d-block w-100" alt="...">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5><b>Informes detallados de progreso</b></h5>
+                                <p>Genera informes personalizados que muestran el desempeño del niño a lo largo del
+                                    tiempo, identificando fortalezas y áreas de mejora.</p>
+                            </div>
+                        </div>
+
+                        <div class="carousel-item">
+                            <img src="../img/backgroundPurple.png" class="d-block w-100" alt="...">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5><b>Experiencia de aprendizaje personalizada</b></h5>
+                                <p>Ajusta la dificultad de las lecciones para adaptarse al ritmo de aprendizaje de cada
+                                    niño.</p>
+                            </div>
+                        </div>
+
+                        <div class="carousel-item">
+                            <img src="../img/backgroundPurple.png" class="d-block w-100" alt="...">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5><b>Privacidad y seguridad</b></h5>
+                                <p>Protegemos la información de los niños y cumplimos con los más altos estándares de
+                                    seguridad.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
             </div>
             <div class="col-6 login">
                 <section class="containerLogin">
@@ -140,14 +198,14 @@
                             <span class="input-group-text" id="basic-addon1">
                                 <i class="bi bi-key"></i></i>
                             </span>
-                            <input type="password" name="password" class="form-control" placeholder="Somos tu y yo 🤫"
+                            <input type="password" name="password" class="form-control" placeholder="...🤫"
                                 aria-label="Username" aria-describedby="basic-addon1">
                         </div>
                         <input type="submit" class="purpleButton" value="Acceder"></input><br>
 
                         <br><br>
                         <div class="createC text-center">
-                            <span>¿Aun no tienes cuenta? <a href="#createAccount"
+                            <span>¿Aun no tienes cuenta? <a href="./createAccount.php"
                                     class="text-decoration-none linkCreateAccount">Registrarte<i
                                         class="bi bi-arrow-right"></i></a></span>
 
