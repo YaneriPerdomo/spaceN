@@ -182,10 +182,9 @@
                         <br><br>
 
                         <div class="text-center">
-                            <legend class="text-center" style="color:var(--colorHF)"><b>¡Prepárate para</b>
-                                <b style="color:var(--colorOrange)"> una aventura matemática!</b>
-                            </legend>
-                            <b class="fs-3">Inicia sesion</b><br>
+                            <b class="fs-3"><span style="color:var(--colorHF)">Inicia</span> 
+                            <span style="color:var(--colorOrange)">sesion</span>
+                        </b><br>
                         </div>
                         <label for="user">Usuario<span>*</span></label><br>
                         <div class="input-group mb-3">

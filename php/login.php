@@ -50,14 +50,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 echo "Tu cuenta ha sido eliminada";
             }
         }else if($rol == "2"){
-            $sql3 = "SELECT * FROM ninos WHERE id_usuario=$id_usuario";
-            $result3 = $conn->query($sql3);
-            $row3 = $result3->fetch_assoc();
-            switch ($row3["id_categoria_actividades"]) {
+            $sqlChildPreN = "SELECT * FROM ninos WHERE id_usuario=$id_usuario";
+            $resultsChildPreN = $conn->query($sqlChildPreN);
+            $rowresultsChildPreN = $resultsChildPreN->fetch_assoc();
+            $_SESSION["id_Child"] = $rowresultsChildPreN["id_nino"];
+            $_SESSION["gender"] = $rowresultsChildPreN["id_genero"];
+            $_SESSION["accessLevel"] = $rowresultsChildPreN["id_categoria_actividades"];
+            $_SESSION["user"] = $user;
+            $_SESSION["dateOfBirth"] = $rowresultsChildPreN["fecha_nacimiento"];
+            $_SESSION["name"] = $rowresultsChildPreN["nombre"];
+            $_SESSION["lastname"] = $rowresultsChildPreN["apellido"];
+            $_SESSION["lastAccess"] = $rowresultsChildPreN["ultimo_acceso"];
+
+            $sql4 = "UPDATE  ninos set ultimo_acceso = now() WHERE id_usuario=$id_usuario";
+            $result4 = $conn->query($sql4);
+
+            switch ($rowresultsChildPreN["id_categoria_actividades"]) {
                 case '1':
                     echo 'Pre numerico';
-                    $sql4 = "UPDATE  ninos set ultimo_acceso = now() WHERE id_usuario=$id_usuario";
-                    $result4 = $conn->query($sql4);
                     header("Location: ../view/user/preNumerical/welcome.php");
                 break;
                 case '2':
@@ -76,7 +86,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     # code...
                     break;
             }
-            echo "Eres un niño" . $row3["id_categoria_actividades"];
         }else{
             echo "nombre no encontrado";
         }

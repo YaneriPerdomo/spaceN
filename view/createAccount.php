@@ -133,9 +133,8 @@
                             <img src="../img/backgroundPurple.png" class="d-block w-100" alt="...">
                         
                             <div class="carousel-caption d-none d-md-block">
-                            <h2>hol</h2>
                             <h5><b>Panel de control para profesionales</b></h5>
-                                <p>Los profesionales pueden crear cuentas personalizadas para sus hijos, establecer
+                                <p>Los profesionales pueden crear cuentas personalizadas para sus niños, establecer
                                     metas de aprendizaje y monitorear su progreso.</p>
                             </div>
                         </div>
