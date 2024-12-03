@@ -8,3 +8,8 @@
     width: 70px;
     clip-path: circle(34% at 50% 50%);
 }
+
+header{
+    align-items: center;
+    height: 71px;
+}

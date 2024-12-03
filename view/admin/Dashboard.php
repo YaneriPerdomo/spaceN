@@ -269,7 +269,7 @@ include './../../php/validations/authorizedUser.php';
                                 echo "<td class='operations'>";
                                 echo "<button class='OpenDeleteChild' data-idc='" . $row['id_nino'] . "' data-idu='" . $row['id_usuario_nino'] . "'><i class='bi bi-trash'></i></button>";
                                 echo "<a href='child/modify.php?id=" . $row['id_nino'] . "'><button><i class='bi bi-person-lines-fill'></i></button></a>";
-                                echo "<button><i class='bi bi-bar-chart'></i></button></a>";
+                                echo "<a href='child/progress.php?id=" . $row['id_nino'] . "'><button><i class='bi bi-bar-chart'></i></button></a>";
                                 echo "<button class='OpenSendNotificationChild' data-idS='" . $row['id_nino'] . "' > <i class='bi bi-send-plus'></i></button> ";
                                 echo "</td>";
                                 echo "</tr>";

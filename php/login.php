@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $row = $result->fetch_assoc();
         $id_usuario = $row["id_usuario"];
 
-
+        
         $rol = $row["id_rol"];
         $status = $row["estado"];
 
@@ -64,7 +64,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             $sql4 = "UPDATE  ninos set ultimo_acceso = now() WHERE id_usuario=$id_usuario";
             $result4 = $conn->query($sql4);
+            $rowLastAccess = $resultsChildPreN->fetch_assoc();
 
+            $_SESSION["accountCreationDate"]= substr($row["fecha_hora_creacion"], 0, 10);
             switch ($rowresultsChildPreN["id_categoria_actividades"]) {
                 case '1':
                     echo 'Pre numerico';
