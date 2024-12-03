@@ -5,10 +5,26 @@
     let $htmlIdChild = document.querySelector('.id_child');
     let $idChildDelete = document.querySelector("[name='id_childC']")
     let $nameChildS = document.querySelector(".nameChildS");
-    let $idChildD = document.querySelector(`[name="id_childU"]`)
+    let $idChildD = document.querySelector(`[name="id_childU"]`);
+    let $modalSearchChilds =document.querySelector(".OpenSearchChilds");
+    let $containerSearchChilds = document.querySelector(".containerSearchChilds");
+    
     document.addEventListener("click", e => {
 
-        if (e.target.matches(".CanceSendN")) {
+        if (e.target.matches(".OpenSearchChilds")) {
+            $containerSearchChilds.removeAttribute("style");
+            $contentSearch.classList.add("openModal")
+        }
+
+    
+
+        if (e.target.matches(".containerSearchChilds") || e.target.matches(".cancelSearch")) {
+            $containerSearchChilds.style.display = "none"
+        }
+        if(e.target.matches(".OpenSearchChilds")){
+            $containerSearchChilds.removeAttribute("style");
+        }
+        if (e.target.matches(".CancelSendN")) {
             $containerSendNotification.style.display = "none";
         }
         if (e.target.matches(".OpenDeleteChild")) {
@@ -36,3 +52,6 @@
         }
 
     })
+
+   
+    

@@ -1,5 +1,6 @@
 .containerSendNotification,
-.containerDeleteChild {
+.containerDeleteChild,
+.containerSearchChilds{
     width: 100vw;
     height: 100vh;
     position: absolute;
@@ -11,7 +12,8 @@
 }
 
 .containerSendNotification>.content,
-.containerDeleteChild>.content {
+.containerDeleteChild>.content ,
+.containerSearchChilds > .content{
     max-width: 500px;
     background: white;
     min-width: 200px;
