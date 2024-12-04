@@ -19,187 +19,13 @@ include './../../php/validations/authorizedUser.php';
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="../../css/reset.css">
-    <link rel="stylesheet" href="../../css/admin/components/table.css">
-    <link rel="stylesheet" href="../../css/admin/components/offcanvas.css">
-    <link rel="stylesheet" href="../../css/admin/components/modalWindows.css">
-    <link rel="stylesheet" href="../../css/admin/components/header.css">
-    <link rel="stylesheet" href="../../css/admin/components/semanticTag.css">
-    <link rel="stylesheet" href="../../css/admin/components/row.css">
+    <link rel="stylesheet" href="../../css/components/table.css">
+    <link rel="stylesheet" href="../../css/components/offcanvas.css">
+    <link rel="stylesheet" href="../../css/components/modalWindows.css">
+    <link rel="stylesheet" href="../../css/components/header.css">
+    <link rel="stylesheet" href="../../css/components/semanticTag.css">
+    <link rel="stylesheet" href="../../css/components/row.css">
     <link rel="stylesheet" href="../../css/admin/dashboard.css">
-    <style>
-        .searchChilds>div {
-            width: 30%;
-        }
-
-
-
-
-
-        .containerSendNotification,
-        .containerDeleteChild {
-            width: 100vw;
-            height: 100vh;
-            position: absolute;
-            display: flex;
-            justify-content: center;
-            background: green;
-            align-items: center;
-            background: rgb(0, 0, 0, 0.5);
-        }
-
-        .containerSearchChilds {
-            width: 100vw;
-            height: 100vh;
-            position: absolute;
-            display: flex;
-            justify-content: center;
-            background: green;
-            background: rgb(0, 0, 0, 0.5);
-            align-items: start;
-            z-index: 9999;
-        }
-
-        .containerSearchChilds>.content {
-            margin-top: 1rem;
-        }
-
-        .containerSendNotification>.content,
-        .containerDeleteChild>.content,
-        .containerSearchChilds>.content {
-            max-width: 500px;
-            background: white;
-            min-width: 200px;
-            border-radius: 1rem !important;
-
-        }
-
-        .modalTitleDetele {
-            background: #ff4b4b;
-            padding: 1rem;
-            color: white;
-        }
-
-        .modalTitleDetele+p {
-            color: rgb(47, 47, 47);
-        }
-
-        .openModal {
-            animation: openModal 0.5s;
-        }
-
-        @keyframes openModal {
-            0% {
-                transform: translateY(-15%);
-                opacity: 0;
-                transition: opacity 0.5s ease-in-out;
-
-            }
-
-            100% {
-                transform: translateY(0%);
-                opacity: 1;
-            }
-        }
-
-        .cancelModal {
-            opacity: 0;
-            /* transform: translateY(100%); */
-            transition: all 0.3s ease-in-out;
-        }
-
-        .containerSendNotification,
-        .containerDeleteChild {
-            width: 100vw;
-            height: 100vh;
-            position: absolute;
-            display: flex;
-            justify-content: center;
-            background: green;
-            align-items: center;
-            background: rgb(0, 0, 0, 0.5);
-        }
-
-        .containerSendNotification>.content,
-        .containerDeleteChild>.content {
-            max-width: 500px;
-            background: white;
-            min-width: 200px;
-            border-radius: 1rem !important;
-
-        }
-
-        .yesButtonDelete {
-            background: #ff4b4b;
-            color: white;
-            border: 0rem;
-        }
-
-        .yesButtonDelete:hover {
-            transition: all 0.5s;
-            background: rgb(215, 59, 59) !important;
-            color: white !important;
-        }
-
-        .containerDeleteChild>div>div>div>p {
-            padding: 0.5rem;
-            margin: 0rem;
-        }
-
-        .modalTitleNotification {
-            margin: 0rem;
-            background: #2e7bcc;
-            padding: 1rem;
-            color: white;
-        }
-
-        .yesButtonSend {
-            background: #2e7bcc;
-            color: white;
-        }
-
-        .yesButtonSend:hover {
-            transition: all 0.5s;
-            background: #1d5c9f !important;
-            color: white !important;
-        }
-
-        [name="messenger"] {
-            color: rgb(47, 47, 47);
-        }
-
-        .containerSendNotifiacion>div>form {
-            padding: 1rem;
-            padding-top: 1rem;
-            padding-top: 0.5rem;
-        }
-
-        .containerSendNotifiacion>div>form>p {
-            padding: 0.5rem;
-            margin: 0rem;
-        }
-
-        .modalTitleSearch {
-            background-color: #936ff4;
-            margin: 0rem;
-            padding: 1rem;
-            color: white;
-        }
-
-        #search {
-            background: #815fdf;
-            border: solid 1px #b59aff;
-        }
-
-        #search::placeholder {
-            color: #cab8ff;
-        }
-
-        .containerSearch,
-        .icoSearch {
-            background: #815fdf;
-            border: solid 1px #b59aff;
-        }
-    </style>
 </head>
 
 <body>
@@ -347,7 +173,7 @@ include './../../php/validations/authorizedUser.php';
             <div class="col-9">
                 <div>
                     <section class="childs">
-                        <h1 class="m-2"><b>Panel administrativo</b></h1>
+                        <h1 class="m-2">Panel administrativo</h1>
                         <div class="containerAddChilds">
                             <div>
                                 <a href="./child/add.php">Agregar niño</a>
@@ -498,65 +324,21 @@ include './../../php/validations/authorizedUser.php';
             </div>
         </div>
     </main>
-    <?php include './../include/admin/footer.php' ?>
+    <?php include './../include/footer.php' ?>
 </body>
-
-<div class="containerDeleteChild" style="display:none">
-    <div class="modal-content content">
-        <div class="modal-header">
-            <div class="text-center w-100">
-                <h2 class="modal-title modalTitleDetele fs-5" id="exampleModalLabel"><b>Eliminar Registro</b></h2>
-                <p>
-                    Antes de confirmar, tenga en cuenta que al eliminar este registro perderá el
-                    acceso a su plan de aprendizaje, incluido su historial de aprendizaje.
-                </p>
-            </div>
-        </div>
-        <form action="./../../php/admin/child.php" method="post">
-            <div class="modal-body">
-                <input type="hidden" name="id_childC" value="">
-                <input type="hidden" name="id_childU">
-                <input type="hidden" name="valueFunction" value="delete">
-            </div>
-            <div class="modal-footer d-flex justify-content-center gap-4 align-items-center">
-                <button type="button" class="btn btn-secondary CancelModalDelet">Cancelar</button>
-                <button type="submit" class="btn yesButtonDelete">Si, eliminar</button>
-            </div>
-        </form>
-    </div>
-</div>
 
 <?php include "../include/admin/offcanvasAplication.php" ?>
 <?php include "../include/admin/offcanvasUser.php" ?>
-<?php include "../include/admin/detailsActivity.php" ?>
-<?php include "../include/admin/sendNotificationChild.php" ?>
-<?php include "../include/admin/searchChilds.php" ?>
+<?php include "../include/admin/modalWindows/detailsActivity.php" ?>
+<?php include "../include/admin/modalWindows/deleteChild.php" ?>
+<?php include "../include/admin/modalWindows/sendNotificationChild.php" ?>
+<?php include "../include/admin/modalWindows/searchChilds.php" ?>
 
 
-<script>
 
-    let $contentSearch = document.querySelector(".containerSearchChilds > .content");
-    let $searchInputS = document.querySelector("#searchS");
-    let $resultsChilds =document.querySelector(".resultsChilds")
-
-    $searchInputS.addEventListener("input", e => {
-        if(e.target.value.length < 0){
-            $resultsChilds.innerHTML = "";
-        }else if (e.target.value.length > 0) {
-            let $searchTerm = e.target.value;
-            $.get('./../../php/admin/searchChild.php',
-                { search: $searchTerm },
-                function (mensaje, estado) {
-                    $resultsChilds.innerHTML = mensaje;
-                })
-        }
-    })
-</script>
 <script src="./../../js/helpers/modalWindows.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-    </script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"
-    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="./../../js/helpers/jquery.js"></script>
+<script src="./../../js/helpers/bootstrap.js"></script>
+
 
 </html>

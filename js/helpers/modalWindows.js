@@ -9,6 +9,11 @@
     let $modalSearchChilds =document.querySelector(".OpenSearchChilds");
     let $containerSearchChilds = document.querySelector(".containerSearchChilds");
     
+    let $contentSearch = document.querySelector(".containerSearchChilds > .content");
+    let $searchInputS = document.querySelector("#searchS");
+    let $resultsChilds =document.querySelector(".resultsChilds")
+
+    
     document.addEventListener("click", e => {
 
         if (e.target.matches(".OpenSearchChilds")) {
@@ -53,5 +58,17 @@
 
     })
 
-   
+
+    $searchInputS.addEventListener("input", e => {
+        if(e.target.value.length < 0){
+            $resultsChilds.innerHTML = "";
+        }else if (e.target.value.length > 0) {
+            let $searchTerm = e.target.value;
+            $.get('./../../php/admin/searchChild.php',
+                { search: $searchTerm },
+                function (mensaje, estado) {
+                    $resultsChilds.innerHTML = mensaje;
+                })
+        }
+    })
     

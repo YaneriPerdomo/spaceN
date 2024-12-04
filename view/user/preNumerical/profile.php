@@ -21,9 +21,9 @@ include './../../../php/validations/authorizedChild.php';
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="../../../css/admin/components/offcanvas.css">
-    <link rel="stylesheet" href="../../../css/admin/components/header.css">
-    <link rel="stylesheet" href="../../../css/admin/components/semanticTag.css">
+    <link rel="stylesheet" href="../../../css/components/offcanvas.css">
+    <link rel="stylesheet" href="../../../css/components/header.css">
+    <link rel="stylesheet" href="../../../css/components/semanticTag.css">
     <link rel="stylesheet" href="../../../css/admin/addAndModifyChild.css">
     <link rel="stylesheet" href="../../../css/user/profile.css">
 
@@ -153,12 +153,11 @@ include './../../../php/validations/authorizedChild.php';
 
     </main>
 
-    <?php include './../../include/admin/footer.php' ?>
+    <?php include './../../include/footer.php' ?>
     <?php include './../../include/user/offcanvasUser.php' ?>
     <?php include './../../include/user/offcanvasAplication.php' ?>
 
 </body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-    </script> 
+<script src="./../../../js/helpers/bootstrap.js"></script>
+
 </html>

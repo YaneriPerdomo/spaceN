@@ -166,7 +166,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $stmt->execute();
 
             if ($stmt->rowCount() > 0) {
-                echo "<script>alert('Notificacion enviada con exito'); window.location.href = './../view/admin/dashboard.php?page=1';</script>";
+                echo "<script>alert('Notificacion enviada con exito'); window.location.href = './../../view/admin/dashboard.php?page=1';</script>";
             }
 
             break;

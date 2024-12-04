@@ -168,29 +168,10 @@ function showChild()
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="../../../css/reset.css">
-    <link rel="stylesheet" href="../../../css/admin/components/offcanvas.css">
-    <link rel="stylesheet" href="../../../css/admin/components/header.css">
-    <link rel="stylesheet" href="../../../css/admin/components/semanticTag.css">
+    <link rel="stylesheet" href="../../../css/components/offcanvas.css">
+    <link rel="stylesheet" href="../../../css/components/header.css">
+    <link rel="stylesheet" href="../../../css/components/semanticTag.css">
     <link rel="stylesheet" href="../../../css/admin/addAndModifyChild.css">
-    <style>
-           img{
-            width: 100px;
-            clip-path: circle();
-        }
-
-        
-        .checked {
-            border: solid 2px rgb(47, 47, 47);
-            color: rgb(47, 47, 47);
-        }
-
-        [type='radio']{
-           display:none; 
-        } 
-        .selectionGender{
-            padding-top: 0.5rem;
-        }
-    </style>
 </head>
  
 
@@ -219,27 +200,13 @@ function showChild()
         </form>
    </div>
     </main>
-    <?php include "./../../include/admin/footer.php" ?>
+    <?php include "./../../include/footer.php" ?>
 </body>
 <?php include "./../../include/admin/user/offcanvasAplication.php" ?>
 <?php include "./../../include/admin/user/offcanvasUser.php" ?>
-<script>
-    let $dataChecked = document.querySelectorAll(".selectionGender > label > img");
-document.addEventListener("click", e => {
-    if (e.target.matches(".selectionGender > label > img")) {
-        for (let i = 0; i < $dataChecked.length; i++) {
-            $dataChecked[i].removeAttribute("data-checked");
-            $dataChecked[i].classList.remove("checked")
+<script src="../../../js/helpers/selectionGenderChild.js"></script>
 
-        }
-        e.target.classList.add("checked");
-        e.target.setAttribute("data-checked", "true");
+<script src="./../../../js/helpers/bootstrap.js"></script>
 
-    }
-})
-</script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-    </script>
 </html>
  

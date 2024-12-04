@@ -117,12 +117,11 @@ include './../../../php/validations/authorizedUser.php';
             </div>
         </div>
     </main>
-    <?php include "./../../include/admin/footer.php" ?>
+    <?php include "./../../include/footer.php" ?>
 </body>
 <?php include "./../../include/admin/user/offcanvasAplication.php" ?>
 <?php include "./../../include/admin/user/offcanvasUser.php" ?>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-    </script>
+<script src="./../../../js/helpers/bootstrap.js"></script>
+
 
 </html>

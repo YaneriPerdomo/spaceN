@@ -1,6 +1,13 @@
+.searchChilds>div {
+    width: 30%;
+}
+
+
+
+
+
 .containerSendNotification,
-.containerDeleteChild,
-.containerSearchChilds{
+.containerDeleteChild {
     width: 100vw;
     height: 100vh;
     position: absolute;
@@ -11,9 +18,25 @@
     background: rgb(0, 0, 0, 0.5);
 }
 
+.containerSearchChilds {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    background: green;
+    background: rgb(0, 0, 0, 0.5);
+    align-items: start;
+    z-index: 9999;
+}
+
+.containerSearchChilds>.content {
+    margin-top: 1rem;
+}
+
 .containerSendNotification>.content,
-.containerDeleteChild>.content ,
-.containerSearchChilds > .content{
+.containerDeleteChild>.content,
+.containerSearchChilds>.content {
     max-width: 500px;
     background: white;
     min-width: 200px;
@@ -27,9 +50,10 @@
     color: white;
 }
 
-.modalTitleDetele + p{
-    color: rgb(47,47,47);
+.modalTitleDetele+p {
+    color: rgb(47, 47, 47);
 }
+
 .openModal {
     animation: openModal 0.5s;
 }
@@ -104,11 +128,12 @@
     color: white;
 }
 
-.yesButtonSend:hover{
+.yesButtonSend:hover {
     transition: all 0.5s;
     background: #1d5c9f !important;
     color: white !important;
 }
+
 [name="messenger"] {
     color: rgb(47, 47, 47);
 }
@@ -122,4 +147,26 @@
 .containerSendNotifiacion>div>form>p {
     padding: 0.5rem;
     margin: 0rem;
+}
+
+.modalTitleSearch {
+    background-color: #936ff4;
+    margin: 0rem;
+    padding: 1rem;
+    color: white;
+}
+
+#search {
+    background: #815fdf;
+    border: solid 1px #b59aff;
+}
+
+#search::placeholder {
+    color: #cab8ff;
+}
+
+.containerSearch,
+.icoSearch {
+    background: #815fdf;
+    border: solid 1px #b59aff;
 }

@@ -71,4 +71,22 @@ img {
 
 .selectionGender >  label > img{
     cursor: pointer;
+    border: 0rem;
+    width: 100px;
+    clip-path: circle();
+}
+
+/*Modify*/
+
+
+.checked {
+    border: solid 2px rgb(47, 47, 47);
+    color: rgb(47, 47, 47);
+}
+
+[type='radio']{
+   display:none; 
+} 
+.selectionGender{
+    padding-top: 0.5rem;
 }

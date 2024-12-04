@@ -14,9 +14,9 @@ include './../../../php/validations/authorizedUser.php';
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="../../../css/reset.css">
-    <link rel="stylesheet" href="../../../css/admin/components/offcanvas.css">
-    <link rel="stylesheet" href="../../../css/admin/components/header.css">
-    <link rel="stylesheet" href="../../../css/admin/components/semanticTag.css">
+    <link rel="stylesheet" href="../../../css/components/offcanvas.css">
+    <link rel="stylesheet" href="../../../css/components/header.css">
+    <link rel="stylesheet" href="../../../css/components/semanticTag.css">
     <link rel="stylesheet" href="../../../css/admin/addAndModifyChild.css">
 </head>
 
@@ -137,28 +137,13 @@ include './../../../php/validations/authorizedUser.php';
             </form>
         </div>
     </main>
-    <?php include "./../../include/admin/footer.php" ?>
+    <?php include "./../../include/footer.php" ?>
 </body>
-<script>
+ 
 
-    let $dataChecked = document.querySelectorAll(".selectionGender > label > img");
-    document.addEventListener("click", e => {
-        if (e.target.matches(".selectionGender > label > img")) {
-            for (let i = 0; i < $dataChecked.length; i++) {
-                $dataChecked[i].removeAttribute("data-checked");
-                $dataChecked[i].classList.remove("checked")
-
-            }
-            e.target.classList.add("checked");
-            e.target.setAttribute("data-checked", "true");
-
-        }
-    })
-</script>
 <?php include "./../../include/admin/user/offcanvasAplication.php" ?>
 <?php include "./../../include/admin/user/offcanvasUser.php" ?>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-    </script>
+<script src="./../../../js/helpers/bootstrap.js"></script>
 
+<script src="../../../js/helpers/selectionGenderChild.js"></script>
 </html>
