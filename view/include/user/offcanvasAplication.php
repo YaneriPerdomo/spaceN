@@ -10,17 +10,13 @@
     </div>
     <hr style="margin:0.1rem">
     <div class="offcanvas-body">
-        <a href="./../dashboard.php">
+        <a href="./read.php">
             <i class="bi bi-house"></i>
             Casa
         </a>
         <a href="./../activity.php">
             <i class="bi bi-arrow-clockwise"></i>
-            Actividad
-        </a>
-        <a href="./../reports.php">
-            <i class="bi bi-filetype-pdf"></i>
-            Reportes
+            Historial
         </a>
     </div>
 </div>
