@@ -29,11 +29,11 @@ include './../../../php/validations/authorizedChild.php';
     <link rel="stylesheet" href="../../../css/components/row.css">
 
 
-    <style>
-        .lessons>div a {
-            text-align: center;
-        }
-    </style>
+<style>
+    .lessons > div a {
+        text-align: center;
+    }
+</style>
 </head>
 
 <body>
@@ -182,119 +182,113 @@ include './../../../php/validations/authorizedChild.php';
             <div class="col-9">
                 <div>
                     <article class="moduloOne">
-                        <strong class="fs-3">Módulo 1: Fundamentos Numéricos</strong><br>
-                        <section class="temaOneInformation"><hr>
-                            <span><b>Tema 1: Conceptos básicos:</b> </span>
-                            <div class="d-flex flex-direction-row gap-4 lessons">
-                                <div class="one">
-                                    <a href="./moduleOne/topicOne/lesson1.php" data-enter="false"
-                                        title="Asociación de cantidad con objetos: ejercicios de contar objetos de diferentes tipos y tamaños.">
-                                        <div class="img">
-                                            <i class="bi bi-hourglass-top fs-1"></i>
-                                        </div>
-                                        <div class="status">
-                                            <span class="fs-5">En espera</span><br>
-                                            <small>Asociación de cantidad <br> con objetos</small>
-                                        </div>
-                                        <hr>
-                                        <div class="d-flex flex-direction-row gap-1">
-                                            <span>Porcentaje:0%</span>
-                                            <span>Diamantes:0</span>
-                                        </div>
-                                    </a>
+                        <strong class="fs-3">Módulo 2: Ampliando el Concepto de Número</strong><br>
+                            <section class="temaOneInformation">
+                                <span>Tema 1: Conteo:   </span>
+                                <div class="d-flex flex-direction-row gap-4 lessons">
+                                    <div class="one">
+                                    <a href="" title="Conteo hacia adelante y hacia atrás: ejercicios de contar en voz alta y con objetos.">
+                                            <div class="img">
+                                                <i class="bi bi-hourglass-top fs-1"></i>
+                                            </div>
+                                            <div class="status">
+                                                <span class="fs-5">En espera</span><br>
+                                                <small>Conteo hacia adelante y <br> hacia atrás</small>
+                                            </div>
+                                            <hr>
+                                            <div class="d-flex flex-direction-row gap-1">
+                                                <span>Porcentaje:0%</span>
+                                                <span>Diamantes:0</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="two">
+                                    <a href="" title="Conteo de decenas: actividades para comprender el concepto de decena.">
+                                            <div class="img">
+                                                <i class="bi bi-hourglass-top fs-1"></i>
+                                            </div>
+                                            <div class="status">
+                                                <span class="fs-5">En espera</span><br>
+                                                <small>Comparación de <br>cantidades</small>
+                                            </div>
+                                            <hr>
+                                            <div class="d-flex flex-direction-row gap-1">
+                                                <span>Porcentaje:0%</span>
+                                                <span>Diamantes:0</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="thre">
+                                    <a href="" title="Seriación: ordenar objetos según tamaño, color o forma.">
+                                            <div class="img">
+                                                <i class="bi bi-hourglass-top fs-1"></i>
+                                            </div>
+                                            <div class="status">
+                                                <span class="fs-5">En espera</span><br>
+                                                <small>Seriación para ordenar <br> objetos</small><br>
+                                            </div>
+                                            <hr>
+                                            <div class="d-flex flex-direction-row gap-1">
+                                                <span>Porcentaje:0%</span>
+                                                <span>Diamantes:0</span>
+                                            </div>
+                                        </a>
+                                    </div>
                                 </div>
-                                <div class="two">
-                                    <a href="./moduleOne/topicOne/lesson2.php"
-                                        title="Comparación de cantidades: actividades para identificar 'más', 'menos' e 'igual'.">
-                                        <div class="img">
-                                            <i class="bi bi-hourglass-top fs-1"></i>
-                                        </div>
-                                        <div class="status">
-                                            <span class="fs-5">En espera</span><br>
-                                            <small>Comparación de <br>cantidades</small>
-                                        </div>
-                                        <hr>
-                                        <div class="d-flex flex-direction-row gap-1">
-                                            <span>Porcentaje:0%</span>
-                                            <span>Diamantes:0</span>
-                                        </div>
-                                    </a>
+                            </section>
+                            <section class="temaOneInformation">
+                                <span>Tema 2: Introducción a los números:  </span>
+                                <div class="d-flex flex-direction-row gap-4 lessons">
+                                    <div class="one">
+                                        <a href="" title="Reconocimiento de números del 1 al 10: ejercicios de identificación visual y auditiva.">
+                                            <div class="img">
+                                                <i class="bi bi-hourglass-top fs-1"></i>
+                                            </div>
+                                            <div class="status">
+                                                <span class="fs-5">En espera</span><br>
+                                                <small>Reconocimiento de <br> números  del 1 al 10</small>
+                                            </div>
+                                            <hr>
+                                            <div class="d-flex flex-direction-row gap-1">
+                                                <span>Porcentaje:0%</span>
+                                                <span>Diamantes:0</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="two">
+                                    <a href="" title="Escritura de números: actividades para practicar la escritura de números.">
+                                            <div class="img">
+                                                <i class="bi bi-hourglass-top fs-1"></i>
+                                            </div>
+                                            <div class="status">
+                                                <span class="fs-5">En espera</span><br>
+                                                <small>Escritura de <br> números</small>
+                                            </div>
+                                            <hr>
+                                            <div class="d-flex flex-direction-row gap-1">
+                                                <span>Porcentaje:0%</span>
+                                                <span>Diamantes:0</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="thre">
+                                    <a href="" title="Correspondencia número-cantidad: relacionar un número con la cantidad correspondiente de objetos.">
+                                            <div class="img">
+                                                <i class="bi bi-hourglass-top fs-1"></i>
+                                            </div>
+                                            <div class="status">
+                                                <span class="fs-5">En espera</span><br>
+                                                <small>Correspondencia <br> número-cantidad</small>
+                                            </div>
+                                            <hr>
+                                            <div class="d-flex flex-direction-row gap-1">
+                                                <span>Porcentaje:0%</span>
+                                                <span>Diamantes:0</span>
+                                            </div>
+                                        </a>
+                                    </div>
                                 </div>
-                                <div class="thre">
-                                    <a href="./moduleOne/topicOne/lesson3.php"
-                                        title="Seriación: ordenar objetos según tamaño, color o forma.">
-                                        <div class="img">
-                                            <i class="bi bi-hourglass-top fs-1"></i>
-                                        </div>
-                                        <div class="status">
-                                            <span class="fs-5">En espera</span><br>
-                                            <small>Seriación para ordenar <br> objetos</small><br>
-                                        </div>
-                                        <hr>
-                                        <div class="d-flex flex-direction-row gap-1">
-                                            <span>Porcentaje:0%</span>
-                                            <span>Diamantes:0</span>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </section>
-                        <section class="temaTwoInformation">
-                            <span><b>Tema 2: Introducción a los números:</b> </span>
-                            <div class="d-flex flex-direction-row gap-4 lessons">
-                                <div class="one">
-                                    <a href="./moduleOne/topicTwo/lesson1.php"
-                                        title="Reconocimiento de números del 1 al 10: ejercicios de identificación visual y auditiva.">
-                                        <div class="img">
-                                            <i class="bi bi-hourglass-top fs-1"></i>
-                                        </div>
-                                        <div class="status">
-                                            <span class="fs-5">En espera</span><br>
-                                            <small>Reconocimiento de <br> números del 1 al 10</small>
-                                        </div>
-                                        <hr>
-                                        <div class="d-flex flex-direction-row gap-1">
-                                            <span>Porcentaje:0%</span>
-                                            <span>Diamantes:0</span>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="two">
-                                    <a href="./moduleOne/topicTwo/lesson2.php"
-                                        title="Escritura de números: actividades para practicar la escritura de números.">
-                                        <div class="img">
-                                            <i class="bi bi-hourglass-top fs-1"></i>
-                                        </div>
-                                        <div class="status">
-                                            <span class="fs-5">En espera</span><br>
-                                            <small>Escritura de <br> números</small>
-                                        </div>
-                                        <hr>
-                                        <div class="d-flex flex-direction-row gap-1">
-                                            <span>Porcentaje:0%</span>
-                                            <span>Diamantes:0</span>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="thre">
-                                    <a href="./moduleOne/topicTwo/lesson3.php"
-                                        title="Correspondencia número-cantidad: relacionar un número con la cantidad correspondiente de objetos.">
-                                        <div class="img">
-                                            <i class="bi bi-hourglass-top fs-1"></i>
-                                        </div>
-                                        <div class="status">
-                                            <span class="fs-5">En espera</span><br>
-                                            <small>Correspondencia <br> número-cantidad</small>
-                                        </div>
-                                        <hr>
-                                        <div class="d-flex flex-direction-row gap-1">
-                                            <span>Porcentaje:0%</span>
-                                            <span>Diamantes:0</span>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </section>
+                            </section>
                     </article>
                 </div>
             </div>
@@ -305,25 +299,8 @@ include './../../../php/validations/authorizedChild.php';
     <?php include './../../include/user/offcanvasUser.php' ?>
     <?php include './../../include/user/offcanvasAplication.php' ?>
 
-    <script>
-        
-        document.addEventListener("click", (e) => {
-            const clickedElement = e.target.closest("[data-enter]");
-            if (clickedElement && clickedElement.getAttribute("data-enter") === "false") {
-                console.info(e.target);
-                e.preventDefault(); 
-            }
-        });
-
-
-
-    </script>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-    crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
-    integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
-    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 
 </html>
