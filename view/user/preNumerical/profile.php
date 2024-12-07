@@ -112,7 +112,32 @@ include './../../../php/validations/authorizedChild.php';
                                         <i class="bi bi-person-video3 fs-1"></i>
                                     </div>
                                     <div class="detallsLessons">
-                                        6/6
+                                        <?php
+                                        // La conexión a la base de datos
+                                        include './../../../php/connectionBD.php';
+
+                                        // Consulta SQL para contar las lecciones completadas por un usuario específico
+                                        // Se utiliza un alias "lecciones_completadas" para facilitar el acceso al resultado
+                                        $sql = "SELECT COUNT(completado) as lecciones_completadas 
+                                                FROM desbloqueos_lecciones 
+                                                WHERE completado = 'completado' 
+                                                AND id_usuario = :id_user";
+
+                                        // Preparamos la consulta
+                                        $query = $pdo->prepare($sql);
+
+                                        // Vinculamos el parámetro :id_user con el valor de la sesión del usuario
+                                        $query->bindParam("id_user", $_SESSION["id_user"], PDO::PARAM_INT);
+
+                                        // Ejecutamos la consulta preparada
+                                        $query->execute();
+
+                                        // Obtenemos el resultado de la consulta como un array asociativo
+                                        $lecciones_completadas = $query->fetch(PDO::FETCH_ASSOC);
+
+                                        // Mostramos el número de lecciones completadas
+                                        echo $lecciones_completadas["lecciones_completadas"] . "/6";
+                                        ?>
                                         <span>Lecciones</span>
                                     </div>
                                 </div>

@@ -134,32 +134,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                     $queryLesson04 = $pdo->prepare($sqlLesson04);
                     $queryLesson04->bindParam('id_user',$last_id,PDO::PARAM_INT);
                     $queryLesson04->execute();
-
-                    //Lesson 5
-                    $sqlLesson05 = "INSERT INTO desbloqueos_lecciones  
-                    (id_usuario, id_leccion)
-                    VALUES 
-                    (
-                    :id_user,
-                    5
-                    )
-                    ";
-                    $queryLesson05 = $pdo->prepare($sqlLesson05);
-                    $queryLesson05->bindParam('id_user',$last_id,PDO::PARAM_INT);
-                    $queryLesson05->execute();
-
-                    //Lesson 6
-                    $sqlLesson06 = "INSERT INTO desbloqueos_lecciones  
-                    (id_usuario, id_leccion)
-                    VALUES 
-                    (
-                    :id_user,
-                    6
-                    )
-                    ";
-                    $queryLesson06 = $pdo->prepare($sqlLesson06);
-                    $queryLesson06->bindParam('id_user',$last_id,PDO::PARAM_INT);
-                    $queryLesson06->execute();
                     break;
                 
                 default:
