@@ -65,7 +65,7 @@ include './../../../php/validations/authorizedUser.php';
                         <label for="">Genero<span>*</span></label><br>
                         <p class="d-flex gap-2 selectionGender">
                             <label for="M" data-checked="true">
-                                <input type="radio" id="M" name="gender" value="1" ckecked>
+                                <input type="radio" id="M" name="gender" value="1" checked>
                                 <img src="../../../img/childs/boy.png" alt="" class="checked">
                             </label>
                             <label for="F">

@@ -57,6 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION["gender"] = $rowresultsChildPreN["id_genero"];
             $_SESSION["accessLevel"] = $rowresultsChildPreN["id_categoria_actividades"];
             $_SESSION["user"] = $user;
+            $_SESSION["id_user"] = $rowresultsChildPreN["id_usuario"];
             $_SESSION["dateOfBirth"] = $rowresultsChildPreN["fecha_nacimiento"];
             $_SESSION["name"] = $rowresultsChildPreN["nombre"];
             $_SESSION["lastname"] = $rowresultsChildPreN["apellido"];

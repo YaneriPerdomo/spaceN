@@ -114,6 +114,8 @@ function showChild()
         echo "<input type='text' name='user' class='form-control' placeholder='¡Oh 😲...!' aria-label='Username' aria-describedby='basic-addon1'  value='" . $row["usuario"] . "'>";
         echo "</div>";
         echo "<label for=''>Nivel de acceso<span>*</span></label><br>";
+        echo "<small>Si cambia el nivel de acceso del usuario actual perderá todo el progreso<br> 
+         que haya realizado anteriormente.</small>";
         echo "<div class='input-group mb-3'>";
         echo "<span class='input-group-text' id='basic-addon1'><i class='bi bi-door-open'></i></span>";
         echo "$accessLevel";

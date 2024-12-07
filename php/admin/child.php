@@ -27,12 +27,21 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $gender = $_POST["gender"]; // Obtiene el género del niño
             $idProfesional = $_SESSION["id_profesional"]; // Obtiene el ID del profesional desde la sesión
 
-            // Contamos la cantidad de registros existentes en la tabla 'usuarios' para asignar un ID único
-            $sqlCount = 'SELECT count(*) FROM `usuarios`';
-            $id = $pdo->prepare($sqlCount);
-            $id->execute();
-            $totalFilas = $id->fetchColumn() + 1; // Incrementamos en 1 para obtener el siguiente ID disponible
+            //validation of users 
+            $sqlUserValidation = "SELECT usuario FROM
+            usuarios WHERE usuario = :user
+            ";
+            $queryUserValidation = $pdo->prepare($sqlUserValidation);
+            $queryUserValidation->bindParam('user', $user, PDO::PARAM_STR);
+            $queryUserValidation->execute();
 
+            if($queryUserValidation->rowCount() > 0){
+                echo "<script> alert('¡Nombre de usuario ocupado! Prueba con otro.');
+                
+                window.location.href = './../../view/admin/child/add.php';</script>
+                </script>";
+                exit();
+            }
             // Preparamos la consulta SQL para insertar un nuevo usuario (el padre o tutor)
             $sqlUser = "INSERT INTO usuarios (id_rol, usuario, clave, estado, permisos, fecha_hora_creacion)
                            VALUES (  
@@ -74,8 +83,93 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
             $stmt2->execute();
 
+            $sqlProgress = "INSERT INTO progresos (id_usuario) VALUES (:id_user)";
+            $queryProgress = $pdo->prepare($sqlProgress);
+            $queryProgress->bindParam('id_user',$last_id,PDO::PARAM_INT);
+            $queryProgress->execute();
+
+
+            switch ($accessLevel) {
+                case '1':
+                    $sqlLesson01 = "INSERT INTO desbloqueos_lecciones (id_usuario, id_leccion) VALUES (:id_user,1)";
+                    $queryLesson01 = $pdo->prepare($sqlLesson01);
+                    $queryLesson01->bindParam('id_user',$last_id,PDO::PARAM_INT);
+                    $queryLesson01->execute();
+
+                    //Lesson 2
+                    $sqlLesson02 = "INSERT INTO desbloqueos_lecciones  
+                    (id_usuario, id_leccion)
+                    VALUES 
+                    (
+                    :id_user,
+                    2
+                    )
+                    ";
+                    $queryLesson02 = $pdo->prepare($sqlLesson02);
+                    $queryLesson02->bindParam('id_user',$last_id,PDO::PARAM_INT);
+                    $queryLesson02->execute();
+
+                    //Lesson 3
+                    $sqlLesson03 = "INSERT INTO desbloqueos_lecciones  
+                    (id_usuario, id_leccion)
+                    VALUES 
+                    (
+                    :id_user,
+                    3
+                    )
+                    ";
+                    $queryLesson03 = $pdo->prepare($sqlLesson03);
+                    $queryLesson03->bindParam('id_user',$last_id,PDO::PARAM_INT);
+                    $queryLesson03->execute();
+
+                    //Lesson 3
+                    $sqlLesson04 = "INSERT INTO desbloqueos_lecciones  
+                    (id_usuario, id_leccion)
+                    VALUES 
+                    (
+                    :id_user,
+                    4
+                    )
+                    ";
+                    $queryLesson04 = $pdo->prepare($sqlLesson04);
+                    $queryLesson04->bindParam('id_user',$last_id,PDO::PARAM_INT);
+                    $queryLesson04->execute();
+
+                    //Lesson 5
+                    $sqlLesson05 = "INSERT INTO desbloqueos_lecciones  
+                    (id_usuario, id_leccion)
+                    VALUES 
+                    (
+                    :id_user,
+                    5
+                    )
+                    ";
+                    $queryLesson05 = $pdo->prepare($sqlLesson05);
+                    $queryLesson05->bindParam('id_user',$last_id,PDO::PARAM_INT);
+                    $queryLesson05->execute();
+
+                    //Lesson 6
+                    $sqlLesson06 = "INSERT INTO desbloqueos_lecciones  
+                    (id_usuario, id_leccion)
+                    VALUES 
+                    (
+                    :id_user,
+                    6
+                    )
+                    ";
+                    $queryLesson06 = $pdo->prepare($sqlLesson06);
+                    $queryLesson06->bindParam('id_user',$last_id,PDO::PARAM_INT);
+                    $queryLesson06->execute();
+                    break;
+                
+                default:
+                    # code...
+                    break;
+            }
+
+
             // Verificamos si se insertó correctamente al menos un registro
-            if ($stmt->rowCount() > 0 && $stmt2->rowCount() > 0) {
+            if ($stmt->rowCount() > 0 && $stmt2->rowCount() > 0 && $queryProgress->rowCount() > 0) {
                 echo "<script> window.location.href = './../../view/admin/dashboard.php?page=1';</script>";
             }
             $pdo = null;
@@ -121,10 +215,23 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         case 'delete':
             $id_childC = $_POST["id_childC"];
             $id_childU = $_POST["id_childU"];
+           
+            
             $sqlDeleteChildN = "DELETE FROM notificaciones WHERE id_nino = :id";
             $stmt3 = $pdo->prepare($sqlDeleteChildN);
             $stmt3->bindParam('id', $id_childC, PDO::PARAM_INT);
             $stmt3->execute();
+
+            $sqlProgressChild = "DELETE FROM progresos WHERE id_usuario = :id_usuario";
+            $stmt5 = $pdo->prepare($sqlProgressChild);
+            $stmt5->bindParam('id_usuario', $id_childU, PDO::PARAM_INT);
+            $stmt5->execute();
+
+            
+            $sqlDesbloqueosLecciones = "DELETE FROM desbloqueos_lecciones WHERE id_usuario = :id_usuario";
+            $stmt4 = $pdo->prepare($sqlDesbloqueosLecciones);
+            $stmt4->bindParam('id_usuario', $id_childU, PDO::PARAM_INT);
+            $stmt4->execute();
 
             $sqlDeleteChild = "DELETE FROM ninos WHERE `id_nino` = :id_usuario";
             $stmt = $pdo->prepare($sqlDeleteChild);
@@ -136,7 +243,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $stmt2->bindParam('id_usuario', $id_childU, PDO::PARAM_INT);
             $stmt2->execute();
 
-            if (($stmt->rowCount() > 0 && $stmt2->rowCount() > 0) || $stmt3->rowCount() > 0) {
+
+
+            if (($stmt->rowCount() > 0 && $stmt2->rowCount() > 0 && $stmt4->rowCount() > 0 && $stmt5->rowCount() > 0 ) 
+                || $stmt3->rowCount() > 0) {
                 echo "<script>window.location.href = './../../view/admin/dashboard.php';</script>";
 
             }else{
