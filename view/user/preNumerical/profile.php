@@ -1,7 +1,122 @@
 <?php
+    
+    include './../../../php/validations/authorizedChild.php';
 
-include './../../../php/validations/authorizedChild.php';
+    
+function showProgressUser(){
+    include './../../../php/connectionBD.php';
+try {
+    
+$sql = "SELECT COUNT(completado) as lecciones_completadas 
+FROM desbloqueos_lecciones 
+WHERE completado = 'completado' 
+AND id_usuario = :id_user";
 
+// Preparamos la consulta
+$query = $pdo->prepare($sql);
+
+// Vinculamos el parámetro :id_user con el valor de la sesión del usuario
+$query->bindParam("id_user", $_SESSION["id_user"], PDO::PARAM_INT);
+
+// Ejecutamos la consulta preparada
+$query->execute();
+
+// Obtenemos el resultado de la consulta como un array asociativo
+$lecciones_completadas = $query->fetch(PDO::FETCH_ASSOC);
+
+// Mostramos el número de lecciones completadas
+
+$sqlProgressDetalls = "SELECT porcentaje, total_diamantes FROM progresos WHERE id_usuario = :id_user";
+$queryProgress = $pdo->prepare($sqlProgressDetalls);
+
+$queryProgress->bindParam("id_user", $_SESSION["id_user"], PDO::PARAM_INT);
+
+$queryProgress->execute();
+$arreyAssociative = $queryProgress->fetch(PDO::FETCH_ASSOC);
+
+echo '  <div class="row ContainerProgress">
+           <div class="col-4">
+               <div class="container">
+                   <div class="card">
+                       <div class="box">
+                           <div class="percent">
+                               <svg>
+                                   <circle cx="70" cy="70" r="70"></circle>
+                                   <circle cx="70" cy="70" r="70"
+                                       style="
+                                         : calc(440 - (440 * '. $arreyAssociative["porcentaje"]. ') / 100);
+                                        -webkit-stroke-dashoffset: calc(440 - (440 * '. $arreyAssociative["porcentaje"]. ') / 100);
+                                        -moz-stroke-dashoffset: calc(440 - (440 * '. $arreyAssociative["porcentaje"]. ') / 100);
+                                        "></circle>
+                                   <div class="num">
+                                       <h2>'. $arreyAssociative["porcentaje"]. '<span> %</span></h2>
+                                   </div>
+                               </svg>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+           <div class="col-8">
+               <div class="row">
+                   <div class="col-4">
+                       <div class="d-flex gap-2 dem">
+                           <div>
+                               <i class="bi bi-gem fs-1"></i><br>
+                           </div>
+                           <div class="detallsGems">
+                               <span> '. $arreyAssociative["total_diamantes"]. '</span>
+                               <span>Diamantes</span>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="col-4 ">
+                       <div class="d-flex gap-2 lessons">
+                           <div>
+                               <i class="bi bi-person-video3 fs-1"></i>
+                           </div>
+                           <div class="detallsLessons">
+                               <span>' . $lecciones_completadas["lecciones_completadas"] .'/6 </span>
+                               <span>Lecciones</span>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+               <hr>
+               <section>
+                   <h4 class="titleMyAbilities">Mis capacidades </h2>
+                       <div class="d-flex gap-2 containerMyAbilities">
+                           <div class="one">
+                               <div>
+                                   <i class="bi bi-list-ol fs-1"></i>
+                               </div>
+                               <span class="p-1">Denominacion de numeros</span><br>
+                               <span>Bien</span>
+                           </div>
+                           <div class="">
+                               <div>
+                                   <i class="bi bi-list-ol fs-1"></i>
+                               </div>
+                               <span>Denominacion de numeros</span><br>
+                               <span>Bien</span>
+                           </div>
+                           <div>
+                               <div>
+                                   <i class="bi bi-list-ol fs-1"></i>
+                               </div>
+                               <span>Denominacion de numeros</span><br>
+                               <span>Bien</span>
+                           </div>
+                       </div>
+               </section>
+           </div>
+           <div>
+           </div>
+       </div>';
+} catch (PDOException $th) {
+    echo $th->getMessage();
+}
+}
 ?>
 
 <!DOCTYPE html>
@@ -74,106 +189,9 @@ include './../../../php/validations/authorizedChild.php';
 
             <div>
                 <h4 class=" myProgress">MI PROGRESO</h4>
-                <div class="row ContainerProgress">
-                    <div class="col-4">
-                        <div class="container">
-                            <div class="card">
-                                <div class="box">
-                                    <div class="percent">
-                                        <svg>
-                                            <circle cx="70" cy="70" r="70"></circle>
-                                            <circle cx="70" cy="70" r="70"
-                                                style="stroke-dashoffset: calc(440 - (440 * 20) / 100);"></circle>
-                                            <div class="num">
-                                                <h2>0<span>%</span></h2>
-                                            </div>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class='col-8'>
-                        <div class="row">
-                            <div class='col-4'>
-                                <div class="d-flex gap-2 dem">
-                                    <div>
-                                        <i class="bi bi-gem fs-1"></i><br>
-                                    </div>
-                                    <div class="detallsGems">
-                                        <span>300</span>
-                                        <span>Diamantes</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class='col-4 '>
-                                <div class="d-flex gap-2 lessons">
-                                    <div>
-                                        <i class="bi bi-person-video3 fs-1"></i>
-                                    </div>
-                                    <div class="detallsLessons">
-                                        <?php
-                                        // La conexión a la base de datos
-                                        include './../../../php/connectionBD.php';
-
-                                        // Consulta SQL para contar las lecciones completadas por un usuario específico
-                                        // Se utiliza un alias "lecciones_completadas" para facilitar el acceso al resultado
-                                        $sql = "SELECT COUNT(completado) as lecciones_completadas 
-                                                FROM desbloqueos_lecciones 
-                                                WHERE completado = 'completado' 
-                                                AND id_usuario = :id_user";
-
-                                        // Preparamos la consulta
-                                        $query = $pdo->prepare($sql);
-
-                                        // Vinculamos el parámetro :id_user con el valor de la sesión del usuario
-                                        $query->bindParam("id_user", $_SESSION["id_user"], PDO::PARAM_INT);
-
-                                        // Ejecutamos la consulta preparada
-                                        $query->execute();
-
-                                        // Obtenemos el resultado de la consulta como un array asociativo
-                                        $lecciones_completadas = $query->fetch(PDO::FETCH_ASSOC);
-
-                                        // Mostramos el número de lecciones completadas
-                                        echo $lecciones_completadas["lecciones_completadas"] . "/6";
-                                        ?>
-                                        <span>Lecciones</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <hr>
-                        <section>
-                            <h4 class="titleMyAbilities">Mis capacidades </h2>
-                                <div class='d-flex gap-2 containerMyAbilities'>
-                                    <div class="one">
-                                        <div>
-                                            <i class="bi bi-list-ol fs-1"></i>
-                                        </div>
-                                        <span class="p-1">Denominacion de numeros</span><br>
-                                        <span>Bien</span>
-                                    </div>
-                                    <div class="">
-                                        <div>
-                                            <i class="bi bi-list-ol fs-1"></i>
-                                        </div>
-                                        <span>Denominacion de numeros</span><br>
-                                        <span>Bien</span>
-                                    </div>
-                                    <div>
-                                        <div>
-                                            <i class="bi bi-list-ol fs-1"></i>
-                                        </div>
-                                        <span>Denominacion de numeros</span><br>
-                                        <span>Bien</span>
-                                    </div>
-                                </div>
-                        </section>
-                    </div>
-                    <div>
-                    </div>
-                </div>
+                 <?php 
+                 showProgressUser();
+                 ?>
             </div>
 
     </main>

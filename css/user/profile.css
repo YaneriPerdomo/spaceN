@@ -57,7 +57,7 @@
 }
 
 .percent .num h2 {
-    color: #777;
+    color: #ffffff;
     font-weight: 700;
     font-size: 40px;
     transition: 0.5s;
@@ -69,7 +69,7 @@
 }
 
 .percent .num h2 span {
-    color: #777;
+    color: #ffffff;
     font-size: 24px;
     transition: 0.5s;
 }

@@ -1,6 +1,7 @@
 <?php
 
 include './../../../../../php/validations/authorizedChild.php';
+include './../../../../../php/connectionBD.php';
 
 ?>
 <!DOCTYPE html>
@@ -15,6 +16,13 @@ include './../../../../../php/validations/authorizedChild.php';
     <script src="https://pie-meister.github.io/PieMeister-with-Progress.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="../../../../../css/reset.css">
+    <link rel="stylesheet" href="../../../../../css/components/offcanvas.css">
+    <link rel="stylesheet" href="../../../../../css/components/header.css">
+    <link rel="stylesheet" href="../../../../../css/components/semanticTag.css">
+    <link rel="stylesheet" href="../../../../../css/admin/addAndModifyChild.css">
+    <link rel="stylesheet" href="../../../../../css/admin/dashboard.css">
+    <link rel="stylesheet" href="../../../../../css/components/row.css">
+
 
     <style>
         .activityContainer {
@@ -108,7 +116,13 @@ include './../../../../../php/validations/authorizedChild.php';
 
         main {
             flex-grow: 2;
-            background: #f2f2f2;
+        }
+
+        main > div{
+            max-width: 1000px;
+  min-width: 100px;
+  max-height: 700px;
+  min-height: 600px;
         }
 
         .col-11 {
@@ -118,7 +132,8 @@ include './../../../../../php/validations/authorizedChild.php';
         }
 
         .containerBack,
-        .containerGuide {
+        .containerGuide,
+        .containerResultsLesson {
             width: 100vw;
             height: 100vh;
             position: absolute;
@@ -217,7 +232,7 @@ include './../../../../../php/validations/authorizedChild.php';
             background: rgb(47, 47, 47);
             color: white;
             border-radius: 0.5rem;
-            width: 600px;
+            width: clamp(20px, 100% , 1000px);
         }
 
         .begin {
@@ -312,15 +327,17 @@ include './../../../../../php/validations/authorizedChild.php';
                 opacity: 0;
             }
 
-            5%{
+            5% {
                 transform: scale(0.1);
 
             }
+
             50% {
                 opacity: 1;
                 transform: translateX(0);
             }
-            100%{
+
+            100% {
                 transform: scale(1);
             }
         }
@@ -328,12 +345,70 @@ include './../../../../../php/validations/authorizedChild.php';
         .backInLeft {
             animation: backInLeft 1s ease-in-out;
         }
+
+        /*Juego */
+
+        .ButtonsNum>div>button {
+            background: var(--colorHF);
+            padding: 0.3rem;
+            border-radius: 100%;
+            border-radius: 0.5rem;
+            outline-color: var(--colorHF);
+            outline-offset: 0.2rem;
+            outline-style: solid;
+            outline-width: 5px;
+            color: white;
+            border: 0rem;
+            min-width: 40px !important;
+            min-height: 40px;
+
+        }
+
+        .ButtonsNum>div>button:hover {
+            background: #815ee1;
+  padding: 0.3rem;
+  border-radius: 100%;
+  border-radius: 0.5rem;
+  outline-color: #815ee1;
+  outline-offset: 0.2rem;
+  outline-style: solid;
+  outline-width: 5px;
+  color: white;
+  border: 0rem;
+  min-width: 40px !important;
+  min-height: 40px;
+  transition: background 0.5s, outline-color 0.5s;
+}
+
+        .ButtonsNum {
+            display: flex;
+            gap: 10rem
+        }
+
+        .containerPlay{
+            border-radius: 1rem;
+  border: solid 1px #e8d8ff;
+        }
+
+        .ButtonsNum>div {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+
     </style>
 </head>
 
 <body>
-
-    <header>
+    
+    <?php 
+        include '../../../../include/user/lesson/header.php'
+    ?>
+  
+    <main>
+    <div class="containerPlay">
+    <section>
         <div class="activityContainer">
             <div class="Back">
                 <button class=" ">
@@ -356,18 +431,18 @@ include './../../../../../php/validations/authorizedChild.php';
             </div>
             <div class="gem">
                 <div>
-                    <span class="fs-3">0</span>
+                    <span class="fs-2">0</span>
                 </div>
-                <i class="bi bi-gem fs-1"></i>
+                <i class="bi bi-gem fs-2"></i>
             </div>
             <div class="time">
                 <div>
-                    <span class="fs-3">00:00</span>
+                    <span class="fs-2">00:00</span>
                 </div>
-                <i class="bi bi-stopwatch-fill fs-1"></i>
+                <i class="bi bi-stopwatch-fill fs-2"></i>
             </div>
         </div>
-    </header>
+    </section>
     <main>
         <div class="row w-100 h-100">
             <div class="col-1 ">
@@ -378,12 +453,12 @@ include './../../../../../php/validations/authorizedChild.php';
             <div class="col-11">
                 <div class="containerPlayer align-items-center justify-content-center" data-next="2">
                     <div class="ButtonsNum">
-                        <div class="" id="one">
+                        <div class="" class="one">
                             <button data-check="false">?</button>
                             <button data-check="false">?</button>
                             <button data-check="false">?</button>
                         </div>
-                        <div class="ButtonsImg " id="two">
+                        <div class="two">
                             <button data-check="false">?</button>
                             <button data-check="false">?</button>
                             <button data-check="false">?</button>
@@ -395,36 +470,14 @@ include './../../../../../php/validations/authorizedChild.php';
     </main>
 
 
-    <div class="begin welcome">
+    <div class="begin welcome" style="display:none">
         <section class="logo">
             <img src="../../../../../img/for/teaching.png" class="img-fluid" alt="">
         </section>
-        <div class="progressA mb-4">
-            <div class="detallsProgressA">
-                <h1 class="text-center">Progreso Actual</h1>
-                <div class="flexComun gap-3">
-                    <div class="gem">
-                        <div>
-                            <span class="fs-3">0</span>
-                        </div>
-                        <i class="bi bi-gem fs-1"></i>
-                    </div>
-                    <div class="time">
-                        <div>
-                            <span class="fs-3">00:00</span>
-                        </div>
-                        <i class="bi bi-stopwatch-fill fs-1"></i>
-                    </div>
-                    <div class="porcentage">
-                        <div>
-                            <span class="fs-3">0%</span>
-                        </div>
-                        <i class="bi bi-bar-chart fs-1"></i>
-                    </div>
-                </div>
-                <div></div>
-            </div>
-        </div>
+        <?php
+        include '../../../../../php/user/auxiliar.php';
+        echo getLessonData($_SESSION["id_user"], 1);
+        ?>
         <button class="btnPlay">COMENZAR</button><br>
         <a href="../../read.php" class="linkBack">Regresar</a>
         <div class="guide OpenModalGuide" title="Guia">
@@ -452,6 +505,9 @@ include './../../../../../php/validations/authorizedChild.php';
                     </p>
                 </div>
             </div>
+            <div class="modal-footer d-flex justify-content-center gap-4 align-items-center">
+                <button class="btn CancelBack ">No, seguir</button>
+            </div>
             <form action="./../../php/admin/child.php" method="post">
                 <div class="modal-body">
                     <input type="hidden" name="gem" value="">
@@ -460,13 +516,49 @@ include './../../../../../php/validations/authorizedChild.php';
                     <input type="hidden" name="percentage">
                     <input type="hidden" name="valueFunction" value="delete">
                 </div>
-                <div class="modal-footer d-flex justify-content-center gap-4 align-items-center">
-                    <button class="btn CancelBack ">No, seguir</button>
-                </div>
+
             </form>
         </div>
     </div>
 
+    <div class="containerResultsLesson" style="display:none">
+        <div class="modal-content content">
+            <div class="modal-header">
+                <div class="text-center w-100">
+                    <h2 class="modal-title modalTitleResultsLesson fs-5" id="exampleModalLabel"><b>
+                            !Felicidades has completado la leccion!</b></h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Aut vel provident saepe maxime eius quas labore libero asperiores aspernatur.
+                    </p>
+                </div>
+            </div>
+            <div class="modal-footer d-flex justify-content-center gap-4 align-items-center">
+                <form action="../../../../../php/user/unlockUpdateLesson.php" method="post" id="informationLesson">
+                    <div class="modal-body">
+                        <input type="text" name="statu" value="">
+                        <input type="text" name="id_leccion">
+                        <input type="text" name="gems" value="">
+                        <input type="text" name="failed">
+                        <input type="text" name="porcentage">
+                        <input type="text" name="time">
+                        <input type="submit" value="Siguiente">
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+    <script>
+
+        // Obtener parámetros de la URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get('statu');
+
+
+        let $statu = document.querySelector('[name="statu"]');
+        $statu.value = id;
+
+    </script>
     <div class="lesson" style="display:none">
         <div class="modal-content content">
             <div class="modal-header">
@@ -520,10 +612,20 @@ include './../../../../../php/validations/authorizedChild.php';
             </form>
         </div>
     </div>
+    </div>
+
+    </main>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
+    <?php 
+         
+            include '../../../../include/footer.php';
+            include '../../../../include/user/lesson/offcanvasAplication.php';   
+            include '../../../../include/user/lesson/offcanvasUser.php';   
 
+    ?>
     <script>
         let $modalWindowBack = document.querySelector(".modalWindowBack");
         let $containerBack = document.querySelector(".containerBack");
