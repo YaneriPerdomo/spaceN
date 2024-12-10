@@ -34,6 +34,17 @@ $queryProgress->bindParam("id_user", $_SESSION["id_user"], PDO::PARAM_INT);
 $queryProgress->execute();
 $arreyAssociative = $queryProgress->fetch(PDO::FETCH_ASSOC);
 
+$gems = $arreyAssociative["total_diamantes"];
+if ($arreyAssociative["total_diamantes"] > 0) {
+    $countgem = "  <span>$gems </span><br>
+                        <span>Diamantes</span>
+                    </span> ";
+} else {
+    $countgem = "  <span> $gems </span><br>
+                        <span>Diamante</span><br>
+                    </span> ";
+}
+
 echo '  <div class="row ContainerProgress">
            <div class="col-4">
                <div class="container">
@@ -65,8 +76,7 @@ echo '  <div class="row ContainerProgress">
                                <i class="bi bi-gem fs-1"></i><br>
                            </div>
                            <div class="detallsGems">
-                               <span> '. $arreyAssociative["total_diamantes"]. '</span>
-                               <span>Diamantes</span>
+                              '. $countgem.'
                            </div>
                        </div>
                    </div>
@@ -181,8 +191,8 @@ echo '  <div class="row ContainerProgress">
                 <div class="">
                     <label for="" data-checked="true">
                         <input type="radio" id="" name="gender" value="1" ckecked>
-                        <img src="<?php $_SESSION["gender"] == "1" ? $gender = '../../../img/childs/boy.png' : $gender = '../../../img/childs/girl.png';
-                        echo $gender ?>" alt="" class="checked">
+                        <img  src="<?php $_SESSION["gender"] == "1" ? $gender = '../../../img/childs/boy.png' : $gender = '../../../img/childs/girl.png';
+                        echo $gender ?>" alt="" class="checked border-0">
                     </label>
                 </div>
             </div>
