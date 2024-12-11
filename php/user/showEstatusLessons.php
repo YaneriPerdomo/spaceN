@@ -5,7 +5,7 @@ function showLessons()
     include './../../../php/connectionBD.php';
 
     $id_usuario = $_SESSION["id_user"];
-    $SqlLessons = "SELECT  id_leccion , completado from desbloqueos_lecciones WHERE id_usuario = :id_usuario";
+    $SqlLessons = "SELECT  id_leccion , completado from estado_lecciones WHERE id_usuario = :id_usuario";
     $queryLessons = $pdo->prepare($SqlLessons);
     $queryLessons->bindParam('id_usuario', $id_usuario, PDO::PARAM_INT);
     $queryLessons->execute();

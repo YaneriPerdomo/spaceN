@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             nombre = :nombre,
             apellido = :lastname,
             correo_electronico = :mail,
-            centro_educativo_profesional = :center
+            centro_educativo = :center
             WHERE id_usuario = :userId";
 
                 $stmt2 = $pdo->prepare($sqlUpdateProfesional); //Preparamos la consulta

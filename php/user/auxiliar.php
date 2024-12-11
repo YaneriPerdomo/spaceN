@@ -6,8 +6,8 @@ function getLessonData($idUser, $idlesson)
 {
     try {
         include '../../../../../php/connectionBD.php';
-        $sqlValidationURL = "SELECT completado, porcentaje, diamantes_obtenidos, velocidad 
-    FROM desbloqueos_lecciones WHERE id_usuario = :id_usuario
+        $sqlValidationURL = "SELECT completado, porcentaje, diamantes_obtenidos, tiempo 
+    FROM estado_lecciones WHERE id_usuario = :id_usuario
     AND id_leccion = :idLesson";
         $query = $pdo->prepare($sqlValidationURL);
         $query->bindParam("id_usuario", $idUser, PDO::PARAM_INT);
@@ -36,7 +36,7 @@ function getLessonData($idUser, $idlesson)
                  </div>
                  <div class="time">
                      <div>
-                         <span class="fs-3">{$arrayAssociative['velocidad']}</span>
+                         <span class="fs-3">{$arrayAssociative['tiempo']}</span>
                      </div>
                      <i class="bi-stopwatch-fill fs-1"></i>
                  </div>

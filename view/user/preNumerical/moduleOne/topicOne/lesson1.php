@@ -118,11 +118,11 @@ include './../../../../../php/connectionBD.php';
             flex-grow: 2;
         }
 
-        main > div{
+        main>div {
             max-width: 1000px;
-  min-width: 100px;
-  max-height: 700px;
-  min-height: 600px;
+            min-width: 100px;
+            max-height: 700px;
+            min-height: 600px;
         }
 
         .col-11 {
@@ -232,12 +232,13 @@ include './../../../../../php/connectionBD.php';
             background: rgb(47, 47, 47);
             color: white;
             border-radius: 0.5rem;
-            width: clamp(20px, 100% , 1000px);
+            width: clamp(20px, 100%, 1000px);
         }
 
         .begin {
             position: absolute;
             height: 100%;
+            top: 0;
             width: 100%;
             background: white;
         }
@@ -366,28 +367,29 @@ include './../../../../../php/connectionBD.php';
 
         .ButtonsNum>div>button:hover {
             background: #815ee1;
-  padding: 0.3rem;
-  border-radius: 100%;
-  border-radius: 0.5rem;
-  outline-color: #815ee1;
-  outline-offset: 0.2rem;
-  outline-style: solid;
-  outline-width: 5px;
-  color: white;
-  border: 0rem;
-  min-width: 40px !important;
-  min-height: 40px;
-  transition: background 0.5s, outline-color 0.5s;
-}
+            padding: 0.3rem;
+            border-radius: 100%;
+            border-radius: 0.5rem;
+            outline-color: #815ee1;
+            outline-offset: 0.2rem;
+            outline-style: solid;
+            outline-width: 5px;
+            color: white;
+            border: 0rem;
+            min-width: 40px !important;
+            min-height: 40px;
+            transition: background 0.5s, outline-color 0.5s;
+        }
 
         .ButtonsNum {
             display: flex;
             gap: 10rem
         }
 
-        .containerPlay{
+        .containerPlay {
+            position: relative;
             border-radius: 1rem;
-  border: solid 1px #e8d8ff;
+            border: solid 1px #e8d8ff;
         }
 
         .ButtonsNum>div {
@@ -396,158 +398,149 @@ include './../../../../../php/connectionBD.php';
             gap: 2rem;
         }
 
+        .play {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
+
+        .loading {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgb(47, 47, 47);
+            flex-direction: column;
+        }
     </style>
 </head>
 
 <body>
-    
-    <?php 
-        include '../../../../include/user/lesson/header.php'
-    ?>
-  
-    <main>
-    <div class="containerPlay">
-    <section>
-        <div class="activityContainer">
-            <div class="Back">
-                <button class=" ">
-                    <i class="modalWindowBack bi bi-arrow-left-square-fill fs-1"></i>
-                </button>
-            </div>
 
-            <div class="aim" style="flex-grow:2">
-                <div class="d-flex justify-content-center">
-                    <div class="d-flex detalls">
-                        <figure class="m-0">
-                            <img src="../../../../../img/childs/boy.png" class="img-fluid imgEresCapaz" alt="">
-                        </figure>
-                        <div class="objetivo">
-                            <p class="m-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam veniam
-                                inventore odio</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="gem">
-                <div>
-                    <span class="fs-2">0</span>
-                </div>
-                <i class="bi bi-gem fs-2"></i>
-            </div>
-            <div class="time">
-                <div>
-                    <span class="fs-2">00:00</span>
-                </div>
-                <i class="bi bi-stopwatch-fill fs-2"></i>
-            </div>
-        </div>
-    </section>
+    <?php
+    include '../../../../include/user/lesson/header.php'
+        ?>
+
     <main>
-        <div class="row w-100 h-100">
-            <div class="col-1 ">
-                <div class="progress">
-                    <div class="porcentage"></div>
-                </div>
-            </div>
-            <div class="col-11">
-                <div class="containerPlayer align-items-center justify-content-center" data-next="2">
-                    <div class="ButtonsNum">
-                        <div class="" class="one">
-                            <button data-check="false">?</button>
-                            <button data-check="false">?</button>
-                            <button data-check="false">?</button>
-                        </div>
-                        <div class="two">
-                            <button data-check="false">?</button>
-                            <button data-check="false">?</button>
-                            <button data-check="false">?</button>
+        <div class="containerPlay">
+            <section>
+                <div class="activityContainer">
+                    <div class="Back">
+                        <button class=" ">
+                            <i class="modalWindowBack bi bi-arrow-left-square-fill fs-1"></i>
+                        </button>
+                    </div>
+
+                    <div class="aim" style="flex-grow:2">
+                        <div class="d-flex justify-content-center">
+                            <div class="d-flex detalls">
+                                <figure class="m-0">
+                                    <img src="../../../../../img/childs/boy.png" class="img-fluid imgEresCapaz" alt="">
+                                </figure>
+                                <div class="objetivo">
+                                    <p class="m-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam veniam
+                                        inventore odio</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div><br>
+                    <div class="gem">
+                        <div>
+                            <span class="fs-2">0</span>
+                        </div>
+                        <i class="bi bi-gem fs-2"></i>
+                    </div>
+                    <div class="time">
+                        <div>
+                            <span class="fs-2" id="time">00:00:00</span>
+                        </div>
+                        <i class="bi bi-stopwatch-fill fs-2"></i>
+                    </div>
+                </div>
+         
+
+
+                </script>
+            </section>
+            <main class="play">
+                <div class="row w-100 h-100">
+                    <div class="col-1 ">
+                        <div class="progress">
+                            <div class="porcentage"></div>
+                        </div>
+                    </div>
+                    <div class="col-11">
+                        <div class="containerPlayer align-items-center justify-content-center" data-next="2">
+                            <div class="ButtonsNum">
+                                <div class="" class="one">
+                                    <button data-check="false">?</button>
+                                    <button data-check="false">?</button>
+                                    <button data-check="false">?</button>
+                                </div>
+                                <div class="two">
+                                    <button data-check="false">?</button>
+                                    <button data-check="false">?</button>
+                                    <button data-check="false">?</button>
+                                </div>
+                            </div>
+                        </div><br>
+                    </div>
+                </div>
+            </main>
+            <div class="begin welcome">
+                <section class="logo">
+                    <img src="../../../../../img/for/teaching.png" class="img-fluid" alt="">
+                </section>
+                <?php
+                include '../../../../../php/user/auxiliar.php';
+                echo getLessonData($_SESSION["id_user"], 1);
+                ?>
+                <button class="btnPlay">COMENZAR</button><br>
+                <a href="../../read.php" class="linkBack">Regresar</a>
+                <div class="guide OpenModalGuide" title="Guia">
+                    <button class=""><i class="bi bi-journal-bookmark-fill fs-3 OpenModalGuide"></i></button>
+                </div>
+                <div class="clouds">
+                    <img src="../../../../../img/nube.png" class="img-fluid" alt="">
+                </div>
+                <div class="loading">
+                    <progress></progress>
+                    <strong class="text-white">Cargando...</strong>
+                </div>
+            </div>
+            <div class="containerResultsLesson" style="display:none">
+                <div class="modal-content content">
+                    <div class="modal-header">
+                        <div class="text-center w-100">
+                            <h2 class="modal-title modalTitleResultsLesson fs-5" id="exampleModalLabel"><b>
+                                    !Felicidades has completado la leccion!</b></h2>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                Aut vel provident saepe maxime eius quas labore libero asperiores aspernatur.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-center gap-4 align-items-center">
+                        <form action="../../../../../php/user/unlockUpdateLesson.php" method="post"
+                            id="informationLesson">
+                            <div class="modal-body">
+                                <input type="text" name="statu" value="">
+                                <input type="text" name="id_leccion">
+                                <input type="text" name="gems" value="">
+                                <input type="text" name="failed">
+                                <input type="text" name="porcentage">
+                                <input type="text" name="time">
+                                <input type="submit" value="Siguiente">
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
             </div>
         </div>
     </main>
-
-
-    <div class="begin welcome" style="display:none">
-        <section class="logo">
-            <img src="../../../../../img/for/teaching.png" class="img-fluid" alt="">
-        </section>
-        <?php
-        include '../../../../../php/user/auxiliar.php';
-        echo getLessonData($_SESSION["id_user"], 1);
-        ?>
-        <button class="btnPlay">COMENZAR</button><br>
-        <a href="../../read.php" class="linkBack">Regresar</a>
-        <div class="guide OpenModalGuide" title="Guia">
-            <button class=""><i class="bi bi-journal-bookmark-fill fs-3 OpenModalGuide"></i></button>
-        </div>
-        <div class="clouds">
-            <img src="../../../../../img/nube.png" class="img-fluid" alt="">
-        </div>
-    </div>
-    <div class="messengerUserContainer" style="display:none">
-        <div class="messengerInformation animate__backInDown">
-            <button><i class="bi bi-patch-question-fill"></i></button>
-        </div>
-    </div>
-
-    <div class="containerBack" style="display:none">
-        <div class="modal-content content">
-            <div class="modal-header">
-                <div class="text-center w-100">
-                    <h2 class="modal-title modalTitleBack fs-5" id="exampleModalLabel"><b>¿Estás seguro de que quieres
-                            salir de la lección?</b></h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        <a href="../../read.php">Si quiero salir</a>
-                        Aut vel provident saepe maxime eius quas labore libero asperiores aspernatur.
-                    </p>
-                </div>
-            </div>
-            <div class="modal-footer d-flex justify-content-center gap-4 align-items-center">
-                <button class="btn CancelBack ">No, seguir</button>
-            </div>
-            <form action="./../../php/admin/child.php" method="post">
-                <div class="modal-body">
-                    <input type="hidden" name="gem" value="">
-                    <input type="hidden" name="falle">
-                    <input type="hidden" name="speed">
-                    <input type="hidden" name="percentage">
-                    <input type="hidden" name="valueFunction" value="delete">
-                </div>
-
-            </form>
-        </div>
-    </div>
-
-    <div class="containerResultsLesson" style="display:none">
-        <div class="modal-content content">
-            <div class="modal-header">
-                <div class="text-center w-100">
-                    <h2 class="modal-title modalTitleResultsLesson fs-5" id="exampleModalLabel"><b>
-                            !Felicidades has completado la leccion!</b></h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Aut vel provident saepe maxime eius quas labore libero asperiores aspernatur.
-                    </p>
-                </div>
-            </div>
-            <div class="modal-footer d-flex justify-content-center gap-4 align-items-center">
-                <form action="../../../../../php/user/unlockUpdateLesson.php" method="post" id="informationLesson">
-                    <div class="modal-body">
-                        <input type="text" name="statu" value="">
-                        <input type="text" name="id_leccion">
-                        <input type="text" name="gems" value="">
-                        <input type="text" name="failed">
-                        <input type="text" name="porcentage">
-                        <input type="text" name="time">
-                        <input type="submit" value="Siguiente">
-                    </div>
-                </form>
-            </div>
-
-        </div>
-    </div>
     <script>
 
         // Obtener parámetros de la URL
@@ -559,71 +552,15 @@ include './../../../../../php/connectionBD.php';
         $statu.value = id;
 
     </script>
-    <div class="lesson" style="display:none">
-        <div class="modal-content content">
-            <div class="modal-header">
-                <div class="text-center w-100">
-                    <h2 class="modal-title modalTitleBack fs-5" id="exampleModalLabel"><b>¿Estás seguro de que quieres
-                            salir de la lección?</b></h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        <a href="../../read.php">Si quiero salir</a>
-                        Aut vel provident saepe maxime eius quas labore libero asperiores aspernatur.
-                    </p>
-                </div>
-            </div>
-            <form action="./../../php/admin/child.php" method="post">
-                <div class="modal-body">
-                    <input type="hidden" name="gem" value="">
-                    <input type="hidden" name="falle">
-                    <input type="hidden" name="speed">
-                    <input type="hidden" name="percentage">
-                    <input type="hidden" name="valueFunction" value="delete">
-                </div>
-                <div class="modal-footer d-flex justify-content-center gap-4 align-items-center">
-                    <button class="btn CancelBack ">No, seguir</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <div class="containerGuide" style="display:none">
-        <div class="modal-content content">
-            <div class="modal-header">
-                <div class="text-center w-100">
-                    <h2 class="modal-title modalTitleGuide fs-5" id="exampleModalLabel"><b>¿Estás seguro de que quieres
-                            salir de la lección?</b></h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        <a href="../../read.php">Si quiero salir</a>
-                        Aut vel provident saepe maxime eius quas labore libero asperiores aspernatur.
-                    </p>
-                </div>
-            </div>
-            <form action="./../../php/admin/child.php" method="post">
-                <div class="modal-body">
-                    <input type="hidden" name="gem" value="">
-                    <input type="hidden" name="falle">
-                    <input type="hidden" name="speed">
-                    <input type="hidden" name="percentage">
-                    <input type="hidden" name="valueFunction" value="delete">
-                </div>
-                <div class="modal-footer d-flex justify-content-center gap-4 align-items-center">
-                    <button class="btn CancelBack ">No, seguir</button>
-                </div>
-            </form>
-        </div>
-    </div>
-    </div>
-
-    </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
-    <?php 
-         
-            include '../../../../include/footer.php';
-            include '../../../../include/user/lesson/offcanvasAplication.php';   
-            include '../../../../include/user/lesson/offcanvasUser.php';   
+    <?php
+
+    include '../../../../include/footer.php';
+    include '../../../../include/user/lesson/offcanvasAplication.php';
+    include '../../../../include/user/lesson/offcanvasUser.php';
 
     ?>
     <script>
@@ -634,7 +571,11 @@ include './../../../../../php/connectionBD.php';
         let $containerGuideModal = document.querySelector(".containerGuide")
         let $begin = document.querySelector(".begin");
         let $GuidaContent = document.querySelector(".containerGuide > .content")
+        let $containerPlay = document.querySelector(".containerPlay");
 
+        setTimeout(() => {
+            $begin.removeChild($begin.children[7]);
+        }, 2500);
         document.addEventListener("click", e => {
 
             const $buttonPlay = e.target.closest(".btnPlay");
@@ -656,7 +597,35 @@ include './../../../../../php/connectionBD.php';
             if ($buttonPlay) {
                 $begin.classList.add("animationDeleteLabel");
                 setTimeout(() => {
-                    $body.removeChild($body.children[2])
+                    let timer;
+                    let seconds = 0, minutes = 0, hours = 0;
+
+                    function updateDisplay() {
+                        document.getElementById('time').innerText =
+                            (hours < 10 ? '0' : '') + hours + ':' +
+                            (minutes < 10 ? '0' : '') + minutes + ':' +
+                            (seconds < 10 ? '0' : '') + seconds;
+                    }
+
+                    function start() {
+                        if (!timer) {
+                            timer = setInterval(() => {
+                                seconds++;
+                                if (seconds == 60) {
+                                    seconds = 0;
+                                    minutes++;
+                                    if (minutes == 60) {
+                                        minutes = 0;
+                                        hours++;
+                                    }
+                                }
+                                updateDisplay();
+                            }, 1000);
+                        }
+                    }
+                    start();
+
+                    $containerPlay.removeChild($containerPlay.children[2])
                 }, 1000);
             }
 

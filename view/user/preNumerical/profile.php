@@ -8,7 +8,7 @@ function showProgressUser(){
 try {
     
 $sql = "SELECT COUNT(completado) as lecciones_completadas 
-FROM desbloqueos_lecciones 
+FROM estado_lecciones 
 WHERE completado = 'completado' 
 AND id_usuario = :id_user";
 

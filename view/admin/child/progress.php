@@ -35,7 +35,7 @@ function showInformationChild()
         $row03 = $queryProgress->fetch(PDO::FETCH_ASSOC);
 
         $sqlCount = "SELECT COUNT(completado) as lecciones_completadas 
-        FROM desbloqueos_lecciones 
+        FROM estado_lecciones 
         WHERE completado = 'completado' 
         AND id_usuario = :id_user";
 
@@ -140,7 +140,7 @@ function showInformationChild()
                                 <div class="d-flex gap-2 dem">
                                     <div>
                                         <i class="bi bi-gem fs-1"></i><br>
-                                    </div>
+                                    </div><br>
                                     <div class="detallsGems">
                                         '. $countgem.'
                                     </div>

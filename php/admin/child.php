@@ -91,13 +91,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
             switch ($accessLevel) {
                 case '1':
-                    $sqlLesson01 = "INSERT INTO desbloqueos_lecciones (id_usuario, id_leccion) VALUES (:id_user,1)";
+                    $sqlLesson01 = "INSERT INTO estado_lecciones (id_usuario, id_leccion) VALUES (:id_user,1)";
                     $queryLesson01 = $pdo->prepare($sqlLesson01);
                     $queryLesson01->bindParam('id_user',$last_id,PDO::PARAM_INT);
                     $queryLesson01->execute();
 
                     //Lesson 2
-                    $sqlLesson02 = "INSERT INTO desbloqueos_lecciones  
+                    $sqlLesson02 = "INSERT INTO estado_lecciones  
                     (id_usuario, id_leccion)
                     VALUES 
                     (
@@ -110,7 +110,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                     $queryLesson02->execute();
 
                     //Lesson 3
-                    $sqlLesson03 = "INSERT INTO desbloqueos_lecciones  
+                    $sqlLesson03 = "INSERT INTO estado_lecciones  
                     (id_usuario, id_leccion)
                     VALUES 
                     (
@@ -123,7 +123,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                     $queryLesson03->execute();
 
                     //Lesson 3
-                    $sqlLesson04 = "INSERT INTO desbloqueos_lecciones  
+                    $sqlLesson04 = "INSERT INTO estado_lecciones  
                     (id_usuario, id_leccion)
                     VALUES 
                     (
@@ -202,7 +202,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $stmt5->execute();
 
             
-            $sqlDesbloqueosLecciones = "DELETE FROM desbloqueos_lecciones WHERE id_usuario = :id_usuario";
+            $sqlDesbloqueosLecciones = "DELETE FROM estado_lecciones WHERE id_usuario = :id_usuario";
             $stmt4 = $pdo->prepare($sqlDesbloqueosLecciones);
             $stmt4->bindParam('id_usuario', $id_childU, PDO::PARAM_INT);
             $stmt4->execute();

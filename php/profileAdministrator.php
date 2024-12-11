@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     // Segunda consulta: Insertar profesional
-    $sqlAddPro = "INSERT INTO profesionales (id_usuario, id_cargo, nombre, apellido, correo_electronico, centro_educativo_profesional)
+    $sqlAddPro = "INSERT INTO profesionales (id_usuario, id_cargo, nombre, apellido, correo_electronico, centro_educativo)
         VALUES (
             $idUserAdmin,
             (SELECT id_cargo FROM cargos WHERE id_cargo = '1'), 

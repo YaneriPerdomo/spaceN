@@ -18,16 +18,16 @@ try {
 switch ($statu) {
     case 'en_espera':
 
-        $sqlComplete = "UPDATE desbloqueos_lecciones SET completado='completado' WHERE id_usuario = :id_user AND id_leccion = :id_lesson";
+        $sqlComplete = "UPDATE estado_lecciones SET completado='completado' WHERE id_usuario = :id_user AND id_leccion = :id_lesson";
         $query01 = $pdo->prepare($sqlComplete);
         $query01->bindParam('id_user', $idUser, PDO::PARAM_INT);
         $query01->bindParam('id_lesson', $idLesson, PDO::PARAM_INT);
         $query01->execute();
-        $sqlWait = "UPDATE desbloqueos_lecciones
+        $sqlWait = "UPDATE estado_lecciones
     SET
     porcentaje = :porcentage,
     diamantes_obtenidos = :gems,
-    velocidad = :timeV,
+    tiempo = :timeV,
     fallida = :failed
      WHERE id_usuario = :id_user AND id_leccion = :id_lesson
     ";
@@ -41,7 +41,7 @@ switch ($statu) {
         $queryWait->execute();
         $nextLesson = $idLesson + 1;
         if ($nextLesson < 4) {
-            $sqlNext = "UPDATE desbloqueos_lecciones
+            $sqlNext = "UPDATE estado_lecciones
         SET 
         completado = 'en_espera'
          WHERE id_usuario = :id_user AND id_leccion = :id_lesson
@@ -102,11 +102,11 @@ WHERE id_usuario = :id_user
         break;
         case "completado":
 
-            $sqlComplete = "UPDATE desbloqueos_lecciones
+            $sqlComplete = "UPDATE estado_lecciones
                 SET 
                 porcentaje = :porcentage,
                 diamantes_obtenidos = :gems,
-                velocidad = :timeV,
+                tiempo = :timeV,
                 fallida = :failed
                  WHERE id_usuario = :id_user AND id_leccion = :id_lesson
                 ";

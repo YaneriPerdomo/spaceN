@@ -29,7 +29,7 @@ $queryProgress->execute();
 $row03 = $queryProgress->fetch(PDO::FETCH_ASSOC);
 
 $sqlCount = "SELECT COUNT(completado) as lecciones_completadas 
-FROM desbloqueos_lecciones 
+FROM estado_lecciones 
 WHERE completado = 'completado' 
 AND id_usuario = :id_user";
 
