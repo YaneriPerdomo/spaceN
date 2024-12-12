@@ -44,8 +44,8 @@ function notificationHeader ()
         </section>
         <section class="userPerfil">
             <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
-                aria-controls="offcanvasRight"><img src="<?php $_SESSION["gender"] == "1" ? $gender = '../../../../../img/childs/boy.png' : $gender = '../../../../../img/childs/girl.png'; echo $gender ?>" class="img-fluid userImg"
-                    alt="">
+                        aria-controls="offcanvasRight"><img src="<?php $_SESSION["gender"] == "1" ? $gender = '../../../../../img/childs/boy.png' : $gender = '../../../../../img/childs/girl.png'; echo $gender ?>" class="img-fluid userImg"
+                            alt="">
             </button>
         <?php notificationHeader();?>
         </section>

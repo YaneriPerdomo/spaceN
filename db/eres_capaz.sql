@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-12-2024 a las 10:56:49
+-- Tiempo de generación: 12-12-2024 a las 15:56:24
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -67,31 +67,30 @@ INSERT INTO `categorias_actividades` (`id_categoria_actividades`, `categoria_act
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `desbloqueos_lecciones`
+-- Estructura de tabla para la tabla `estado_lecciones`
 --
 
-DROP TABLE IF EXISTS `desbloqueos_lecciones`;
-CREATE TABLE `desbloqueos_lecciones` (
-  `id_desbloqueo_leccion` int(10) NOT NULL,
+DROP TABLE IF EXISTS `estado_lecciones`;
+CREATE TABLE `estado_lecciones` (
+  `id_estado_leccion` int(10) NOT NULL,
   `id_usuario` int(10) DEFAULT NULL,
   `id_leccion` int(10) DEFAULT NULL,
   `completado` enum('bloqueado','completado','en_espera','') DEFAULT 'bloqueado',
   `porcentaje` int(11) DEFAULT 0,
   `diamantes_obtenidos` int(100) DEFAULT 0,
-  `velocidad` varchar(25) NOT NULL DEFAULT '00:00',
-  `fallida` int(200) NOT NULL DEFAULT 0,
-  `descripcion` text DEFAULT NULL
+  `tiempo` varchar(25) NOT NULL DEFAULT '00:00',
+  `fallida` int(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `desbloqueos_lecciones`
+-- Volcado de datos para la tabla `estado_lecciones`
 --
 
-INSERT INTO `desbloqueos_lecciones` (`id_desbloqueo_leccion`, `id_usuario`, `id_leccion`, `completado`, `porcentaje`, `diamantes_obtenidos`, `velocidad`, `fallida`, `descripcion`) VALUES
-(45, 14, 1, 'en_espera', 32, 23, '32', 32, NULL),
-(46, 14, 2, 'bloqueado', 2, 232, '2', 32, NULL),
-(47, 14, 3, 'bloqueado', NULL, 0, '0', 0, NULL),
-(48, 14, 4, 'bloqueado', NULL, 0, '0', 0, NULL);
+INSERT INTO `estado_lecciones` (`id_estado_leccion`, `id_usuario`, `id_leccion`, `completado`, `porcentaje`, `diamantes_obtenidos`, `tiempo`, `fallida`) VALUES
+(45, 14, 1, 'en_espera', 32, 23, '32', 32),
+(46, 14, 2, 'bloqueado', 0, 0, '', 0),
+(47, 14, 3, 'bloqueado', NULL, 0, '0', 0),
+(48, 14, 4, 'bloqueado', NULL, 0, '0', 0);
 
 -- --------------------------------------------------------
 
@@ -102,7 +101,7 @@ INSERT INTO `desbloqueos_lecciones` (`id_desbloqueo_leccion`, `id_usuario`, `id_
 DROP TABLE IF EXISTS `generos`;
 CREATE TABLE `generos` (
   `id_genero` int(10) NOT NULL,
-  `genero` varchar(15) NOT NULL
+  `genero` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -125,7 +124,7 @@ CREATE TABLE `lecciones` (
   `id_tema` int(10) NOT NULL,
   `leccion` int(10) DEFAULT NULL,
   `titulo` varchar(40) NOT NULL,
-  `objetivo` varchar(50) NOT NULL
+  `objetivo` varchar(150) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -133,7 +132,7 @@ CREATE TABLE `lecciones` (
 --
 
 INSERT INTO `lecciones` (`id_leccion`, `id_tema`, `leccion`, `titulo`, `objetivo`) VALUES
-(1, 1, 1, 'Asociación de cantidad con objetos', 'Asociación de cantidad con objetos: ejercicios de '),
+(1, 1, 1, 'Asociación de cantidad con objetos', 'Asociación de cantidad con objetos: ejercicios de contar objetos de diferentes tipos y tamaños.'),
 (2, 1, 2, 'Comparación de cantidades', 'Comparación de cantidades: actividades para identi'),
 (3, 2, 1, 'Reconocimiento de números del 1 al 10', 'Reconocimiento de números del 1 al 10: ejercicios '),
 (4, 2, 2, 'Correspondencia número-cantidad', 'Correspondencia número-cantidad: relacionar un núm');
@@ -185,8 +184,7 @@ CREATE TABLE `ninos` (
 
 INSERT INTO `ninos` (`id_nino`, `id_genero`, `id_categoria_actividades`, `id_usuario`, `id_profesional`, `nombre`, `apellido`, `fecha_nacimiento`, `ultimo_acceso`) VALUES
 (1, 1, 1, 4, 8, 'Dustin', 'perdomo', '2024-11-07', '2024-12-06 07:15:30'),
-(3, 2, 1, 6, 8, 'peromo', 'Emily', '2024-12-13', NULL),
-(11, 1, 1, 14, 8, 'Diamantino', 'Perdomo', '2023-01-01', '2024-12-09 05:41:02');
+(11, 1, 1, 14, 8, 'Diamantino', 'Perdomo', '2011-01-01', '2024-12-12 06:38:01');
 
 -- --------------------------------------------------------
 
@@ -225,15 +223,15 @@ CREATE TABLE `profesionales` (
   `nombre` varchar(55) NOT NULL,
   `apellido` varchar(55) NOT NULL,
   `correo_electronico` varchar(80) NOT NULL,
-  `centro_educativo_profesional` varchar(120) NOT NULL
+  `centro_educativo` varchar(120) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `profesionales`
 --
 
-INSERT INTO `profesionales` (`id_profesional`, `id_usuario`, `id_cargo`, `nombre`, `apellido`, `correo_electronico`, `centro_educativo_profesional`) VALUES
-(8, 1, 1, 'Yaireli', 'Perdomo', 'yayiperdomo@gmail.com', '234');
+INSERT INTO `profesionales` (`id_profesional`, `id_usuario`, `id_cargo`, `nombre`, `apellido`, `correo_electronico`, `centro_educativo`) VALUES
+(8, 1, 1, 'Yaireli', 'Perdomo', 'yayiperdomo@gmail.com', 'josefina de acosta');
 
 -- --------------------------------------------------------
 
@@ -323,8 +321,7 @@ INSERT INTO `usuarios` (`id_usuario`, `id_rol`, `usuario`, `clave`, `estado`, `p
 (1, 1, 'Yayi33', '123', b'1', b'1', '2024-11-25 22:29:44'),
 (3, 2, '', '', b'1', b'1', '2024-11-28 13:24:43'),
 (4, 2, 'Dustin3', '123', b'1', b'1', '2024-11-30 11:19:18'),
-(6, 2, 'perdomo', '123', b'1', b'1', '2024-12-06 18:38:06'),
-(14, 2, 'Diamantino2024', '123', b'1', b'1', '2024-12-07 07:16:18');
+(14, 2, 'Diaman', '123', b'1', b'1', '2024-12-07 07:16:18');
 
 --
 -- Índices para tablas volcadas
@@ -343,10 +340,10 @@ ALTER TABLE `categorias_actividades`
   ADD PRIMARY KEY (`id_categoria_actividades`);
 
 --
--- Indices de la tabla `desbloqueos_lecciones`
+-- Indices de la tabla `estado_lecciones`
 --
-ALTER TABLE `desbloqueos_lecciones`
-  ADD PRIMARY KEY (`id_desbloqueo_leccion`),
+ALTER TABLE `estado_lecciones`
+  ADD PRIMARY KEY (`id_estado_leccion`),
   ADD KEY `id_leccion` (`id_leccion`),
   ADD KEY `id_usuario` (`id_usuario`);
 
@@ -442,10 +439,10 @@ ALTER TABLE `categorias_actividades`
   MODIFY `id_categoria_actividades` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT de la tabla `desbloqueos_lecciones`
+-- AUTO_INCREMENT de la tabla `estado_lecciones`
 --
-ALTER TABLE `desbloqueos_lecciones`
-  MODIFY `id_desbloqueo_leccion` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+ALTER TABLE `estado_lecciones`
+  MODIFY `id_estado_leccion` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT de la tabla `generos`
@@ -469,7 +466,7 @@ ALTER TABLE `modulos`
 -- AUTO_INCREMENT de la tabla `ninos`
 --
 ALTER TABLE `ninos`
-  MODIFY `id_nino` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_nino` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `notificaciones`
@@ -487,7 +484,7 @@ ALTER TABLE `profesionales`
 -- AUTO_INCREMENT de la tabla `progresos`
 --
 ALTER TABLE `progresos`
-  MODIFY `id_progreso` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_progreso` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
@@ -505,18 +502,18 @@ ALTER TABLE `temas`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_usuario` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- Restricciones para tablas volcadas
 --
 
 --
--- Filtros para la tabla `desbloqueos_lecciones`
+-- Filtros para la tabla `estado_lecciones`
 --
-ALTER TABLE `desbloqueos_lecciones`
-  ADD CONSTRAINT `desbloqueos_lecciones_ibfk_1` FOREIGN KEY (`id_leccion`) REFERENCES `lecciones` (`id_leccion`),
-  ADD CONSTRAINT `desbloqueos_lecciones_ibfk_2` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE;
+ALTER TABLE `estado_lecciones`
+  ADD CONSTRAINT `estado_lecciones_ibfk_1` FOREIGN KEY (`id_leccion`) REFERENCES `lecciones` (`id_leccion`),
+  ADD CONSTRAINT `estado_lecciones_ibfk_2` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `lecciones`

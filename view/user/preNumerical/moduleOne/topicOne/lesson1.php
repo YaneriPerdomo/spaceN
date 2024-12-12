@@ -91,7 +91,7 @@ include './../../../../../php/connectionBD.php';
         .progress {
             width: 1rem;
             height: 80%;
-            background: rgb(47, 47, 47);
+            background: #9571f9;
 
             position: relative;
         }
@@ -106,6 +106,7 @@ include './../../../../../php/connectionBD.php';
             flex-direction: column;
             width: 100%;
             height: 100vh;
+
             background-size: contain;
             background-repeat: repeat;
             font-family: "Roboto", sans-serif;
@@ -134,8 +135,9 @@ include './../../../../../php/connectionBD.php';
         .containerBack,
         .containerGuide,
         .containerResultsLesson {
-            width: 100vw;
-            height: 100vh;
+            width: 100%;
+            height: 100%;
+            top: 0;
             position: absolute;
             display: flex;
             justify-content: center;
@@ -241,6 +243,8 @@ include './../../../../../php/connectionBD.php';
             top: 0;
             width: 100%;
             background: white;
+            border-radius: 1rem;
+            border: solid 1px #e8d8ff;
         }
 
         .begin {
@@ -349,7 +353,7 @@ include './../../../../../php/connectionBD.php';
 
         /*Juego */
 
-        .ButtonsNum>div>button {
+        .ButtonsNum>button {
             background: var(--colorHF);
             padding: 0.3rem;
             border-radius: 100%;
@@ -365,7 +369,7 @@ include './../../../../../php/connectionBD.php';
 
         }
 
-        .ButtonsNum>div>button:hover {
+        .ButtonsNum>button:hover {
             background: #815ee1;
             padding: 0.3rem;
             border-radius: 100%;
@@ -383,7 +387,8 @@ include './../../../../../php/connectionBD.php';
 
         .ButtonsNum {
             display: flex;
-            gap: 10rem
+            gap: 2rem;
+            flex-wrap: wrap;
         }
 
         .containerPlay {
@@ -414,6 +419,40 @@ include './../../../../../php/connectionBD.php';
             align-items: center;
             background: rgb(47, 47, 47);
             flex-direction: column;
+            border-radius: 1rem;
+            border: solid 1px #e8d8ff;
+        }
+
+        .containerPlay {
+            background-image: url(../../../../../img/number.png);
+            background-size: cover;
+            background-repeat: repeat;
+        }
+
+        main {
+            background: none
+        }
+
+        .progressBar {
+            height: 100%;
+            background: rgb(47, 47, 47);
+            width: 100%;
+            border: 0rem;
+        }
+
+
+        .userImgLesson {
+            margin-bottom: 1rem;
+        }
+
+        .flexG {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .content {
+            border: 0rem;
+            padding: 0;
         }
     </style>
 </head>
@@ -433,7 +472,6 @@ include './../../../../../php/connectionBD.php';
                             <i class="modalWindowBack bi bi-arrow-left-square-fill fs-1"></i>
                         </button>
                     </div>
-
                     <div class="aim" style="flex-grow:2">
                         <div class="d-flex justify-content-center">
                             <div class="d-flex detalls">
@@ -441,8 +479,7 @@ include './../../../../../php/connectionBD.php';
                                     <img src="../../../../../img/childs/boy.png" class="img-fluid imgEresCapaz" alt="">
                                 </figure>
                                 <div class="objetivo">
-                                    <p class="m-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam veniam
-                                        inventore odio</p>
+                                    <p class="m-0">Escucha y selecciona el número correspondiente</p>
                                 </div>
                             </div>
                         </div>
@@ -460,31 +497,23 @@ include './../../../../../php/connectionBD.php';
                         <i class="bi bi-stopwatch-fill fs-2"></i>
                     </div>
                 </div>
-         
-
-
                 </script>
             </section>
             <main class="play">
                 <div class="row w-100 h-100">
                     <div class="col-1 ">
                         <div class="progress">
-                            <div class="porcentage"></div>
+                            <div class="progressBar" data-progress="100"></div>
                         </div>
                     </div>
                     <div class="col-11">
-                        <div class="containerPlayer align-items-center justify-content-center" data-next="2">
+                        <div class="containerPlayer align-items-center justify-content-center" data-num="3">
                             <div class="ButtonsNum">
-                                <div class="" class="one">
-                                    <button data-check="false">?</button>
-                                    <button data-check="false">?</button>
-                                    <button data-check="false">?</button>
-                                </div>
-                                <div class="two">
-                                    <button data-check="false">?</button>
-                                    <button data-check="false">?</button>
-                                    <button data-check="false">?</button>
-                                </div>
+                                <button>6</button>
+                                <button>9</button>
+                                <button>9</button>
+                                <button>6</button>
+                                <button>3</button>
                             </div>
                         </div><br>
                     </div>
@@ -494,10 +523,15 @@ include './../../../../../php/connectionBD.php';
                 <section class="logo">
                     <img src="../../../../../img/for/teaching.png" class="img-fluid" alt="">
                 </section>
-                <?php
-                include '../../../../../php/user/auxiliar.php';
-                echo getLessonData($_SESSION["id_user"], 1);
-                ?>
+                <div class="progressA mb-4">
+                    <div class="detallsProgressA">
+                        <h1 class="text-center">Progreso Actual</h1>
+                        <?php
+                        include '../../../../../php/user/auxiliar.php';
+                        echo getLessonData($_SESSION["id_user"], 1);
+                        ?>
+                    </div>
+                </div>
                 <button class="btnPlay">COMENZAR</button><br>
                 <a href="../../read.php" class="linkBack">Regresar</a>
                 <div class="guide OpenModalGuide" title="Guia">
@@ -511,28 +545,46 @@ include './../../../../../php/connectionBD.php';
                     <strong class="text-white">Cargando...</strong>
                 </div>
             </div>
+
+            <?php
+            include '../../../../include/user/modalWindow/back.php';
+            include '../../../../include/user/modalWindow/guide.php';
+            ?>
+
             <div class="containerResultsLesson" style="display:none">
-                <div class="modal-content content">
+                <div class="modal-content content p-3">
                     <div class="modal-header">
                         <div class="text-center w-100">
                             <h2 class="modal-title modalTitleResultsLesson fs-5" id="exampleModalLabel"><b>
-                                    !Felicidades has completado la leccion!</b></h2>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                Aut vel provident saepe maxime eius quas labore libero asperiores aspernatur.
+                                    ¡Has completado la lección! </b>
+                            </h2>
+                            <p class="m-0"> ¡De manera existosa!
                             </p>
+                            <img src="<?php $_SESSION["gender"] == "1" ?
+                                $gender = '../../../../../img/childs/boy.png' : $gender = '../../../../../img/childs/girl.png';
+                            echo $gender ?>
+                                " class="img-fluid userImgLesson" alt="">
+                            <div>
+                                <?php
+                                echo getLessonData($_SESSION["id_user"], 1);
+                                ?>
+                            </div>
                         </div>
                     </div>
-                    <div class="modal-footer d-flex justify-content-center gap-4 align-items-center">
-                        <form action="../../../../../php/user/unlockUpdateLesson.php" method="post"
+                    <div class="modal-footer d-flex justify-content-center gap-4 align-items-center m-0">
+                        <form action="../../../../../php/user/unlockUpdateLesson.php" class="p-0" method="post"
                             id="informationLesson">
-                            <div class="modal-body">
+                            <div class="modal-body d-none">
                                 <input type="text" name="statu" value="">
                                 <input type="text" name="id_leccion">
                                 <input type="text" name="gems" value="">
                                 <input type="text" name="failed">
                                 <input type="text" name="porcentage">
                                 <input type="text" name="time">
-                                <input type="submit" value="Siguiente">
+                            </div>
+                            <div class="flexG">
+                                <a href="">Jugar de nuevo</a>
+                                <input type="submit" value="Salir">
                             </div>
                         </form>
                     </div>
@@ -563,9 +615,152 @@ include './../../../../../php/connectionBD.php';
     include '../../../../include/user/lesson/offcanvasUser.php';
 
     ?>
+
+
+    <script>
+
+        //Variables
+        //Gamaficacion 
+        let $gem = document.querySelector(".gem > div > span"),
+            $time = document.querySelector(".time > div > span");
+        let $wrongSelection = 0;
+        let $containerPlayer = document.querySelector(".containerPlayer");
+        let $progressBar = document.querySelector(".progressBar")
+        let $containerResultsLesson = document.querySelector(".containerResultsLesson")
+        let $ButtonsNum = document.querySelectorAll(".ButtonsNum > button");
+        let acceptedPoints = 0;
+        function voiceExercise(number) {
+            let text = `Escucha y selecciona el número correspondiente, ${number}.`;
+            const speak = (text) =>
+                speechSynthesis.speak(new SpeechSynthesisUtterance(text));
+            return speak(text);
+        }
+        count = 0;
+        document.addEventListener("click", e => {
+            if (e.target.matches(".ButtonsNum > button")) {
+                count++;
+                if (count == 20) {
+                    $containerResultsLesson.removeAttribute("style");
+                    endOfLesson(acceptedPoints)
+                }
+                if (e.target.textContent == $containerPlayer.getAttribute("data-num")) {
+                    acceptedPoints++;
+                    $gem.innerHTML = `${1 + Number.parseInt($gem.textContent)}`;
+                    $progressBar.style.height = `${parseInt($progressBar.getAttribute("data-progress")) - 5}%`;
+                    $progressBar.setAttribute("data-progress", $progressBar.getAttribute("data-progress") - 5);
+                    randomNumber = Math.floor(Math.random() * 4);
+                    console.warn(randomNumber)
+                    defineNumber01("6", "9", "3", randomNumber)
+
+                } else {
+
+                }
+            }
+        });
+
+        let timer;
+        let seconds = 0, minutes = 0, hours = 0;
+
+        function updateDisplay() {
+            document.getElementById('time').innerText =
+                (hours < 10 ? '0' : '') + hours + ':' +
+                (minutes < 10 ? '0' : '') + minutes + ':' +
+                (seconds < 10 ? '0' : '') + seconds;
+        }
+
+        function start() {
+            if (!timer) {
+                timer = setInterval(() => {
+                    seconds++;
+                    if (seconds == 60) {
+                        seconds = 0;
+                        minutes++;
+                        if (minutes == 60) {
+                            minutes = 0;
+                            hours++;
+                        }
+                    }
+                    updateDisplay();
+                }, 1000);
+            }
+        }
+
+        async function endOfLesson(acceptedPoints) {
+            formule = Math.round((acceptedPoints / 20) * 100);
+            function top() {
+                clearInterval(timer);
+                timer = null;
+            }
+            console.info($time.outerText);
+            let $tiempo = $time.textContent.replace(/:/g,"");
+            console.info($tiempo)
+            await top();
+            await fetch("./prueba.php", {
+                method: 'POST',
+                body:
+                    JSON.stringify({
+                            id_lesson: 1,
+                            gems: parseInt($gem.textContent),
+                            porcentage: parseInt(Math.round((acceptedPoints / 20) * 100)), 
+                            time: 202020, 
+                    }),
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            }
+            )
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                })
+                .catch(error => {
+                    // Manejar errores aquí
+                    console.error('Error:', error);
+                });
+
+
+        }
+        function defineNumber01(similar01, similar02, mainNumber, c) {
+            let contador = 0;
+            let numeroR = [];
+            $containerPlayer.setAttribute("data-num", mainNumber)
+            for (let i = 0; i < $ButtonsNum.length; i++) {
+                numeroR.push(Math.trunc(Math.random() * 4))
+            }
+
+            for (let i = 0; i < $ButtonsNum.length; i++) {
+                contador += 1;
+                if (c === contador) {
+                    $ButtonsNum[i].innerHTML = `${mainNumber}`;
+                    continue;
+                }
+                else if (numeroR[i] % 2 == 0) {
+                    $ButtonsNum[i].innerHTML = `${similar01}`;
+                } else {
+                    $ButtonsNum[i].innerHTML = `${similar02}`;
+                }
+            }
+            let use = false
+            for (let i = 0; i < $ButtonsNum.length; i++) {
+                if ($ButtonsNum[i].textContent == $containerPlayer.getAttribute("data-num") || $ButtonsNum[i] == "") {
+                    use = true
+                    break;
+                } else {
+                    use = false
+                }
+            }
+            if (use === false) {
+                $ButtonsNum[0].innerHTML = mainNumber;
+            }
+            return true;
+        }
+
+
+    </script>
     <script>
         let $modalWindowBack = document.querySelector(".modalWindowBack");
         let $containerBack = document.querySelector(".containerBack");
+        let $backContent = document.querySelector(".containerBack > .content")
         let $body = document.querySelector("body");
         let $buttonOpenModalGuide = document.querySelector(".OpenModalGuide")
         let $containerGuideModal = document.querySelector(".containerGuide")
@@ -587,8 +782,7 @@ include './../../../../../php/connectionBD.php';
 
             if (e.target.matches(".modalWindowBack")) {
                 $containerBack.removeAttribute("style");
-                $containerBack.classList.add("openModal")
-
+                $backContent.classList.add("openModal")
             }
 
             if (e.target.matches(".CancelBack")) {
@@ -597,32 +791,7 @@ include './../../../../../php/connectionBD.php';
             if ($buttonPlay) {
                 $begin.classList.add("animationDeleteLabel");
                 setTimeout(() => {
-                    let timer;
-                    let seconds = 0, minutes = 0, hours = 0;
 
-                    function updateDisplay() {
-                        document.getElementById('time').innerText =
-                            (hours < 10 ? '0' : '') + hours + ':' +
-                            (minutes < 10 ? '0' : '') + minutes + ':' +
-                            (seconds < 10 ? '0' : '') + seconds;
-                    }
-
-                    function start() {
-                        if (!timer) {
-                            timer = setInterval(() => {
-                                seconds++;
-                                if (seconds == 60) {
-                                    seconds = 0;
-                                    minutes++;
-                                    if (minutes == 60) {
-                                        minutes = 0;
-                                        hours++;
-                                    }
-                                }
-                                updateDisplay();
-                            }, 1000);
-                        }
-                    }
                     start();
 
                     $containerPlay.removeChild($containerPlay.children[2])

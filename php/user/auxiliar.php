@@ -24,10 +24,7 @@ function getLessonData($idUser, $idlesson)
         }
 
         $html = <<<HTML
-     <div class="progressA mb-4">
-         <div class="detallsProgressA">
-             <h1 class="text-center">Progreso Actual</h1>
-             <div class="flexComun gap-3">
+              <div class="flexComun gap-3">
                  <div class="gem">
                      <div>
                          <span class="fs-3">{$arrayAssociative['diamantes_obtenidos']}</span>
@@ -46,10 +43,7 @@ function getLessonData($idUser, $idlesson)
                      </div>
                      <i class="bi-bar-chart fs-1"></i>
                  </div>
-             </div>
-             <div></div>
-         </div>
-     </div>
+             </div>        
      HTML;
 
         return $html;
