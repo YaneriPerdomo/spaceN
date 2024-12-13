@@ -3,7 +3,7 @@
         <div class="modal-content content">
             <div class="modal-header">
                 <div class="text-center w-100">
-                    <h2 class="modal-title modalTitleBack fs-5" id="exampleModalLabel"><b>¿Estás seguro de que quieres
+                    <h2 class="modal-title redModalTitle fs-5" id="exampleModalLabel"><b>¿Estás seguro de que quieres
                             salir de la lección?</b></h2>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         <a href="../../read.php">Si quiero salir</a>
@@ -12,7 +12,7 @@
                 </div>
             </div>
             <div class="modal-footer d-flex justify-content-center gap-4 align-items-center">
-                <button class="btn CancelBack ">No, seguir</button>
+                <button class="btn exitButtonBlue ">No, quiero seguir</button>
             </div>
         </div>
     </div>

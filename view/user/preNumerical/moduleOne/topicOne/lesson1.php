@@ -38,7 +38,10 @@ include './../../../../../php/connectionBD.php';
 
         .gem,
         .time,
-        .porcentage {
+        .porcentage,
+        .timeResult,
+        .porcentageResult,
+        .gemsResult {
             display: flex;
             flex-direction: row-reverse;
             gap: 0.5rem;
@@ -55,6 +58,11 @@ include './../../../../../php/connectionBD.php';
             background: none;
             border: none;
             color: #6f6f6f;
+
+        }
+
+        .Back>button {
+            background: none;
         }
 
         .bi-gem {
@@ -84,7 +92,10 @@ include './../../../../../php/connectionBD.php';
 
         .gem>div>span,
         .time>div>span,
-        .porcentage>div>span {
+        .porcentage>div>span,
+        .porcentageResult>div>span,
+        .gemsResult>div>span,
+        .timeResult>div>span {
             padding-right: 1rem;
         }
 
@@ -144,6 +155,8 @@ include './../../../../../php/connectionBD.php';
             background: green;
             align-items: center;
             background: rgb(0, 0, 0, 0.5);
+            border: solid 1px #e8d8ff;
+            border-radius: 1rem;
         }
 
 
@@ -395,6 +408,8 @@ include './../../../../../php/connectionBD.php';
             position: relative;
             border-radius: 1rem;
             border: solid 1px #e8d8ff;
+            border-radius: 1rem;
+            border: solid 1px #e8d8ff;
         }
 
         .ButtonsNum>div {
@@ -453,6 +468,112 @@ include './../../../../../php/connectionBD.php';
         .content {
             border: 0rem;
             padding: 0;
+        }
+
+
+
+
+
+        /*Modales  */
+
+        .purpleModalTitle {
+            background-color: #936ff4;
+            margin: 0rem;
+            padding: 1rem;
+            color: white;
+        }
+
+        .redModalTitle {
+            background: #ff4b4b;
+            padding: 1rem;
+            color: white;
+        }
+
+        .blackModalTitle {
+            background-color: rgb(47, 47, 47);
+            margin: 0rem;
+            padding: 1rem;
+            color: white;
+        }
+
+        .exitButtonB {
+            background: rgb(47, 47, 47);
+            color: white;
+            border: 0rem;
+        }
+
+        .exitButtonBlue {
+            background: #2e7bcc;
+            color: white;
+            border: 0rem;
+        }
+
+        .exitButtonBlue:hover {
+            transition: all 0.5s;
+            background: #1d5c9f !important;
+            color: white !important;
+        }
+
+        .exitButtonB:hover {
+            transition: all 0.5s;
+            color: white;
+            background: rgb(32, 32, 32);
+        }
+
+
+        .modal-body>p {
+            padding: 0.5rem;
+            margin: 0rem;
+        }
+
+        .containerResultsLesson {
+            transform: all 2s;
+            background: rgba(0, 0, 0, 0.97);
+        }
+
+        .messageResult {
+            padding: 0.5rem;
+            margin: 0rem;
+        }
+
+
+
+
+        .FromOneToThree {
+            position: absolute;
+            height: 100%;
+            top: 0;
+            width: 100%;
+            background: rgb(0, 0, 0, 0.5);
+            background-repeat: repeat;
+            background-image: none;
+            background-size: auto;
+            background-repeat: repeat;
+            background-image: none;
+            background-size: auto;
+            border-radius: 1rem;
+            border: solid 1px #e8d8ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+        }
+
+        .FromOneToThree>strong {
+            background: #7a5bd2;
+            padding: 2rem;
+            border-radius: 100%;
+            border-radius: 100%;
+            outline-color: #7a5bd2;
+            outline-offset: 0.2rem;
+            outline-style: solid;
+            outline-width: 5px;
+            color: white;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100px;
         }
     </style>
 </head>
@@ -519,6 +640,8 @@ include './../../../../../php/connectionBD.php';
                     </div>
                 </div>
             </main>
+
+
             <div class="begin welcome">
                 <section class="logo">
                     <img src="../../../../../img/for/teaching.png" class="img-fluid" alt="">
@@ -546,47 +669,60 @@ include './../../../../../php/connectionBD.php';
                 </div>
             </div>
 
+            <div class="FromOneToThree" style="display:none">
+                <strong>
+                    <h2 class="m-0 fs-2">4</h2>
+                </strong>
+            </div>
             <?php
             include '../../../../include/user/modalWindow/back.php';
             include '../../../../include/user/modalWindow/guide.php';
             ?>
 
             <div class="containerResultsLesson" style="display:none">
-                <div class="modal-content content p-3">
+                <div class="modal-content content ">
                     <div class="modal-header">
                         <div class="text-center w-100">
-                            <h2 class="modal-title modalTitleResultsLesson fs-5" id="exampleModalLabel"><b>
+                            <h2 class="modal-title purpleModalTitle fs-5" id="exampleModalLabel"><b>
                                     ¡Has completado la lección! </b>
                             </h2>
-                            <p class="m-0"> ¡De manera existosa!
+                            <p class="m-0 messageResult"> ¡De manera existosa!
                             </p>
                             <img src="<?php $_SESSION["gender"] == "1" ?
                                 $gender = '../../../../../img/childs/boy.png' : $gender = '../../../../../img/childs/girl.png';
                             echo $gender ?>
                                 " class="img-fluid userImgLesson" alt="">
                             <div>
-                                <?php
-                                echo getLessonData($_SESSION["id_user"], 1);
-                                ?>
+                                <div class="flexComun gap-3">
+                                    <div class="gemsResult">
+                                        <div>
+                                            <span class="fs-3"></span>
+                                        </div>
+                                        <i class="bi bi-gem fs-1"></i>
+                                    </div>
+                                    <div class="timeResult">
+                                        <div>
+                                            <span class="fs-3"></span>
+                                        </div>
+                                        <i class="bi-stopwatch-fill fs-1"></i>
+                                    </div>
+                                    <div class="porcentageResult">
+                                        <div>
+                                            <span class="fs-3"></span>
+                                        </div>
+                                        <i class="bi-bar-chart fs-1"></i>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer d-flex justify-content-center gap-4 align-items-center m-0">
-                        <form action="../../../../../php/user/unlockUpdateLesson.php" class="p-0" method="post"
-                            id="informationLesson">
-                            <div class="modal-body d-none">
-                                <input type="text" name="statu" value="">
-                                <input type="text" name="id_leccion">
-                                <input type="text" name="gems" value="">
-                                <input type="text" name="failed">
-                                <input type="text" name="porcentage">
-                                <input type="text" name="time">
-                            </div>
-                            <div class="flexG">
-                                <a href="">Jugar de nuevo</a>
-                                <input type="submit" value="Salir">
-                            </div>
-                        </form>
+
+                        <div class="flexG">
+                            <button onclick="recargarPagina()">Jugar de nuevo</button>
+                            <button><a href="../../read.php">Salir</a></button>
+                        </div>
+
                     </div>
 
                 </div>
@@ -594,14 +730,10 @@ include './../../../../../php/connectionBD.php';
         </div>
     </main>
     <script>
-
         // Obtener parámetros de la URL
         const urlParams = new URLSearchParams(window.location.search);
         const id = urlParams.get('statu');
 
-
-        let $statu = document.querySelector('[name="statu"]');
-        $statu.value = id;
 
     </script>
 
@@ -618,7 +750,6 @@ include './../../../../../php/connectionBD.php';
 
 
     <script>
-
         //Variables
         //Gamaficacion 
         let $gem = document.querySelector(".gem > div > span"),
@@ -627,10 +758,38 @@ include './../../../../../php/connectionBD.php';
         let $containerPlayer = document.querySelector(".containerPlayer");
         let $progressBar = document.querySelector(".progressBar")
         let $containerResultsLesson = document.querySelector(".containerResultsLesson")
+        let $contentResultsLesson = document.querySelector(".containerResultsLesson > .content")
         let $ButtonsNum = document.querySelectorAll(".ButtonsNum > button");
-        let acceptedPoints = 0;
+        let acceptedPoints = 1;
+        const searchParams = new URLSearchParams(window.location.search);
+        let failed = 0;
+        let $strongFromOneToThree = document.querySelector(".FromOneToThree > strong > h2");
+        let $FromOneToThree = document.querySelector(".FromOneToThree")
+
+        function FromOneToThree() {
+            $FromOneToThree.removeAttribute("style")
+            let count = 3;
+            $strongFromOneToThree.innerHTML = 3;
+            voiceExercise(3);
+            let countdown = setInterval(() => {
+                count--;
+                $strongFromOneToThree.textContent = count;
+                if (count === 0) {
+                    clearInterval(countdown);
+                } setTimeout(() => {
+                    $FromOneToThree.style.display = "none";
+                }, 3000);
+            }, 1000);
+        }
+
+        //Ventana modal resultado 
+        let $gemsResult = document.querySelector(".gemsResult > div > span");
+        let $porcentageResult = document.querySelector(".porcentageResult > div > span");
+        let $timeResult = document.querySelector(".timeResult > div > span");
+        let $messageResult = document.querySelector(".messageResult")
+
         function voiceExercise(number) {
-            let text = `Escucha y selecciona el número correspondiente, ${number}.`;
+            let text = `Escuche y seleccione el número, ${number}.`;
             const speak = (text) =>
                 speechSynthesis.speak(new SpeechSynthesisUtterance(text));
             return speak(text);
@@ -639,27 +798,42 @@ include './../../../../../php/connectionBD.php';
         document.addEventListener("click", e => {
             if (e.target.matches(".ButtonsNum > button")) {
                 count++;
-                if (count == 20) {
-                    $containerResultsLesson.removeAttribute("style");
-                    endOfLesson(acceptedPoints)
-                }
+                $progressBar.style.height = `${parseInt($progressBar.getAttribute("data-progress")) - 5}%`;
+                $progressBar.setAttribute("data-progress", $progressBar.getAttribute("data-progress") - 5);
+
                 if (e.target.textContent == $containerPlayer.getAttribute("data-num")) {
                     acceptedPoints++;
+                    console.info(acceptedPoints)
                     $gem.innerHTML = `${1 + Number.parseInt($gem.textContent)}`;
-                    $progressBar.style.height = `${parseInt($progressBar.getAttribute("data-progress")) - 5}%`;
-                    $progressBar.setAttribute("data-progress", $progressBar.getAttribute("data-progress") - 5);
+
                     randomNumber = Math.floor(Math.random() * 4);
                     console.warn(randomNumber)
                     defineNumber01("6", "9", "3", randomNumber)
 
                 } else {
-
+                    failed++;
+                }
+                if (count === 20) {
+                    if (acceptedPoints == 0) {
+                        $messageResult.innerHTML = "¡Anímate! Todavía tienes oportunidades para mejorar.";
+                    } else if (acceptedPoints < 5) {
+                        $messageResult.innerHTML = "Has demostrado lo mejor de ti. Con un poco más de esfuerzo, alcanzarás tus metas.";
+                    } else if (acceptedPoints < 10) {
+                        $messageResult.innerHTML = "¡Has demostrado un gran potencial, sigue asi!";
+                    } else if (acceptedPoints < 15) {
+                        $messageResult.innerHTML = "¡Enhorabuena! Tu dedicación y esfuerzo han dado sus frutos. <br>  Sigue así y alcanzarás grandes logros. "
+                    } else if (acceptedPoints < 21) {
+                        $messageResult.innerHTML = "¡Felicidades! Has completado la lección con un 100% de aciertos. ¡Excelente trabajo!"
+                    }
+                    return endOfLesson()
                 }
             }
         });
 
         let timer;
-        let seconds = 0, minutes = 0, hours = 0;
+        let seconds = 0,
+            minutes = 0,
+            hours = 0;
 
         function updateDisplay() {
             document.getElementById('time').innerText =
@@ -685,41 +859,50 @@ include './../../../../../php/connectionBD.php';
             }
         }
 
-        async function endOfLesson(acceptedPoints) {
-            formule = Math.round((acceptedPoints / 20) * 100);
+        async function endOfLesson() {
             function top() {
                 clearInterval(timer);
                 timer = null;
             }
-            console.info($time.outerText);
-            let $tiempo = $time.textContent.replace(/:/g,"");
-            console.info($tiempo)
             await top();
-            await fetch("./prueba.php", {
+            $gemsResult.innerHTML = $gem.textContent;
+            $timeResult.innerHTML = $time.textContent;
+
+            let resulFormuleP = parseInt(Math.round((acceptedPoints / 20) * 100));
+
+            $porcentageResult.innerHTML = resulFormuleP + "%";
+            $containerResultsLesson.removeAttribute("style");
+            $contentResultsLesson.classList.add("backInLeft")
+            await fetch("./../../../../../php/user/unlockUpdateLesson.php", {
                 method: 'POST',
-                body:
-                    JSON.stringify({
-                            id_lesson: 1,
-                            gems: parseInt($gem.textContent),
-                            porcentage: parseInt(Math.round((acceptedPoints / 20) * 100)), 
-                            time: 202020, 
-                    }),
+                body: new URLSearchParams({
+                    typeAccess : "Pre_Numerico",
+                    statu: searchParams.get("statu"),
+                    id_lesson: 1,
+                    failed: failed,
+                    gems: parseInt($gem.textContent),
+                    porcentage: resulFormuleP,
+                    time: $time.textContent,
+                }),
                 headers: {
-                    "Content-Type": "application/json",
-                },
-            }
-            )
-                .then(response => response.json())
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.text();
+                })
                 .then(data => {
                     console.log(data);
                 })
                 .catch(error => {
-                    // Manejar errores aquí
                     console.error('Error:', error);
                 });
 
-
         }
+
         function defineNumber01(similar01, similar02, mainNumber, c) {
             let contador = 0;
             let numeroR = [];
@@ -733,8 +916,7 @@ include './../../../../../php/connectionBD.php';
                 if (c === contador) {
                     $ButtonsNum[i].innerHTML = `${mainNumber}`;
                     continue;
-                }
-                else if (numeroR[i] % 2 == 0) {
+                } else if (numeroR[i] % 2 == 0) {
                     $ButtonsNum[i].innerHTML = `${similar01}`;
                 } else {
                     $ButtonsNum[i].innerHTML = `${similar02}`;
@@ -754,8 +936,6 @@ include './../../../../../php/connectionBD.php';
             }
             return true;
         }
-
-
     </script>
     <script>
         let $modalWindowBack = document.querySelector(".modalWindowBack");
@@ -767,6 +947,10 @@ include './../../../../../php/connectionBD.php';
         let $begin = document.querySelector(".begin");
         let $GuidaContent = document.querySelector(".containerGuide > .content")
         let $containerPlay = document.querySelector(".containerPlay");
+        function recargarPagina() {
+            window.location.reload()
+        }
+       
 
         setTimeout(() => {
             $begin.removeChild($begin.children[7]);
@@ -782,20 +966,29 @@ include './../../../../../php/connectionBD.php';
 
             if (e.target.matches(".modalWindowBack")) {
                 $containerBack.removeAttribute("style");
-                $backContent.classList.add("openModal")
+                $backContent.classList.add("backInLeft")
             }
 
-            if (e.target.matches(".CancelBack")) {
+            if (e.target.matches(".exitButtonBlue")) { //Cerrar ventana modal de irse de la leccion
                 $containerBack.style.display = "none";
+            }
+
+            if (e.target.matches(".exitButtonB")) { //Cerrar ventana modal de la guia de la leccion
+                $containerGuideModal.style.display = "none";
             }
             if ($buttonPlay) {
                 $begin.classList.add("animationDeleteLabel");
                 setTimeout(() => {
-
-                    start();
-
                     $containerPlay.removeChild($containerPlay.children[2])
                 }, 1000);
+                setTimeout(() => {
+                    FromOneToThree()
+                    setTimeout(() => {
+                        start();
+                        
+                    }, 3000);
+                }, 800);
+
             }
 
         })

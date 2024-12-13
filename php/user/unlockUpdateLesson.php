@@ -5,13 +5,15 @@ if (isset($statu)) {
     echo "No se ha reconocido el estado de la lección";
     exit();
 }
+
 $idUser = $_SESSION["id_user"];
-$idLesson = $_POST["id_leccion"];
+$idLesson = $_POST["id_lesson"];
 $statu = $_POST["statu"];
 $porcentaje = $_POST["porcentage"];
 $gems = $_POST["gems"];
 $time = $_POST["time"];
 $failed = $_POST["failed"];
+
 
 try {
     
