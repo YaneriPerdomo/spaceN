@@ -29,19 +29,19 @@ function getLessonData($idUser, $idlesson)
                      <div>
                          <span class="fs-3">{$arrayAssociative['diamantes_obtenidos']}</span>
                      </div>
-                     <i class="bi bi-gem fs-1"></i>
+                     <i class="bi bi-gem fs-2"></i>
                  </div>
                  <div class="time">
                      <div>
                          <span class="fs-3">{$arrayAssociative['tiempo']}</span>
                      </div>
-                     <i class="bi-stopwatch-fill fs-1"></i>
+                     <i class="bi-stopwatch-fill fs-2"></i>
                  </div>
                  <div class="porcentage">
                      <div>
                          <span class="fs-3">{$arrayAssociative['porcentaje']}%</span>
                      </div>
-                     <i class="bi-bar-chart fs-1"></i>
+                     <i class="bi-bar-chart fs-2"></i>
                  </div>
              </div>        
      HTML;
