@@ -12,6 +12,13 @@
     display: block;
 }
 
+.contentTableC {
+    display: flex;
+    padding: 0.5rem;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .dataTable thead {
     float: left;
 }

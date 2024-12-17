@@ -26,7 +26,7 @@ include './../../../php/validations/authorizedChild.php';
     <link rel="stylesheet" href="../../../css/admin/addAndModifyChild.css">
     <link rel="stylesheet" href="../../../css/admin/dashboard.css">
     <link rel="stylesheet" href="../../../css/components/row.css">
-
+    <link rel="stylesheet" href="../../../css/bootstrap/bootstrapMin.css">
 
     <style>
         .lessons>div a {

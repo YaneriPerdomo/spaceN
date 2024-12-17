@@ -1,11 +1,25 @@
-import {$gem, $time, $wrongSelection, $containerPlay,$containerResultsLesson, 
-    $contentResultsLesson, $ButtonsNum, acceptedPoints, searchParams, failed, $strongFromOneToThree, $FromOneToThree, $endOfLessonMp3, $incorrectMp3, random, $correctMp3, $beginMp3
-    ,$gemsResult, $porcentageResult, $timeResult, $messageResult, $modalWindowBack, $containerBack, $backContent,
-    $body, $buttonOpenModalGuide, $containerGuideModal, $begin, $GuidaContent, $containerPlayer, 
-    $clickMp3, count, timer, seconds, minutes, hours, urlParams, id , FromOneToThree, 
-    voiceExercise, defineNumber01, updateDisplay, start
+import {$gem, $time, $containerPlay,$containerResultsLesson, 
+    $contentResultsLesson, $ButtonsNum,searchParams,   $endOfLessonMp3, 
+    $incorrectMp3, $correctMp3, $beginMp3 ,$gemsResult, $porcentageResult, $timeResult, $messageResult,  $containerBack, $backContent,
+    $containerGuideModal, $begin, $GuidaContent, $containerPlayer,  $clickMp3,   FromOneToThree, 
+    voiceExercise, hiddenKeyNumber, 
+    $showNumberStrong,   
+ } from "../../../helpers/lessons.js";
 
- } from "../../../helpers/lessons";
+ let count = 0;
+ let randomNumber = 0;
+ let acceptedPoints = 0;
+ let failed = 0;
+
+
+     
+ let timer;
+ let seconds = 0,
+    minutes = 0,
+    hours = 0;
+
+
+  
 
 document.addEventListener("mousemove", (e) => {
     if(e.target.matches(".ButtonsNum > button") ){
@@ -13,17 +27,69 @@ document.addEventListener("mousemove", (e) => {
     }
 })
 
-(function deletePantallaBlack ( ) {
     setTimeout(() => {
     $begin.removeChild($begin.children[7]);
 }, 2500);
-})();
 
-document.addEventListener("click", e => {
+function randomNumber20(){
+    let randomNumber20 = Math.floor(Math.random() * 15);
+    let randomNumber4 = Math.floor(Math.random() * 4);
+    switch (randomNumber20) {
+        case 0:
+            hiddenKeyNumber("6", "9", "3", randomNumber4)
+        break;
+        case 1:
+            hiddenKeyNumber("3", "6", "2", randomNumber4)
+        break;
+        case 2:
+             hiddenKeyNumber("21", "12", "22", randomNumber4)
+        break;
+        case 3:
+              hiddenKeyNumber("30", "3", "20", randomNumber4)
+        break;
+        case 4:
+              hiddenKeyNumber("8", "0", "9", randomNumber4)
+        break;
+        case 5:
+             hiddenKeyNumber("7", "2", "1", randomNumber4)
+        break;
+        case 6:
+             hiddenKeyNumber("3", "2", "1", randomNumber4)
+        break;
+        case 7:
+             hiddenKeyNumber("0", "0", "1", randomNumber4)
+        break;
+        case 8:
+             hiddenKeyNumber("10", "1", "0", randomNumber4)
+        break;
+        case 10:
+             hiddenKeyNumber("22", "77", "2", randomNumber4)
+        break;
+        case 11:
+             hiddenKeyNumber("11", "22", "2", randomNumber4)
+        break;
+        case 12:
+             hiddenKeyNumber("4", "5", "47", randomNumber4)
+        break;
+        case 13:
+             hiddenKeyNumber("3", "2", "32", randomNumber4)
+        break;
+        case 14:
+             hiddenKeyNumber("8", "7", "9", randomNumber4)
+        break;
+        case 15:
+             hiddenKeyNumber("13", "31", "3", randomNumber4)
+        break;
+    
+        default:
+            break;
+    }
+}
+
+document.addEventListener("click",async e => {
 
     if (e.target.matches(".ButtonsNum > button")) {
         count++;
-        randomNumber = Math.floor(Math.random() * 4);
         if (e.target.textContent == $containerPlayer.getAttribute("data-num")) {
             acceptedPoints++;
             $correctMp3.play();
@@ -32,15 +98,20 @@ document.addEventListener("click", e => {
             $ButtonsNum.forEach(element => {
                 element.disabled = true;
             });
+            $showNumberStrong.classList.add("correctShownNumber");
+            $showNumberStrong.innerHTML = e.target.textContent;
             setTimeout(() => {
                 $ButtonsNum.forEach(element => {
                     element.removeAttribute("disabled")
                 });
-                defineNumber01("6", "9", "3", randomNumber)
+                $showNumberStrong.innerHTML = "?";
+                $showNumberStrong.classList.remove("correctShownNumber")
+                randomNumber20();
                 e.target.classList.remove("correct")
             }, 2000);
         } else {
             failed++;
+            $showNumberStrong.classList.add("incorrectShowNumber");
             e.target.classList.add("incorrect");
             $incorrectMp3.play()
             $ButtonsNum.forEach(element => {
@@ -56,7 +127,8 @@ document.addEventListener("click", e => {
                 $ButtonsNum.forEach(element => {
                     element.removeAttribute("disabled")
                 });
-                defineNumber01("6", "9", "3", randomNumber)
+                randomNumber20();
+                $showNumberStrong.classList.remove("incorrectShowNumber");
                 e.target.classList.remove("incorrect")
             }, 2000);
         }
@@ -94,6 +166,35 @@ document.addEventListener("click", e => {
         $backContent.classList.add("backInLeft")
     }
 
+    if(e.target.matches(".showTableC")){
+       await fetch("./../../../../../php/user/showTableC.php", {
+            method: 'POST',
+            body: new URLSearchParams({
+                typeAccess: 1, 
+            }),
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.text();
+            })
+            .then(data => {
+                let $resultTableC = document.querySelector(".resultTableC");
+                 let $footerResult = document.querySelector(".footerResult");
+                 let $buttonsEnd = document.querySelector(".buttonsEnd");
+                 $buttonsEnd.removeAttribute("style")
+                 $footerResult.removeChild($footerResult.children[0]);
+                 $resultTableC.innerHTML = data;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
+
     if (e.target.matches(".exitButtonBlue")) { //Cerrar ventana modal de irse de la leccion
         $containerBack.style.display = "none";
     }
@@ -109,9 +210,11 @@ document.addEventListener("click", e => {
             $containerPlay.removeChild($containerPlay.children[2])
         }, 1000);
         setTimeout(() => {
-            FromOneToThree()
+            FromOneToThree();
+            voiceExercise("Pendiente y selecciona el número que verás en el recuadro")
             setTimeout(() => {
                 start();
+                randomNumber20();
                 $containerPlay.removeChild($containerPlay.children[2])
             }, 3000);
         }, 1000);
@@ -165,3 +268,28 @@ async function endOfLesson() {
 
 }
 
+
+function updateDisplay() {
+    document.getElementById('time').innerText =
+        (hours < 10 ? '0' : '') + hours + ':' +
+        (minutes < 10 ? '0' : '') + minutes + ':' +
+        (seconds < 10 ? '0' : '') + seconds;
+}
+
+
+  function start() {
+    if (!timer) {
+        timer = setInterval(() => {
+            seconds++;
+            if (seconds == 60) {
+                seconds = 0;
+                minutes++;
+                if (minutes == 60) {
+                    minutes = 0;
+                    hours++;
+                }
+            }
+            updateDisplay();
+        }, 1000);
+    }
+}

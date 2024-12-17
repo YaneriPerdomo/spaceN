@@ -1,61 +1,61 @@
 .activityContainer {
-    display: flex;
-    align-items: center;
-    margin: 0.5rem 1rem;
-    gap: 3rem;
+  display: flex;
+  align-items: center;
+  margin: 0.5rem 1rem;
+  gap: 3rem;
 }
 
 .progress {
-    flex-grow: 2;
+  flex-grow: 2;
 }
 
 .time,
 .timeResult {
-    border-radius: 0.5rem;
-    outline-color: #214b77;
-    outline-offset: 0;
-    outline-style: solid;
-    outline-width: 3px;
-    color: white;
-    border: 0rem;
-    min-width: 40px !important;
-    min-height: 40px;
-    color: rgb(255, 255, 255);
-    font-weight: bold;
-    font-size: clamp(1rem, 3vw, 1.5rem);
-    filter: drop-shadow(2px 3px #222);
+  border-radius: 0.5rem;
+  outline-color: #214b77;
+  outline-offset: 0;
+  outline-style: solid;
+  outline-width: 3px;
+  color: white;
+  border: 0rem;
+  min-width: 40px !important;
+  min-height: 40px;
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  filter: drop-shadow(2px 3px #222);
 }
 
 .porcentage,
 .porcentageResult {
-    outline-color: #cc673b;
-    outline-offset: 0;
-    outline-style: solid;
-    outline-width: 3px;
-    color: white;
-    border: 0rem;
-    min-width: 40px !important;
-    min-height: 40px;
-    color: rgb(255, 255, 255);
-    font-weight: bold;
-    font-size: clamp(1rem, 3vw, 1.5rem);
-    filter: drop-shadow(2px 3px #222);
+  outline-color: #cc673b;
+  outline-offset: 0;
+  outline-style: solid;
+  outline-width: 3px;
+  color: white;
+  border: 0rem;
+  min-width: 40px !important;
+  min-height: 40px;
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  filter: drop-shadow(2px 3px #222);
 }
 
 .gem,
 .gemsResult {
-    outline-color: #7658ca;
-    outline-offset: 0;
-    outline-style: solid;
-    outline-width: 3px;
-    color: white;
-    border: 0rem;
-    min-width: 40px !important;
-    min-height: 40px;
-    color: rgb(255, 255, 255);
-    font-weight: bold;
-    font-size: clamp(1rem, 3vw, 1.5rem);
-    filter: drop-shadow(2px 3px #222);
+  outline-color: #7658ca;
+  outline-offset: 0;
+  outline-style: solid;
+  outline-width: 3px;
+  color: white;
+  border: 0rem;
+  min-width: 40px !important;
+  min-height: 40px;
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  filter: drop-shadow(2px 3px #222);
 }
 
 .gem,
@@ -64,640 +64,696 @@
 .timeResult,
 .porcentageResult,
 .gemsResult {
-    display: flex;
-    flex-direction: row-reverse;
-    gap: 0.5rem;
-    align-items: center;
-    background: rgb(47, 47, 47);
-    color: white;
-    border-radius: 0.5rem;
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 0.5rem;
+  align-items: center;
+  background: rgb(47, 47, 47);
+  color: white;
+  border-radius: 0.5rem;
 }
-
-
 
 .modalWindowBack {
-    background: none;
-    border: none;
-    color: #3f8ddf;
+  background: none;
+  border: none;
+  color: #3f8a3d;
 }
 
-.Back>button {
-    background: none;
+.Back > button {
+  background: none;
 }
 
 .bi-gem {
-    background: rgb(23 154 215);
-    background: var(--colorHF);
-    padding: 0.5rem;
-    border-radius: 0.5rem;
-    color: white;
+  background: rgb(23 154 215);
+  background: var(--colorHF);
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  color: white;
 }
 
 .bi-bar-chart {
-    background: rgb(23 154 215);
-    background: #ff7d45;
-    padding: 0.5rem;
-    border-radius: 0.5rem;
-    color: white;
+  background: rgb(23 154 215);
+  background: #ff7d45;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  color: white;
 }
 
 .bi-stopwatch-fill {
-    background: rgb(23 154 215);
-    background: var(--colorHF);
-    background: #3f8ddf;
-    padding: 0.5rem;
-    border-radius: 0.5rem;
-    color: white;
+  background: rgb(23 154 215);
+  background: var(--colorHF);
+  background: #3f8ddf;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  color: white;
 }
 
-.gem>div>span,
-.time>div>span,
-.porcentage>div>span,
-.porcentageResult>div>span,
-.gemsResult>div>span,
-.timeResult>div>span {
-    padding-right: 1rem;
+.gem > div > span,
+.time > div > span,
+.porcentage > div > span,
+.porcentageResult > div > span,
+.gemsResult > div > span,
+.timeResult > div > span {
+  padding-right: 1rem;
 }
 
 .progress {
-    width: 1rem;
-    height: 80%;
-    background: #9571f9;
-    transition: all 0.5s;
-    position: relative;
-    background-image: linear-gradient(45deg, rgb(121, 198, 12) 30%, rgb(107 175 11) 30% 50%, rgb(121, 198, 12) 50% 60%, rgb(107 175 11) 60% 65%, rgb(121, 198, 12) 55% 100%);
-    background: var(--colorHF)
+  width: 1rem;
+  height: 80%;
+  background: #9571f9;
+  transition: all 0.5s;
+  position: relative;
+  background-image: linear-gradient(
+    45deg,
+    rgb(121, 198, 12) 30%,
+    rgb(107 175 11) 30% 50%,
+    rgb(121, 198, 12) 50% 60%,
+    rgb(107 175 11) 60% 65%,
+    rgb(121, 198, 12) 55% 100%
+  );
+  background: var(--colorHF);
 }
 
-
 .row {
-    padding: 0rem 1rem;
+  padding: 0rem 1rem;
 }
 
 body {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100vh;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
 
-    background-size: contain;
-    background-repeat: repeat;
-    font-family: "Roboto", sans-serif;
-    font-weight: 100;
-    font-style: normal;
-    font-weight: 400;
+  background-size: contain;
+  background-repeat: repeat;
+  font-family: "Roboto", sans-serif;
+  font-weight: 100;
+  font-style: normal;
+  font-weight: 400;
 }
 
 main {
-    flex-grow: 2;
+  flex-grow: 2;
 }
 
-main>div {
-    max-width: 1000px;
-    min-width: 100px;
-    max-height: 700px;
-    min-height: 600px;
+main > div {
+  max-width: 1000px;
+  min-width: 100px;
+  max-height: 700px;
+  min-height: 600px;
 }
 
 .col-11 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .containerBack,
 .containerGuide,
 .containerResultsLesson {
-    width: 100%;
-    height: 100%;
-    top: 0;
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    background: green;
-    align-items: center;
-    background: rgb(0, 0, 0, 0.5);
-    border: solid 1px #e8d8ff;
-    border-radius: 1rem;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  background: green;
+  align-items: center;
+  background: rgb(0, 0, 0, 0.5);
+  border: solid 1px #e8d8ff;
+  border-radius: 1rem;
 }
 
-
 .content {
-    max-width: 500px;
-    background: white;
-    min-width: 200px;
-    border-radius: 1rem !important;
+  max-width: 500px;
+  background: white;
+  min-width: 200px;
+  border-radius: 1rem !important;
 }
 
 .modalTitleBack {
-    background-color: #ff4b4b;
-    margin: 0rem;
-    padding: 1rem;
-    color: white;
+  background-color: #ff4b4b;
+  margin: 0rem;
+  padding: 1rem;
+  color: white;
 }
 
-
 .modalTitleGuide {
-    background-color: #ff7d45;
-    margin: 0rem;
-    padding: 1rem;
-    color: white;
+  background-color: #ff7d45;
+  margin: 0rem;
+  padding: 1rem;
+  color: white;
 }
 
 .openModal {
-    animation: openModal 1s;
+  animation: openModal 1s;
 }
 
 @keyframes openModal {
-    0% {
-        transform: translateY(-15%);
-        opacity: 0;
-        transition: opacity 0.5s ease-in-out;
+  0% {
+    transform: translateY(-15%);
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+  }
 
-    }
-
-    100% {
-        transform: translateY(0%);
-        opacity: 1;
-    }
+  100% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
 }
 
-.Back>button {
-    border: none;
+.Back > button {
+  border: none;
 }
 
 .imgEresCapaz {
-    max-width: 90px;
+  max-width: 90px;
 }
 
 .objetivo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .YesBack {
-    background: #ff4b4b;
-    color: white;
-    border: 0rem;
+  background: #ff4b4b;
+  color: white;
+  border: 0rem;
 }
 
-.containerBack>div>div>div>p {
-    padding: 0.5rem;
-    margin: 0rem;
+.containerBack > div > div > div > p {
+  padding: 0.5rem;
+  margin: 0rem;
 }
-
 
 .modal-footer {
-    padding: 1rem;
+  padding: 1rem;
 }
 
 .CancelBack {
-    border: 0rem;
-    color: white;
-    background-color: #3f8ddf !important;
+  border: 0rem;
+  color: white;
+  background-color: #3f8ddf !important;
 }
 
 .CancelBack:hover {
-    transition: all 0.5s;
-    background: #1d5c9f !important;
-    color: white !important;
-
+  transition: all 0.5s;
+  background: #1d5c9f !important;
+  color: white !important;
 }
 
 .detalls {
-    background: rgb(47, 47, 47);
-    color: white;
-    border-radius: 0.5rem;
-    width: clamp(20px, 100%, 1000px);
+  background: rgb(47, 47, 47);
+  color: white;
+  border-radius: 0.5rem;
+  width: clamp(20px, 100%, 1000px);
 }
 
 .begin {
-    position: absolute;
-    height: 100%;
-    top: 0;
-    width: 100%;
-    background: white;
-    border-radius: 1rem;
-    border: solid 1px #e8d8ff;
+  position: absolute;
+  height: 100%;
+  top: 0;
+  width: 100%;
+  background: white;
+  border-radius: 1rem;
+  border: solid 1px #e8d8ff;
 }
 
 .begin {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-image: url(../../../../../../img/background-main.png);
-    background-size: contain;
-    background-repeat: repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url(../../img/background-main.png);
+  background-size: contain;
+  background-repeat: repeat;
 }
 
 .flexComun {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-
 .imgWelcome {
-    width: 40px;
+  width: 40px;
 }
 
 .guide {
-    position: absolute;
-    top: 1rem;
-    left: 1rem;
-    background: rgb(47, 47, 47);
-    padding: 0.3rem;
-    border-radius: 100%;
-    border-radius: 0.5rem;
-    outline-color: rgb(47, 47, 47);
-    outline-offset: 0.2rem;
-    outline-style: solid;
-    outline-width: 5px;
-    color: white;
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background: rgb(47, 47, 47);
+  padding: 0.3rem;
+  border-radius: 100%;
+  border-radius: 0.5rem;
+  outline-color: rgb(47, 47, 47);
+  outline-offset: 0.2rem;
+  outline-style: solid;
+  outline-width: 5px;
+  color: white;
 }
 
-.guide>button {
-    background: none;
-    border: none;
-    color: white;
+.guide > button {
+  background: none;
+  border: none;
+  color: white;
 }
 
 h1 {
-    color: white;
-    font-weight: bold;
+  color: white;
+  font-weight: bold;
 }
 
 .btnPlay {
-    cursor: pointer;
-    background: white;
+  cursor: pointer;
+  background: white;
 }
 
 .clouds {
-    position: absolute;
-    bottom: 0;
+  position: absolute;
+  bottom: 0;
 }
 
 .linkBack {
-    text-decoration: none;
-    cursor: pointer;
+  text-decoration: none;
+  cursor: pointer;
 }
 
-
 .animationDeleteLabel {
-    transition: animation 0.5s;
-    animation: deleleLabel 1.5s;
+  transition: animation 0.5s;
+  animation: deleleLabel 1.5s;
 }
 
 @keyframes deleleLabel {
-    0% {
-        opacity: 1;
-        transform: scale(1);
-    }
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
 
-    100% {
-        opacity: 0;
-        transform: scale(0);
-    }
+  100% {
+    opacity: 0;
+    transform: scale(0);
+  }
 }
 
 @keyframes endOfLessonAnimation {
-    0% {
-        opacity: 0;
-    }
+  0% {
+    opacity: 0;
+  }
 
-    5% {
-        transform: scale(0.1);
+  5% {
+    transform: scale(0.1);
+  }
 
-    }
+  50% {
+    opacity: 1;
+    transform: translateX(0);
+  }
 
-    50% {
-        opacity: 1;
-        transform: translateX(0);
-    }
-
-    100% {
-        transform: scale(1);
-    }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .endOfLessonAnimation {
-    animation: endOfLessonAnimation 3s ease-in-out;
+  animation: endOfLessonAnimation 3s ease-in-out;
 }
 
 @keyframes backInLeft {
-    0% {
-        opacity: 0;
-    }
+  0% {
+    opacity: 0;
+  }
 
-    5% {
-        transform: scale(0.1);
+  5% {
+    transform: scale(0.1);
+  }
 
-    }
+  50% {
+    opacity: 1;
+    transform: translateX(0);
+  }
 
-    50% {
-        opacity: 1;
-        transform: translateX(0);
-    }
-
-    100% {
-        transform: perspective(50);
-        transform: scale(1);
-    }
+  100% {
+    transform: perspective(50);
+    transform: scale(1);
+  }
 }
 
 .backInLeft {
-    animation: backInLeft 1s ease-in-out;
+  animation: backInLeft 1s ease-in-out;
 }
 
 /*Juego */
 
-.ButtonsNum>button {
-    background: #3f8ddf;
-    padding: 0.5rem 1rem;
-    border-radius: 100%;
-    border-radius: 0.5rem;
-    outline-color: #214b77;
-    outline-offset: 0;
-    outline-style: solid;
-    outline-width: 3px;
-    color: white;
-    border: 0rem;
-    min-width: 40px !important;
-    min-height: 40px;
-    color: rgb(255, 255, 255);
-    font-weight: bold;
-    font-size: clamp(1rem, 3vw, 1.5rem);
-    filter: drop-shadow(2px 3px #222);
+.ButtonsNum > button {
+  background: #3f8ddf;
+  padding: 0.5rem 1rem;
+  border-radius: 100%;
+  border-radius: 0.5rem;
+  outline-color: #214b77;
+  outline-offset: 0;
+  outline-style: solid;
+  outline-width: 3px;
+  color: white;
+  border: 0rem;
+  min-width: 40px !important;
+  min-height: 40px;
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  filter: drop-shadow(2px 3px #222);
 }
 
-.ButtonsNum>button:hover {
-    background: #3f8ddf;
+.ButtonsNum > button:hover {
+  background: #3f8ddf;
 
-    outline-color: #3f8ddf;
-    outline-style: solid;
-    outline-width: 5px;
-    color: white;
-    border: 0rem;
+  outline-color: #3f8ddf;
+  outline-style: solid;
+  outline-width: 5px;
+  color: white;
+  border: 0rem;
 
-    transition: background 0.5s, outline-color 0.5s;
+  transition: background 0.5s, outline-color 0.5s;
+}
+
+.showNumber > strong {
+  cursor: pointer;
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 0.5rem;
+  align-items: center;
+  background: rgb(47, 47, 47);
+  color: white;
+  border-radius: 0.5rem;
+  outline-color: #214b77;
+  outline-offset: 0;
+  outline-style: solid;
+  outline-width: 3px;
+  color: white;
+  border: 0rem;
+  min-width: 40px !important;
+  min-height: 40px;
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  filter: drop-shadow(2px 3px #222);
+  margin-bottom: 1.5rem;
+  padding: 0.7rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  background: #3a8be1;
+  padding: 0.5rem 1rem;
+  border-radius: 100%;
+  border-radius: 0.5rem;
+  outline-color: #214b77;
+  outline-offset: 0;
+  outline-style: solid;
+  outline-width: 3px;
+  color: white;
+  border: 0rem;
+  min-width: 40px !important;
+  min-height: 40px;
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  filter: drop-shadow(2px 3px #222);
+}
+
+.correctShownNumber {
+  outline-color: rgb(18, 113, 69) !important;
+  background: rgb(26 139 87) !important;
+}
+
+.incorrectShowNumber {
+  background: #d55252 !important;
+  outline-color: #d55252 !important;
+}
+
+.ButtonsNum > button > i {
+  background: none;
+  padding: 0rem;
+  border-radius: none;
+}
+
+.contentTableC {
+  background: #d2c2ff;
+}
+.contentTableC td {
+  padding: 0.5rem;
+}
+
+h4 {
+  padding: 0.5rem;
 }
 
 .ButtonsNum {
-    display: flex;
-    gap: 2rem;
-    flex-wrap: wrap;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
 }
 
 .containerPlay {
-    position: relative;
-    border-radius: 1rem;
-    border: solid 1px #e8d8ff;
-    border-radius: 1rem;
-    border: solid 1px #e8d8ff;
+  position: relative;
+  border-radius: 1rem;
+  border: solid 1px #e8d8ff;
+  border-radius: 1rem;
+  border: solid 1px #e8d8ff;
 }
 
-.ButtonsNum>div {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
+.ButtonsNum > div {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 .play {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-
 .loading {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: rgb(47, 47, 47);
-    flex-direction: column;
-    border-radius: 1rem;
-    border: solid 1px #e8d8ff;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgb(47, 47, 47);
+  flex-direction: column;
+  border-radius: 1rem;
+  border: solid 1px #e8d8ff;
 }
 
 .containerPlay {
-    background-image: url(../../../../../img/ambiente---copia.png);
-    background-size: cover;
-    background-repeat: repeat;
+  background-image: url(../../img/ambiente---copia.png);
+  background-size: cover;
+  background-repeat: repeat;
 }
 
 main {
-    background: none
+  background: none;
 }
 
 .progressBar {
-    transition: all 0.5s;
-    height: 100%;
-    background: rgb(47, 47, 47);
-    width: 100%;
-    border: 0rem;
-
+  transition: all 0.5s;
+  height: 100%;
+  background: rgb(47, 47, 47);
+  width: 100%;
+  border: 0rem;
 }
 
-
 .userImgLesson {
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 
 .flexG {
-    display: flex;
-    gap: 1rem;
+  display: flex;
+  gap: 1rem;
 }
 
 .content {
-    border: 0rem;
-    padding: 0;
+  border: 0rem;
+  padding: 0;
 }
-
-
-
-
 
 /*Modales  */
 
 .purpleModalTitle {
-    background-color: #936ff4;
-    margin: 0rem;
-    padding: 1rem;
-    color: white;
+  background-color: #936ff4;
+  margin: 0rem;
+  padding: 1rem;
+  color: white;
 }
 
 .redModalTitle {
-    background: #ff4b4b;
-    padding: 1rem;
-    color: white;
+  background: #ff4b4b;
+  padding: 1rem;
+  color: white;
 }
 
 .blackModalTitle {
-    background-color: rgb(47, 47, 47);
-    margin: 0rem;
-    padding: 1rem;
-    color: white;
+  background-color: rgb(47, 47, 47);
+  margin: 0rem;
+  padding: 1rem;
+  color: white;
 }
 
 .exitButtonB {
-    background: rgb(47, 47, 47);
-    color: white;
-    border: 0rem;
+  background: rgb(47, 47, 47);
+  color: white;
+  border: 0rem;
 }
 
 .exitButtonBlue {
-    background: #2e7bcc;
-    color: white;
-    border: 0rem;
+  background: #2e7bcc;
+  color: white;
+  border: 0rem;
 }
 
 .exitButtonBlue:hover {
-    transition: all 0.5s;
-    background: #1d5c9f !important;
-    color: white !important;
+  transition: all 0.5s;
+  background: #1d5c9f !important;
+  color: white !important;
 }
 
 .exitButtonB:hover {
-    transition: all 0.5s;
-    color: white;
-    background: rgb(32, 32, 32);
+  transition: all 0.5s;
+  color: white;
+  background: rgb(32, 32, 32);
 }
 
-
-.modal-body>p {
-    padding: 0.5rem;
-    margin: 0rem;
+.modal-body > p {
+  padding: 0.5rem;
+  margin: 0rem;
 }
 
 .containerResultsLesson {
-    transform: all 2s;
-    background: rgba(0, 0, 0, 0.97);
+  transform: all 2s;
+  background: rgba(0, 0, 0, 0.97);
 }
 
 .messageResult {
-    padding: 0.5rem;
-    margin: 0rem;
+  padding: 0.5rem;
+  margin: 0rem;
 }
-
-
-
 
 .FromOneToThree {
-    position: absolute;
-    height: 100%;
-    top: 0;
-    width: 100%;
-    background: rgb(0, 0, 0, 0.5);
-    background-repeat: repeat;
-    background-image: none;
-    background-size: auto;
-    background-repeat: repeat;
-    background-image: none;
-    background-size: auto;
-    border-radius: 1rem;
-    border: solid 3px #e8d8ff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
+  position: absolute;
+  height: 100%;
+  top: 0;
+  width: 100%;
+  background: rgb(0, 0, 0, 0.5);
+  background-repeat: repeat;
+  background-image: none;
+  background-size: auto;
+  background-repeat: repeat;
+  background-image: none;
+  background-size: auto;
+  border-radius: 1rem;
+  border: solid 3px #e8d8ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.FromOneToThree>strong {
-    background: none;
-    padding: 2rem;
-    border-radius: 100%;
-    border-radius: 100%;
-    outline-offset: 0.2rem;
-    outline-style: solid;
-    outline-width: 5px;
-    color: white;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100px;
-
+.FromOneToThree > strong {
+  background: none;
+  padding: 2rem;
+  border-radius: 100%;
+  border-radius: 100%;
+  outline-offset: 0.2rem;
+  outline-style: solid;
+  outline-width: 5px;
+  color: white;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
 }
 
-.FromOneToThree>strong>h2 {
-    filter: drop-shadow(2px 2px #7a5bd2);
-    font-weight: bold;
+.FromOneToThree > strong > h2 {
+  filter: drop-shadow(2px 2px #7a5bd2);
+  font-weight: bold;
 }
 
 .btnPlay {
-    background: #3f8ddf;
-    padding: 0.5rem 1rem;
-    border-radius: 100%;
-    border-radius: 0.5rem;
-    outline-color: #214b77;
-    outline-offset: 0;
-    outline-style: solid;
-    outline-width: 3px;
-    color: white;
-    border: 0rem;
-    min-width: 40px !important;
-    min-height: 40px;
-    color: rgb(255, 255, 255);
-    font-weight: bold;
-    font-size: clamp(1rem, 3vw, 1.1rem);
-    filter: drop-shadow(2px 3px #222);
+  background: #3f8ddf;
+  padding: 0.5rem 1rem;
+  border-radius: 100%;
+  border-radius: 0.5rem;
+  outline-color: #214b77;
+  outline-offset: 0;
+  outline-style: solid;
+  outline-width: 3px;
+  color: white;
+  border: 0rem;
+  min-width: 40px !important;
+  min-height: 40px;
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  font-size: clamp(1rem, 3vw, 1.1rem);
+  filter: drop-shadow(2px 3px #222);
 }
 
 .buttonExit {
-    background: #515151;
-    padding: 0.5rem 0.5rem;
-    border-radius: 100%;
-    border-radius: 0.5rem;
-    outline-color: #7d7d7d;
-    outline-offset: 0;
-    outline-style: solid;
-    outline-width: 3px;
-    color: white;
-    border: 0rem;
-    min-width: 40px !important;
-    min-height: 40px;
-    color: rgb(255, 255, 255);
-    font-weight: bold;
-    font-size: clamp(0.8rem, 3vw, 1rem);
-    filter: drop-shadow(2px 3px #222);
-
+  background: #515151;
+  padding: 0.5rem 0.5rem;
+  border-radius: 100%;
+  border-radius: 0.5rem;
+  outline-color: #7d7d7d;
+  outline-offset: 0;
+  outline-style: solid;
+  outline-width: 3px;
+  color: white;
+  border: 0rem;
+  min-width: 40px !important;
+  min-height: 40px;
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  font-size: clamp(0.8rem, 3vw, 1rem);
+  filter: drop-shadow(2px 3px #222);
 }
 
-.buttonPlayAgain {
-    background: #3f8ddf;
-    padding: 0.5rem 1rem;
-    border-radius: 100%;
-    border-radius: 0.5rem;
-    outline-color: #214b77;
-    outline-offset: 0;
-    outline-style: solid;
-    outline-width: 3px;
-    color: white;
-    border: 0rem;
-    min-width: 40px !important;
-    min-height: 40px;
-    color: rgb(255, 255, 255);
-    font-weight: bold;
-    font-size: clamp(1rem, 3vw, 1.1rem);
-    filter: drop-shadow(2px 3px #222);
+.buttonPlayBlue {
+  background: #3f8ddf;
+  padding: 0.5rem 1rem;
+  border-radius: 100%;
+  border-radius: 0.5rem;
+  outline-color: #214b77;
+  outline-offset: 0;
+  outline-style: solid;
+  outline-width: 3px;
+  color: white;
+  border: 0rem;
+  min-width: 40px !important;
+  min-height: 40px;
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  font-size: clamp(1rem, 3vw, 1.1rem);
+  filter: drop-shadow(2px 3px #222);
 }
 
 .incorrect {
-    background: #d55252 !important;
-    outline-color: #d55252 !important;
-    outline-offset: none !important;
-    transition: all 1s;
-    transform: perspective(5rem) scale(0.9);
+  background: #d55252 !important;
+  outline-color: #d55252 !important;
+  outline-offset: none !important;
+  transition: all 1s;
+  transform: perspective(5rem) scale(0.9);
 }
 
 .correct {
-    background: rgb(26 139 87) !important;
-    outline-color: rgb(26 139 87) !important;
-    transition: all 1s;
-    transform: perspective(5rem) scale(1.1);
-} 
+  background: rgb(26 139 87) !important;
+  outline-color: rgb(26 139 87) !important;
+  transition: all 1s;
+  transform: perspective(5rem) scale(1.1);
+}

@@ -75,7 +75,7 @@ function showLessons()
                         <i class='" . validationIcon($arreglo_indexado[2]) . "'></i>
                     </div>
                     <div class='titleLesson mt-2'>
-                        <small draggable='false'>Reconocimiento <br>de números</small>
+                        <small draggable='false'>Reconocimiento <br>de números 1</small>
                     </div>
 
                 </a>
@@ -87,7 +87,7 @@ function showLessons()
                         <i class='" . validationIcon($arreglo_indexado[3]) . "'></i>
                     </div>
                     <div class='titleLesson mt-2'>
-                    <small draggable='false'>Escritura de números</small>
+                    <small draggable='false'>Reconocimiento <br> de números 2</small>
                     </div>
 
                 </a>
