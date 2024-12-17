@@ -35,7 +35,7 @@ include './../../php/validations/authorizedUser.php';
         <div class="row h-100">
             <div class="col-3 h-100">
                 <section class="historyChilds">
-                    <span>Recientes</span><br>
+                    <h5>Recientes</h5>
                     <hr>
                     <div class="btn-group">
                         <button type="button" class="btn"><button type="button" class=" " data-bs-toggle="modal"

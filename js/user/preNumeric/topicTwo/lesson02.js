@@ -243,7 +243,7 @@ async function endOfLesson() {
         body: new URLSearchParams({
             typeAccess: "Pre_Numerico",
             statu: searchParams.get("statu"),
-            id_lesson: 1,
+            id_lesson: 4,
             failed: failed,
             gems: parseInt($gem.textContent),
             porcentage: resulFormuleP,

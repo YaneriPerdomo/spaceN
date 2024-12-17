@@ -42,7 +42,7 @@ switch ($statu) {
         $queryWait->bindParam('failed', $failed, PDO::PARAM_INT);
         $queryWait->execute();
         $nextLesson = $idLesson + 1;
-        if ($nextLesson < 4) {
+        if ($nextLesson <= 4) {
             $sqlNext = "UPDATE estado_lecciones
         SET 
         completado = 'en_espera'

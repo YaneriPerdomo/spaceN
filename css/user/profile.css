@@ -184,3 +184,23 @@ svg circle:nth-child(2) {
 .detallsGems, .detallsLessons{
     color: rgb(47, 47, 47);
 }
+
+tr:nth-child(2n+1) {
+    background: rgba(255, 84, 0, 0.07);
+    padding: 0.6rem 1rem;
+}
+
+
+td:last-of-type {
+    background: #ff7d45;
+    border-radius: 0rem 0.5rem 0.5rem 0rem;
+    padding: 0.3rem;
+    color: white;
+}
+
+td>i {
+    background: #ff7d45;
+    border-radius: 0.5rem 0rem 0rem 0.5rem;
+    padding: 0.5rem;
+    color: white;
+}

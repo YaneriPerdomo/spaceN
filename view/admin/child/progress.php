@@ -152,7 +152,7 @@ function showInformationChild()
                                         <i class="bi bi-person-video3 fs-1"></i>
                                     </div>
                                     <div class="detallsLessons">
-                                        ' . $lecciones_completadas["lecciones_completadas"] . '/6
+                                        ' . $lecciones_completadas["lecciones_completadas"] . '/4
                                         <span>Lecciones</span>
                                     </div>
                                 </div>

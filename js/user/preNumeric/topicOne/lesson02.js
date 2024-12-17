@@ -1,16 +1,24 @@
 import {$gem, $time, $containerPlay,$containerResultsLesson, 
     $contentResultsLesson, $ButtonsNum,searchParams,   $endOfLessonMp3, 
     $incorrectMp3, $correctMp3, $beginMp3 ,$gemsResult, $porcentageResult, $timeResult, $messageResult,  $containerBack, $backContent,
-    $containerGuideModal, $begin, $GuidaContent, $containerPlayer,  $clickMp3,   FromOneToThree,  start,
-    $showNumber,
-    checkNumber,   
+    $containerGuideModal, $begin, $GuidaContent, $containerPlayer,  $clickMp3,   FromOneToThree, 
+    voiceExercise, identifyQuantities,  
+    $showNumberStrong,  
+    $showNumberSpan,   
  } from "../../../helpers/lessons.js";
 
  let count = 0;
+ let randomNumber = 0;
  let acceptedPoints = 0;
  let failed = 0;
 
- 
+
+     
+ let timer;
+ let seconds = 0,
+    minutes = 0,
+    hours = 0;
+
 
   
 
@@ -21,54 +29,61 @@ document.addEventListener("mousemove", (e) => {
 })
 
     setTimeout(() => {
-    $begin.removeChild($begin.children[7]);
-}, 2500);
+        $begin.removeChild($begin.children[7]);
+    }, 2000);
 
-function operation(){
-    let randomNumber20 = Math.floor(Math.random() * 1);
-    switch (randomNumber20) {
+function randomNumber15(){
+    let randomNumber15 = Math.floor(Math.random() * 15);
+    switch (randomNumber15) {
         case 0:
-            let cantidad = {
-                one: ['<i class="bi bi-gem "></i> <i class="bi bi-gem "></i>'],
-                two: ['<i class="bi bi-gem "></i>'],
-                three: ['<i class="bi bi-gem "></i><i class="bi bi-gem "></i><i class="bi bi-gem "></i>']
-            }
-            checkNumber("Seleccionar EL MAYOR de las gemas",2, cantidad.one, cantidad.two, cantidad.three );
+            identifyQuantities([10, 10], "=")
         break;
-        case 0:
-            let cantidad = {
-                one: ['<i class="bi bi-gem "></i> <i class="bi bi-gem "></i>'],
-                two: ['<i class="bi bi-gem "></i>'],
-                three: ['<i class="bi bi-gem "></i><i class="bi bi-gem "></i><i class="bi bi-gem "></i>']
-            }
-            checkNumber("Seleccionar EL MAYOR de las gemas",2, cantidad.one, cantidad.two, cantidad.three );
+        case 1:
+            identifyQuantities([5, 3], ">")
         break;
-        case 0:
-            let cantidad = {
-                one: ['<i class="bi bi-gem "></i> <i class="bi bi-gem "></i>'],
-                two: ['<i class="bi bi-gem "></i>'],
-                three: ['<i class="bi bi-gem "></i><i class="bi bi-gem "></i><i class="bi bi-gem "></i>']
-            }
-            checkNumber("Seleccionar EL MAYOR de las gemas",2, cantidad.one, cantidad.two, cantidad.three );
+        case 2:
+            identifyQuantities([3, 5], "<")
         break;
-        case 0:
-            let cantidad = {
-                one: ['<i class="bi bi-gem "></i> <i class="bi bi-gem "></i>'],
-                two: ['<i class="bi bi-gem "></i>'],
-                three: ['<i class="bi bi-gem "></i><i class="bi bi-gem "></i><i class="bi bi-gem "></i>']
-            }
-            checkNumber("Seleccionar EL MAYOR de las gemas",2, cantidad.one, cantidad.two, cantidad.three );
+        case 3:
+            identifyQuantities([3, 8], "<")
         break;
-        case 0:
-            let cantidad = {
-                one: ['<i class="bi bi-gem "></i> <i class="bi bi-gem "></i>'],
-                two: ['<i class="bi bi-gem "></i>'],
-                three: ['<i class="bi bi-gem "></i><i class="bi bi-gem "></i><i class="bi bi-gem "></i>']
-            }
-            checkNumber("Seleccionar EL MAYOR de las gemas",2, cantidad.one, cantidad.two, cantidad.three );
+        case 4:
+            identifyQuantities([8, 10], "<")
         break;
-         break;
-         default:
+        case 5:
+            identifyQuantities([3, 8], "<")
+        break;
+        case 6:
+            identifyQuantities([13, 5], ">")
+        break;
+        case 7:
+            identifyQuantities([2, 2], "=")
+        break;
+        case 8:
+            identifyQuantities([10, 2], ">")
+        break;
+        case 9:
+            identifyQuantities([1, 2], "<")
+        break;
+        case 10:
+            identifyQuantities([6, 2], ">")
+        break;
+        case 11:
+            identifyQuantities([6, 6], "=")
+        break;
+        case 12:
+            identifyQuantities([32, 31], ">")
+        break;
+        case 13:
+            identifyQuantities([13, 12], ">")
+        break;
+        case 14:
+            identifyQuantities([4, 5], "<")
+        break;
+        case 15:
+            identifyQuantities([0, 0], "=")
+        break;
+        default:
             break;
     }
 }
@@ -77,26 +92,32 @@ document.addEventListener("click",async e => {
 
     if (e.target.matches(".ButtonsNum > button")) {
         count++;
-        if (e.target.getAttribute("data-res") == "true") {
+        if (`${e.target.textContent}` == `${$containerPlayer.getAttribute("data-num")}`) {
             acceptedPoints++;
+            console.info(e.target.textContent)
             $correctMp3.play();
             $gem.innerHTML = `${1 + Number.parseInt($gem.textContent)}`;
             e.target.classList.add("correct");
             $ButtonsNum.forEach(element => {
                 element.disabled = true;
             });
-            $showNumber.classList.add("correctShownNumber");
+            $showNumberStrong.classList.add("correctShownNumber");
+            $showNumberSpan[1].innerHTML = e.target.textContent;
             setTimeout(() => {
                 $ButtonsNum.forEach(element => {
                     element.removeAttribute("disabled")
                 });
-                $showNumber.classList.remove("correctShownNumber")
-                operation();
+                $showNumberSpan.forEach(el => {
+                    el.innerHTML = "?";
+                })
+                $showNumberStrong.classList.remove("correctShownNumber")
+                randomNumber15();
                 e.target.classList.remove("correct")
             }, 2000);
         } else {
             failed++;
-            $showNumber.classList.add("incorrectShowNumber");
+            console.info(e.target.textContent)
+            $showNumberStrong.classList.add("incorrectShowNumber");
             e.target.classList.add("incorrect");
             $incorrectMp3.play()
             $ButtonsNum.forEach(element => {
@@ -112,8 +133,8 @@ document.addEventListener("click",async e => {
                 $ButtonsNum.forEach(element => {
                     element.removeAttribute("disabled")
                 });
-                operation();
-                $showNumber.classList.remove("incorrectShowNumber");
+                randomNumber15();
+                $showNumberStrong.classList.remove("incorrectShowNumber");
                 e.target.classList.remove("incorrect")
             }, 2000);
         }
@@ -155,7 +176,7 @@ document.addEventListener("click",async e => {
        await fetch("./../../../../../php/user/showTableC.php", {
             method: 'POST',
             body: new URLSearchParams({
-                typeAccess: 2, 
+                typeAccess: 1, 
             }),
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -196,17 +217,14 @@ document.addEventListener("click",async e => {
         }, 1000);
         setTimeout(() => {
             FromOneToThree();
+            voiceExercise("Pendiente y selecciona el número que verás en el recuadro")
             setTimeout(() => {
                 start();
-                let cantidad = {
-                    one: ['<i class="bi bi-gem "></i> <i class="bi bi-gem "></i>'],
-                    two: ['<i class="bi bi-gem "></i>'],
-                    three: ['<i class="bi bi-gem"></i> <i class="bi bi-gem "></i> <i class="bi bi-gem "></i>']
-                }
-                checkNumber("Seleccionar EL MENOR de las gemas",2, cantidad.one, cantidad.two, cantidad.three );
+                identifyQuantities([20, 20], "=");
                 $containerPlay.removeChild($containerPlay.children[2])
             }, 3000);
         }, 1000);
+        
 
     }
 
@@ -232,7 +250,7 @@ async function endOfLesson() {
         body: new URLSearchParams({
             typeAccess: "Pre_Numerico",
             statu: searchParams.get("statu"),
-            id_lesson: 1,
+            id_lesson: 2,
             failed: failed,
             gems: parseInt($gem.textContent),
             porcentage: resulFormuleP,
@@ -257,3 +275,28 @@ async function endOfLesson() {
 
 }
 
+
+function updateDisplay() {
+    document.getElementById('time').innerText =
+        (hours < 10 ? '0' : '') + hours + ':' +
+        (minutes < 10 ? '0' : '') + minutes + ':' +
+        (seconds < 10 ? '0' : '') + seconds;
+}
+
+
+  function start() {
+    if (!timer) {
+        timer = setInterval(() => {
+            seconds++;
+            if (seconds == 60) {
+                seconds = 0;
+                minutes++;
+                if (minutes == 60) {
+                    minutes = 0;
+                    hours++;
+                }
+            }
+            updateDisplay();
+        }, 1000);
+    }
+}

@@ -24,7 +24,6 @@ include './../../../../../php/connectionBD.php';
     <link rel="stylesheet" href="../../../../../css/admin/dashboard.css">
     <link rel="stylesheet" href="../../../../../css/components/row.css">
     <link rel="stylesheet" href="../../../../../css/user/lesson.css">
-
 </head>
 
 <body>
@@ -49,7 +48,7 @@ include './../../../../../php/connectionBD.php';
                                     <img src="../../../../../img/childs/boy.png" class="img-fluid imgEresCapaz" alt="">
                                 </figure>
                                 <div class="objetivo">
-                                    <p class="m-0">Escucha y selecciona el número correspondiente</p>
+                                    <p class="m-0">Selecciona el número que verás en el recuadro</p>
                                 </div>
                             </div>
                         </div>
@@ -74,12 +73,16 @@ include './../../../../../php/connectionBD.php';
                     <div class="col-12 align-items-center justify-content-center d-flex">
                         <div class="containerPlayer align-items-center justify-content-center" data-num="3">
                             <div class="showNumber">
-                                <strong>?</strong>
+                                <strong>
+                                    <span>?</span>
+                                    <span>?</span>
+                                    <span>?</span>
+                                </strong>
                             </div>
                             <div class="ButtonsNum">
-                                <button>Mayor</button>
-                                <button><i class="bi bi-gem "></i></button>
-                                <button>Menor</button>
+                                <button><</button>
+                                <button>=</button>
+                                <button>></button>
                             </div>
                         </div><br>
                     </div>
@@ -107,7 +110,8 @@ include './../../../../../php/connectionBD.php';
     include '../../../../include/user/lesson/offcanvasUser.php';
     ?>
 
-    <script src="../../../../../js/user/preNumeric/topicOne/lesson05.js" type="module">
+<script src="../../../../../js/user/preNumeric/topicOne/lesson02.js" 
+        type="module">
     </script>
 </body>
 

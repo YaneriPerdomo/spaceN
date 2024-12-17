@@ -27,71 +27,10 @@ include './../../../php/validations/authorizedChild.php';
     <link rel="stylesheet" href="../../../css/admin/dashboard.css">
     <link rel="stylesheet" href="../../../css/components/row.css">
     <link rel="stylesheet" href="../../../css/bootstrap/bootstrapMin.css">
-
+    <link rel="stylesheet" href="../../../css/user/read.css">
     <style>
-        .lessons>div a {
-            text-align: center;
-        }
-
-        .moduleOne>strong {
-            display: block;
-            background: #906df2;
-            color: white;
-            border-radius: 1rem 1rem 0rem 0rem;
-            padding: 0.6rem 1rem;
-        }
-
-        .col-9>div {
-            padding: 0rem
-        }
-
-        [class*="tema"]>span {
-            display: block;
-            background: #ff7d45;
-            color: white;
-            padding: 0.6rem 1rem;
-        }
-
-        .lessons {
-            padding: 0.6rem 1rem;
-        }
-
-        .col-9>div {
-            border: solid 1px #e8d8ff;
-        }
-
-        .img {
-            background: #7a5bd2;
-            padding: 0.3rem;
-            border-radius: 100%;
-            border-radius: 100%;
-            outline-color: #7a5bd2;
-            outline-offset: 0.2rem;
-            outline-style: solid;
-            outline-width: 5px;
-            color: white;
-            width: 75px;
-        }
-
-        .lessons>div>a {
-            color: rgb(47, 47, 47);
-            width: 130px;
-            height: 100px;
-        }
-
-        .filterGrayscale {
-            outline-style: none !important;
-            filter: grayscale(100%);
-        }
-
-        .lessons>div>a {
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-content: center;
-            align-items: center;
-        }
+       
+      
     </style>
 </head>
 
@@ -103,8 +42,7 @@ include './../../../php/validations/authorizedChild.php';
         <div class="row h-100">
             <div class="col-3 h-100">
                 <section class="historyChilds">
-                    <span>Recientes</span><br>
-                    <hr>
+                    <h5>Recientes</h5><hr>
                     <div class="btn-group">
                         <button type="button" class="btn"><button type="button" class=" " data-bs-toggle="modal"
                                 data-bs-target="#exampleModal">
@@ -168,11 +106,82 @@ include './../../../php/validations/authorizedChild.php';
                     <a href="#allHistoryChilds"> Ver todas</a>
                 </section>
             </div>
-            <div class="col-9">
+            <div class="col-6">
                 <div>
                     <?php
                     include "../../../php/user/showEstatusLessons.php";
                     showLessons();
+                    ?>
+                </div>
+            </div>
+            <div class="col-3">
+                <div>
+                    <h4 class="clasificaciones">Clasificaciones actuales </h4>
+                    <hr>
+                    <?php
+                    include './../../../php/connectionBD.php';
+
+                    try {
+
+                        $typeAccess = 1;
+                        $id = $_SESSION["id_user"];
+                        $sqlShowTableC = "SELECT usuario, total_diamantes,  usuarios.id_usuario as id_usuario_nino
+                                             FROM progresos JOIN 
+                                            usuarios ON progresos.id_usuario = usuarios.id_usuario 
+                                            WHERE id_categoria_actividades = :Access LIMIT 5 ";
+
+                        $query = $pdo->prepare($sqlShowTableC);
+                        $query->bindParam("Access", $typeAccess, PDO::PARAM_INT);
+                        $query->execute();
+
+                        $result = $query->fetchAll(PDO::FETCH_ASSOC);
+                        $mejores = "";
+                        $count = 0;
+                        foreach ($result as $value) {
+                            $count++;
+                            switch ($count) {
+                                case 1:
+                                    $statu = '<i class="bi bi-award" style="color: rgb(239, 185, 67);;"></i>';
+                                    break;
+                                case 2:
+                                    $statu = '<i class="bi bi-award" style="color:rgb(62, 151, 203);"></i>';
+                                    break;
+                                case 3:
+                                    $statu = '<i class="bi bi-award" style="color:rgb(162, 70, 243);"></i>';
+                                    break;
+                                case 4:
+                                    $statu = '<i class="bi bi-award"></i> rgb(72, 72, 72);';
+                                    break;
+                                case 5:
+                                    $statu = '<i class="bi bi-award"></i> rgb(72,72,72);';
+                                    break;
+                                default:
+                                    # code...
+                                    break;
+                            }
+                            $mejores .= ' <tr class="contentTableC fs-5 spaceTableC">
+                                        
+                                        <td> ' . $statu . ' ' . $value["usuario"] . '</td>
+                                       <td>' . $value["total_diamantes"] . '</td>
+                                        </tr> ';
+
+
+                        }
+                        echo '<section class="tableC">
+                                                                <table class="results w-100">
+                                                                    <tbody >
+                                                                         ' . $mejores . '
+                                                                    </tbody>
+                                                                </table>
+                                                                <br><br>
+                                                            </section>';
+
+                    } catch (PDOException $ex) {
+                        echo $ex->getMessage();
+                    }
+
+                    $pdo = null;
+
                     ?>
                 </div>
             </div>
@@ -181,15 +190,7 @@ include './../../../php/validations/authorizedChild.php';
     <?php include './../../include/footer.php' ?>
     <?php include './../../include/user/offcanvasUser.php' ?>
     <?php include './../../include/user/offcanvasAplication.php' ?>
-    <script>
-        document.addEventListener("click", (e) => {
-            const clickedElement = e.target.closest("[data-enter]");
-            if (clickedElement && clickedElement.getAttribute("data-enter") === "false") {
-                console.info(e.target);
-                e.preventDefault();
-            }
-        });
-    </script>
+    <script src="./../../../js/user/unlockLinks.js"> </script>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
     integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"

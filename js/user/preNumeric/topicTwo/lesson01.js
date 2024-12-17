@@ -182,7 +182,7 @@ async function endOfLesson() {
         body: new URLSearchParams({
             typeAccess: "Pre_Numerico",
             statu: searchParams.get("statu"),
-            id_lesson: 1,
+            id_lesson: 3,
             failed: failed,
             gems: parseInt($gem.textContent),
             porcentage: resulFormuleP,
@@ -207,3 +207,30 @@ async function endOfLesson() {
 
 }
 
+
+
+
+function updateDisplay() {
+    document.getElementById('time').innerText =
+        (hours < 10 ? '0' : '') + hours + ':' +
+        (minutes < 10 ? '0' : '') + minutes + ':' +
+        (seconds < 10 ? '0' : '') + seconds;
+}
+
+
+  function start() {
+    if (!timer) {
+        timer = setInterval(() => {
+            seconds++;
+            if (seconds == 60) {
+                seconds = 0;
+                minutes++;
+                if (minutes == 60) {
+                    minutes = 0;
+                    hours++;
+                }
+            }
+            updateDisplay();
+        }, 1000);
+    }
+}

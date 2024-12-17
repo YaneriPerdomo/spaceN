@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-12-2024 a las 15:56:24
+-- Tiempo de generación: 17-12-2024 a las 23:51:01
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -78,7 +78,7 @@ CREATE TABLE `estado_lecciones` (
   `completado` enum('bloqueado','completado','en_espera','') DEFAULT 'bloqueado',
   `porcentaje` int(11) DEFAULT 0,
   `diamantes_obtenidos` int(100) DEFAULT 0,
-  `tiempo` varchar(25) NOT NULL DEFAULT '00:00',
+  `tiempo` varchar(25) NOT NULL DEFAULT '00:00:00',
   `fallida` int(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -87,10 +87,10 @@ CREATE TABLE `estado_lecciones` (
 --
 
 INSERT INTO `estado_lecciones` (`id_estado_leccion`, `id_usuario`, `id_leccion`, `completado`, `porcentaje`, `diamantes_obtenidos`, `tiempo`, `fallida`) VALUES
-(45, 14, 1, 'en_espera', 32, 23, '32', 32),
-(46, 14, 2, 'bloqueado', 0, 0, '', 0),
-(47, 14, 3, 'bloqueado', NULL, 0, '0', 0),
-(48, 14, 4, 'bloqueado', NULL, 0, '0', 0);
+(45, 14, 1, 'completado', 80, 16, '00:00:00', 4),
+(46, 14, 2, 'completado', 45, 9, '00:02:04', 11),
+(47, 14, 3, 'completado', 30, 19, '00:00:54', 1),
+(48, 14, 4, 'completado', 80, 16, '00:01:59', 4);
 
 -- --------------------------------------------------------
 
@@ -134,8 +134,8 @@ CREATE TABLE `lecciones` (
 INSERT INTO `lecciones` (`id_leccion`, `id_tema`, `leccion`, `titulo`, `objetivo`) VALUES
 (1, 1, 1, 'Asociación de cantidad con objetos', 'Asociación de cantidad con objetos: ejercicios de contar objetos de diferentes tipos y tamaños.'),
 (2, 1, 2, 'Comparación de cantidades', 'Comparación de cantidades: actividades para identi'),
-(3, 2, 1, 'Reconocimiento de números del 1 al 10', 'Reconocimiento de números del 1 al 10: ejercicios '),
-(4, 2, 2, 'Correspondencia número-cantidad', 'Correspondencia número-cantidad: relacionar un núm');
+(3, 2, 1, 'Reconocimiento de números. Parte 1', 'Reconocimiento de números del 1 al 10: ejercicios '),
+(4, 2, 2, 'Reconocimiento de números. Parte 2', 'Correspondencia número-cantidad: relacionar un núm');
 
 -- --------------------------------------------------------
 
@@ -183,8 +183,8 @@ CREATE TABLE `ninos` (
 --
 
 INSERT INTO `ninos` (`id_nino`, `id_genero`, `id_categoria_actividades`, `id_usuario`, `id_profesional`, `nombre`, `apellido`, `fecha_nacimiento`, `ultimo_acceso`) VALUES
-(1, 1, 1, 4, 8, 'Dustin', 'perdomo', '2024-11-07', '2024-12-06 07:15:30'),
-(11, 1, 1, 14, 8, 'Diamantino', 'Perdomo', '2011-01-01', '2024-12-12 06:38:01');
+(1, 1, 1, 4, 8, 'Dustin3', 'perdomo', '2015-11-07', '2024-12-06 07:15:30'),
+(11, 1, 1, 14, 8, 'Diamantino', 'Perdomo', '2011-01-01', '2024-12-17 17:25:05');
 
 -- --------------------------------------------------------
 
@@ -207,7 +207,8 @@ CREATE TABLE `notificaciones` (
 --
 
 INSERT INTO `notificaciones` (`id_notificacion`, `id_nino`, `id_profesional`, `mensaje`, `fecha_hora_envio`, `estado`) VALUES
-(4, 11, 8, '¡Sigue asi! Has pasado a la etapa 2.', '2024-12-08 12:09:49', 'leido');
+(4, 11, 8, '¡Sigue asi! Has pasado a la etapa 2.', '2024-12-08 12:09:49', 'leido'),
+(5, 11, 8, '¡Felicidades! Has completado una leccion mas.', '2024-12-12 21:02:25', 'leido');
 
 -- --------------------------------------------------------
 
@@ -231,7 +232,7 @@ CREATE TABLE `profesionales` (
 --
 
 INSERT INTO `profesionales` (`id_profesional`, `id_usuario`, `id_cargo`, `nombre`, `apellido`, `correo_electronico`, `centro_educativo`) VALUES
-(8, 1, 1, 'Yaireli', 'Perdomo', 'yayiperdomo@gmail.com', 'josefina de acosta');
+(8, 1, 1, 'Yaireli', 'Perdomo', 'yayiperdomo@gmail.com', 'Josefina');
 
 -- --------------------------------------------------------
 
@@ -242,6 +243,7 @@ INSERT INTO `profesionales` (`id_profesional`, `id_usuario`, `id_cargo`, `nombre
 DROP TABLE IF EXISTS `progresos`;
 CREATE TABLE `progresos` (
   `id_progreso` int(10) NOT NULL,
+  `id_categoria_actividades` int(10) NOT NULL,
   `id_usuario` int(10) NOT NULL,
   `porcentaje` int(11) DEFAULT 0,
   `total_diamantes` int(100) NOT NULL DEFAULT 0
@@ -251,8 +253,8 @@ CREATE TABLE `progresos` (
 -- Volcado de datos para la tabla `progresos`
 --
 
-INSERT INTO `progresos` (`id_progreso`, `id_usuario`, `porcentaje`, `total_diamantes`) VALUES
-(10, 14, 0, 0);
+INSERT INTO `progresos` (`id_progreso`, `id_categoria_actividades`, `id_usuario`, `porcentaje`, `total_diamantes`) VALUES
+(10, 1, 14, 100, 835);
 
 -- --------------------------------------------------------
 
@@ -272,7 +274,8 @@ CREATE TABLE `roles` (
 
 INSERT INTO `roles` (`id_rol`, `rol`) VALUES
 (1, 'Profesional'),
-(2, 'Niño');
+(2, 'Niño'),
+(3, 'Eres_Capaz');
 
 -- --------------------------------------------------------
 
@@ -319,7 +322,7 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`id_usuario`, `id_rol`, `usuario`, `clave`, `estado`, `permisos`, `fecha_hora_creacion`) VALUES
 (1, 1, 'Yayi33', '123', b'1', b'1', '2024-11-25 22:29:44'),
-(3, 2, '', '', b'1', b'1', '2024-11-28 13:24:43'),
+(3, 3, 'Eres_capaz', '', b'0', b'0', '2024-11-28 13:24:43'),
 (4, 2, 'Dustin3', '123', b'1', b'1', '2024-11-30 11:19:18'),
 (14, 2, 'Diaman', '123', b'1', b'1', '2024-12-07 07:16:18');
 
@@ -454,7 +457,7 @@ ALTER TABLE `generos`
 -- AUTO_INCREMENT de la tabla `lecciones`
 --
 ALTER TABLE `lecciones`
-  MODIFY `id_leccion` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_leccion` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `modulos`
@@ -472,7 +475,7 @@ ALTER TABLE `ninos`
 -- AUTO_INCREMENT de la tabla `notificaciones`
 --
 ALTER TABLE `notificaciones`
-  MODIFY `id_notificacion` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_notificacion` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `profesionales`
@@ -490,7 +493,7 @@ ALTER TABLE `progresos`
 -- AUTO_INCREMENT de la tabla `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id_rol` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_rol` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `temas`

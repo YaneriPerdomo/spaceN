@@ -1,0 +1,103 @@
+.lessons>div a {
+    text-align: center;
+}
+
+.moduleOne>strong {
+    display: block;
+    background: #906df2;
+    color: white;
+    border-radius: 1rem 1rem 0rem 0rem;
+    padding: 0.6rem 1rem;
+}
+
+.col-9>div {
+    padding: 0rem
+}
+
+[class*="tema"]>span {
+    display: block;
+    background: #ff7d45;
+    color: white;
+    padding: 0.6rem 1rem;
+}
+
+.lessons {
+    padding: 0.6rem 1rem;
+}
+
+.col-6>div,
+.col-3>div {
+    border: solid 1px #e8d8ff;
+    padding: 0rem;
+    background: white;
+    padding: 1rem;
+    border-radius: 1rem;
+    border: solid 1px #e8d8ff;
+}
+
+.img {
+    background: #7a5bd2;
+    padding: 0.3rem;
+    border-radius: 100%;
+    border-radius: 100%;
+    outline-color: #7a5bd2;
+    outline-offset: 0.2rem;
+    outline-style: solid;
+    outline-width: 5px;
+    color: white;
+    width: clamp(65px, 7vw, 75px);
+}
+
+.lessons>div>a {
+    color: rgb(47, 47, 47);
+    width: 130px;
+    height: 100px;
+}
+
+.filterGrayscale {
+    outline-style: none !important;
+    filter: grayscale(100%);
+}
+
+.lessons>div>a {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+.clasificaciones {
+    display: block;
+    background: #906df2;
+    color: white;
+    border-radius: 1rem 1rem 0rem 0rem;
+    padding: 0.6rem 1rem;
+}
+
+.spaceTableC {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+tr:nth-child(2n+1) {
+    background: rgba(255, 84, 0, 0.07);
+    padding: 0.6rem 1rem;
+}
+
+
+td:last-of-type {
+    background: #ff7d45;
+    border-radius: 0rem 0.5rem 0.5rem 0rem;
+    padding: 0.3rem;
+    color: white;
+}
+
+td>i {
+    background: #ff7d45;
+    border-radius: 0.5rem 0rem 0rem 0.5rem;
+    padding: 0.5rem;
+    color: white;
+}

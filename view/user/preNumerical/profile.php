@@ -86,7 +86,7 @@ echo '  <div class="row ContainerProgress">
                                <i class="bi bi-person-video3 fs-1"></i>
                            </div>
                            <div class="detallsLessons">
-                               <span>' . $lecciones_completadas["lecciones_completadas"] .'/6 </span>
+                               <span>' . $lecciones_completadas["lecciones_completadas"] .'/4 </span>
                                <span>Lecciones</span>
                            </div>
                        </div>

@@ -81,7 +81,7 @@ function showLessons()
                 </a>
             </div>
             <div class='two p-1 my-3 " . validationFilter($arreglo_indexado[3]) . "'>
-                <a draggable='false' href='./moduleOne/topicTwo/lesson3.php?statu=". $arreglo_indexado[3]." ' " . validationURL($arreglo_indexado[3]) . "
+                <a draggable='false' href='./moduleOne/topicTwo/lesson2.php?statu=". $arreglo_indexado[3]." ' " . validationURL($arreglo_indexado[3]) . "
                     title='Escritura de números: actividades para practicar la escritura de números.'>
                     <div class='img'>
                         <i class='" . validationIcon($arreglo_indexado[3]) . "'></i>

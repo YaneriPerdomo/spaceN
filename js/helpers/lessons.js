@@ -33,6 +33,7 @@ export let $clickMp3 =document.querySelector(".clickMp3");
 export let  $showNumberStrong = document.querySelector(".showNumber > strong");
 export let $showNumber = document.querySelector(".showNumber");
     
+export let $showNumberSpan = document.querySelectorAll(".showNumber > strong > span");
  let timer;
  let seconds = 0,
     minutes = 0,
@@ -102,7 +103,19 @@ export function defineNumber01(similar01, similar02, mainNumber, c) {
     }
     return true;
 }
+ 
 
+  
+
+export function identifyQuantities(array, mainNumber){
+
+    $containerPlayer.setAttribute("data-num", mainNumber)
+
+    $showNumberSpan[0].innerHTML = array[1];
+    $showNumberSpan[1].innerHTML = "__"
+    $showNumberSpan[2].innerHTML = array[0];
+    console.info(array)
+}
 export async function checkNumber(operation, correctAnswers, one, two, there){
     $showNumberStrong.innerHTML = operation;
     let c = 0;

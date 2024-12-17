@@ -15,6 +15,10 @@
 
     }
 
+    .historyChilds>h5 {
+        color: #906df2;
+        font-weight: bold;
+    }
     .operations > button, .operations > a > button{
         border: none !important;
         background-color: none !important;
