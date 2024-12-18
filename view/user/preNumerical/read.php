@@ -190,7 +190,7 @@ include './../../../php/validations/authorizedChild.php';
     <?php include './../../include/footer.php' ?>
     <?php include './../../include/user/offcanvasUser.php' ?>
     <?php include './../../include/user/offcanvasAplication.php' ?>
-    <script src="./../../../js/user/unlockLinks.js"> </script>
+    <script src="./../../../js/helpers/unlockLinks.js"> </script>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
     integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"

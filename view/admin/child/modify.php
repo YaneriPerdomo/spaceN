@@ -29,11 +29,11 @@ function showChild()
                 $gender = "<p class='d-flex gap-2 selectionGender'>
                                 <label for='M'>
                                     <input type='radio' name='gender' id='M' value='1' checked> 
-                                    <img src='../../../img/childs/boy.jpg' alt='' class='checked'>
+                                    <img src='../../../img/childs/boy.png' alt='' class='checked'>
                                 </label>
                                 <label for='F'>
                                     <input type='radio' id='F' name='gender' value='2'> 
-                                    <img src='../../../img/childs/girl.jpg' alt='' class=''>
+                                    <img src='../../../img/childs/girl.png' alt='' class=''>
                                 </label>
                             </p>";
                 break;
@@ -41,11 +41,11 @@ function showChild()
                 $gender = "<p class='d-flex gap-2 selectionGender'>
                                 <label for='M'>
                                     <input type='radio' name='gender' id='M' value='1' > 
-                                    <img src='../../../img/childs/boy.jpg' alt='' class=''>
+                                    <img src='../../../img/childs/boy.png' alt='' class=''>
                                 </label>
                                 <label for='F'>
                                     <input type='radio' id='F' name='gender' value='2' checked> 
-                                    <img src='../../../img/childs/girl.jpg' alt='' class='checked'>
+                                    <img src='../../../img/childs/girl.png' alt='' class='checked'>
                                 </label>
                             </p>"
         ;

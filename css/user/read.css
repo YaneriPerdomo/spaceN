@@ -67,6 +67,9 @@
     align-content: center;
     align-items: center;
 }
+.historyChilds > h5{
+    color:#906df2
+}
 
 .clasificaciones {
     display: block;
@@ -79,7 +82,8 @@
 .spaceTableC {
     display: flex;
     justify-content: space-between;
-
+    align-items: center;
+    border-radius: 0.5rem;
 }
 
 tr:nth-child(2n+1) {

@@ -104,8 +104,19 @@ export function defineNumber01(similar01, similar02, mainNumber, c) {
     return true;
 }
  
+export let $showObjects = document.querySelector(".showObjects > strong");
+export function quantityAssociation(array, mainNumber, Objects){
 
-  
+    $containerPlayer.setAttribute("data-num", mainNumber)
+    
+    $showObjects.innerHTML = Objects;
+
+    for(let i = 0; i < $ButtonsNum.length; i++){
+        $ButtonsNum[i].innerHTML = array[i]
+    }
+    
+
+}  
 
 export function identifyQuantities(array, mainNumber){
 

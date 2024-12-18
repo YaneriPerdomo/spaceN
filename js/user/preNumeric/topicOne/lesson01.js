@@ -4,7 +4,8 @@ import {$gem, $time, $containerPlay,$containerResultsLesson,
     $containerGuideModal, $begin, $GuidaContent, $containerPlayer,  $clickMp3,   FromOneToThree, 
     voiceExercise, identifyQuantities,  
     $showNumberStrong,  
-    $showNumberSpan,   
+    $showNumberSpan,
+    quantityAssociation  
  } from "../../../helpers/lessons.js";
 
  let count = 0;
@@ -36,52 +37,53 @@ function randomNumber15(){
     let randomNumber15 = Math.floor(Math.random() * 15);
     switch (randomNumber15) {
         case 0:
-            identifyQuantities([10, 10], "=")
+            quantityAssociation([1,2,3,4,5], 3, '<i class="bi bi-balloon"></i> <i class="bi bi-balloon"></i> <i class="bi bi-balloon"></i>')
         break;
         case 1:
-            identifyQuantities([5, 3], ">")
+            quantityAssociation([1,2,3,4,5], 2, '<i class="bi bi-balloon"></i> <i class="bi bi-balloon"></i> ')
         break;
         case 2:
-            identifyQuantities([3, 5], "<")
+            quantityAssociation([1,2,3,4,5], 4, '<i class="bi bi-eyeglasses"></i> <i class="bi bi-eyeglasses"></i> <i class="bi bi-eyeglasses"></i> <i class="bi bi-eyeglasses"></i> ')
         break;
         case 3:
-            identifyQuantities([3, 8], "<")
+            quantityAssociation([1,2,3,4,5], 2, '<i class="bi bi-pen"></i> <i class="bi bi-pen"></i> ')
         break;
         case 4:
-            identifyQuantities([8, 10], "<")
+            quantityAssociation([1,2,3,4,5], 1, '<i class="bi bi-balloon-heart"></i>')
         break;
         case 5:
-            identifyQuantities([3, 8], "<")
+            quantityAssociation([1,2,3,4,5], 5, '<i class="bi bi-airplane-engines"></i> <i class="bi bi-airplane-engines"></i> <i class="bi bi-airplane-engines"></i> <i class="bi bi-airplane-engines"></i> <i class="bi bi-airplane-engines"></i>')
         break;
         case 6:
-            identifyQuantities([13, 5], ">")
+            quantityAssociation([1,2,3,4,5], 1, '<i class="bi bi-backpack"></i>')
         break;
         case 7:
-            identifyQuantities([2, 2], "=")
+            quantityAssociation([1,2,3,4,5], 2, '<i class="bi bi-backpack"></i> <i class="bi bi-backpack"></i>')
         break;
         case 8:
-            identifyQuantities([10, 2], ">")
+            quantityAssociation([1,2,3,4,5], 3, '<i class="bi bi-backpack"></i> <i class="bi bi-backpack"></i> <i class="bi bi-backpack"></i>')
         break;
         case 9:
-            identifyQuantities([1, 2], "<")
+            quantityAssociation([1,2,3,4,5], 2, '<i class="bi bi-bicycle"></i> <i class="bi bi-bicycle"></i>')
+
         break;
         case 10:
-            identifyQuantities([6, 2], ">")
+            quantityAssociation([1,2,3,4,5], 3, '<i class="bi bi-bicycle"></i> <i class="bi bi-bicycle"></i> <i class="bi bi-bicycle"></i>')
         break;
         case 11:
-            identifyQuantities([6, 6], "=")
+            quantityAssociation([1,2,3,4,5], 2, '<i class="bi bi-box-seam"></i> <i class="bi bi-box-seam"></i>')
         break;
         case 12:
-            identifyQuantities([32, 31], ">")
+            quantityAssociation([1,2,3,4,5], 2, '<i class="bi bi-box-seam"></i> <i class="bi bi-box-seam"></i>')
         break;
         case 13:
-            identifyQuantities([13, 12], ">")
+            quantityAssociation([1,2,3,4,5], 2, '<i class="bi bi-brightness-high"></i> <i class="bi bi-brightness-high"></i>')
         break;
         case 14:
-            identifyQuantities([4, 5], "<")
+            quantityAssociation([1,2,3,4,5], 2, '<i class="bi bi-camera-reels"></i> <i class="bi bi-camera-reels"></i>')
         break;
         case 15:
-            identifyQuantities([0, 0], "=")
+            quantityAssociation([1,2,3,4,5], 5, '<i class="bi bi-camera-reels"></i> <i class="bi bi-camera-reels"></i> <i class="bi bi-camera-reels"></i> <i class="bi bi-camera-reels"></i> <i class="bi bi-camera-reels"></i> ')
         break;
         default:
             break;
@@ -102,7 +104,6 @@ document.addEventListener("click",async e => {
                 element.disabled = true;
             });
             $showNumberStrong.classList.add("correctShownNumber");
-            $showNumberSpan[1].innerHTML = e.target.textContent;
             setTimeout(() => {
                 $ButtonsNum.forEach(element => {
                     element.removeAttribute("disabled")
@@ -176,7 +177,7 @@ document.addEventListener("click",async e => {
        await fetch("./../../../../../php/user/showTableC.php", {
             method: 'POST',
             body: new URLSearchParams({
-                typeAccess: 2, 
+                typeAccess: 1, 
             }),
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -220,7 +221,7 @@ document.addEventListener("click",async e => {
             voiceExercise("Pendiente y selecciona el número que verás en el recuadro")
             setTimeout(() => {
                 start();
-                identifyQuantities([20, 20], "=");
+                quantityAssociation([1,2,3,4,5], 3, '<i class="bi bi-balloon"></i> <i class="bi bi-balloon"></i> <i class="bi bi-balloon"></i>')
                 $containerPlay.removeChild($containerPlay.children[2])
             }, 3000);
         }, 1000);
@@ -250,7 +251,7 @@ async function endOfLesson() {
         body: new URLSearchParams({
             typeAccess: "Pre_Numerico",
             statu: searchParams.get("statu"),
-            id_lesson: 2,
+            id_lesson: 1,
             failed: failed,
             gems: parseInt($gem.textContent),
             porcentage: resulFormuleP,

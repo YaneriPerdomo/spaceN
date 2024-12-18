@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-12-2024 a las 23:51:01
+-- Tiempo de generación: 18-12-2024 a las 01:58:40
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -87,7 +87,7 @@ CREATE TABLE `estado_lecciones` (
 --
 
 INSERT INTO `estado_lecciones` (`id_estado_leccion`, `id_usuario`, `id_leccion`, `completado`, `porcentaje`, `diamantes_obtenidos`, `tiempo`, `fallida`) VALUES
-(45, 14, 1, 'completado', 80, 16, '00:00:00', 4),
+(45, 14, 1, 'completado', 100, 20, '00:01:02', 0),
 (46, 14, 2, 'completado', 45, 9, '00:02:04', 11),
 (47, 14, 3, 'completado', 30, 19, '00:00:54', 1),
 (48, 14, 4, 'completado', 80, 16, '00:01:59', 4);
@@ -133,9 +133,9 @@ CREATE TABLE `lecciones` (
 
 INSERT INTO `lecciones` (`id_leccion`, `id_tema`, `leccion`, `titulo`, `objetivo`) VALUES
 (1, 1, 1, 'Asociación de cantidad con objetos', 'Asociación de cantidad con objetos: ejercicios de contar objetos de diferentes tipos y tamaños.'),
-(2, 1, 2, 'Comparación de cantidades', 'Comparación de cantidades: actividades para identi'),
-(3, 2, 1, 'Reconocimiento de números. Parte 1', 'Reconocimiento de números del 1 al 10: ejercicios '),
-(4, 2, 2, 'Reconocimiento de números. Parte 2', 'Correspondencia número-cantidad: relacionar un núm');
+(2, 1, 2, 'Comparación de cantidades', '  Comparación de cantidades: actividades para identificar \"más\", \"menos\" e \"igual\".'),
+(3, 2, 1, 'Reconocimiento de números. Parte 1', '    Reconocimiento de números del 1 al 10: ejercicios de identificación auditiva.'),
+(4, 2, 2, 'Reconocimiento de números. Parte 2', '    Reconocimiento de números del 1 al 10: ejercicios de identificación visual.');
 
 -- --------------------------------------------------------
 
@@ -184,7 +184,7 @@ CREATE TABLE `ninos` (
 
 INSERT INTO `ninos` (`id_nino`, `id_genero`, `id_categoria_actividades`, `id_usuario`, `id_profesional`, `nombre`, `apellido`, `fecha_nacimiento`, `ultimo_acceso`) VALUES
 (1, 1, 1, 4, 8, 'Dustin3', 'perdomo', '2015-11-07', '2024-12-06 07:15:30'),
-(11, 1, 1, 14, 8, 'Diamantino', 'Perdomo', '2011-01-01', '2024-12-17 17:25:05');
+(11, 1, 1, 14, 8, 'Diamantino', 'Perdomo', '2011-01-01', '2024-12-17 20:28:24');
 
 -- --------------------------------------------------------
 
@@ -254,7 +254,7 @@ CREATE TABLE `progresos` (
 --
 
 INSERT INTO `progresos` (`id_progreso`, `id_categoria_actividades`, `id_usuario`, `porcentaje`, `total_diamantes`) VALUES
-(10, 1, 14, 100, 835);
+(10, 1, 14, 100, 855);
 
 -- --------------------------------------------------------
 
@@ -402,7 +402,8 @@ ALTER TABLE `profesionales`
 --
 ALTER TABLE `progresos`
   ADD PRIMARY KEY (`id_progreso`),
-  ADD KEY `id_usuario` (`id_usuario`);
+  ADD KEY `id_usuario` (`id_usuario`),
+  ADD KEY `id_categoria_actividades` (`id_categoria_actividades`);
 
 --
 -- Indices de la tabla `roles`
@@ -558,7 +559,8 @@ ALTER TABLE `profesionales`
 --
 ALTER TABLE `progresos`
   ADD CONSTRAINT `progresos_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`),
-  ADD CONSTRAINT `progresos_ibfk_2` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE;
+  ADD CONSTRAINT `progresos_ibfk_2` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE,
+  ADD CONSTRAINT `progresos_ibfk_3` FOREIGN KEY (`id_categoria_actividades`) REFERENCES `categorias_actividades` (`id_categoria_actividades`);
 
 --
 -- Filtros para la tabla `temas`
