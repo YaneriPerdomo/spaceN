@@ -213,7 +213,7 @@ body{  background: #f2f2f2;}
                         <div class="bgLesson">
                             <span class="detallsLessons">
                                 <img src="'.$lessonsCount.'"><br>
-                                <span>' . $lecciones_completadas["lecciones_completadas"] . '/6</span>    
+                                <span>' . $lecciones_completadas["lecciones_completadas"] . '/4</span>    
                                 <span>Lecciones</span>
                             </span>
                         </div> 

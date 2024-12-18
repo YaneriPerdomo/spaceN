@@ -176,7 +176,7 @@ document.addEventListener("click",async e => {
        await fetch("./../../../../../php/user/showTableC.php", {
             method: 'POST',
             body: new URLSearchParams({
-                typeAccess: 2, 
+                typeAccess: 1, 
             }),
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -250,7 +250,10 @@ async function endOfLesson() {
         body: new URLSearchParams({
             typeAccess: "Pre_Numerico",
             statu: searchParams.get("statu"),
+            modulo: "Fundamentos Numéricos",
+            tema: "Conceptos básicos", 
             id_lesson: 2,
+            lesson: "Comparación de cantidades", 
             failed: failed,
             gems: parseInt($gem.textContent),
             porcentage: resulFormuleP,

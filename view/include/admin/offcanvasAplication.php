@@ -13,9 +13,9 @@
             <i class="bi bi-house"></i>
             Casa
         </a>
-        <a href="./activity.php">
+        <a href="./history.php">
             <i class="bi bi-arrow-clockwise"></i>
-            Actividad
+            Historial
         </a>
         <a href="./reports.php">
             <i class="bi bi-filetype-pdf"></i>

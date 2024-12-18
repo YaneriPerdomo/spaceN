@@ -27,7 +27,13 @@
             <p>
             La aplicación web <em>"Eres capaz"</em> te muestra actualizaciones en vivo 
             de las actividades que tus niños pueden realizar en la plataforma de aprendizaje.
-            </p>
+            </p><hr>
+
+            <?php
+
+                    include '../../php/admin/showHistorys.php';
+                    showHistorys(false);
+                    ?>
         </div>
     </main>
     <?php include "./../include/footer.php" ?>

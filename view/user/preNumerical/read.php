@@ -43,67 +43,10 @@ include './../../../php/validations/authorizedChild.php';
             <div class="col-3 h-100">
                 <section class="historyChilds">
                     <h5>Recientes</h5><hr>
-                    <div class="btn-group">
-                        <button type="button" class="btn"><button type="button" class=" " data-bs-toggle="modal"
-                                data-bs-target="#exampleModal">
-                                Launch demo modal
-                            </button>
-                    </div><br>
-                    <div class="btn-group">
-                        <button type="button" class="btn"><button type="button" class=" " data-bs-toggle="modal"
-                                data-bs-target="#exampleModal">
-                                Launch demo modal
-                            </button>
-                    </div><br>
-                    <div class="btn-group">
-                        <button type="button" class="btn"><button type="button" class=" " data-bs-toggle="modal"
-                                data-bs-target="#exampleModal">
-                                Launch demo modal
-                            </button>
-                    </div><br>
-                    <div class="btn-group">
-                        <button type="button" class="btn"><button type="button" class=" " data-bs-toggle="modal"
-                                data-bs-target="#exampleModal">
-                                Launch demo modal
-                            </button>
-                    </div><br>
-                    <div class="btn-group">
-                        <button type="button" class="btn"><button type="button" class=" " data-bs-toggle="modal"
-                                data-bs-target="#exampleModal">
-                                Launch demo modal
-                            </button>
-                    </div><br>
-                    <div class="btn-group">
-                        <button type="button" class="btn"><button type="button" class=" " data-bs-toggle="modal"
-                                data-bs-target="#exampleModal">
-                                Launch demo modal
-                            </button>
-                    </div><br>
-                    <div class="btn-group">
-                        <button type="button" class="btn"><button type="button" class=" " data-bs-toggle="modal"
-                                data-bs-target="#exampleModal">
-                                Launch demo modal
-                            </button>
-                    </div><br>
-                    <div class="btn-group">
-                        <button type="button" class="btn"><button type="button" class=" " data-bs-toggle="modal"
-                                data-bs-target="#exampleModal">
-                                Launch demo modal
-                            </button> <br>
-                    </div><br>
-                    <div class="btn-group">
-                        <button type="button" class="btn"><button type="button" class=" " data-bs-toggle="modal"
-                                data-bs-target="#exampleModal">
-                                Launch demo modal
-                            </button>
-                    </div><br>
-                    <div class="btn-group">
-                        <button type="button" class="btn"><button type="button" class=" " data-bs-toggle="modal"
-                                data-bs-target="#exampleModal">
-                                Launch demo modal
-                            </button>
-                    </div>
-                    <a href="#allHistoryChilds"> Ver todas</a>
+                    <?php
+                    include "../../../php/user/showHistory.php";
+                    showHistorys(true);
+                    ?>
                 </section>
             </div>
             <div class="col-6">

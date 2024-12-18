@@ -33,6 +33,29 @@ $queryProgress->bindParam("id_user", $_SESSION["id_user"], PDO::PARAM_INT);
 
 $queryProgress->execute();
 $arreyAssociative = $queryProgress->fetch(PDO::FETCH_ASSOC);
+$sqlCapacidades = "SELECT SUM(fallida) as F from estado_lecciones WHERE id_usuario = :id";
+$queryCapacidades = $pdo->prepare($sqlCapacidades);
+$queryCapacidades->bindParam('id', $_SESSION["id_user"], PDO::PARAM_INT);
+$queryCapacidades->execute();
+$result = $queryCapacidades->fetch(PDO::FETCH_ASSOC);
+
+ $estados = [
+    0 => 'EXCELENTE',
+    16 => 'BIEN',
+    41 => 'HAY QUE MEJORAR',
+    'default' => 'MUY MALO'
+];
+
+$showStatuC = 'default';
+
+
+foreach ($estados as $rango => $estado) {
+    if ($result['F'] <= $rango) {
+        $showStatuC = $estado;
+        break;
+    }
+}
+
 
 $gems = $arreyAssociative["total_diamantes"];
 if ($arreyAssociative["total_diamantes"] > 0) {
@@ -94,28 +117,14 @@ echo '  <div class="row ContainerProgress">
                </div>
                <hr>
                <section>
-                   <h4 class="titleMyAbilities">Mis capacidades </h2>
+                   <h4 class="titleMyAbilities">Mi capacidad </h2>
                        <div class="d-flex gap-2 containerMyAbilities">
                            <div class="one">
                                <div>
                                    <i class="bi bi-list-ol fs-1"></i>
                                </div>
-                               <span class="p-1">Denominacion de numeros</span><br>
-                               <span>Bien</span>
-                           </div>
-                           <div class="">
-                               <div>
-                                   <i class="bi bi-list-ol fs-1"></i>
-                               </div>
-                               <span>Denominacion de numeros</span><br>
-                               <span>Bien</span>
-                           </div>
-                           <div>
-                               <div>
-                                   <i class="bi bi-list-ol fs-1"></i>
-                               </div>
-                               <span>Denominacion de numeros</span><br>
-                               <span>Bien</span>
+                               <span class="p-1">Pensamiento Numérico Inicial</span>
+                               <span class="resultMyAbilities">'. $showStatuC. '</span>
                            </div>
                        </div>
                </section>
@@ -151,6 +160,21 @@ echo '  <div class="row ContainerProgress">
     <link rel="stylesheet" href="../../../css/components/semanticTag.css">
     <link rel="stylesheet" href="../../../css/admin/addAndModifyChild.css">
     <link rel="stylesheet" href="../../../css/user/profile.css">
+    <style>
+        .one{
+            max-width: 170px;
+  min-width: 120px;
+        }
+
+        .resultMyAbilities{
+            color: white;
+  font-weight: bold;
+  display: inherit;
+  background: #ff7d45;
+  border-radius: 0rem 0rem 1rem 1rem;
+  margin-top: 0.3rem;
+        }
+    </style>
 
 </head>
 

@@ -1,65 +1,75 @@
- 
-    a {
-        margin: 0.5rem 0rem;
-        display: block;
-        color: var(--colorBlack);
-        text-decoration: none;
-    }
+a {
+    margin: 0.5rem 0rem;
+    display: block;
+    color: var(--colorBlack);
+    text-decoration: none;
+}
 
-    .historyChilds {
-        overflow-x: hidden;
-        padding: 1rem;
-        background: white;
-        border-radius: 1rem;
-        border: solid 1px #e8d8ff;
+.historyChilds {
+    overflow-x: hidden;
+    padding: 1rem;
+    background: white;
+    border-radius: 1rem;
+    border: solid 1px #e8d8ff;
+}
 
-    }
+.deteleH {
+    background: none;
+    border: none;
+    margin: 0rem;
+    height: auto;
+    height: 20px;
+}
 
-   
+.messengerShowUsers>a>b {
+    color: rgb(47, 47, 47);
+    background: #b69bff;
+    padding: 0.3rem;
+    border-radius: 0.1rem;
+    color: white;
+    border: solid 1px #b69bff;
+    font-weight: 400;
+}
 
-    .historyChilds>h5 {
-        color: #906df2;
-        font-weight: bold;
-    }
-    .operations > button, .operations > a > button{
-        border: none !important;
-        background-color: none !important;
-    }
-    .searchChilds {
-        flex-grow: 2;
-        align-content: center;
-        align-items: center;
-        justify-content: center;
-        display: flex;
+.historyChilds>h5 {
+    color: #906df2;
+    font-weight: bold;
+}
 
-    }
+.operations>button,
+.operations>a>button {
+    border: none !important;
+    background-color: none !important;
+}
 
-    .containerAddChilds {
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-    }
+.searchChilds {
+    flex-grow: 2;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
 
+.containerAddChilds {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
 
-    .operations>a {
-        border:none;
-        display: inline
-    }
+.operations>a {
+    border: none;
+    display: inline;
+}
 
-    
+[type="search"] {
+    background: #f9f9f9;
+    border-left: 0rem;
+}
 
-    [type="search"] {
-        background: #f9f9f9;
-        border-left: 0rem;
-    }
+[type="search"]:focus {
+    filter: drop-shadow(0rem 0rem 0.2rem var(--colorHF)) !important;
+}
 
-    [type="search"]:focus {
-
-        filter: drop-shadow(0.0rem 0.0rem 0.2rem var(--colorHF)) !important;
-    }
-
-    form {
-        padding: 1rem;
-    }
-
-    
+form {
+    padding: 1rem;
+}

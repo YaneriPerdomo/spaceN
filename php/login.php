@@ -62,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION["name"] = $rowresultsChildPreN["nombre"];
             $_SESSION["lastname"] = $rowresultsChildPreN["apellido"];
             $_SESSION["lastAccess"] = $rowresultsChildPreN["ultimo_acceso"];
-
+            $_SESSION["id_profesional"] = $rowresultsChildPreN["id_profesional"];
             $sql4 = "UPDATE  ninos set ultimo_acceso = now() WHERE id_usuario=$id_usuario";
             $result4 = $conn->query($sql4);
             $rowLastAccess = $resultsChildPreN->fetch_assoc();
