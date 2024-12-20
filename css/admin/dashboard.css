@@ -21,7 +21,7 @@ a {
     height: 20px;
 }
 
-.messengerShowUsers>a>b {
+.messengerShowUsers + a>b {
     color: rgb(47, 47, 47);
     background: #b69bff;
     padding: 0.3rem;

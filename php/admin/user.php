@@ -27,6 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 $mail = $_POST["mail"];
                 $center = $_POST["center"];
 
+                $pdo->beginTransaction();
                 // Preparamos la consulta para actualizar la tabla "usuarios"
                 $sqlUpdateUsuario = "UPDATE usuarios SET usuario = :user WHERE id_usuario = :userId"; //Consulta Mysql
                 $stmt = $pdo->prepare($sqlUpdateUsuario); //Preparacion
@@ -55,6 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
                 // Verificamos si ambas actualizaciones se realizaron correctamente
                 if ($stmt->rowCount() > 0 || $stmt2->rowCount() > 0) {
+                    $pdo->commit();
                     echo "<script>alert('Datos actualizados'); window.location.href = './../../view/admin/user/profile.php';</script>";
                     $_SESSION["usuario"] = $user;
                     $_SESSION["nombre"] = $name;

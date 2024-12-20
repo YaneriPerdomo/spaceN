@@ -6,15 +6,13 @@ function showInformationChild()
 
     include '../../../php/connectionBD.php';
 
-    // Verificamos si hubo algún error al conectar a la base de datos
-    if ($pdo->errorCode() != 0) {
-        // Si hay un error, mostramos un mensaje y detenemos la ejecución
-        die("Error de conexión a la base de datos: " . $pdo->errorInfo()[2]);
+     if ($pdo->errorCode() != 0) {
+         die("Error de conexión a la base de datos: " . $pdo->errorInfo()[2]);
     }
     try {
 
         $id_child = $_GET["id"];
-        $sqlChild = 'SELECT * from ninos WHERE id_nino=:id_child';
+        $sqlChild = 'SELECT id_categoria_actividades, id_genero,  id_usuario, nombre, apellido, COALESCE(ultimo_acceso, "Aún no ha iniciado sesión en la plataforma") as ultimo_acceso from ninos WHERE id_nino=:id_child';
         $stmt01 = $pdo->prepare($sqlChild);
         $stmt01->bindParam(':id_child', $id_child, PDO::PARAM_INT);
         $stmt01->execute();
@@ -118,12 +116,10 @@ function showInformationChild()
                                         <svg>
                                             <circle cx="70" cy="70" r="70"></circle>
                                             <circle cx="70" cy="70" r="70"
-                                                style="
-                                                : calc(440 - (440 * ' . $row03["porcentaje"] . ') / 100);
+                                                style=" stroke-dashoffset : calc(440 - (440 * ' . $row03["porcentaje"] . ') / 100);
                                                 -webkit-stroke-dashoffset: calc(440 - (440 * ' . $row03["porcentaje"] . ') / 100);
                                                 -moz-stroke-dashoffset: calc(440 - (440 * ' . $row03["porcentaje"] . ') / 100);
-                                                "
-                                                
+                                                "            
                                                 ></circle>
                                             <div class="num">
                                                 <h2> ' . $row03["porcentaje"] . '<span>%</span></h2>
