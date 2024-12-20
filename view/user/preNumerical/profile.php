@@ -40,6 +40,7 @@ $queryCapacidades->execute();
 $result = $queryCapacidades->fetch(PDO::FETCH_ASSOC);
 
  $estados = [
+    null => "Aún no tenemos datos",
     0 => 'EXCELENTE',
     16 => 'BIEN',
     41 => 'HAY QUE MEJORAR',

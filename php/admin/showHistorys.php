@@ -16,10 +16,12 @@ function showHistorys($showPageLearn = false)
         $query->execute();
         $results = $query->fetchAll(PDO::FETCH_ASSOC);
         if ($query->rowCount() > 0) {
-         
-             if($showPageLearn == true){
-            foreach ($results as $value) {
-                echo "<div class='d-flex'>
+
+            if ($showPageLearn == true) {
+                $count = 0;
+                foreach ($results as $value) {
+                    $count++;
+                    echo "<div class='d-flex'>
                 <div class='d-flex  flex-column'>
                             <p class='m-0'>" . $value["mensaje"] . "</p>
                             <small  style='color: #6f6f6f;'> " . $value["fecha_hora"] . " </small>
@@ -32,12 +34,15 @@ function showHistorys($showPageLearn = false)
                                 <li><a class='dropdown-item' href='./../../php/admin/deleteHistory.php?id=" . $value["id_historial"] . "'><i class='bi bi-trash'></i> Borrar</a></li>
                             </ul>
                 
-                </div><hr>
-                                    <a href='./history.php'> Ver todas</a>";
+                </div><hr>";
+                    if ($count >= 3) {
+                        echo "<small> <a href='./history.php'> Ver todas</a></small>";
+                    }
 
-        }}else{
-            foreach ($results as  $value) {
-                echo "<div class='d-flex gap-1'>
+                }
+            } else {
+                foreach ($results as $value) {
+                    echo "<div class='d-flex gap-1'>
                         <div style='  flex-grow: 1;'>
                             <p class='m-0'>
                                 " . $value["mensaje"] . "
@@ -51,8 +56,8 @@ function showHistorys($showPageLearn = false)
                         </div>
                     </div>
                 <hr>";
+                }
             }
-        }
         } else {
             echo "<div> No se han encontrado historiales registrados </div>";
         }

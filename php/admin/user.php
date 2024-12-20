@@ -37,12 +37,12 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
                 // Preparamos la consulta para actualizar la tabla "profesionales"
                 $sqlUpdateProfesional = "UPDATE profesionales SET 
-            id_cargo = :cargo,
-            nombre = :nombre,
-            apellido = :lastname,
-            correo_electronico = :mail,
-            centro_educativo = :center
-            WHERE id_usuario = :userId";
+                    id_cargo = :cargo,
+                    nombre = :nombre,
+                    apellido = :lastname,
+                    correo_electronico = :mail,
+                    centro_educativo = :center
+                    WHERE id_usuario = :userId";
 
                 $stmt2 = $pdo->prepare($sqlUpdateProfesional); //Preparamos la consulta
                 // Vinculamos los parámetros con los tipos de datos correctos

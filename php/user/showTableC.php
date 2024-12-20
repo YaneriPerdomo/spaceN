@@ -7,81 +7,60 @@ try {
 
     $typeAccess = $_POST["typeAccess"];
     $id = $_SESSION["id_user"];
-    $sqlShowTableC = "SELECT usuario, total_diamantes,  usuarios.id_usuario as id_usuario_nino
-                         FROM progresos JOIN 
-                        usuarios ON progresos.id_usuario = usuarios.id_usuario 
-                        WHERE id_categoria_actividades = :Access LIMIT 5 ";
+    $sqlShowTableC = "SELECT usuario, total_diamantes,  usuarios.id_usuario as id_usuario_nino FROM progresos JOIN  
+                        usuarios ON progresos.id_usuario = usuarios.id_usuario  WHERE id_categoria_actividades = :Access
+                        AND total_diamantes != 0 ORDER BY total_diamantes DESC LIMIT 5";
 
     $query = $pdo->prepare($sqlShowTableC);
     $query->bindParam("Access", $typeAccess, PDO::PARAM_INT);
     $query->execute();
 
     $result = $query->fetchAll(PDO::FETCH_ASSOC);
-    $mejores = "";
-    $count = 0;
-    foreach ($result as $value) {
-        $count++;
-        switch ($count) {
-            case 1:
-                $statu = '<i class="bi bi-award" style="color: rgb(239, 185, 67);;"></i>';
-                break;
-            case 2:
-                $statu = '<i class="bi bi-award" style="color:rgb(62, 151, 203);"></i>';
-                break;
-            case 3:
-                $statu = '<i class="bi bi-award" style="color:rgb(162, 70, 243);"></i>';
-                break;
-            case 4:
-                $statu = '<i class="bi bi-award"></i> rgb(72, 72, 72);';
-                break;
-            case 5:
-                $statu = '<i class="bi bi-award"></i> rgb(72,72,72);';
-                break;
-            default:
-                # code...
-                break;
-        }
-        $mejores .= ' <tr class="contentTableC fs-5">
-                    
-                    <td> ' . $statu . ' ' . $value["usuario"] . '</td>
-                   <td>' . $value["total_diamantes"] . '</td>
-                 </tr>';
+    $bests = "";
+    $coronaIcon = [
+        '<i class="bi bi-award" style="color: rgb(239, 185, 67);;"></i>', 
+        '<i class="bi bi-award" style="color:rgb(62, 151, 203);"></i>',
+        '<i class="bi bi-award" style="color:rgb(162, 70, 243);"></i>', 
+        '<i class="bi bi-award"></i> rgb(72, 72, 72)', 
+        '<i class="bi bi-award"></i> rgb(72,72,72)', 
+    ];
 
-
+    foreach ($result as $key => $value) {
+        $bests .= '<tr class="contentTableC fs-5">       
+                    <td> ' . $coronaIcon[$key] . ' ' . $value["usuario"] . '</td>
+                    <td>' . $value["total_diamantes"] . '</td>
+                  </tr>';
     }
 
-    $user = "";
-    foreach ($result as $value) {
-        if ($value["id_usuario_nino"] == $id) {
-            $user = '<tr class="contentTableC fs-5">
-                        <td><i class="bi bi-emoji-smile"></i> ' . $value["usuario"] . '</td>
-                        <td>' . $value["total_diamantes"] . '</td>
-                    </tr>';
-            break;
-        }
-    }
+    $sqlUserGems = "SELECT total_diamantes, id_usuario FROM progresos WHERE id_usuario = :id ";
+    $queryUserGems = $pdo->prepare($sqlUserGems);
+    $queryUserGems->bindParam("id", $_SESSION["id_user"], PDO::PARAM_INT);
+    $queryUserGems->execute();
+    $resultUserGems = $queryUserGems->fetch(PDO::FETCH_ASSOC);
+
 
     echo '<section class="tableC">
-                                            <h4>Clasificaciones actuales </h4>
-                                            <table class="results w-100">
-                                                <tbody >
-                                                     ' . $mejores . '
-                                                </tbody>
-                                            </table>
-                                            <br><br>
-                                            <table class="you w-100">
-                                                <tbody style="padding:0.6rem" >
-                                                    <tr>
-                                                        ' . $user . '
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </section>';
-
+            <h4>Clasificaciones actuales </h4>
+                <table class="results w-100">
+                    <tbody >
+                        ' . $bests . '
+                    </tbody>
+                </table>
+                    <br><br>
+                    <table class="you w-100">
+                    <tbody style="padding:0.6rem" >
+                        <br>
+                        <tr class="contentTableC fs-5">
+                            <td><i class="bi bi-emoji-smile"></i> ' . $_SESSION["user"] . '</td>
+                            <td>' . $resultUserGems["total_diamantes"] . '</td>
+                        </tr>
+                    </tbody>
+                </table>
+        </section>';
 } catch (PDOException $ex) {
-    echo $ex->getMessage();
+    echo 'Error a la base de datos:' . $ex->getMessage();
+}finally{
+    $pdo = null;
 }
-
-$pdo = null;
 
 ?>

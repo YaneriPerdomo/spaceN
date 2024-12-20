@@ -3,11 +3,6 @@
     
 include './../../../php/connectionBD.php';
 
-if ($pdo->errorCode() != 0) {
-    // Si hay un error, mostramos un mensaje con el detalle del error
-    echo "Error de conexión: " . $pdo->errorInfo()[2];
-    // Aquí podrías agregar lógica adicional para manejar el error, como redirigir a una página de error o enviar un correo electrónico al administrador.
-}
 
 try {
     $id_Child = $_SESSION["id_Child"];
@@ -19,14 +14,9 @@ try {
     $query->execute();
 
     if($query->rowCount() > 0){
-        $sqlUpdate = "UPDATE notificaciones SET estado = 'leido'
-        WHERE id_nino = :id";
-        $query2 = $pdo->prepare($sqlUpdate);
-        $query2->bindParam('id',$id_Child,PDO::PARAM_INT);
-        $query2->execute();
         $results = $query->fetchAll(PDO::FETCH_ASSOC);
 
-        foreach ($results as  $value) {
+        foreach ($results as $value) {
             echo "
                     <div class='d-flex'>
                         <div>
@@ -54,8 +44,9 @@ try {
     }
 
 } catch (PDOException $ex) {
-    echo "Sucedio un error: " . $ex->getMessage();
+    echo "Sucedio un error en la base de datos: " . $ex->getMessage();
+}finally{
+    $pdo = null;
 }
 
-$pdo = null;
 ?>

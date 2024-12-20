@@ -246,7 +246,7 @@ async function endOfLesson() {
             id_lesson: 4,
             modulo: "Fundamentos Numéricos",
             tema: "Introducción a los números", 
-            lesson: "Reconocimiento de números. Parte 2", 
+            lesson: "Reconocimiento de numeros, parte 2", 
             failed: failed,
             gems: parseInt($gem.textContent),
             porcentage: resulFormuleP,

@@ -14,13 +14,17 @@ function showHistorys($showPageLearn = false)
         $query->bindParam('id', $id_child, PDO::PARAM_INT);
         $query->execute();
         if ($query->rowCount() > 0) {
+            $count = 0;
             $results = $query->fetchAll(PDO::FETCH_ASSOC);
             foreach ($results as $value) {
+                $count++;
                 echo "<div class='d-flex  flex-column'>
                         <p class='m-0'>" . $value["mensaje"] . "</p>
                         <small  style='color: #6f6f6f;'> " . $value["fecha_hora"] . " </small>
-            </div> <hr>
-                               <small> <a href='./history.php'> Ver todas</a></small>";
+            </div> <hr>";            
+            }
+            if($count >= 3 ){
+                echo "<small> <a href='./history.php'> Ver todas</a></small>";
             }
         } else {
             echo "<div> No se han encontrado historiales registrados </div>";

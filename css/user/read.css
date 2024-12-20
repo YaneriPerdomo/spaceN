@@ -11,7 +11,7 @@
 }
 
 .col-9>div {
-    padding: 0rem
+    padding: 0rem;
 }
 
 [class*="tema"]>span {
@@ -67,8 +67,9 @@
     align-content: center;
     align-items: center;
 }
-.historyChilds > h5{
-    color:#906df2
+
+.historyChilds>h5 {
+    color: #906df2;
 }
 
 .clasificaciones {
@@ -86,17 +87,18 @@
     border-radius: 0.5rem;
 }
 
-tr:nth-child(2n+1) {
-    background: rgba(255, 84, 0, 0.07);
-    padding: 0.6rem 1rem;
-}
-
-
-td:last-of-type {
+td {
     background: #ff7d45;
     border-radius: 0rem 0.5rem 0.5rem 0rem;
     padding: 0.3rem;
     color: white;
+}
+
+tbody {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 0.5rem;
 }
 
 td>i {

@@ -1,9 +1,7 @@
 <?php
        
     include './../validations/authorizedChild.php';
-    
     include './../connectionBD.php';
-    
     if ($pdo->errorCode() != 0) {
         echo "Error de conexión: " . $pdo->errorInfo()[2];
     }

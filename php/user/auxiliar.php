@@ -55,4 +55,25 @@ function getLessonData($idUser, $idlesson)
 }
 
 
+//Función para generar un historial de la plataforma teniendo en cuenta el estado de la lección del niño
+function addHistory( $statu)
+{
+    include './../connectionBD.php';
+    $sqlHistorial = "INSERT INTO historiales (id_nino, id_profesional, mensaje, fecha_hora)
+    VALUES (:id_child, :id_profesional, :mensaje, NOW() )";
+
+    $message = match ($statu) {
+        'completed' => $_SESSION['user'] . " ha completado la lección: '" . $leccion . "', sobre el tema '" . $tema . "'",
+        'completeTotal' => $_SESSION['user'] . " ha finalizado el módulo: '" . $modulo . "'",
+        'awaiting' => $_SESSION['user'] . " ha completado de nuevo la lección: '" . $leccion . "', sobre el tema '" . $tema . "'",
+    };
+
+    $queryHistorial = $pdo->prepare($sqlHistorial);
+    $queryHistorial->bindParam('id_child', $_SESSION["id_Child"], PDO::PARAM_INT);
+    $queryHistorial->bindParam('id_profesional', $_SESSION["id_profesional"], PDO::PARAM_INT);
+    $queryHistorial->bindParam('mensaje', $message, PDO::PARAM_STR);
+    $queryHistorial->execute();
+
+}
+
 ?>

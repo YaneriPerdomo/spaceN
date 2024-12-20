@@ -29,8 +29,8 @@ include './../../../php/validations/authorizedChild.php';
     <link rel="stylesheet" href="../../../css/bootstrap/bootstrapMin.css">
     <link rel="stylesheet" href="../../../css/user/read.css">
     <style>
-       
-      
+
+
     </style>
 </head>
 
@@ -42,7 +42,8 @@ include './../../../php/validations/authorizedChild.php';
         <div class="row h-100">
             <div class="col-3 h-100">
                 <section class="historyChilds">
-                    <h5>Recientes</h5><hr>
+                    <h5>Recientes</h5>
+                    <hr>
                     <?php
                     include "../../../php/user/showHistory.php";
                     showHistorys(true);
@@ -71,7 +72,7 @@ include './../../../php/validations/authorizedChild.php';
                         $sqlShowTableC = "SELECT usuario, total_diamantes,  usuarios.id_usuario as id_usuario_nino
                                              FROM progresos JOIN 
                                             usuarios ON progresos.id_usuario = usuarios.id_usuario 
-                                            WHERE id_categoria_actividades = :Access LIMIT 5 ";
+                                            WHERE id_categoria_actividades = :Access AND total_diamantes != 0 LIMIT 5 ";
 
                         $query = $pdo->prepare($sqlShowTableC);
                         $query->bindParam("Access", $typeAccess, PDO::PARAM_INT);
@@ -121,9 +122,10 @@ include './../../../php/validations/authorizedChild.php';
 
                     } catch (PDOException $ex) {
                         echo $ex->getMessage();
-                    }
+                    } finally {
+                        $pdo = null;
 
-                    $pdo = null;
+                    }
 
                     ?>
                 </div>

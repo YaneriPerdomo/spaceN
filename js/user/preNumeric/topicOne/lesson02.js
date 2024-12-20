@@ -250,9 +250,9 @@ async function endOfLesson() {
         body: new URLSearchParams({
             typeAccess: "Pre_Numerico",
             statu: searchParams.get("statu"),
+            id_lesson: 2,
             modulo: "Fundamentos Numéricos",
             tema: "Conceptos básicos", 
-            id_lesson: 2,
             lesson: "Comparación de cantidades", 
             failed: failed,
             gems: parseInt($gem.textContent),
