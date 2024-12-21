@@ -1,8 +1,8 @@
 <?php
-
 include './../../../php/validations/authorizedChild.php';
 
 ?>
+
 
 <!DOCTYPE html>
 <html lang="es">
@@ -27,13 +27,12 @@ include './../../../php/validations/authorizedChild.php';
     <link rel="stylesheet" href="../../../css/admin/addAndModifyChild.css">
     <link rel="stylesheet" href="../../../css/admin/dashboard.css">
     <link rel="stylesheet" href="../../../css/components/row.css">
+    <link rel="stylesheet" href="../../../css/bootstrap/bootstrapMin.css">
+    <link rel="stylesheet" href="../../../css/user/read.css">
+    <style>
 
 
-<style>
-    .lessons > div a {
-        text-align: center;
-    }
-</style>
+    </style>
 </head>
 
 <body>
@@ -44,263 +43,44 @@ include './../../../php/validations/authorizedChild.php';
         <div class="row h-100">
             <div class="col-3 h-100">
                 <section class="historyChilds">
-                    <span>Recientes</span><br>
+                    <h5>Recientes</h5>
                     <hr>
-                    <div class="btn-group">
-                        <button type="button" class="btn"><button type="button" class=" " data-bs-toggle="modal"
-                                data-bs-target="#exampleModal">
-                                Launch demo modal
-                            </button></button>
-                        <button type="button" class=" dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            <span class="visually-hidden">Toggle Dropdown</span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#"><i class="bi bi-trash"></i> Borrar</a></li>
-                        </ul>
-                    </div>
-                    <div class="btn-group">
-                        <button type="button" class="btn"><button type="button" class=" " data-bs-toggle="modal"
-                                data-bs-target="#exampleModal">
-                                Launch demo modal
-                            </button></button>
-                        <button type="button" class=" dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            <span class="visually-hidden">Toggle Dropdown</span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#"><i class="bi bi-trash"></i> Borrar</a></li>
-                        </ul>
-                    </div>
-                    <div class="btn-group">
-                        <button type="button" class="btn"><button type="button" class=" " data-bs-toggle="modal"
-                                data-bs-target="#exampleModal">
-                                Launch demo modal
-                            </button></button>
-                        <button type="button" class=" dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            <span class="visually-hidden">Toggle Dropdown</span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#"><i class="bi bi-trash"></i> Borrar</a></li>
-                        </ul>
-                    </div>
-                    <div class="btn-group">
-                        <button type="button" class="btn"><button type="button" class=" " data-bs-toggle="modal"
-                                data-bs-target="#exampleModal">
-                                Launch demo modal
-                            </button></button>
-                        <button type="button" class=" dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            <span class="visually-hidden">Toggle Dropdown</span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#"><i class="bi bi-trash"></i> Borrar</a></li>
-                        </ul>
-                    </div>
-                    <div class="btn-group">
-                        <button type="button" class="btn"><button type="button" class=" " data-bs-toggle="modal"
-                                data-bs-target="#exampleModal">
-                                Launch demo modal
-                            </button></button>
-                        <button type="button" class=" dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            <span class="visually-hidden">Toggle Dropdown</span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#"><i class="bi bi-trash"></i> Borrar</a></li>
-                        </ul>
-                    </div>
-                    <div class="btn-group">
-                        <button type="button" class="btn"><button type="button" class=" " data-bs-toggle="modal"
-                                data-bs-target="#exampleModal">
-                                Launch demo modal
-                            </button></button>
-                        <button type="button" class=" dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            <span class="visually-hidden">Toggle Dropdown</span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#"><i class="bi bi-trash"></i> Borrar</a></li>
-                        </ul>
-                    </div>
-                    <div class="btn-group">
-                        <button type="button" class="btn"><button type="button" class=" " data-bs-toggle="modal"
-                                data-bs-target="#exampleModal">
-                                Launch demo modal
-                            </button></button>
-                        <button type="button" class=" dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            <span class="visually-hidden">Toggle Dropdown</span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#"><i class="bi bi-trash"></i> Borrar</a></li>
-                        </ul>
-                    </div>
-                    <div class="btn-group">
-                        <button type="button" class="btn"><button type="button" class=" " data-bs-toggle="modal"
-                                data-bs-target="#exampleModal">
-                                Launch demo modal
-                            </button></button>
-                        <button type="button" class=" dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            <span class="visually-hidden">Toggle Dropdown</span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#"><i class="bi bi-trash"></i> Borrar</a></li>
-                        </ul>
-                    </div>
-                    <div class="btn-group">
-                        <button type="button" class="btn"><button type="button" class=" " data-bs-toggle="modal"
-                                data-bs-target="#exampleModal">
-                                Launch demo modal
-                            </button></button>
-                        <button type="button" class=" dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            <span class="visually-hidden">Toggle Dropdown</span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#"><i class="bi bi-trash"></i> Borrar</a></li>
-                        </ul>
-                    </div>
-                    <div class="btn-group">
-                        <button type="button" class="btn"><button type="button" class=" " data-bs-toggle="modal"
-                                data-bs-target="#exampleModal">
-                                Launch demo modal
-                            </button></button>
-                        <button type="button" class=" dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            <span class="visually-hidden">Toggle Dropdown</span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#"><i class="bi bi-trash"></i> Borrar</a></li>
-                        </ul>
-                    </div>
-                    <a href="#allHistoryChilds"> Ver todas</a>
+                    <?php
+                    include "../../../php/user/showHistory.php";
+                    showHistorys(true);
+                    ?>
                 </section>
             </div>
-            <div class="col-9">
+            <div class="col-6">
                 <div>
-                    <article class="moduloOne">
-                        <strong class="fs-3">Módulo 2: Ampliando el Concepto de Número</strong><br>
-                            <section class="temaOneInformation">
-                                <span>Tema 1: Conteo:   </span>
-                                <div class="d-flex flex-direction-row gap-4 lessons">
-                                    <div class="one">
-                                    <a href="" title="Conteo hacia adelante y hacia atrás: ejercicios de contar en voz alta y con objetos.">
-                                            <div class="img">
-                                                <i class="bi bi-hourglass-top fs-1"></i>
-                                            </div>
-                                            <div class="status">
-                                                <span class="fs-5">En espera</span><br>
-                                                <small>Conteo hacia adelante y <br> hacia atrás</small>
-                                            </div>
-                                            <hr>
-                                            <div class="d-flex flex-direction-row gap-1">
-                                                <span>Porcentaje:0%</span>
-                                                <span>Diamantes:0</span>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="two">
-                                    <a href="" title="Conteo de decenas: actividades para comprender el concepto de decena.">
-                                            <div class="img">
-                                                <i class="bi bi-hourglass-top fs-1"></i>
-                                            </div>
-                                            <div class="status">
-                                                <span class="fs-5">En espera</span><br>
-                                                <small>Comparación de <br>cantidades</small>
-                                            </div>
-                                            <hr>
-                                            <div class="d-flex flex-direction-row gap-1">
-                                                <span>Porcentaje:0%</span>
-                                                <span>Diamantes:0</span>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="thre">
-                                    <a href="" title="Seriación: ordenar objetos según tamaño, color o forma.">
-                                            <div class="img">
-                                                <i class="bi bi-hourglass-top fs-1"></i>
-                                            </div>
-                                            <div class="status">
-                                                <span class="fs-5">En espera</span><br>
-                                                <small>Seriación para ordenar <br> objetos</small><br>
-                                            </div>
-                                            <hr>
-                                            <div class="d-flex flex-direction-row gap-1">
-                                                <span>Porcentaje:0%</span>
-                                                <span>Diamantes:0</span>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                            </section>
-                            <section class="temaOneInformation">
-                                <span>Tema 2: Introducción a los números:  </span>
-                                <div class="d-flex flex-direction-row gap-4 lessons">
-                                    <div class="one">
-                                        <a href="" title="Reconocimiento de números del 1 al 10: ejercicios de identificación visual y auditiva.">
-                                            <div class="img">
-                                                <i class="bi bi-hourglass-top fs-1"></i>
-                                            </div>
-                                            <div class="status">
-                                                <span class="fs-5">En espera</span><br>
-                                                <small>Reconocimiento de <br> números  del 1 al 10</small>
-                                            </div>
-                                            <hr>
-                                            <div class="d-flex flex-direction-row gap-1">
-                                                <span>Porcentaje:0%</span>
-                                                <span>Diamantes:0</span>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="two">
-                                    <a href="" title="Escritura de números: actividades para practicar la escritura de números.">
-                                            <div class="img">
-                                                <i class="bi bi-hourglass-top fs-1"></i>
-                                            </div>
-                                            <div class="status">
-                                                <span class="fs-5">En espera</span><br>
-                                                <small>Escritura de <br> números</small>
-                                            </div>
-                                            <hr>
-                                            <div class="d-flex flex-direction-row gap-1">
-                                                <span>Porcentaje:0%</span>
-                                                <span>Diamantes:0</span>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="thre">
-                                    <a href="" title="Correspondencia número-cantidad: relacionar un número con la cantidad correspondiente de objetos.">
-                                            <div class="img">
-                                                <i class="bi bi-hourglass-top fs-1"></i>
-                                            </div>
-                                            <div class="status">
-                                                <span class="fs-5">En espera</span><br>
-                                                <small>Correspondencia <br> número-cantidad</small>
-                                            </div>
-                                            <hr>
-                                            <div class="d-flex flex-direction-row gap-1">
-                                                <span>Porcentaje:0%</span>
-                                                <span>Diamantes:0</span>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                            </section>
-                    </article>
+                    <?php
+                    include "../../../php/user/showEstatusLessons.php";
+                    showLessons(2);
+                    ?>
+                </div>
+            </div>
+            <div class="col-3">
+                <div>
+                    <h4 class="clasificaciones">Clasificaciones actuales </h4>
+                    <hr>
+                    <?php
+                         include "../../../php/user/showTableCRead.php";
+                         showTableRead(2);
+                    ?>
                 </div>
             </div>
         </div>
     </main>
-
     <?php include './../../include/footer.php' ?>
     <?php include './../../include/user/offcanvasUser.php' ?>
     <?php include './../../include/user/offcanvasAplication.php' ?>
-
+    <script src="./../../../js/helpers/unlockLinks.js"> </script>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+    integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+    crossorigin="anonymous"></script>
 
 </html>

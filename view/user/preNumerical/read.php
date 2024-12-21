@@ -30,7 +30,9 @@ include './../../../php/validations/authorizedChild.php';
     <link rel="stylesheet" href="../../../css/user/read.css">
     <style>
 
+    td:last-of-type {
 
+    }
     </style>
 </head>
 
@@ -45,16 +47,16 @@ include './../../../php/validations/authorizedChild.php';
                     <h5>Recientes</h5>
                     <hr>
                     <?php
-                    include "../../../php/user/showHistory.php";
-                    showHistorys(true);
+                        include "../../../php/user/showHistory.php";
+                        showHistorys(true);
                     ?>
                 </section>
             </div>
             <div class="col-6">
                 <div>
                     <?php
-                    include "../../../php/user/showEstatusLessons.php";
-                    showLessons();
+                        include "../../../php/user/showEstatusLessons.php";
+                        showLessons(1);
                     ?>
                 </div>
             </div>
@@ -63,70 +65,8 @@ include './../../../php/validations/authorizedChild.php';
                     <h4 class="clasificaciones">Clasificaciones actuales </h4>
                     <hr>
                     <?php
-                    include './../../../php/connectionBD.php';
-
-                    try {
-
-                        $typeAccess = 1;
-                        $id = $_SESSION["id_user"];
-                        $sqlShowTableC = "SELECT usuario, total_diamantes,  usuarios.id_usuario as id_usuario_nino
-                                             FROM progresos JOIN 
-                                            usuarios ON progresos.id_usuario = usuarios.id_usuario 
-                                            WHERE id_categoria_actividades = :Access AND total_diamantes != 0 LIMIT 5 ";
-
-                        $query = $pdo->prepare($sqlShowTableC);
-                        $query->bindParam("Access", $typeAccess, PDO::PARAM_INT);
-                        $query->execute();
-
-                        $result = $query->fetchAll(PDO::FETCH_ASSOC);
-                        $mejores = "";
-                        $count = 0;
-                        foreach ($result as $value) {
-                            $count++;
-                            switch ($count) {
-                                case 1:
-                                    $statu = '<i class="bi bi-award" style="color: rgb(239, 185, 67);;"></i>';
-                                    break;
-                                case 2:
-                                    $statu = '<i class="bi bi-award" style="color:rgb(62, 151, 203);"></i>';
-                                    break;
-                                case 3:
-                                    $statu = '<i class="bi bi-award" style="color:rgb(162, 70, 243);"></i>';
-                                    break;
-                                case 4:
-                                    $statu = '<i class="bi bi-award"></i> rgb(72, 72, 72);';
-                                    break;
-                                case 5:
-                                    $statu = '<i class="bi bi-award"></i> rgb(72,72,72);';
-                                    break;
-                                default:
-                                    # code...
-                                    break;
-                            }
-                            $mejores .= ' <tr class="contentTableC fs-5 spaceTableC">
-                                        
-                                        <td> ' . $statu . ' ' . $value["usuario"] . '</td>
-                                       <td>' . $value["total_diamantes"] . '</td>
-                                        </tr> ';
-
-
-                        }
-                        echo '<section class="tableC">
-                                                                <table class="results w-100">
-                                                                    <tbody >
-                                                                         ' . $mejores . '
-                                                                    </tbody>
-                                                                </table>
-                                                                <br><br>
-                                                            </section>';
-
-                    } catch (PDOException $ex) {
-                        echo $ex->getMessage();
-                    } finally {
-                        $pdo = null;
-
-                    }
-
+                        include "../../../php/user/showTableCRead.php";
+                        showTableRead(1);
                     ?>
                 </div>
             </div>

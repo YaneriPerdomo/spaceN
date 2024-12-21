@@ -85,11 +85,20 @@
     justify-content: space-between;
     align-items: center;
     border-radius: 0.5rem;
+    width: 100%;
+    background: #ffd6c9;
 }
 
-td {
+tr>td:last-of-type {
     background: #ff7d45;
     border-radius: 0rem 0.5rem 0.5rem 0rem;
+    padding: 0.3rem;
+    color: white;
+}
+
+td>td:first-of-type {
+    background: #ff7d45;
+    border-radius: 0.5rem 0rem 0.5rem 0.5rem;
     padding: 0.3rem;
     color: white;
 }
@@ -99,6 +108,9 @@ tbody {
     justify-content: space-between;
     align-items: center;
     border-radius: 0.5rem;
+    flex-direction: column;
+    width: 100%;
+    gap: 0.5rem;
 }
 
 td>i {

@@ -7,8 +7,8 @@ include './../../../php/connectionBD.php';
 try {
     $id_Child = $_SESSION["id_Child"];
 
-    $sqlNotificacion = "SELECT id_notificacion, mensaje, fecha_hora_envio from notificaciones WHERE 
-    id_nino = :id order by fecha_hora_envio desc";
+    $sqlNotificacion = "SELECT id_notificacion, mensaje, fecha_hora_envio FROM notificaciones WHERE 
+    id_nino = :id ORDER BY fecha_hora_envio DESC";
     $query = $pdo->prepare($sqlNotificacion);
     $query->bindParam('id',$id_Child,PDO::PARAM_INT);
     $query->execute();

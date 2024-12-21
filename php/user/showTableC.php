@@ -17,7 +17,7 @@ try {
 
     $result = $query->fetchAll(PDO::FETCH_ASSOC);
     $bests = "";
-    $coronaIcon = [
+    $coronasIcon = [
         '<i class="bi bi-award" style="color: rgb(239, 185, 67);;"></i>', 
         '<i class="bi bi-award" style="color:rgb(62, 151, 203);"></i>',
         '<i class="bi bi-award" style="color:rgb(162, 70, 243);"></i>', 
@@ -27,7 +27,7 @@ try {
 
     foreach ($result as $key => $value) {
         $bests .= '<tr class="contentTableC fs-5">       
-                    <td> ' . $coronaIcon[$key] . ' ' . $value["usuario"] . '</td>
+                    <td> ' . $coronasIcon[$key] . ' ' . $value["usuario"] . '</td>
                     <td>' . $value["total_diamantes"] . '</td>
                   </tr>';
     }
