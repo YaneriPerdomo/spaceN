@@ -71,7 +71,7 @@ try {
 
     echo "
     <article class='moduleOne'>
-        <strong class='fs-3'>Módulo 1: Fundamentos Numéricos</strong>
+        <strong class='fs-3'>" . $lessonsInformation["modulo"][0] . "</strong>
         <section class='theContent'>
             <section class='temaOneInformation'>
                 <span><b>" . $lessonsInformation["tema"][0] . " </b></span>

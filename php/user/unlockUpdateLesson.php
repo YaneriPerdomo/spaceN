@@ -1,6 +1,7 @@
 <?php
 include './../validations/authorizedChild.php';
 include './../connectionBD.php';
+include './auxiliar.php';
 if (isset($statu)) {
     echo "No se ha reconocido el estado de la lección";
     exit();
@@ -15,14 +16,31 @@ $failed = $_POST["failed"];
 $tema = $_POST["tema"];
 $leccion = $_POST["lesson"];
 $modulo = $_POST["modulo"];
+$accessLevel = $_POST["accessLevel"];
 
-include './auxiliar.php';
+function addHistory( $statu, $leccion, $tema, $modulo)
+{
+    include './../connectionBD.php';
+    $sqlHistorial = "INSERT INTO historiales (id_nino, id_profesional, mensaje, fecha_hora)
+    VALUES (:id_child, :id_profesional, :mensaje, NOW() )";
+
+    $message = match ($statu) {
+        'completed' => $_SESSION['user'] . " ha completado la lección: '" . $leccion . "', sobre el tema '" . $tema . "'",
+        'completeTotal' => $_SESSION['user'] . " ha finalizado el módulo: '" . $modulo . "'",
+        'awaiting' => $_SESSION['user'] . " ha completado de nuevo la lección: '" . $leccion . "', sobre el tema '" . $tema . "'",
+    };
+
+    $queryHistorial = $pdo->prepare($sqlHistorial);
+    $queryHistorial->bindParam('id_child', $_SESSION["id_Child"], PDO::PARAM_INT);
+    $queryHistorial->bindParam('id_profesional', $_SESSION["id_profesional"], PDO::PARAM_INT);
+    $queryHistorial->bindParam('mensaje', $message, PDO::PARAM_STR);
+    $queryHistorial->execute();
+
+}
 try {
-
     switch ($statu) {
         case 'en_espera':
-            $pdo->beginTransaction();
-            addHistory("awaiting");
+            addHistory("awaiting", $leccion, $tema, $modulo);
             $sqlComplete = "UPDATE estado_lecciones SET completado='completado' WHERE id_usuario = :id_user AND id_leccion = :id_lesson";
             $query01 = $pdo->prepare($sqlComplete);
             $query01->bindParam('id_user', $idUser, PDO::PARAM_INT);
@@ -40,7 +58,7 @@ try {
             $queryWait->execute();
             $nextLesson = $idLesson + 1;
 
-            if ($nextLesson <= 4) {
+            if (($nextLesson <= 4 && $accessLevel == "Pre_Numerico") || ($nextLesson <= 8 && $accessLevel == "Numerico_emergente")) {
                 $sqlNext = "UPDATE estado_lecciones SET  completado = 'en_espera'
                             WHERE id_usuario = :id_user AND id_leccion = :id_lesson";
                 $queryNext = $pdo->prepare($sqlNext);
@@ -64,15 +82,13 @@ try {
                 $queryUpdateProgress->execute();
 
                 if ($queryWait->rowCount() > 0 && $queryNext->rowCount() > 0 && $queryUpdateProgress->rowCount() > 0) {
-                    $pdo->commit();
                     echo "Completed this lesson";
                 } else {
                     throw new PDOException("Error updating lesson status");
                 }
             } else {
-                $pdo->beginTransaction();
-                addHistory("awaiting");
-                addHistory("completeTotal");
+                addHistory("awaiting" , $leccion, $tema, $modulo);
+                addHistory("completeTotal",$leccion, $tema, $modulo);
 
                 $sqlSelectProgressNow = "SELECT total_diamantes from  progresos WHERE id_usuario =:id_user";
                 $querySelectProgressNow = $pdo->prepare($sqlSelectProgressNow);
@@ -89,7 +105,6 @@ try {
 
                 if ($queryWait->rowCount() > 0 && $queryUpdateProgress->rowCount() > 0) {
                     echo "completed this lesson.";
-                    $pdo->commit();
                 } else {
                     throw new PDOException("Error updating lesson status");
                 }
@@ -97,8 +112,7 @@ try {
 
             break;
         case "completado":
-            $pdo->beginTransaction();
-            addHistory("completed");
+            addHistory("completed", $leccion, $tema, $modulo);
 
             $sqlComplete = "UPDATE estado_lecciones SET porcentaje = :porcentage, diamantes_obtenidos = :gems,
                 tiempo = :timeV, fallida = :failed WHERE id_usuario = :id_user AND id_leccion = :id_lesson";
@@ -126,14 +140,12 @@ try {
 
             if ($queryUpdateProgress->rowCount() > 0 && $queryCompleta->rowCount() > 0) {
                 echo "Completado this lesson";
-                $pdo->commit();
             } else {
                 throw new PDOException("Error updating lesson status");
             }
             break;
     }
 } catch (PDOException $ex) {
-    $pdo->rollBack();
     echo $ex->getMessage();
 } finally {
     $pdo = null;

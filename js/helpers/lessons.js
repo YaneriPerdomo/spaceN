@@ -29,12 +29,15 @@ export let $begin = document.querySelector(".begin");
 export let $GuidaContent = document.querySelector(".containerGuide > .content")
 export let $containerPlay = document.querySelector(".containerPlay");
 export let $clickMp3 =document.querySelector(".clickMp3");
-
+export let $resultUser = document.querySelector(".resultUser")
 export let  $showNumberStrong = document.querySelector(".showNumber > strong");
 export let $showNumber = document.querySelector(".showNumber");
     
 export let $showNumberSpan = document.querySelectorAll(".showNumber > strong > span");
- let timer;
+export let $showNumberSpan02 = document.querySelectorAll(".cuadroAzul > strong > span");
+export let $squareBlue = document.querySelector(".cuadroAzul > strong ");
+
+let timer;
  let seconds = 0,
     minutes = 0,
     hours = 0;
@@ -189,4 +192,39 @@ export function hiddenKeyNumber(similar01, similar02, mainNumber, c){
    }, 3000);
 }
 
+
+
+export function MoreLessElements(moreLess, dataSelection){
+    let count = 0
+
+    $ButtonsNum.forEach(el => {
+        el.removeAttribute("data-selection")
+        el.removeAttribute("class")
+    })
+
+    for(let i = 0;i < $ButtonsNum.length; i++){
+        count++
+        $ButtonsNum[i].innerHTML = moreLess[i]
+        if(count == dataSelection){
+            $ButtonsNum[i].setAttribute("data-selection", true);
+            continue;
+        }
+        $ButtonsNum[i].setAttribute("data-selection", false)
+    }
+
+}
+
+export function subtractionAddition(array,numbers, mainNumber){
+    $containerPlayer.setAttribute("data-num", mainNumber)
+
+    for(let i = 0; i < $ButtonsNum.length; i++){
+        $ButtonsNum[i].innerHTML = numbers[i];
+    }
+
+    $showNumberSpan02[0].innerHTML = array[0];
+    $showNumberSpan02[1].innerHTML = array[1];
+    $showNumberSpan02[2].innerHTML = array[2];
+    $showNumberSpan02[3].innerHTML = "=";
+    $showNumberSpan02[4].innerHTML = "__";
+}
 

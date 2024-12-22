@@ -14,8 +14,7 @@
             $query = $pdo->prepare($sqlShowTableC);
             $query->bindParam("Access", $typeAccess, PDO::PARAM_INT);
             $query->execute();
-            if($query->rowCount() > 0){
-                
+            if($query->rowCount() > 0){      
             $result = $query->fetchAll(PDO::FETCH_ASSOC);
             $mejores = "";
             $count = 0;
