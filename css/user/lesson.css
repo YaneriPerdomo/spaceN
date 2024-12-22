@@ -327,6 +327,59 @@ h1 {
   font-weight: bold;
 }
 
+
+.cuadroAzul {
+  cursor: pointer;
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 0.5rem;
+  align-items: center;
+  background: rgb(47, 47, 47);
+  color: white;
+  border-radius: 0.5rem;
+  outline-color: #214b77;
+  outline-offset: 0;
+  outline-style: solid;
+  outline-width: 3px;
+  color: white;
+  border: 0rem;
+  min-width: 40px !important;
+  min-height: 40px;
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  filter: drop-shadow(2px 3px #222);
+  margin-bottom: 1.5rem;
+  padding: 0.7rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  background: #3a8be1;
+  padding: 0.5rem 1rem;
+  border-radius: 100%;
+  border-radius: 0.5rem;
+  outline-color: #214b77;
+  outline-offset: 0;
+  outline-style: solid;
+  outline-width: 3px;
+  color: white;
+  border: 0rem;
+  min-width: 40px !important;
+  min-height: 40px;
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  filter: drop-shadow(2px 3px #222);
+  flex-direction: row;
+}
+
+.operations{
+  max-width: 600px;
+}
+
 .btnPlay {
   cursor: pointer;
   background: white;

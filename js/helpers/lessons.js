@@ -36,7 +36,7 @@ export let $showNumber = document.querySelector(".showNumber");
 export let $showNumberSpan = document.querySelectorAll(".showNumber > strong > span");
 export let $showNumberSpan02 = document.querySelectorAll(".cuadroAzul > strong > span");
 export let $squareBlue = document.querySelector(".cuadroAzul > strong ");
-
+export let $staqueBlue = document.querySelector(".cuadroAzul");
 let timer;
  let seconds = 0,
     minutes = 0,
@@ -227,4 +227,15 @@ export function subtractionAddition(array,numbers, mainNumber){
     $showNumberSpan02[3].innerHTML = "=";
     $showNumberSpan02[4].innerHTML = "__";
 }
+export let $operationsImg = document.querySelector(".operations > strong > span > img");
 
+export function simpleProblem(question, icon, numbers, answer){
+    $containerPlayer.setAttribute("data-num", answer)
+
+    for(let i = 0; i < $ButtonsNum.length; i++){
+        $ButtonsNum[i].innerHTML = numbers[i];
+    }
+    
+    $showNumberSpan02[0].innerHTML = question;
+    $showNumberSpan02[1].innerHTML = icon;
+}

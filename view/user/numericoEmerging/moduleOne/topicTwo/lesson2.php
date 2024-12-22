@@ -72,11 +72,14 @@ include './../../../../../php/connectionBD.php';
                 <div class="row w-100 h-100">
                     <div class="col-12 align-items-center justify-content-center d-flex">
                         <div class="containerPlayer align-items-center justify-content-center" data-num="3">
-                            <div class="showNumber">
-                                <strong>?</strong>
+                            <div class="cuadroAzul operations">
+                                <strong>
+                                    <span></span>
+                                        <br>
+                                    <span></span>
+                                </strong>
                             </div>
                             <div class="ButtonsNum">
-                                <button>?</button>
                                 <button>?</button>
                                 <button>?</button>
                                 <button>?</button>
@@ -95,7 +98,7 @@ include './../../../../../php/connectionBD.php';
                         <h1 class="text-center">Progreso Actual</h1>
                         <?php
                         include '../../../../../php/user/auxiliar.php';
-                        echo getLessonData($_SESSION["id_user"], 4);
+                        echo getLessonData($_SESSION["id_user"], 5);
                         ?>
                     </div>
                 </div>
@@ -113,7 +116,6 @@ include './../../../../../php/connectionBD.php';
                 </div>
             </div>
             <?php
-         
             include '../../../../include/user/lesson/modalWindows/FromOneToThree.php';
             include '../../../../include/user/lesson/modalWindows/back.php';
             include '../../../../include/user/lesson/modalWindows/guide.php';
@@ -134,7 +136,8 @@ include './../../../../../php/connectionBD.php';
     include '../../../../include/user/lesson/offcanvasUser.php';
     ?>
 
-    <script src="../../../../../js/user/preNumeric/topicTwo/lesson02.js" type="module">
+<script src="../../../../../js/user/numericoEmerging/topicTwo/lesson02.js" 
+        type="module">
     </script>
 </body>
 

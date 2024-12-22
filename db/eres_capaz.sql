@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-12-2024 a las 01:58:40
+-- Tiempo de generación: 22-12-2024 a las 15:07:41
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -79,7 +79,7 @@ CREATE TABLE `estado_lecciones` (
   `porcentaje` int(11) DEFAULT 0,
   `diamantes_obtenidos` int(100) DEFAULT 0,
   `tiempo` varchar(25) NOT NULL DEFAULT '00:00:00',
-  `fallida` int(20) NOT NULL
+  `fallida` int(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -88,9 +88,17 @@ CREATE TABLE `estado_lecciones` (
 
 INSERT INTO `estado_lecciones` (`id_estado_leccion`, `id_usuario`, `id_leccion`, `completado`, `porcentaje`, `diamantes_obtenidos`, `tiempo`, `fallida`) VALUES
 (45, 14, 1, 'completado', 100, 20, '00:01:02', 0),
-(46, 14, 2, 'completado', 45, 9, '00:02:04', 11),
-(47, 14, 3, 'completado', 30, 19, '00:00:54', 1),
-(48, 14, 4, 'completado', 80, 16, '00:01:59', 4);
+(46, 14, 2, 'completado', 75, 15, '00:01:06', 5),
+(47, 14, 3, 'completado', 30, 19, '00:00:54', 5),
+(48, 14, 4, 'completado', 90, 18, '00:02:23', 2),
+(57, 19, 1, 'completado', 100, 20, '00:01:00', 0),
+(58, 19, 2, 'completado', 60, 12, '00:00:56', 8),
+(59, 19, 3, 'completado', 100, 20, '00:01:31', 0),
+(60, 19, 4, 'completado', 70, 14, '00:02:13', 6),
+(73, 23, 5, 'en_espera', 0, 0, '0', 0),
+(74, 23, 6, 'bloqueado', 0, 0, '00:00:00', NULL),
+(75, 23, 7, 'bloqueado', 0, 0, '0', 0),
+(76, 23, 8, 'bloqueado', 0, 0, '00:00:00', NULL);
 
 -- --------------------------------------------------------
 
@@ -115,6 +123,29 @@ INSERT INTO `generos` (`id_genero`, `genero`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `historiales`
+--
+
+DROP TABLE IF EXISTS `historiales`;
+CREATE TABLE `historiales` (
+  `id_historial` int(10) NOT NULL,
+  `id_nino` int(10) DEFAULT NULL,
+  `id_profesional` int(10) DEFAULT NULL,
+  `mensaje` varchar(250) DEFAULT NULL,
+  `fecha_hora` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `historiales`
+--
+
+INSERT INTO `historiales` (`id_historial`, `id_nino`, `id_profesional`, `mensaje`, `fecha_hora`) VALUES
+(28, 20, 8, 'Emily2019 ha completado la lección: \'Suma y resta con objetos\', sobre el tema \'Operaciones basicas \'', '2024-12-21 22:06:35'),
+(29, 20, 8, 'Emily2019 ha completado la lección: \'Suma y resta con objetos\', sobre el tema \'Operaciones basicas \'', '2024-12-21 22:09:10');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `lecciones`
 --
 
@@ -133,9 +164,13 @@ CREATE TABLE `lecciones` (
 
 INSERT INTO `lecciones` (`id_leccion`, `id_tema`, `leccion`, `titulo`, `objetivo`) VALUES
 (1, 1, 1, 'Asociación de cantidad con objetos', 'Asociación de cantidad con objetos: ejercicios de contar objetos de diferentes tipos y tamaños.'),
-(2, 1, 2, 'Comparación de cantidades', '  Comparación de cantidades: actividades para identificar \"más\", \"menos\" e \"igual\".'),
-(3, 2, 1, 'Reconocimiento de números. Parte 1', '    Reconocimiento de números del 1 al 10: ejercicios de identificación auditiva.'),
-(4, 2, 2, 'Reconocimiento de números. Parte 2', '    Reconocimiento de números del 1 al 10: ejercicios de identificación visual.');
+(2, 1, 2, 'Comparación de cantidades', 'Comparación de cantidades: actividades para identificar \"más\", \"menos\" e \"igual\".'),
+(3, 2, 1, 'Reconocimiento de números. Parte 1', 'Reconocimiento de números del 1 al 10: ejercicios de identificación auditiva.'),
+(4, 2, 2, 'Reconocimiento de números. Parte 2', 'Reconocimiento de números del 1 al 10: ejercicios de identificación visual.'),
+(5, 3, 1, 'Conteo hacia adelante y hacia atrás', 'Ejercicios de contar desde un numero inicial'),
+(6, 3, 2, 'Conteo con objetos', 'Actividades para comprender las cantidades con objetos'),
+(7, 4, 1, 'Suma y resta con objetos', 'Ejercicios manipulativos para visualizar las operaciones.'),
+(8, 4, 2, 'Problemas sencillos', 'Resolución de problemas contextualizados.');
 
 -- --------------------------------------------------------
 
@@ -183,8 +218,9 @@ CREATE TABLE `ninos` (
 --
 
 INSERT INTO `ninos` (`id_nino`, `id_genero`, `id_categoria_actividades`, `id_usuario`, `id_profesional`, `nombre`, `apellido`, `fecha_nacimiento`, `ultimo_acceso`) VALUES
-(1, 1, 1, 4, 8, 'Dustin3', 'perdomo', '2015-11-07', '2024-12-06 07:15:30'),
-(11, 1, 1, 14, 8, 'Diamantino', 'Perdomo', '2011-01-01', '2024-12-17 20:28:24');
+(11, 1, 1, 14, 8, 'Diamantino', 'Perdomo', '2011-01-01', '2024-12-21 20:42:15'),
+(16, 2, 1, 19, 8, 'Emily', 'Perdomo', '2020-02-02', '2024-12-20 06:59:37'),
+(20, 2, 2, 23, 8, 'Elimita', 'Perdomo', '2010-02-02', '2024-12-22 09:57:30');
 
 -- --------------------------------------------------------
 
@@ -207,8 +243,7 @@ CREATE TABLE `notificaciones` (
 --
 
 INSERT INTO `notificaciones` (`id_notificacion`, `id_nino`, `id_profesional`, `mensaje`, `fecha_hora_envio`, `estado`) VALUES
-(4, 11, 8, '¡Sigue asi! Has pasado a la etapa 2.', '2024-12-08 12:09:49', 'leido'),
-(5, 11, 8, '¡Felicidades! Has completado una leccion mas.', '2024-12-12 21:02:25', 'leido');
+(4, 11, 8, '¡Sigue asi! Has pasado a la etapa 2.', '2024-12-08 12:09:49', 'leido');
 
 -- --------------------------------------------------------
 
@@ -224,7 +259,7 @@ CREATE TABLE `profesionales` (
   `nombre` varchar(55) NOT NULL,
   `apellido` varchar(55) NOT NULL,
   `correo_electronico` varchar(80) NOT NULL,
-  `centro_educativo` varchar(120) NOT NULL
+  `centro_educativo` varchar(120) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -232,7 +267,7 @@ CREATE TABLE `profesionales` (
 --
 
 INSERT INTO `profesionales` (`id_profesional`, `id_usuario`, `id_cargo`, `nombre`, `apellido`, `correo_electronico`, `centro_educativo`) VALUES
-(8, 1, 1, 'Yaireli', 'Perdomo', 'yayiperdomo@gmail.com', 'Josefina');
+(8, 1, 1, 'Yaireli', 'Perdomo', 'yayiperdomo@gmail.com', 'Josefina de acosta');
 
 -- --------------------------------------------------------
 
@@ -254,7 +289,9 @@ CREATE TABLE `progresos` (
 --
 
 INSERT INTO `progresos` (`id_progreso`, `id_categoria_actividades`, `id_usuario`, `porcentaje`, `total_diamantes`) VALUES
-(10, 1, 14, 100, 855);
+(10, 1, 14, 100, 1009),
+(15, 1, 19, 75, 66),
+(19, 2, 23, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -297,7 +334,9 @@ CREATE TABLE `temas` (
 
 INSERT INTO `temas` (`id_tema`, `id_modulo`, `tema`, `descripcion`) VALUES
 (1, 1, 'Conceptos básicos', NULL),
-(2, 1, 'Introducción a los números', NULL);
+(2, 1, 'Introducción a los números', NULL),
+(3, 2, 'Conteo', NULL),
+(4, 2, 'Operaciones básicas', NULL);
 
 -- --------------------------------------------------------
 
@@ -323,8 +362,9 @@ CREATE TABLE `usuarios` (
 INSERT INTO `usuarios` (`id_usuario`, `id_rol`, `usuario`, `clave`, `estado`, `permisos`, `fecha_hora_creacion`) VALUES
 (1, 1, 'Yayi33', '123', b'1', b'1', '2024-11-25 22:29:44'),
 (3, 3, 'Eres_capaz', '', b'0', b'0', '2024-11-28 13:24:43'),
-(4, 2, 'Dustin3', '123', b'1', b'1', '2024-11-30 11:19:18'),
-(14, 2, 'Diaman', '123', b'1', b'1', '2024-12-07 07:16:18');
+(14, 2, 'Diaman', '123', b'1', b'1', '2024-12-07 07:16:18'),
+(19, 2, 'Emily2024', '123', b'1', b'1', '2024-12-19 07:43:22'),
+(23, 2, 'Emily2019', '123', b'1', b'1', '2024-12-21 17:14:38');
 
 --
 -- Índices para tablas volcadas
@@ -355,6 +395,14 @@ ALTER TABLE `estado_lecciones`
 --
 ALTER TABLE `generos`
   ADD PRIMARY KEY (`id_genero`);
+
+--
+-- Indices de la tabla `historiales`
+--
+ALTER TABLE `historiales`
+  ADD PRIMARY KEY (`id_historial`),
+  ADD KEY `id_nino` (`id_nino`),
+  ADD KEY `id_profesional` (`id_profesional`);
 
 --
 -- Indices de la tabla `lecciones`
@@ -424,6 +472,7 @@ ALTER TABLE `temas`
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id_usuario`),
   ADD UNIQUE KEY `usuario` (`usuario`),
+  ADD UNIQUE KEY `usuario_2` (`usuario`),
   ADD KEY `id_rol` (`id_rol`);
 
 --
@@ -446,7 +495,7 @@ ALTER TABLE `categorias_actividades`
 -- AUTO_INCREMENT de la tabla `estado_lecciones`
 --
 ALTER TABLE `estado_lecciones`
-  MODIFY `id_estado_leccion` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id_estado_leccion` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
 
 --
 -- AUTO_INCREMENT de la tabla `generos`
@@ -455,10 +504,16 @@ ALTER TABLE `generos`
   MODIFY `id_genero` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT de la tabla `historiales`
+--
+ALTER TABLE `historiales`
+  MODIFY `id_historial` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+
+--
 -- AUTO_INCREMENT de la tabla `lecciones`
 --
 ALTER TABLE `lecciones`
-  MODIFY `id_leccion` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_leccion` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `modulos`
@@ -470,13 +525,13 @@ ALTER TABLE `modulos`
 -- AUTO_INCREMENT de la tabla `ninos`
 --
 ALTER TABLE `ninos`
-  MODIFY `id_nino` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_nino` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `notificaciones`
 --
 ALTER TABLE `notificaciones`
-  MODIFY `id_notificacion` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_notificacion` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `profesionales`
@@ -488,7 +543,7 @@ ALTER TABLE `profesionales`
 -- AUTO_INCREMENT de la tabla `progresos`
 --
 ALTER TABLE `progresos`
-  MODIFY `id_progreso` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_progreso` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
@@ -500,13 +555,13 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `temas`
 --
 ALTER TABLE `temas`
-  MODIFY `id_tema` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_tema` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_usuario` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- Restricciones para tablas volcadas
@@ -518,6 +573,13 @@ ALTER TABLE `usuarios`
 ALTER TABLE `estado_lecciones`
   ADD CONSTRAINT `estado_lecciones_ibfk_1` FOREIGN KEY (`id_leccion`) REFERENCES `lecciones` (`id_leccion`),
   ADD CONSTRAINT `estado_lecciones_ibfk_2` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE;
+
+--
+-- Filtros para la tabla `historiales`
+--
+ALTER TABLE `historiales`
+  ADD CONSTRAINT `historiales_ibfk_1` FOREIGN KEY (`id_nino`) REFERENCES `ninos` (`id_nino`) ON DELETE CASCADE,
+  ADD CONSTRAINT `historiales_ibfk_2` FOREIGN KEY (`id_profesional`) REFERENCES `profesionales` (`id_profesional`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `lecciones`
