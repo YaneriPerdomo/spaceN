@@ -239,3 +239,21 @@ export function simpleProblem(question, icon, numbers, answer){
     $showNumberSpan02[0].innerHTML = question;
     $showNumberSpan02[1].innerHTML = icon;
 }
+export let  $selects = document.querySelectorAll("select")
+export function countUp(answers, html , begin){
+    let c = 0
+
+    $selects.forEach(el => {
+        el.removeAttribute("class");
+        el.removeAttribute("disabled");
+    })
+   for(let i = 0; i < $selects.length; i++){
+        c++;
+        if(c == 1){
+            $selects[i].innerHTML = `<option value="">${begin}</option>`;
+            continue;
+        }
+        $selects[i].setAttribute("data-answer", answers[i])  
+        $selects[i].innerHTML = html;
+    }
+}
