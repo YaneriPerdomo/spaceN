@@ -256,3 +256,15 @@ export function countUp(answers, html , begin){
         $selects[i].innerHTML = html;
     }
 }
+
+export function advancedOperations1(operation, array, answer){
+    $showNumberSpan[0].innerHTML = operation;
+    $showNumberSpan[1].innerHTML = "__";
+    $containerPlayer.setAttribute('data-num', answer)
+    for(let i = 0; i < $ButtonsNum.length; i++){
+        $ButtonsNum[i].innerHTML = array[i]
+    }
+
+    return true;
+}
+ 

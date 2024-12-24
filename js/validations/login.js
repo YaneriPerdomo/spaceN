@@ -17,7 +17,7 @@ $form.addEventListener("submit", (e) => {
     let messageValidation = "";
     let count = 0;
     
-    if (trim($formUser.value.length) == 0) {
+    if ($formUser.value.length == 0) {
         messageValidation += "Ingrese su nombre de usuario  <br>";
         error = true;
         count++;
@@ -25,7 +25,7 @@ $form.addEventListener("submit", (e) => {
         $formUser.classList.add("notValid");
     }
    
-    if (trim($formPassword.value.length) == 0) {
+    if ($formPassword.value.length == 0) {
         messageValidation += "Ingrese su contraseña  <br>";
         error = true;
         count++;

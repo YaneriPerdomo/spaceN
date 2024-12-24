@@ -17,7 +17,6 @@ $tema = $_POST["tema"];
 $leccion = $_POST["lesson"];
 $modulo = $_POST["modulo"];
 $accessLevel = $_POST["accessLevel"];
-
 function addHistory( $statu, $leccion, $tema, $modulo)
 {
     include './../connectionBD.php';
@@ -57,8 +56,10 @@ try {
             $queryWait->bindParam('failed', $failed, PDO::PARAM_INT);
             $queryWait->execute();
             $nextLesson = $idLesson + 1;
-
-            if (($nextLesson <= 4 && $accessLevel == "Pre_Numerico") || ($nextLesson <= 8 && $accessLevel == "Numerico_emergente")) {
+            echo $nextLesson;
+            if (($nextLesson < 5 && $accessLevel == "Pre_Numerico") 
+                                        || 
+                ($nextLesson < 9 && $accessLevel == "Numerico_emergente")) {
                 $sqlNext = "UPDATE estado_lecciones SET  completado = 'en_espera'
                             WHERE id_usuario = :id_user AND id_leccion = :id_lesson";
                 $queryNext = $pdo->prepare($sqlNext);
@@ -87,7 +88,6 @@ try {
                     throw new PDOException("Error updating lesson status");
                 }
             } else {
-                addHistory("awaiting" , $leccion, $tema, $modulo);
                 addHistory("completeTotal",$leccion, $tema, $modulo);
 
                 $sqlSelectProgressNow = "SELECT total_diamantes from  progresos WHERE id_usuario =:id_user";
@@ -111,7 +111,7 @@ try {
             }
 
             break;
-        case "completado":
+            case "completado":
             addHistory("completed", $leccion, $tema, $modulo);
 
             $sqlComplete = "UPDATE estado_lecciones SET porcentaje = :porcentage, diamantes_obtenidos = :gems,

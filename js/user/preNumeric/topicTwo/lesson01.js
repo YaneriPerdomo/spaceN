@@ -180,7 +180,7 @@ async function endOfLesson() {
     await fetch("./../../../../../php/user/unlockUpdateLesson.php", {
         method: 'POST',
         body: new URLSearchParams({
-            typeAccess: "Pre_Numerico",
+            accessLevel: "Pre_Numerico",
             statu: searchParams.get("statu"),
             id_lesson: 3,
             modulo: "Fundamentos Numéricos",

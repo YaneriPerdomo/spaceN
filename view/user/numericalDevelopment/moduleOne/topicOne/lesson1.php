@@ -10,7 +10,7 @@ include './../../../../../php/connectionBD.php';
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tema 1 | Lección 1 | Eres capaz</title>
+    <title>Tema 1 | Lección 2 | Eres capaz</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
     <script src="https://pie-meister.github.io/PieMeister-with-Progress.min.js"></script>
@@ -71,23 +71,112 @@ include './../../../../../php/connectionBD.php';
             <main class="play">
                 <div class="row w-100 h-100">
                     <div class="col-12 align-items-center justify-content-center d-flex">
-                        <div class="containerPlayer align-items-center justify-content-center" data-num="3">
-                            <div class="showNumber showObjects">
-                                <strong>
+                        <div class="containerPlayer align-items-center justify-content-center" data-num="3"
+                            data-part="1">
+                            <div class="showNumber">
+                                <strong style="flex-direction: row;">
+                                    <span>?</span>
+                                    <span>?</span>
                                 </strong>
                             </div>
                             <div class="ButtonsNum">
-                                <button>?</button>
-                                <button>?</button>
-                                <button>?</button>
-                                <button>?</button>
-                                <button>?</button>
+                                <button><</button>
+                                <button>=</button>
+                                <button>></button>
                             </div>
+                            <select disabled="disabled" style="display: none;">
+                                <option value="">1</option>
+                            </select>
+                            <select data-number="1" style="display: none;">
+                                <option value="_" selected>_</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                            </select>
+                            <select data-number="2" style="display: none;">
+                                <option value="_" selected>_</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                            <select data-number="3" style="display: none;">
+                                <option value="_" selected>_</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                            <select data-number="4" style="display: none;">
+                                <option value="" selected>_</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                            <select data-number="5" style="display: none;">
+                                <option value="_" selected>_</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                            <select data-number="6" style="display: none;">
+                                <option value="_" selected>_</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                            <select data-number="7" style="display: none;">
+                                <option value="_" selected>_</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                            <select data-number="8" style="display: none;">
+                                <option value="" selected>_</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                            <select data-number="9" style="display: none;">
+                                <option value="_" selected>_</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                            <select data-number="10" style="display: none;">
+                                <option value="_" selected>_</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
                         </div><br>
                     </div>
                 </div>
             </main>
-            
+
             <div class="begin welcome">
                 <section class="logo">
                     <img src="../../../../../img/for/teaching.png" class="img-fluid" alt="">
@@ -114,13 +203,13 @@ include './../../../../../php/connectionBD.php';
                     <strong class="text-white">Cargando...</strong>
                 </div>
             </div>
-
             <?php
-             include '../../../../include/user/lesson/modalWindows/FromOneToThree.php';
+            include '../../../../include/user/lesson/modalWindows/FromOneToThree.php';
             include '../../../../include/user/lesson/modalWindows/back.php';
             include '../../../../include/user/lesson/modalWindows/guide.php';
             include '../../../../include/user/lesson/modalWindows/containerResultsLesson.php';
             ?>
+
         </div>
     </main>
 
@@ -136,9 +225,10 @@ include './../../../../../php/connectionBD.php';
     include '../../../../include/user/lesson/offcanvasUser.php';
     ?>
 
-<script src="../../../../../js/user/preNumeric/topicOne/lesson01.js" 
-        type="module">
+    <script src="../../../../../js/user/numericalDevelopment/topicOne/lesson01.js" type="module">
     </script>
+
+
 </body>
 
 </html>

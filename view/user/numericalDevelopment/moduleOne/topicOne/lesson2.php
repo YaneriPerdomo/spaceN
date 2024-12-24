@@ -76,7 +76,6 @@ include './../../../../../php/connectionBD.php';
                                 <strong>
                                     <span>?</span>
                                     <span>?</span>
-                                    <span>?</span>
                                 </strong>
                             </div>
                             <div class="ButtonsNum">

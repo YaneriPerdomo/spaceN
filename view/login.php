@@ -196,7 +196,7 @@
                         <div class="input-group mb-2">
                             <span class="input-group-text" id="basic-addon1"><i class="bi bi-person"></i></span>
                             <input type="text" name="user" class="form-control" placeholder="Hola...✋"
-                                aria-label="Username" aria-describedby="basic-addon1">
+                                aria-label="Username" aria-describedby="basic-addon1"  autofocus="true">
                         </div>
                         <label for="">Contraseña<span>*</span></label><br>
                         <div class="input-group mb-2">
