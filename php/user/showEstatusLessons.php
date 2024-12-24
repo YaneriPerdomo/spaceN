@@ -51,7 +51,7 @@ try {
             $lessonsInformation = [
                 "modulo" => ["Módulo 1: Ampliando el Concepto de Número",],
                 "tema" => ["Tema 1: Conteo", "Tema 2: Operaciones basicas"],
-                "titleLesson" => ["Conteo hacia adelante/atrás", "Conteo con <br>objetos", "Suma y resta con objetos", "Problemas <br>sencillos"],
+                "titleLesson" => ["Conteo hacia adelante", "Conteo con <br>objetos", "Suma y resta con objetos", "Problemas <br>sencillos"],
                 "moreDetails" => [
                     "Ejercicios de contar desde un numero inicial",
                     "Actividades para comprender las cantidades con objetos",

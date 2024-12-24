@@ -3,30 +3,22 @@ import {
     $contentResultsLesson, $ButtonsNum, searchParams, $endOfLessonMp3,
     $incorrectMp3, $correctMp3, $beginMp3, $gemsResult, $porcentageResult, $timeResult, $messageResult, $containerBack, $backContent,
     $containerGuideModal, $begin, $GuidaContent, $containerPlayer, $clickMp3, FromOneToThree,
-    voiceExercise, identifyQuantities,
+    voiceExercise,
     $squareBlue,
     $showNumberSpan,
-    subtractionAddition,
-    $showNumberSpan02,
-    $resultUser,
+     $showNumberSpan02,
     countUp,
     $selects,
 } from "../../../helpers/lessons.js";
 
 let count = 0;
-let randomNumber = 0;
-let acceptedPoints = 0;
+ let acceptedPoints = 0;
 let failed = 0;
-
-
 
 let timer;
 let seconds = 0,
     minutes = 0,
     hours = 0;
-
-
-
 
 document.addEventListener("mousemove", (e) => {
     if (e.target.matches(".containerPlayer > select")) {
@@ -38,179 +30,6 @@ setTimeout(() => {
     $begin.removeChild($begin.children[7]);
 }, 2000);
 
-function randomNumber10() {
-    let randomNumber10 = Math.floor(Math.random() * 10);
-    console.info(randomNumber10)
-    switch ($containerPlayer.getAttribute("data-moreLess")) {
-        case '+':
-            switch (randomNumber10) {
-                case 0:
-                    let $numbers = [5, 2, 1];
-                    let $operation = ['<i class="bi bi-airplane-engines"></i> <i class="bi bi-airplane-engines"></i> <i class="bi bi-airplane-engines"></i>',
-                        "+",
-                        '<i class="bi bi-airplane-engines"></i> <i class="bi bi-airplane-engines"></i>'];
-                    subtractionAddition($operation, $numbers, 1)
-                    break;
-                case 1:
-                    let $numbers1 = [3, 2, 9];
-                    let $operation1 = ['<i class="bi bi-airplane-engines"></i>',
-                        "+",
-                        '<i class="bi bi-airplane-engines"></i> <i class="bi bi-airplane-engines"></i>'];
-                    subtractionAddition($operation1, $numbers1, 3)
-                    break;
-                case 2:
-                    let $numbers2 = [3, 6, 9];
-                    let $operation2 = ['<i class="bi bi-airplane-engines"></i> <i class="bi bi-airplane-engines"></i> <i class="bi bi-airplane-engines"></i> <i class="bi bi-airplane-engines"></i>',
-                        "+",
-                        '<i class="bi bi-airplane-engines"></i> <i class="bi bi-airplane-engines"></i>'];
-                    subtractionAddition($operation2, $numbers2, 6)
-                    break;
-                case 3:
-                    let $numbers3 = [1, 5, 2];
-                    let $operation3 = ['<i class="bi bi-airplane-engines"></i> <i class="bi bi-airplane-engines"></i> <i class="bi bi-airplane-engines"></i> <i class="bi bi-airplane-engines"></i>',
-                        "+",
-                        ' <i class="bi bi-airplane-engines"></i>'];
-                    subtractionAddition($operation3, $numbers3, 5)
-                    break;
-                case 4:
-                    let $numbers4 = [1, 3, 2];
-                    let $operation4 = ['<i class="bi bi-airplane-engines"></i> <i class="bi bi-airplane-engines"></i>',
-                        "+",
-                        ' <i class="bi bi-airplane-engines"></i>'];
-                    subtractionAddition($operation4, $numbers4, 3)
-                    break;
-                case 5:
-                    let $numbers5 = [1, 2, 3];
-                    let $operation5 = ['<i class="bi bi-airplane-engines"></i> ',
-                        "+",
-                        ' <i class="bi bi-airplane-engines"></i>'];
-                    subtractionAddition($operation5, $numbers5, 2)
-                    break;
-                case 6:
-                    let $numbers6 = [1, 2, 7];
-                    let $operation6 = ['<i class="bi bi-balloon"></i> <i class="bi bi-balloon"></i> <i class="bi bi-balloon"></i> ',
-                        "+",
-                        '<i class="bi bi-balloon"></i> <i class="bi bi-balloon"></i> <i class="bi bi-balloon"></i> <i class="bi bi-balloon"></i>'];
-                    subtractionAddition($operation6, $numbers6, 7)
-                    break;
-                case 7:
-                    let $numbers7 = [4, 7, 3];
-                    let $operation7 = ['<i class="bi bi-balloon"></i> <i class="bi bi-balloon"></i> ',
-                        "+",
-                        '<i class="bi bi-balloon"></i> <i class="bi bi-balloon"></i>  '];
-                    subtractionAddition($operation7, $numbers7, 4)
-                    break;
-                case 8:
-                    let $numbers8 = [4, 83, 3];
-                    let $operation8 = ['<i class="bi bi-balloon"></i> <i class="bi bi-balloon"></i> ',
-                        "+",
-                        '<i class="bi bi-balloon"></i> '];
-                    subtractionAddition($operation8, $numbers8, 3)
-                    break;
-                case 9:
-                    let $numbers9 = [33, 23, 3];
-                    let $operation9 = ['<i class="bi bi-brightness-high"></i> <i class="bi bi-brightness-high"></i> ',
-                        "+",
-                        '<i class="bi bi-brightness-high"></i>'];
-                    subtractionAddition($operation9, $numbers9, 3)
-                    break;
-                case 10:
-                    let $numbers10 = [88, 3, 8];
-                    let $operation10 = ['<i class="bi bi-brightness-high"></i> <i class="bi bi-brightness-high"></i> <i class="bi bi-brightness-high"></i> <i class="bi bi-brightness-high"></i>',
-                        "+",
-                        '<i class="bi bi-brightness-high"></i> <i class="bi bi-brightness-high"></i> <i class="bi bi-brightness-high"></i> <i class="bi bi-brightness-high"></i>'];
-                    subtractionAddition($operation10, $numbers10, 8)
-                    break;
-                default:
-                    break;
-            }
-            break;
-        case '-':
-            switch (randomNumber10) {
-                case 0:
-                    let $numbers = [1, 2, 4];
-                    let $operation = ['<i class="bi bi-airplane-engines"></i> <i class="bi bi-airplane-engines"></i> <i class="bi bi-airplane-engines"></i>',
-                        "-",
-                        '<i class="bi bi-airplane-engines"></i> <i class="bi bi-airplane-engines"></i>'];
-                    subtractionAddition($operation, $numbers, 1)
-                    break;
-                case 1:
-                    let $numbers1 = [3, 1, 11];
-                    let $operation1 = ['<i class="bi bi-airplane-engines"></i> <i class="bi bi-airplane-engines"></i> <i class="bi bi-airplane-engines"></i>',
-                        "-",
-                        '<i class="bi bi-airplane-engines"></i> <i class="bi bi-airplane-engines"></i>'];
-                    subtractionAddition($operation1, $numbers1, 1)
-                    break;
-                case 2:
-                    let $numbers2 = [2, 44, 4];
-                    let $operation2 = ['<i class="bi bi-airplane-engines"></i> <i class="bi bi-airplane-engines"></i> <i class="bi bi-airplane-engines"></i> <i class="bi bi-airplane-engines"></i>',
-                        "-",
-                        '<i class="bi bi-airplane-engines"></i> <i class="bi bi-airplane-engines"></i>'];
-                    subtractionAddition($operation2, $numbers2, 2)
-                    break;
-                case 3:
-                    let $numbers3 = [33, 333, 3];
-                    let $operation3 = ['<i class="bi bi-airplane-engines"></i> <i class="bi bi-airplane-engines"></i> <i class="bi bi-airplane-engines"></i> <i class="bi bi-airplane-engines"></i>',
-                        "-",
-                        ' <i class="bi bi-airplane-engines"></i>'];
-                    subtractionAddition($operation3, $numbers3, 3)
-                    break;
-                case 4:
-                    let $numbers4 = [1, 5, 2];
-                    let $operation4 = ['<i class="bi bi-airplane-engines"></i> <i class="bi bi-airplane-engines"></i>',
-                        "-",
-                        ' <i class="bi bi-airplane-engines"></i>'];
-                    subtractionAddition($operation4, $numbers4, 1)
-                    break;
-                case 5:
-                    let $numbers5 = [1, 2, 0];
-                    let $operation5 = ['<i class="bi bi-airplane-engines"></i> ',
-                        "-",
-                        ' <i class="bi bi-airplane-engines"></i>'];
-                    subtractionAddition($operation5, $numbers5, 0)
-                    break;
-                case 6:
-                    let $numbers6 = [1, 2, 3];
-                    let $operation6 = ['<i class="bi bi-balloon"></i> <i class="bi bi-balloon"></i> <i class="bi bi-balloon"></i> </i> <i class="bi bi-balloon"></i> <i class="bi bi-balloon"></i>',
-                        "-", '<i class="bi bi-balloon"></i> <i class="bi bi-balloon">'];
-                    subtractionAddition($operation6, $numbers6, 3)
-                    break;
-                case 7:
-                    let $numbers7 = [10, 7, 0];
-                    let $operation7 = ['<i class="bi bi-balloon"></i> <i class="bi bi-balloon"></i> ',
-                        "-",
-                        '<i class="bi bi-balloon"></i> <i class="bi bi-balloon"></i>  '];
-                    subtractionAddition($operation7, $numbers7, 0)
-                    break;
-                case 8:
-                    let $numbers8 = [4, 2, 1];
-                    let $operation8 = ['<i class="bi bi-balloon"></i> <i class="bi bi-balloon"></i> ',
-                        "-",
-                        '<i class="bi bi-balloon"></i> '];
-                    subtractionAddition($operation8, $numbers8, 1)
-                    break;
-                case 9:
-                    let $numbers9 = [2, 1, 2];
-                    let $operation9 = ['<i class="bi bi-brightness-high"></i> <i class="bi bi-brightness-high"></i> ',
-                        "-",
-                        '<i class="bi bi-brightness-high"></i>'];
-                    subtractionAddition($operation9, $numbers9, 1)
-                    break;
-                case 10:
-                    let $numbers10 = [88, 0, 10];
-                    let $operation10 = ['<i class="bi bi-brightness-high"></i> <i class="bi bi-brightness-high"></i> <i class="bi bi-brightness-high"></i> <i class="bi bi-brightness-high"></i>',
-                        "-",
-                        '<i class="bi bi-brightness-high"></i> <i class="bi bi-brightness-high"></i> <i class="bi bi-brightness-high"></i> <i class="bi bi-brightness-high"></i>'];
-                    subtractionAddition($operation10, $numbers10, 0)
-                    break;
-                default:
-                    break;
-            }
-            break
-        default:
-            break;
-    }
-}
 
 document.addEventListener("change", async e => {
     count++;
@@ -222,51 +41,37 @@ document.addEventListener("change", async e => {
         e.target.disabled = true;
     } else {
         failed++;
+        $selects.forEach(el =>{
+            el.disabled = true;
+        })
         e.target.disabled = true
         await e.target.classList.add("incorrect");
         $incorrectMp3.play()
-        let arreglo = [];
-        let c2 = 0;
-        $selects.forEach(el => {
-            arreglo.push(el.getAttribute("data-answer"))
-        })
-        let ultimaP = arreglo[arreglo.length - 1];
-        console.info(e.target.value + " " + ultimaP);
-        let  answerIndex = (parseInt(e.target.getAttribute("data-number")) - 1);
-
-        console.info($selects[answerIndex])
-       
-        if($selects[answerIndex].classList.contains("incorrect")){
-            valueI  =  $selects[parseInt(e.target.getAttribute("data-number")) - 1].getAttribute("data-answer") ;             
-             for(let i = parseInt(valueI); i <= ultimaP; i++){
-                 console.info(i + "--")
-                 $selects[i].setAttribute("data-answer", i)  
-             }
-         }else if(!$selects[answerIndex].classList.contains("incorrect")){
-              valueI = parseInt(e.target.getAttribute("data-number") - 1);
-              for(let i = parseInt(valueI); i <= ultimaP; i++){
-                 $selects[i].setAttribute("data-answer", i)  
-             }
-         }
-         console.info(valueI)
-    
+        setTimeout(async () => {
+            $selects.forEach(el => {
+                el.removeAttribute("disabled");
+            })
+            await e.target.removeAttribute("class");
+            e.target.value = e.target.getAttribute("data-answer");
+            e.target.classList.add("pause");
+        }, 2000);
     }
     if (count == 10) {
-        alert("hola")
+        setTimeout(() => {
         let $html = `<option value="_" selected>_</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
                         <option value="16">16</option>
                         <option value="17">17</option>
                         <option value="18">18</option>
                         <option value="19">19</option>
                         <option value="20">20</option>
                         <option value="21">21</option>
-                        <option value="22">22</option>
-                        <option value="23">23</option>
-                        <option value="24">24</option>
-                        <option value="25">25</option>
-                         <option value="25">26</option>`;
-        let $answers = [16, 17, 18, 19, 20, 21, 22, 23, 24, 26]
-        countUp($answers, $html, 15);
+                         <option value="22">22</option>`;
+        let $answers = [12, 13, 14, 15, 16, 17, 18, 19, 20, 21,22]
+        countUp($answers, $html, 12);
+        }, 2000);
     }
     if (count === 20) {
         if (acceptedPoints == 0) {
@@ -289,85 +94,6 @@ document.addEventListener("change", async e => {
 })
 document.addEventListener("click", async e => {
 
-    if (e.target.matches(".ButtonsNum > button")) {
-        count++;
-        if (e.target.textContent == $containerPlayer.getAttribute("data-num")) {
-            acceptedPoints++;
-            console.info(e.target.textContent)
-            $correctMp3.play();
-            $gem.innerHTML = `${1 + Number.parseInt($gem.textContent)}`;
-            e.target.classList.add("correct");
-            $ButtonsNum.forEach(element => {
-                element.disabled = true;
-            });
-            $squareBlue.classList.add("correctShownNumber");
-            $showNumberSpan02[4].innerHTML = e.target.textContent;
-            setTimeout(() => {
-                $ButtonsNum.forEach(element => {
-                    element.removeAttribute("disabled")
-                });
-                $showNumberSpan.forEach(el => {
-                    el.innerHTML = "?";
-                })
-                $squareBlue.classList.remove("correctShownNumber")
-                randomNumber10();
-                e.target.classList.remove("correct")
-            }, 2000);
-        } else {
-            failed++;
-            console.info(e.target.textContent)
-            $squareBlue.classList.add("incorrectShowNumber");
-            e.target.classList.add("incorrect");
-            $incorrectMp3.play()
-            $ButtonsNum.forEach(element => {
-                element.disabled = true;
-                if (element.textContent == $containerPlayer.getAttribute("data-num")) {
-                    element.classList.add("correct");
-                    setTimeout(() => {
-                        element.classList.remove("correct");
-                    }, 2000);
-                }
-            });
-            setTimeout(() => {
-                $ButtonsNum.forEach(element => {
-                    element.removeAttribute("disabled")
-                });
-                randomNumber10();
-                $squareBlue.classList.remove("incorrectShowNumber");
-                e.target.classList.remove("incorrect")
-            }, 2000);
-        }
-        if (count == 10) {
-            top();
-            setTimeout(() => {
-                $containerPlayer.setAttribute("data-moreLess", "-")
-                FromOneToThree();
-                voiceExercise("Seleccione el elemento que tiene menos cuadrados");
-                setTimeout(() => {
-                    $containerPlay.removeChild($containerPlay.children[2])
-                    start();
-                }, 3000);
-                randomNumber10();
-            }, 2000);
-        }
-        if (count === 20) {
-            if (acceptedPoints == 0) {
-                $messageResult.innerHTML = "¡Anímate! Todavía tienes oportunidades para mejorar.";
-            } else if (acceptedPoints < 5) {
-                $messageResult.innerHTML = "Has demostrado lo mejor de ti. Con un poco más de esfuerzo, alcanzarás tus metas.";
-            } else if (acceptedPoints < 10) {
-                $messageResult.innerHTML = "¡Has demostrado un gran potencial, sigue asi!";
-            } else if (acceptedPoints < 15) {
-                $messageResult.innerHTML = "¡Enhorabuena! Tu dedicación y esfuerzo han dado sus frutos. <br>  Sigue así y alcanzarás grandes logros. "
-            } else if (acceptedPoints < 19) {
-                $messageResult.innerHTML = "¡Felicidades! Tu dedicación y esfuerzo han dado grandes frutos. <br> Sigue asi! "
-            }
-            else if (acceptedPoints == 20) {
-                $messageResult.innerHTML = "¡Felicidades! Has completado la lección con un 100% de aciertos. ¡Excelente trabajo!"
-            }
-            return endOfLesson()
-        }
-    }
 
     const $buttonPlay = e.target.closest(".btnPlay");
 
@@ -422,14 +148,16 @@ document.addEventListener("click", async e => {
     }
     if ($buttonPlay) {
         $containerPlay.removeChild($containerPlay.children[5])
-        $containerPlay.removeChild($containerPlay.children[2])
+        $begin.classList.add("animationDeleteLabel");
         $beginMp3.play();
+        setTimeout(() => {
+            $containerPlay.removeChild($containerPlay.children[2])
+        }, 1000);
         setTimeout(() => {
             FromOneToThree();
             voiceExercise("Seleccione el elemento que tiene mas cuadrados");
-            setTimeout(() => {
-                start();
-                let $html = `<option value="_" selected>_</option>
+            let $html = `
+                        <option value="_" selected>_</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -443,6 +171,8 @@ document.addEventListener("click", async e => {
                         <option value="11">11</option>`;
                 let $answers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10,11]
                 countUp($answers, $html, 1);
+            setTimeout(() => {
+                start();
             }, 3000);
         }, 1000);
 

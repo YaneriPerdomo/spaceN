@@ -71,7 +71,7 @@ include './../../../../../php/connectionBD.php';
             <main class="play">
                 <div class="row w-100 h-100">
                     <div class="col-12 align-items-center justify-content-center d-flex">
-                        <div class="containerPlayer align-items-center justify-content-center" data-moreLess="more">
+                        <div class="containerPlayer align-items-center justify-content-center d-flex gap-3" data-moreLess="more">
                             <select disabled="disabled">
                                 <option value="">1</option>
                             </select>

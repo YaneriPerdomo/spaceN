@@ -25,9 +25,9 @@ function addHistory( $statu, $leccion, $tema, $modulo)
     VALUES (:id_child, :id_profesional, :mensaje, NOW() )";
 
     $message = match ($statu) {
-        'completed' => $_SESSION['user'] . " ha completado la lección: '" . $leccion . "', sobre el tema '" . $tema . "'",
+        'completed' => $_SESSION['user'] . " ha completado de nuevo la lección: '" . $leccion . "', sobre el tema '" . $tema . "'",
         'completeTotal' => $_SESSION['user'] . " ha finalizado el módulo: '" . $modulo . "'",
-        'awaiting' => $_SESSION['user'] . " ha completado de nuevo la lección: '" . $leccion . "', sobre el tema '" . $tema . "'",
+        'awaiting' => $_SESSION['user'] . " ha completado la lección: '" . $leccion . "', sobre el tema '" . $tema . "'",
     };
 
     $queryHistorial = $pdo->prepare($sqlHistorial);

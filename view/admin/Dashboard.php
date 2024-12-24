@@ -78,7 +78,7 @@ include './../../php/validations/authorizedUser.php';
                                 </tr>
                             </thead>";
 
-                        $pagina_actual = isset($_GET['pagina']) && is_numeric($_GET['pagina']) ? $_GET['pagina'] : 1;
+                        $pagina_actual = isset($_GET['page']) && is_numeric($_GET['page']) ? $_GET['page'] : 1;
                         $sqlCount = 'SELECT COUNT(*) as total FROM ninos WHERE id_profesional = :id';
                         $count = $pdo->prepare($sqlCount);
                         $count->bindParam('id', $id_admin, PDO::PARAM_INT);
@@ -175,8 +175,8 @@ include './../../php/validations/authorizedUser.php';
                             echo " </section>";
                         } else {
                             $userRegistration = 'registros disponibles';
-                            echo "<span class='messengerShowUsers'>Mostrando " . $total_registros . " de " . $registros_por_pagina . " 
-                                        <span class='userRegistration'> " . $userRegistration . "</span></span>";
+                            echo "<span class='messengerShowUsers'>Mostrando " . $stmt->rowCount() . " de " . $registros_por_pagina . " 
+                                        <span class='userRegistration'> " . $userRegistration . "</span></span><section style='display: flex;gap: 0.5rem;'>";
                             if ($pagina_actual > 1) {
                                 echo "<a href='?page=" . ($pagina_actual - 1) . "'>Anterior</a> ";
                             }
@@ -184,7 +184,7 @@ include './../../php/validations/authorizedUser.php';
                                 echo "<a href='?page=$i'>" . ($i == $pagina_actual ? '<b>' . $i . '</b>' : $i) . "</a> ";
                             }
                             if ($pagina_actual < $total_paginas) {
-                                echo "<a href='?page=" . ($pagina_actual + 1) . "'>Siguiente</a>";
+                                echo "<a href='?page=" . ($pagina_actual + 1) . "'>Siguiente</a></section>";
                             }
                             echo " </section>";
                         }

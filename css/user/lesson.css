@@ -26,6 +26,15 @@
   filter: drop-shadow(2px 3px #222);
 }
 
+
+.pause {
+  background: #cecece !important;
+  outline-color: #cecece !important;
+  outline-offset: none !important;
+  transition: all 1s;
+  color:rgb(47, 47, 47);
+  transform: perspective(5rem) scale(1);
+}
 .porcentage,
 .porcentageResult {
   outline-color: #cc673b;
@@ -461,9 +470,9 @@ h1 {
 
 /*Juego */
 
-.ButtonsNum > button {
+.ButtonsNum > button, select {
   background: #3f8ddf;
-  padding: 0.5rem 1rem;
+ 
   border-radius: 100%;
   border-radius: 0.5rem;
   outline-color: #214b77;
@@ -480,7 +489,7 @@ h1 {
   filter: drop-shadow(2px 3px #222);
 }
 
-.ButtonsNum > button:hover {
+.ButtonsNum > button:hover, select:hover {
   background: #3f8ddf;
 
   outline-color: #3f8ddf;

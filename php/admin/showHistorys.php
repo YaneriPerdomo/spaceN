@@ -35,7 +35,7 @@ function showHistorys($showPageLearn = false)
                             </ul>
                 
                 </div><hr>";
-                    if ($count >= 3) {
+                    if ($count > 3) {
                         echo "<small> <a href='./history.php'> Ver todas</a></small>";
                     }
 
