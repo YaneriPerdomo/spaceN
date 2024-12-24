@@ -17,16 +17,16 @@ $form.addEventListener("submit", (e) => {
     let messageValidation = "";
     let count = 0;
     
-    if ($formUser.value == "") {
-        messageValidation += "Ingrese su nombre de usuario. <br>";
+    if (trim($formUser.value.length) == 0) {
+        messageValidation += "Ingrese su nombre de usuario  <br>";
         error = true;
         count++;
         $inputGroupAll[0].classList.add("notValid")
         $formUser.classList.add("notValid");
     }
    
-    if ($formPassword.value == "") {
-        messageValidation += "Ingrese su contraseña. <br>";
+    if (trim($formPassword.value.length) == 0) {
+        messageValidation += "Ingrese su contraseña  <br>";
         error = true;
         count++;
         $inputGroupAll[1].classList.add("notValid")

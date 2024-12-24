@@ -98,7 +98,23 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                             $queryLesson->execute();
                         }
                         break;
-
+                    case '3':
+                             $lecciones = [
+                                [9, 'en_espera'],
+                                [10, 'bloqueado'],
+                                [11, 'bloqueado'],
+                                [12, 'bloqueado']
+                            ];
+                            $sqlLesson = "INSERT INTO estado_lecciones (id_usuario, id_leccion, completado) VALUES (:id_user, :id_lesson, :statuLesson)";
+                            $queryLesson = $pdo->prepare($sqlLesson);
+                            foreach ($lecciones as $key => $value) {
+                                $queryLesson->bindParam('id_user', $last_id, PDO::PARAM_INT);
+                                $queryLesson->bindParam('id_lesson', $value[0], PDO::PARAM_INT);
+                                $queryLesson->bindParam('statuLesson', $value[1], PDO::PARAM_STR);
+                                $queryLesson->execute();
+                            }
+     
+                        break;
                     default:
                         # code...
                         break;
@@ -110,6 +126,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 }
                 break;
             case 'modify':
+              
                 $id_user = $_POST["id_user"];
                 $user = trim($_POST["user"]);
                 $name = trim($_POST["name"]);
@@ -120,6 +137,58 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
                 if (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $date)) {
                     throw new Exception("Fecha inválida");
+                }
+
+                $sqlAccessLevel = "SELECT id_categoria_actividades FROM ninos WHERE id_usuario =:id_user";
+                $queryAccessLevel = $pdo->prepare($sqlAccessLevel);
+                $queryAccessLevel->bindParam('id_user', $id_user, PDO::PARAM_INT);
+                $queryAccessLevel->execute();
+               
+                if ($queryAccessLevel->rowCount() > 0) {
+                    $resultAccess = $queryAccessLevel->fetch(PDO::FETCH_ASSOC);
+                    if ($resultAccess["id_categoria_actividades"] != $accessLevel) {
+                        $pdo->beginTransaction();
+                        $sqlUpdateProgress = "UPDATE progresos SET id_categoria_actividades = :id_C , porcentaje = 0, total_diamantes = 0
+                            WHERE id_usuario = :id_user";
+                        $queryUpdateProgress = $pdo->prepare($sqlUpdateProgress);
+                        $queryUpdateProgress->bindParam('id_user', $id_user, PDO::PARAM_INT);
+                        $queryUpdateProgress->bindParam('id_C', $accessLevel, PDO::PARAM_INT);
+                        $queryUpdateProgress->execute();
+                        switch ($resultAccess["id_categoria_actividades"]) {
+                            case '1':
+                                $leccionesOld = [1,2,3,4];
+                            break;
+                            case '2':
+                                $leccionesOld = [5,6,7,8];
+                            break;
+                            case '3':
+                                $leccionesOld = [9,10,11,12];
+                            break;
+                        }
+                        switch ($accessLevel) {
+                            case '1':
+                                $leccionesNew = [1,2,3,4];
+                            break;
+                            case '2':
+                                $leccionesNew = [5,6,7,8];
+                            break;
+                            case '3':
+                                $leccionesNew = [9,10,11,12];
+                            break;
+                        }
+                    $sqlLessonUpdate = 'UPDATE estado_lecciones SET id_leccion = :idLessonNew, completado = :completado, porcentaje = 0, 
+                                    diamantes_obtenidos = 0, tiempo = "00:00" , fallida = NULL WHERE id_usuario = :idUser AND id_leccion = :idLessonOld';
+                    $queryUpdate = $pdo->prepare($sqlLessonUpdate);
+                    $statu = ["en_espera", "bloqueado", "bloqueado","bloqueado"];
+                    for ($i = 0; $i < count($statu); $i++) {
+                        $queryUpdate->bindParam('idLessonOld', $leccionesOld[$i], PDO::PARAM_INT);
+                        $queryUpdate->bindParam('idLessonNew', $leccionesNew[$i], PDO::PARAM_INT);
+                        $queryUpdate->bindParam('completado', $statu[$i], PDO::PARAM_STR);
+                        $queryUpdate->bindParam('idUser', $id_user, PDO::PARAM_INT);
+                        $queryUpdate->execute();
+                    }
+                    $pdo->commit();
+                    }
                 }
                 $pdo->beginTransaction();
                 $sqlUser = "UPDATE usuarios SET usuario = :user WHERE id_usuario = :id_user ";
@@ -149,8 +218,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 } else {
                     echo "<script>alert('Eror de actualizacion'); window.location.href = '../../view/admin/dashboard.php';</>";
                 }
-                // Cerramos la conexión a la base de datos
-                break;
+            
+            break;
             case 'delete':
                 $id_childC = $_POST["id_childC"];
                 $id_childU = $_POST["id_childU"];
@@ -182,9 +251,14 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 $stmt2->bindParam('id_usuario', $id_childU, PDO::PARAM_INT);
                 $stmt2->execute();
 
+                $sqlHistoryUser = "DELETE FROM historiales WHERE `id_usuario` = :id_usuario";
+                $stmt6 = $pdo->prepare($sqlHistoryUser);
+                $stmt6->bindParam('id_usuario', $id_childU, PDO::PARAM_INT);
+                $stmt6->execute();
+
                 if (
                     ($stmt->rowCount() > 0 && $stmt2->rowCount() > 0 && $stmt4->rowCount() > 0 && $stmt5->rowCount() > 0)
-                    || $stmt3->rowCount() > 0
+                    || $stmt3->rowCount() > 0 
                 ) {
                     $pdo->commit();
                     echo "<script>window.location.href = './../../view/admin/dashboard.php';</script>";

@@ -60,6 +60,19 @@ try {
                 ],
             ];
             break;
+            case '3':
+                $lessonsInformation = [
+                    "modulo" => ["Módulo 1:  	Desarrollo de Habilidades Numéricas",],
+                    "tema" => ["Tema 1: Operaciones avanzadas:", "Tema 2: Fracciones"],
+                    "titleLesson" => ["Multiplicación y división", "Problemas más complejos", "Concepto de fracción", "Comparación de fracciones"],
+                    "moreDetails" => [
+                        "Introducción a los conceptos básicos",
+                        "Resolución de problemas que involucran múltiples operaciones",
+                        "Representación gráfica y manipulativa",
+                        "Ejercicios para identificar fracciones equivalentes y ordenarlas"
+                    ],
+                ];
+                break;
         default:
             break;
     }

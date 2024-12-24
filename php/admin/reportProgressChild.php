@@ -1,7 +1,7 @@
 <?php
 require_once './../../dompdf/autoload.inc.php';
 
- session_start();
+session_start();
 
 // Incluimos el archivo donde se establece la conexión a la base de datos
 include "../connectionBD.php";
@@ -9,7 +9,7 @@ include "../connectionBD.php";
 
 $id_child = $_POST["id_nino"];
 
-$sqlChild = 'SELECT * from ninos WHERE id_nino=:id_child';
+$sqlChild = 'SELECT  id_categoria_actividades, id_genero,  id_usuario, nombre, apellido, COALESCE(ultimo_acceso, "Aún no ha iniciado sesión en la plataforma") as ultimo_acceso from ninos WHERE id_nino=:id_child';
 $stmt01 = $pdo->prepare($sqlChild);
 $stmt01->bindParam(':id_child', $id_child, PDO::PARAM_INT);
 $stmt01->execute();
@@ -64,122 +64,124 @@ $accountCreationDate = "$dia-$mes-$ano";
 
 switch ($row["id_genero"]) {
     case '1':
-        $gender =  "data:image/png;base64,".base64_encode(file_get_contents("../../img/childs/boy.png"));
+        $gender = "data:image/png;base64," . base64_encode(file_get_contents("../../img/childs/boy.png"));
         break;
     case '2':
-        $gender = "data:image/png;base64,".base64_encode(file_get_contents("../../img/childs/girl.png"));
+        $gender = "data:image/png;base64," . base64_encode(file_get_contents("../../img/childs/girl.png"));
         break;
     default:
         break;
 }
 
 $gems = $row03["total_diamantes"];
-if($row03["total_diamantes"] > 0){
+if ($row03["total_diamantes"] > 0) {
     $countgem = "  <span>$gems </span>
                                 <span>Diamantes</span>
                             </span> ";
-}else{
+} else {
     $countgem = "  <span> $gems </span>
                                 <span>Diamante</span>
                             </span> ";
 }
 //convert png to data
-$gemImg = "data:image/jpg;base64,".base64_encode(file_get_contents("../../img/report/gem.jpg"));
-$lessonsCount = "data:image/jpg;base64,".base64_encode(file_get_contents("../../img/report/lessonCount.jpg"));
+$gemImg = "data:image/jpg;base64," . base64_encode(file_get_contents("../../img/report/gem.png"));
+$lessonsCount = "data:image/jpg;base64," . base64_encode(file_get_contents("../../img/report/lessonCount.png"));
 // Contenido HTML
 $html = '
     <head>
-    <style>
+        <style>
    
-    .informationG{
-    background: #916df4;
-  color: white;
-  padding: 1rem;
-    margin:0rem;
-  border-radius: 1rem 1rem 0rem 0rem;
-  background: rgb(145, 109, 242);
-  background: linear-gradient(0deg, rgba(145, 109, 242, 1) 35%, rgba(139, 103, 238, 1) 84%);
-    }
+        .informationG {
+        background: #916df4;
+        color: white;
+        padding: 1rem;
+        margin:0rem;
+        border-radius: 1rem 1rem 0rem 0rem;
+        background: rgb(145, 109, 242);
+        background: linear-gradient(0deg, rgba(145, 109, 242, 1) 35%, rgba(139, 103, 238, 1) 84%);
+        }
 
-    .titleComplete {
-      color: #bba2ff;
-    }
+        .titleComplete {
+        color: #bba2ff;
+        }
 
-    .nivel{
-      color: #d5c5ff;
-    }
+        .nivel {
+        color: #d5c5ff;
+        }
 
-    .myProgress{
-    background: #ff7d45;
-  display: block;
-  padding: 0.6rem 1rem;
-  color: white;
-      margin: 0;
-    }
-  .progress{
-  margin:0rem
-  padding:1rem;
-  }
+        .myProgress {
+            background: #ff7d45;
+            display: block;
+            padding: 0.6rem 1rem;
+            color: white;
+            margin: 0;
+        }
+        .progress {
+            margin:0rem
+            padding:1rem;
+        }
 
-  .flexProgress{
-    margin:0rem;
-    padding:1rem;
-  width:100%;
-    }
+        .flexProgress {
+            margin:0rem;
+            padding:1rem;
+            width:100%;
+        }
 
-    h1{
-    margin:0rem
-}
+        h1 {
+            margin:0rem
+        }
 
-.content{
-  padding: 1rem;
-  background:white;
-}
+        .content {
+            padding: 1rem;
+            background:white;
+        }
 
-.flexProgress{
-padding: 0rem 0rem;
-margin:0rem;
-}
-.h3{
- margin:0rem;
- padding:0rem;
-}
+        .flexProgress {
+            padding: 0rem 0rem;
+            margin:0rem;
+        }
+        .h3 {
+            margin:0rem;
+            padding:0rem;
+        }
 
-.imgUser > img{
-    width: 100px;
-    height:90px;
-}
-     .detallsGems > img, .detallsLessons > img {
-         width: 85px;
-    height: 80px;
-     }
+        .imgUser > img {
+            width: 100px;
+            height:90px;
+        }
+        .detallsGems > img, .detallsLessons > img {
+            width: 85px;
+            height: 80px;
+        }
 
-.bgGem {
-  padding: 0.6rem 0.9rem;
-background:#2e7bcc;
-color:white;
-}
+        .bgGem {
+            padding: 0.6rem 0.9rem;
+            background:#2e7bcc;
+            color:white;
+        }
 
-.bgLesson{
- padding: 0.6rem 0.9rem;
-background:#cc2e2e;
-margin:0rem;
-color:white;
-  border-radius: 0rem 0rem 1rem 1rem;
-}
+        .bgLesson {
+            padding: 0.6rem 0.9rem;
+            background:#cc2e2e;
+            margin:0rem;
+            color:white;
+            border-radius: 0rem 0rem 1rem 1rem;
+        }
 
 
-h2{
-  padding: 0.6rem 0.9rem;
-  color:white;
-  margin:0rem;
-background: #2d2d2d;
-}
-.informationG, h3, .detallsGems, .flexProgress{
+        h2 {
+            padding: 0.6rem 0.9rem;
+            color:white;
+            margin:0rem;
+            background: #2d2d2d;
+        }
 
-    text-align: center;
-}
-body{  background: #f2f2f2;}
+        .informationG, h3, .detallsGems, .flexProgress {
+            text-align: center;
+        }
+        body {  
+            background: #f2f2f2;
+        }
   </style>
 </head>
 <body>
@@ -193,7 +195,7 @@ body{  background: #f2f2f2;}
                     <span class="nivel"> Ultimo acceso: ' . $row["ultimo_acceso"] . ' </span>
                 </div>
                 <div class="imgUser">
-                     <img src="'. $gender.'" >
+                     <img src="' . $gender . '" >
                 </div>
             </section>
             <section class="progress">
@@ -207,12 +209,12 @@ body{  background: #f2f2f2;}
                     <div>
                         <div class="bgGem">
                                 <span class="detallsGems">
-                            <img src="'.$gemImg.'"><br>
+                            <img src="' . $gemImg . '"><br>
                             ' . $countgem . ' 
                         </div>
                         <div class="bgLesson">
                             <span class="detallsLessons">
-                                <img src="'.$lessonsCount.'"><br>
+                                <img src="' . $lessonsCount . '"><br>
                                 <span>' . $lecciones_completadas["lecciones_completadas"] . '/4</span>    
                                 <span>Lecciones</span>
                             </span>
@@ -222,9 +224,7 @@ body{  background: #f2f2f2;}
             </section>
         </div>
     </main>
-</body>
-  
-    ';
+</body>';
 
 // Crear una instancia de DOMPDF
 
@@ -249,7 +249,7 @@ $dompdf->setPaper('letter');
 $dompdf->render();
 
 // Descargar el PDF
-$name =  $row02["usuario"];
+$name = $row02["usuario"];
 $dompdf->stream("My_progreso_$name.pdf", array("Attachment" => 1));
 
 ?>

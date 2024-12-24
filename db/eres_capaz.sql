@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-12-2024 a las 13:49:53
--- Versión del servidor: 10.1.13-MariaDB
--- Versión de PHP: 7.0.6
+-- Tiempo de generación: 24-12-2024 a las 14:49:57
+-- Versión del servidor: 10.4.28-MariaDB
+-- Versión de PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -32,7 +33,7 @@ DROP TABLE IF EXISTS `cargos`;
 CREATE TABLE `cargos` (
   `id_cargo` int(10) NOT NULL,
   `cargo` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `cargos`
@@ -52,7 +53,7 @@ DROP TABLE IF EXISTS `categorias_actividades`;
 CREATE TABLE `categorias_actividades` (
   `id_categoria_actividades` int(10) NOT NULL,
   `categoria_actividades` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `categorias_actividades`
@@ -75,29 +76,21 @@ CREATE TABLE `estado_lecciones` (
   `id_usuario` int(10) DEFAULT NULL,
   `id_leccion` int(10) DEFAULT NULL,
   `completado` enum('bloqueado','completado','en_espera','') DEFAULT 'bloqueado',
-  `porcentaje` int(11) DEFAULT '0',
-  `diamantes_obtenidos` int(100) DEFAULT '0',
+  `porcentaje` int(11) DEFAULT 0,
+  `diamantes_obtenidos` int(100) DEFAULT 0,
   `tiempo` varchar(25) NOT NULL DEFAULT '00:00:00',
   `fallida` int(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `estado_lecciones`
 --
 
 INSERT INTO `estado_lecciones` (`id_estado_leccion`, `id_usuario`, `id_leccion`, `completado`, `porcentaje`, `diamantes_obtenidos`, `tiempo`, `fallida`) VALUES
-(45, 14, 1, 'completado', 100, 20, '00:01:02', 0),
-(46, 14, 2, 'completado', 75, 15, '00:01:06', 5),
-(47, 14, 3, 'completado', 30, 19, '00:00:54', 5),
-(48, 14, 4, 'completado', 90, 18, '00:02:23', 2),
-(57, 19, 1, 'completado', 100, 20, '00:01:00', 0),
-(58, 19, 2, 'completado', 60, 12, '00:00:56', 8),
-(59, 19, 3, 'completado', 100, 20, '00:01:31', 0),
-(60, 19, 4, 'completado', 70, 14, '00:02:13', 6),
-(73, 23, 5, 'en_espera', 0, 0, '0', 0),
-(74, 23, 6, 'bloqueado', 0, 0, '00:00:00', NULL),
-(75, 23, 7, 'bloqueado', 0, 0, '0', 0),
-(76, 23, 8, 'bloqueado', 0, 0, '00:00:00', NULL);
+(109, 25, 1, 'en_espera', 0, 0, '00:00', NULL),
+(110, 25, 2, 'bloqueado', 0, 0, '00:00', NULL),
+(111, 25, 3, 'bloqueado', 0, 0, '00:00', NULL),
+(112, 25, 4, 'bloqueado', 0, 0, '00:00', NULL);
 
 -- --------------------------------------------------------
 
@@ -109,7 +102,7 @@ DROP TABLE IF EXISTS `generos`;
 CREATE TABLE `generos` (
   `id_genero` int(10) NOT NULL,
   `genero` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `generos`
@@ -132,15 +125,7 @@ CREATE TABLE `historiales` (
   `id_profesional` int(10) DEFAULT NULL,
   `mensaje` varchar(250) DEFAULT NULL,
   `fecha_hora` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `historiales`
---
-
-INSERT INTO `historiales` (`id_historial`, `id_nino`, `id_profesional`, `mensaje`, `fecha_hora`) VALUES
-(28, 20, 8, 'Emily2019 ha completado la lección: ''Suma y resta con objetos'', sobre el tema ''Operaciones basicas ''', '2024-12-21 22:06:35'),
-(29, 20, 8, 'Emily2019 ha completado la lección: ''Suma y resta con objetos'', sobre el tema ''Operaciones basicas ''', '2024-12-21 22:09:10');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -155,7 +140,7 @@ CREATE TABLE `lecciones` (
   `leccion` int(10) DEFAULT NULL,
   `titulo` varchar(40) NOT NULL,
   `objetivo` varchar(150) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `lecciones`
@@ -163,13 +148,17 @@ CREATE TABLE `lecciones` (
 
 INSERT INTO `lecciones` (`id_leccion`, `id_tema`, `leccion`, `titulo`, `objetivo`) VALUES
 (1, 1, 1, 'Asociación de cantidad con objetos', 'Asociación de cantidad con objetos: ejercicios de contar objetos de diferentes tipos y tamaños.'),
-(2, 1, 2, 'Comparación de cantidades', 'Comparación de cantidades: actividades para identificar "más", "menos" e "igual".'),
+(2, 1, 2, 'Comparación de cantidades', 'Comparación de cantidades: actividades para identificar \"más\", \"menos\" e \"igual\".'),
 (3, 2, 1, 'Reconocimiento de números. Parte 1', 'Reconocimiento de números del 1 al 10: ejercicios de identificación auditiva.'),
 (4, 2, 2, 'Reconocimiento de números. Parte 2', 'Reconocimiento de números del 1 al 10: ejercicios de identificación visual.'),
 (5, 3, 1, 'Conteo hacia adelante y hacia atrás', 'Ejercicios de contar desde un numero inicial'),
 (6, 3, 2, 'Conteo con objetos', 'Actividades para comprender las cantidades con objetos'),
 (7, 4, 1, 'Suma y resta con objetos', 'Ejercicios manipulativos para visualizar las operaciones.'),
-(8, 4, 2, 'Problemas sencillos', 'Resolución de problemas contextualizados.');
+(8, 4, 2, 'Problemas sencillos', 'Resolución de problemas contextualizados.'),
+(19, 9, 1, 'Multiplicación y división', 'Introducción a los conceptos básicos.'),
+(20, 3, 2, ' Problemas más complejos', 'Resolución de problemas que involucran múltiples operaciones.'),
+(21, 10, 1, 'Concepto de fracción', 'Representación gráfica y manipulativa '),
+(22, 10, 2, 'Comparación de fracciones', 'Ejercicios para identificar fracciones equivalentes y ordenarlas ');
 
 -- --------------------------------------------------------
 
@@ -182,7 +171,7 @@ CREATE TABLE `modulos` (
   `id_modulo` int(10) NOT NULL,
   `id_categoria_actividades` int(10) NOT NULL,
   `modulo` varchar(40) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `modulos`
@@ -210,16 +199,14 @@ CREATE TABLE `ninos` (
   `apellido` varchar(70) NOT NULL,
   `fecha_nacimiento` date DEFAULT NULL,
   `ultimo_acceso` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `ninos`
 --
 
 INSERT INTO `ninos` (`id_nino`, `id_genero`, `id_categoria_actividades`, `id_usuario`, `id_profesional`, `nombre`, `apellido`, `fecha_nacimiento`, `ultimo_acceso`) VALUES
-(11, 1, 1, 14, 8, 'Diamantino', 'Perdomo', '2011-01-01', '2024-12-21 20:42:15'),
-(16, 2, 1, 19, 8, 'Emily', 'Perdomo', '2020-02-02', '2024-12-20 06:59:37'),
-(20, 2, 2, 23, 8, 'Elimita', 'Perdomo', '2010-02-02', '2024-12-23 07:36:11');
+(21, 1, 1, 25, 8, 'Diaman', 'Perdomo', '2002-02-02', NULL);
 
 -- --------------------------------------------------------
 
@@ -235,14 +222,7 @@ CREATE TABLE `notificaciones` (
   `mensaje` varchar(50) DEFAULT NULL,
   `fecha_hora_envio` datetime DEFAULT NULL,
   `estado` enum('pendiente','leido') DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `notificaciones`
---
-
-INSERT INTO `notificaciones` (`id_notificacion`, `id_nino`, `id_profesional`, `mensaje`, `fecha_hora_envio`, `estado`) VALUES
-(4, 11, 8, '¡Sigue asi! Has pasado a la etapa 2.', '2024-12-08 12:09:49', 'leido');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -259,7 +239,7 @@ CREATE TABLE `profesionales` (
   `apellido` varchar(55) NOT NULL,
   `correo_electronico` varchar(80) NOT NULL,
   `centro_educativo` varchar(120) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `profesionales`
@@ -279,18 +259,16 @@ CREATE TABLE `progresos` (
   `id_progreso` int(10) NOT NULL,
   `id_categoria_actividades` int(10) NOT NULL,
   `id_usuario` int(10) NOT NULL,
-  `porcentaje` int(11) DEFAULT '0',
-  `total_diamantes` int(100) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `porcentaje` int(11) DEFAULT 0,
+  `total_diamantes` int(100) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `progresos`
 --
 
 INSERT INTO `progresos` (`id_progreso`, `id_categoria_actividades`, `id_usuario`, `porcentaje`, `total_diamantes`) VALUES
-(10, 1, 14, 100, 1009),
-(15, 1, 19, 75, 66),
-(19, 2, 23, 0, 0);
+(20, 1, 25, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -302,7 +280,7 @@ DROP TABLE IF EXISTS `roles`;
 CREATE TABLE `roles` (
   `id_rol` int(10) NOT NULL,
   `rol` varchar(18) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `roles`
@@ -324,8 +302,8 @@ CREATE TABLE `temas` (
   `id_tema` int(10) NOT NULL,
   `id_modulo` int(10) NOT NULL,
   `tema` varchar(40) NOT NULL,
-  `descripcion` text
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `descripcion` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `temas`
@@ -335,7 +313,9 @@ INSERT INTO `temas` (`id_tema`, `id_modulo`, `tema`, `descripcion`) VALUES
 (1, 1, 'Conceptos básicos', NULL),
 (2, 1, 'Introducción a los números', NULL),
 (3, 2, 'Conteo', NULL),
-(4, 2, 'Operaciones básicas', NULL);
+(4, 2, 'Operaciones básicas', NULL),
+(9, 3, 'Operaciones avanzadas', NULL),
+(10, 3, 'Fracciones', NULL);
 
 -- --------------------------------------------------------
 
@@ -352,7 +332,7 @@ CREATE TABLE `usuarios` (
   `estado` bit(1) DEFAULT b'0',
   `permisos` bit(1) DEFAULT b'0',
   `fecha_hora_creacion` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `usuarios`
@@ -361,9 +341,7 @@ CREATE TABLE `usuarios` (
 INSERT INTO `usuarios` (`id_usuario`, `id_rol`, `usuario`, `clave`, `estado`, `permisos`, `fecha_hora_creacion`) VALUES
 (1, 1, 'Yayi33', '123', b'1', b'1', '2024-11-25 22:29:44'),
 (3, 3, 'Eres_capaz', '', b'0', b'0', '2024-11-28 13:24:43'),
-(14, 2, 'Diaman', '123', b'1', b'1', '2024-12-07 07:16:18'),
-(19, 2, 'Emily2024', '123', b'1', b'1', '2024-12-19 07:43:22'),
-(23, 2, 'Emily2019', '123', b'1', b'1', '2024-12-21 17:14:38');
+(25, 2, 'Diamantino', '', b'1', b'1', '2024-12-24 08:24:15');
 
 --
 -- Índices para tablas volcadas
@@ -483,71 +461,85 @@ ALTER TABLE `usuarios`
 --
 ALTER TABLE `cargos`
   MODIFY `id_cargo` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT de la tabla `categorias_actividades`
 --
 ALTER TABLE `categorias_actividades`
   MODIFY `id_categoria_actividades` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT de la tabla `estado_lecciones`
 --
 ALTER TABLE `estado_lecciones`
-  MODIFY `id_estado_leccion` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
+  MODIFY `id_estado_leccion` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
+
 --
 -- AUTO_INCREMENT de la tabla `generos`
 --
 ALTER TABLE `generos`
   MODIFY `id_genero` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT de la tabla `historiales`
 --
 ALTER TABLE `historiales`
-  MODIFY `id_historial` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id_historial` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+
 --
 -- AUTO_INCREMENT de la tabla `lecciones`
 --
 ALTER TABLE `lecciones`
-  MODIFY `id_leccion` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_leccion` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
 --
 -- AUTO_INCREMENT de la tabla `modulos`
 --
 ALTER TABLE `modulos`
   MODIFY `id_modulo` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT de la tabla `ninos`
 --
 ALTER TABLE `ninos`
-  MODIFY `id_nino` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_nino` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
 --
 -- AUTO_INCREMENT de la tabla `notificaciones`
 --
 ALTER TABLE `notificaciones`
   MODIFY `id_notificacion` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
 --
 -- AUTO_INCREMENT de la tabla `profesionales`
 --
 ALTER TABLE `profesionales`
-  MODIFY `id_profesional` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_profesional` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
 --
 -- AUTO_INCREMENT de la tabla `progresos`
 --
 ALTER TABLE `progresos`
-  MODIFY `id_progreso` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_progreso` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
 --
 -- AUTO_INCREMENT de la tabla `roles`
 --
 ALTER TABLE `roles`
   MODIFY `id_rol` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT de la tabla `temas`
 --
 ALTER TABLE `temas`
-  MODIFY `id_tema` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_tema` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id_usuario` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+
 --
 -- Restricciones para tablas volcadas
 --
@@ -620,6 +612,7 @@ ALTER TABLE `temas`
 --
 ALTER TABLE `usuarios`
   ADD CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`id_rol`) REFERENCES `roles` (`id_rol`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
