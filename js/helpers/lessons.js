@@ -256,15 +256,24 @@ export function countUp(answers, html , begin){
         $selects[i].innerHTML = html;
     }
 }
-
-export function advancedOperations1(operation, array, answer){
-    $showNumberSpan[0].innerHTML = operation;
-    $showNumberSpan[1].innerHTML = "__";
+export let $ButtonsNumMain = document.querySelector(".ButtonsNum2");
+export let $ButtonsNum2 = document.querySelectorAll(".ButtonsNum2 > button");
+export function advancedOperations1(operation, array, answer, part = 1){
     $containerPlayer.setAttribute('data-num', answer)
-    for(let i = 0; i < $ButtonsNum.length; i++){
-        $ButtonsNum[i].innerHTML = array[i]
+    if(part == 1){
+        $showNumberSpan[0].innerHTML = operation;
+        $showNumberSpan[1].innerHTML = "__";
+        for(let i = 0; i < $ButtonsNum.length; i++){
+                $ButtonsNum[i].innerHTML = array[i]
+        }
+    }else{
+        $showNumberSpan[0].innerHTML = operation;
+        $showNumberSpan[1].style.display = "none";
+        for(let i = 0; i < $ButtonsNum2.length; i++){
+            $ButtonsNum2[i].innerHTML = array[i]
+        }
     }
+   
 
-    return true;
 }
  

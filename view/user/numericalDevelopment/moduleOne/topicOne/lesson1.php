@@ -84,94 +84,19 @@ include './../../../../../php/connectionBD.php';
                                 <button>=</button>
                                 <button>></button>
                             </div>
-                            <select disabled="disabled" style="display: none;">
-                                <option value="">1</option>
-                            </select>
-                            <select data-number="1" style="display: none;">
-                                <option value="_" selected>_</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
-                                <option value="10">10</option>
-                            </select>
-                            <select data-number="2" style="display: none;">
-                                <option value="_" selected>_</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                            </select>
-                            <select data-number="3" style="display: none;">
-                                <option value="_" selected>_</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                            </select>
-                            <select data-number="4" style="display: none;">
-                                <option value="" selected>_</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                            </select>
-                            <select data-number="5" style="display: none;">
-                                <option value="_" selected>_</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                            </select>
-                            <select data-number="6" style="display: none;">
-                                <option value="_" selected>_</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                            </select>
-                            <select data-number="7" style="display: none;">
-                                <option value="_" selected>_</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                            </select>
-                            <select data-number="8" style="display: none;">
-                                <option value="" selected>_</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                            </select>
-                            <select data-number="9" style="display: none;">
-                                <option value="_" selected>_</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                            </select>
-                            <select data-number="10" style="display: none;">
-                                <option value="_" selected>_</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                            </select>
+                            <div class="ButtonsNum2 d-none" >
+                                <button><</button>
+                                <button>=</button>
+                                <button>></button>
+                                <button><</button>
+                                <button>=</button>
+                                <button>></button>
+                                <button><</button>
+                                <button>=</button>
+                                <button>></button>
+                                <button><</button>
+                                <button>=</button>
+                            </div>
                         </div><br>
                     </div>
                 </div>

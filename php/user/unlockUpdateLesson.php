@@ -39,7 +39,6 @@ function addHistory( $statu, $leccion, $tema, $modulo)
 try {
     switch ($statu) {
         case 'en_espera':
-            addHistory("awaiting", $leccion, $tema, $modulo);
             $sqlComplete = "UPDATE estado_lecciones SET completado='completado' WHERE id_usuario = :id_user AND id_leccion = :id_lesson";
             $query01 = $pdo->prepare($sqlComplete);
             $query01->bindParam('id_user', $idUser, PDO::PARAM_INT);
@@ -57,9 +56,13 @@ try {
             $queryWait->execute();
             $nextLesson = $idLesson + 1;
             echo $nextLesson;
-            if (($nextLesson < 5 && $accessLevel == "Pre_Numerico") 
-                                        || 
-                ($nextLesson < 9 && $accessLevel == "Numerico_emergente")) {
+            addHistory("awaiting", $leccion, $tema, $modulo);
+            $numberNext = match ($accessLevel) {
+                'Pre_Numerico' => 5 ,
+                'Numerico_emergente' => 9 ,
+                'desarrollo_numerico' => 13 , 
+            };
+            if ($nextLesson < $numberNext) {
                 $sqlNext = "UPDATE estado_lecciones SET  completado = 'en_espera'
                             WHERE id_usuario = :id_user AND id_leccion = :id_lesson";
                 $queryNext = $pdo->prepare($sqlNext);
@@ -88,7 +91,6 @@ try {
                     throw new PDOException("Error updating lesson status");
                 }
             } else {
-                addHistory("completeTotal",$leccion, $tema, $modulo);
 
                 $sqlSelectProgressNow = "SELECT total_diamantes from  progresos WHERE id_usuario =:id_user";
                 $querySelectProgressNow = $pdo->prepare($sqlSelectProgressNow);
@@ -105,6 +107,7 @@ try {
 
                 if ($queryWait->rowCount() > 0 && $queryUpdateProgress->rowCount() > 0) {
                     echo "completed this lesson.";
+                    addHistory("completeTotal",$leccion, $tema, $modulo);
                 } else {
                     throw new PDOException("Error updating lesson status");
                 }
@@ -112,7 +115,6 @@ try {
 
             break;
             case "completado":
-            addHistory("completed", $leccion, $tema, $modulo);
 
             $sqlComplete = "UPDATE estado_lecciones SET porcentaje = :porcentage, diamantes_obtenidos = :gems,
                 tiempo = :timeV, fallida = :failed WHERE id_usuario = :id_user AND id_leccion = :id_lesson";
@@ -140,6 +142,7 @@ try {
 
             if ($queryUpdateProgress->rowCount() > 0 && $queryCompleta->rowCount() > 0) {
                 echo "Completado this lesson";
+                addHistory("completed", $leccion, $tema, $modulo);
             } else {
                 throw new PDOException("Error updating lesson status");
             }
