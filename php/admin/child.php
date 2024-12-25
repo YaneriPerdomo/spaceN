@@ -269,7 +269,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 break;
             case 'sendNotification':
                 $id_child = $_POST["id_child"];
-                $id_profesional = $_POST["id_profesional"];
+                $id_profesional =  $_SESSION["id_profesional"] ;
                 $messenger = $_POST["messenger"];
 
                 if (empty($id_child) || empty($id_profesional) || empty($messenger)) {
@@ -281,7 +281,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 $stmt->bindParam('id_profesional', $id_profesional, PDO::PARAM_INT);
                 $stmt->bindParam('messenger', $messenger, PDO::PARAM_STR);
                 $stmt->execute();
-                echo "<script>alert('Notificacion enviada con exito'); window.location.href = './../../view/admin/dashboard.php?page=1';</script>";
+                if($stmt->rowCount() > 0){
+                    echo "<script>alert('Notificacion enviada con exito'); window.location.href = './../../view/admin/dashboard.php?page=1';</script>";
+                }
                 break;
             default:
                 echo 'Problema a llamar a la funcion';

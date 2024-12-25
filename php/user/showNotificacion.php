@@ -15,7 +15,10 @@ try {
 
     if($query->rowCount() > 0){
         $results = $query->fetchAll(PDO::FETCH_ASSOC);
-
+        $sqlUpdate = "UPDATE notificaciones SET estado = 'leido' WHERE id_nino = :idChild";
+        $queryUpdateN = $pdo->prepare($sqlUpdate);
+        $queryUpdateN->bindParam('idChild', $id_Child , PDO::PARAM_INT);
+        $queryUpdateN->execute();
         foreach ($results as $value) {
             echo "
                     <div class='d-flex'>
