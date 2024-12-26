@@ -10,7 +10,7 @@ include './../../../../../php/connectionBD.php';
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tema 2 | Lección 1 | Eres capaz</title>
+    <title>Tema 1 | Lección 2 | Eres capaz</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
     <script src="https://pie-meister.github.io/PieMeister-with-Progress.min.js"></script>
@@ -48,7 +48,7 @@ include './../../../../../php/connectionBD.php';
                                     <img src="../../../../../img/childs/boy.png" class="img-fluid imgEresCapaz" alt="">
                                 </figure>
                                 <div class="objetivo">
-                                    <p class="m-0">Escucha y selecciona el número correspondiente</p>
+                                    <p class="m-0">Selecciona el número que verás en el recuadro</p>
                                 </div>
                             </div>
                         </div>
@@ -71,18 +71,29 @@ include './../../../../../php/connectionBD.php';
             <main class="play">
                 <div class="row w-100 h-100">
                     <div class="col-12 align-items-center justify-content-center d-flex">
-                        <div class="containerPlayer align-items-center justify-content-center" data-num="3">
+                        <div class="containerPlayer align-items-center justify-content-center" data-num="3"
+                            data-part="1">
+                            <div class="showNumber">
+                                <strong>
+                                    <img class="imgFractionsMain img-fluid">
+                                </strong>
+                            </div>
                             <div class="ButtonsNum">
-                                <button>6</button>
-                                <button>9</button>
-                                <button>9</button>
-                                <button>6</button>
-                                <button>3</button>
+                                <button>
+                                    <img src="" alt="">
+                                </button>
+                                <button>
+                                    <img src="" alt="">
+                                </button>
+                                <button>
+                                    <img src="" alt="">
+                                </button>
                             </div>
                         </div><br>
                     </div>
                 </div>
             </main>
+
             <div class="begin welcome">
                 <section class="logo">
                     <img src="../../../../../img/for/teaching.png" class="img-fluid" alt="">
@@ -92,7 +103,7 @@ include './../../../../../php/connectionBD.php';
                         <h1 class="text-center">Progreso Actual</h1>
                         <?php
                         include '../../../../../php/user/auxiliar.php';
-                        echo getLessonData($_SESSION["id_user"], 3);
+                        echo getLessonData($_SESSION["id_user"], 11);
                         ?>
                     </div>
                 </div>
@@ -115,6 +126,7 @@ include './../../../../../php/connectionBD.php';
             include '../../../../include/user/lesson/modalWindows/guide.php';
             include '../../../../include/user/lesson/modalWindows/containerResultsLesson.php';
             ?>
+
         </div>
     </main>
 
@@ -130,9 +142,10 @@ include './../../../../../php/connectionBD.php';
     include '../../../../include/user/lesson/offcanvasUser.php';
     ?>
 
-    <script src="../../../../../js/user/preNumeric/topicTwo/lesson01.js" 
-        type="module">
+    <script src="../../../../../js/user/numericalDevelopment/topicTwo/lesson01.js" type="module">
     </script>
+
+
 </body>
 
 </html>

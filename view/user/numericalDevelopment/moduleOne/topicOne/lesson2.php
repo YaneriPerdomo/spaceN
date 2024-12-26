@@ -73,7 +73,7 @@ include './../../../../../php/connectionBD.php';
                     <div class="col-12 align-items-center justify-content-center d-flex">
                         <div class="containerPlayer align-items-center justify-content-center" data-num="3">
                             <div class="showNumber">
-                                <strong>
+                                <strong style="flex-direction: revert;">
                                     <span>?</span>
                                     <span>?</span>
                                 </strong>
@@ -97,7 +97,7 @@ include './../../../../../php/connectionBD.php';
                         <h1 class="text-center">Progreso Actual</h1>
                         <?php
                         include '../../../../../php/user/auxiliar.php';
-                        echo getLessonData($_SESSION["id_user"], 2);
+                        echo getLessonData($_SESSION["id_user"], idlesson: 10);
                         ?>
                     </div>
                 </div>
@@ -136,7 +136,7 @@ include './../../../../../php/connectionBD.php';
     include '../../../../include/user/lesson/offcanvasUser.php';
     ?>
 
-    <script src="../../../../../js/user/preNumeric/topicOne/lesson02.js" type="module">
+    <script src="../../../../../js/user/numericalDevelopment/topicOne/lesson02.js" type="module">
     </script>
 
 

@@ -28,4 +28,4 @@ Esta aplicación se enfoca en proporcionar un entorno de aprendizaje interactivo
 * **Frontend:** HTML, CSS, JAVASCRIPT, BOOTSTRAP para generar todos los aspectos visuales de la aplicación.
 * **Backend:** PHP para la gestión del servidor, utilizando el gestor de bases de datos MySql para almacenar datos de usuarios, ejercicios y resultados, y utilizando composer para generar informes personalizados
 
-**Avisos importantes:** Se requiere composer, se recomienda tener la última versión, teniendo en cuenta php superior a 8.2 y Xampp para tener el mini servidor local
+**Avisos importantes:** Se requiere composer  2.7.9  o >, se recomienda tener la última versión, teniendo en cuenta php superior a 8.2 y Xampp para tener el mini servidor local

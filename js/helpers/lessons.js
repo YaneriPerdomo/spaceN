@@ -276,4 +276,21 @@ export function advancedOperations1(operation, array, answer, part = 1){
    
 
 }
+
+export let $imgFractions = document.querySelectorAll(".ButtonsNum > button > img");
+export let $imgFractionsMain = document.querySelectorAll(".imgFractionsMain");
+
+export function fractions(imgFractions, imgFractionsMain, answer){
+    let count01 = 0;
+    $imgFractionsMain.src = imgFractionsMain;
+    for(let i = 0; $imgFractions.length; i++){
+        count01++;
+        $imgFractions[i].src = imgFractions[i];
+        if(count01 == answer){
+            $imgFractions[i].setAttribute("data-answer", true )   ;
+            continue         
+        }
+        $imgFractions[i].setAttribute("data-answer", false)
+    }
+}
  
