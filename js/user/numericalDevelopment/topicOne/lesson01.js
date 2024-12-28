@@ -195,7 +195,7 @@ function randomNumber10() {
                 case 0:
                     let multiplication1 = {
                         question: 'UNO de estos numeros No corresponde a la tabla de 5',
-                        numbers: [25, 7, 10, 45, 30, 5, 20, 40, 15, 35, 50],
+                        numbers: [25, 2, 10, 45, 30, 5, 20, 40, 15, 35, 50],
                         answer: 2
                     }
                     advancedOperations1(multiplication1.question, multiplication1.numbers, multiplication1.answer, 2);

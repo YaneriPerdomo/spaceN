@@ -489,6 +489,14 @@ h1 {
   filter: drop-shadow(2px 3px #222);
 }
 
+
+.ButtonsNum2{
+  justify-content: center;
+  align-content: center;
+  display: flex;
+  gap: 1rem;
+}
+
 .ButtonsNum > button:hover, select:hover, .ButtonsNum2 > button:hover {
   background: #3f8ddf;
 
