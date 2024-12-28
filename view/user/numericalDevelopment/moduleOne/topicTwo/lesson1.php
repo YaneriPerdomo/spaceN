@@ -24,6 +24,13 @@ include './../../../../../php/connectionBD.php';
     <link rel="stylesheet" href="../../../../../css/admin/dashboard.css">
     <link rel="stylesheet" href="../../../../../css/components/row.css">
     <link rel="stylesheet" href="../../../../../css/user/lesson.css">
+
+    <style>
+        .frac {
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
 </head>
 
 <body>
@@ -71,23 +78,28 @@ include './../../../../../php/connectionBD.php';
             <main class="play">
                 <div class="row w-100 h-100">
                     <div class="col-12 align-items-center justify-content-center d-flex">
-                        <div class="containerPlayer align-items-center justify-content-center" data-num="3"
-                            data-part="1">
+                        <div class="containerPlayer align-items-center justify-content-center">
                             <div class="showNumber">
-                                <strong>
-                                    <img class="imgFractionsMain img-fluid">
+                                <strong style="flex-direction: row;">
+                                    <span><img src="" alt=""></span>
                                 </strong>
                             </div>
                             <div class="ButtonsNum">
-                                <button>
-                                    <img src="" alt="">
-                                </button>
-                                <button>
-                                    <img src="" alt="">
-                                </button>
-                                <button>
-                                    <img src="" alt="">
-                                </button>
+                                <button class="frac p-2">
+                                         <span> </span>
+                                        <hr class="m-0">
+                                        <span> </span>
+                                 </button>
+                                <button class="frac p-2">
+                                         <span> </span>
+                                        <hr class="m-0">
+                                        <span> </span>
+                                 </button>
+                                 <button class="frac p-2">
+                                         <span> </span>
+                                        <hr class="m-0">
+                                        <span> </span>
+                                 </button>
                             </div>
                         </div><br>
                     </div>

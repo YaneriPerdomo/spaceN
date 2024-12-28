@@ -277,20 +277,41 @@ export function advancedOperations1(operation, array, answer, part = 1){
 
 }
 
-export let $imgFractions = document.querySelectorAll(".ButtonsNum > button > img");
-export let $imgFractionsMain = document.querySelectorAll(".imgFractionsMain");
+export let $imgFractionsMain = document.querySelector(".showNumber > strong > span > img");
 
-export function fractions(imgFractions, imgFractionsMain, answer){
-    let count01 = 0;
+export let $fracsSpan = document.querySelectorAll(".frac > span"); 
+export let $fracs = document.querySelectorAll(".frac"); 
+
+export function fractions(imgFractionsMain,  array, answer){
     $imgFractionsMain.src = imgFractionsMain;
-    for(let i = 0; $imgFractions.length; i++){
-        count01++;
-        $imgFractions[i].src = imgFractions[i];
-        if(count01 == answer){
-            $imgFractions[i].setAttribute("data-answer", true )   ;
-            continue         
+    let c = 0;
+
+    for(let i = 0 ; i < $fracs.length; i++){
+        c++;
+        if(c == answer){
+            $fracs[i].setAttribute("data-answer", true)
+            continue;
         }
-        $imgFractions[i].setAttribute("data-answer", false)
+        $fracs[i].setAttribute("data-answer", false)
+    }
+    for(let i = 0; i < $fracsSpan.length ; i++){
+        $fracsSpan[i].innerHTML = array[i];
     }
 }
- 
+export let  $ButtonsNumImg = document.querySelectorAll(".ButtonsNum > button > img");
+export function fraccion2(arrayMain, arrayImg, answer){
+    let c = 0;
+
+    for(let i = 0; i < $ButtonsNumImg.length; i++){
+        c++;
+        $ButtonsNumImg[i].src = arrayImg[i];
+        if(c == answer){
+            $ButtonsNumImg[i].setAttribute("data-answer", true)
+            continue;
+        }
+        $ButtonsNumImg[i].setAttribute("data-answer", false)
+    }
+    for(let i = 0; i < $fracsSpan.length ; i++){
+        $fracsSpan[i].innerHTML = arrayMain[i];
+    }
+}

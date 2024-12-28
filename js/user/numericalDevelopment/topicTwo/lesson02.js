@@ -31,6 +31,7 @@ import {
     $ButtonsNum2,
     $ButtonsNumMain,
     fractions,
+    fraccion2,
 } from "../../../helpers/lessons.js";
 
 let count = 0;
@@ -268,7 +269,12 @@ document.addEventListener("click", async (e) => {
             voiceExercise("Seleccione el elemento que tiene mas cuadrados");
             setTimeout(() => {
                 start()
-                randomNumber10()
+                let fraccionImg = {
+                    main: [2,3], 
+                    img: '', 
+                    answer:2
+                }
+                fraccion2(fraccionImg.main, fraccionImg.img, fraccionImg.answer);
             }, 3000);
         }, 0);
     }
@@ -293,10 +299,10 @@ async function endOfLesson() {
         body: new URLSearchParams({
             accessLevel: "desarrollo_numerico",
             statu: searchParams.get("statu"),
-            id_lesson: 11,
+            id_lesson: 12,
             modulo: "Desarrollo de Habilidades Numéricas",
             tema: "Fracciones",
-            lesson: "Concepto de fraccion 1",
+            lesson: "Concepto de fraccion 2",
             failed: failed,
             gems: parseInt($gem.textContent),
             porcentage: resulFormuleP,
