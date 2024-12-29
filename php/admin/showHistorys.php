@@ -21,21 +21,20 @@ function showHistorys($showPageLearn = false)
                 $count = 0;
                 foreach ($results as $value) {
                     $count++;
-                    echo "<div class='d-flex'>
-                <div class='d-flex  flex-column'>
-                            <p class='m-0'>" . $value["mensaje"] . "</p>
-                            <small  style='color: #6f6f6f;'> " . $value["fecha_hora"] . " </small>
-                </div>
-                 <button type='button' class='deleteH dropdown-toggle dropdown-toggle-split' data-bs-toggle='dropdown'
+                    echo "<div class=''>
+                                <div class='d-flex  flex-column'>
+                                    <p class='m-0'>" . $value["mensaje"] . "</p>
+                                    <small  style='color: #6f6f6f;'> " . $value["fecha_hora"] . " </small>
+                                </div>
+                            <button type='button' class='deleteH dropdown-toggle dropdown-toggle-split' data-bs-toggle='dropdown'
                                 aria-expanded='false'>
                                 <span class='visually-hidden'>Toggle Dropdown</span>
                             </button>
                             <ul class='dropdown-menu'>
                                 <li><a class='dropdown-item' href='./../../php/admin/deleteHistory.php?id=" . $value["id_historial"] . "'><i class='bi bi-trash'></i> Borrar</a></li>
                             </ul>
-                
                 </div><hr>";
-                    if ($count > 3) {
+                    if ($count >= 3) {
                         echo "<small> <a href='./history.php'> Ver todas</a></small>";
                     }
 

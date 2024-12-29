@@ -1,5 +1,5 @@
 <?php
-    include './../../php/validations/authorizedUser.php';
+include './../../php/validations/authorizedUser.php';
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -18,22 +18,69 @@
     <link rel="stylesheet" href="../../css/components/offcanvas.css">
     <link rel="stylesheet" href="../../css/admin/helpReportsActivity.css">
 </head>
- 
+
 <body>
     <?php include "./../include/admin/headerHelp.php" ?>
     <main class="">
         <div class="content">
             <h1><b>Recientes</b></h1>
             <p>
-            La aplicación web <em>"Eres capaz"</em> te muestra actualizaciones en vivo 
-            de las actividades que tus niños pueden realizar en la plataforma de aprendizaje.
-            </p><hr>
-
+                La aplicación web <em>"Eres capaz"</em> te muestra actualizaciones en vivo
+                de las actividades que tus niños pueden realizar en la plataforma de aprendizaje.
+            </p>
+            <hr>
+            
             <?php
-
-                    include '../../php/admin/showHistorys.php';
-                    showHistorys(false);
-                    ?>
+                 include './../../php/connectionBD.php';
+            
+                if ($pdo->errorCode() != 0) {
+                    echo "Error de conexión: " . $pdo->errorInfo()[2];
+                    return; 
+                }
+            
+                $id_profesional = $_SESSION["id_profesional"];
+                $inicio = 0;
+            
+                // Obtener el total de mensajes
+                $sqlCountHistorial = "SELECT count(mensaje) AS mensajes FROM historiales WHERE id_profesional = :id";
+                $queryCount = $pdo->prepare($sqlCountHistorial);
+                $queryCount->bindParam('id', $id_profesional, PDO::PARAM_INT);
+                $queryCount->execute();
+                $resultsCount = $queryCount->fetch(PDO::FETCH_ASSOC); // Obtener solo el primer resultado
+                $totalMensajes = $resultsCount['mensajes'];
+            
+                // Obtener los siguientes 2 mensajes
+                $sqlHistorial = "SELECT id_historial, mensaje, fecha_hora from historiales WHERE id_profesional = :id ORDER by fecha_hora DESC LIMIT 4   ";
+                $query = $pdo->prepare($sqlHistorial);
+                $query->bindParam('id', $id_profesional, PDO::PARAM_INT);
+                $query->execute();
+            
+                if ($query->rowCount() > 0) {
+                    $results = $query->fetchAll(PDO::FETCH_ASSOC);
+                    echo " <div class='results' data-limit='4'>";
+                    foreach ($results as $value) {
+                        echo "
+                                <div class='d-flex gap-1'>
+                                    <div style='flex-grow: 1;'>
+                                        <p class='m-0'>" . $value["mensaje"] . "</p>
+                                        <small style='color: #6f6f6f;'>" . $value["fecha_hora"] . "</small>
+                                    </div>
+                                    <div>
+                                        <a href='./../../php/admin/deleteHistory.php?id=" . $value["id_historial"] . "' class='deteleHistory'>
+                                            <i class='bi bi-x-lg'></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            <hr>";
+                    }
+                    echo '</div>';
+                    // Verificar si hay más mensajes para mostrar
+                    if ($inicio + 4 < $totalMensajes) {
+                        echo "<small class='show'> <a href=''> Mostrar más </a></small>";
+                    }
+                }
+            ?>
+        
         </div>
     </main>
     <?php include "./../include/footer.php" ?>
@@ -41,7 +88,6 @@
 <?php include "./../include/admin/offcanvasAplication.php" ?>
 <?php include "./../include/admin/offcanvasUser.php" ?>
 <script src="./../../js/helpers/bootstrap.js"></script>
-
-
+<script src="./../../js/helpers/showHistoryAdmin.js" type="module"></script>
 
 </html>

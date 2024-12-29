@@ -9,6 +9,7 @@ body {
     font-weight: 100;
     font-style: normal;
     font-weight: 400;
+    background: #f2f2f2;
 }
 header {
     display: flex;
@@ -20,6 +21,8 @@ header {
 
 main {
     flex-grow: 2;
+    margin: 0rem;
+    padding: 0rem;
     background: #f2f2f2;
 }
 
@@ -29,5 +32,4 @@ main>div {
 
 footer {
     background: rgb(48, 48, 48);
-    width: 100vw;
 }

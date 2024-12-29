@@ -13,6 +13,11 @@ a {
     border: solid 1px #e8d8ff;
 }
 
+.historyChilds >  div{
+    justify-content: space-between;
+    display: flex;
+}
+
 .deteleH {
     background: none;
     border: none;

@@ -36,7 +36,7 @@ include './../../php/validations/authorizedUser.php';
             <hr>
             <div class='w-100  d-flex justify-content-center align-content-center'>
                 <form action="../../php/admin/reports.php" method="post">
-                    <div class="d-flex gap-1">
+                    <div class="d-flex gap-1 flex-wrap reportHistory">
                         <label for="1" class="checked" data-checked="true">
                             <input type="radio" id="1" name="accessLevel" value="1" checked>
                             <i class="bi bi-people fs-1"></i><br>
