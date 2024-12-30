@@ -1,0 +1,444 @@
+
+      
+.logoMenu{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+
+.deleteBorde{
+    border: 0rem;
+}
+
+    .flexComun{
+          display: flex;
+        justify-content: center;
+        align-items: center;
+        gap:1rem;
+    }
+.ButtonTopScroll {
+position: fixed;
+bottom: 1rem;
+right: 1rem;
+background-color: var(--ColorPageMain);
+width: 60px;
+height: 60px;
+display: inline-block;
+width: 40px;
+height: 40px;
+line-height: 40px;
+border-radius: 0.5rem;
+vertical-align: middle;
+text-decoration: none;
+text-align: center;
+transition: 0.2s ease-out;
+box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+cursor: pointer;
+color: #FFF;
+ cursor: pointer;
+transition: all 1s ease-out;
+color: white;
+
+}
+
+.hidden{
+visibility: hidden;
+opacity: 0;
+
+}
+
+
+img{
+object-fit: cover;
+/* object-fit: contain; */
+object-position: center center;
+}
+
+.presentationIndex{
+justify-content: center;
+align-items: center;
+text-align: center;
+}
+.presentationIndex > div > section .title{
+font-size: clamp(1rem, 20vw, 5rem);
+margin:0.5rem
+}
+
+.information{
+text-align: center;
+justify-content: center;
+align-items: center;
+display: flex;
+
+} 
+
+.information >section{
+max-width: 500px;
+min-width: 100px;
+}
+
+
+/*Login*/
+
+
+
+main>.col-6:first-child {
+    background-color: var(--colorHF);
+}
+
+
+
+.row {
+    justify-content: center;
+}
+
+
+
+.login {
+    height: 100%;
+    background: rgba(255, 255, 255, 1);
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f2f2f2;
+}
+
+.containerLogin {
+    position: relative;
+    padding: 1rem;
+    background: white;
+    border-radius: 1rem;
+    border-radius: 1rem;
+    border: solid 1px #e8d8ff;
+}
+
+.formLogin {
+    padding: 1rem 0.5rem;
+
+    max-width: 350px;
+}
+
+[type='submit'] {
+    width: 100%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+label>span , .validations > span{
+    color: #ff5d5d;
+}
+
+.notValid{
+    border: solid 2px #ff5d5d;
+}
+
+
+
+.style {
+    position: absolute;
+    top: 30px;
+    right: -9px;
+    height: 130px;
+    border-radius: 0.2rem;
+    background: green;
+    width: 10px;
+    background-image:
+        linear-gradient(360deg, #a868f4 25%, #701bb7 25% 50%, #8b32d5 50% 75%, #8b60ea 75% 100%);
+}
+
+.linkCreateAccount {
+    color: var(--colorHF);
+    font-weight: bold;
+}
+
+
+#carouselExampleCaptions{
+    width: 90%;
+}
+
+body {
+    width: 100%;
+    height: 100;
+}
+
+.containerLogin {
+    max-width: 600px;
+}
+
+b{
+    margin-bottom: 0.1rem;
+}
+
+/*create */
+
+
+
+      
+.logoMenu{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+
+.deleteBorde{
+    border: 0rem;
+}
+
+    .flexComun{
+          display: flex;
+        justify-content: center;
+        align-items: center;
+        gap:1rem;
+    }
+.ButtonTopScroll {
+position: fixed;
+bottom: 1rem;
+right: 1rem;
+background-color: var(--ColorPageMain);
+width: 60px;
+height: 60px;
+display: inline-block;
+width: 40px;
+height: 40px;
+line-height: 40px;
+border-radius: 0.5rem;
+vertical-align: middle;
+text-decoration: none;
+text-align: center;
+transition: 0.2s ease-out;
+box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+cursor: pointer;
+color: #FFF;
+ cursor: pointer;
+transition: all 1s ease-out;
+color: white;
+
+}
+
+.hidden{
+visibility: hidden;
+opacity: 0;
+
+}
+
+
+img{
+object-fit: cover;
+/* object-fit: contain; */
+object-position: center center;
+}
+
+.presentationIndex{
+justify-content: center;
+align-items: center;
+text-align: center;
+}
+.presentationIndex > div > section .title{
+font-size: clamp(1rem, 20vw, 5rem);
+margin:0.5rem
+}
+
+.information{
+text-align: center;
+justify-content: center;
+align-items: center;
+display: flex;
+
+} 
+
+.information >section{
+max-width: 500px;
+min-width: 100px;
+}
+
+
+/*Login*/
+
+
+
+main>.col-6:first-child {
+    background-color: var(--colorHF);
+}
+
+
+
+.row {
+    justify-content: center;
+}
+
+
+
+.login {
+    height: 100%;
+    background: rgba(255, 255, 255, 1);
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f2f2f2;
+}
+
+.containerLogin {
+    position: relative;
+    padding: 1rem;
+    background: white;
+    border-radius: 1rem;
+    border-radius: 1rem;
+    border: solid 1px #e8d8ff;
+}
+
+form {
+    padding: 1rem 0.5rem;
+
+ 
+}
+
+[type='submit'] {
+    width: 100%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+label>span , .validations > span{
+    color: #ff5d5d;
+}
+
+.notValid{
+    border: solid 2px #ff5d5d;
+}
+
+
+
+.style {
+    position: absolute;
+    top: 30px;
+    right: -9px;
+    height: 130px;
+    border-radius: 0.2rem;
+    background: green;
+    width: 10px;
+    background-image:
+        linear-gradient(360deg, #a868f4 25%, #701bb7 25% 50%, #8b32d5 50% 75%, #8b60ea 75% 100%);
+}
+
+.linkCreateAccount {
+    color: var(--colorHF);
+    font-weight: bold;
+}
+
+
+#carouselExampleCaptions{
+    width: 90%;
+}
+
+body {
+    width: 100%;
+    height: 100;
+}
+
+.containerLogin {
+    max-width: 600px;
+}
+
+b{
+    margin-bottom: 0.1rem;
+}
+
+/*create */
+
+
+.login {
+    height: 100%;
+    background: rgba(255, 255, 255, 1);
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f2f2f2;
+}
+
+.containerLogin {
+    position: relative;
+    padding: 1rem;
+    background: white;
+    border-radius: 1rem;
+    border-radius: 1rem;
+    border: solid 1px #e8d8ff;
+}
+
+
+
+[type='submit'] {
+    width: 100%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+
+
+.style {
+    position: absolute;
+    top: 30px;
+    right: -9px;
+    height: 130px;
+    border-radius: 0.2rem;
+    background: green;
+    width: 10px;
+    background-image:
+        linear-gradient(360deg, #a868f4 25%, #701bb7 25% 50%, #8b32d5 50% 75%, #8b60ea 75% 100%);
+}
+
+.linkCreateAccount {
+    color: var(--colorHF);
+    font-weight: bold;
+}
+
+
+#carouselExampleCaptions {
+    width: 90%;
+}
+
+
+/*Header */
+header>div {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+header {
+    min-height: 70.1px;
+}
+
+button {
+    background: none;
+}
+
+.buttonWhite {
+    padding: 0.5rem 2rem;
+    color: white;
+    border: 0rem;
+    border: solid 2px white;
+    border-radius: 0.5rem;
+    font-weight: bold;
+}
+
+body {
+    width: 100%;
+    height: 100;
+}
+
+.containerLogin {
+    max-width: 600px;
+}
+
+b{
+    margin-bottom: 0.1rem;
+}
+    

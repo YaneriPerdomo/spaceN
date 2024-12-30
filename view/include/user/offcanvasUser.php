@@ -71,7 +71,7 @@ function notificationOffcanvas ()
         <?php
         notificationOffcanvas();
         ?>
-        <a href="./../help.php">
+        <a href="./help.php">
             <i class="bi bi-question-circle"></i>
             Ayuda
         </a>

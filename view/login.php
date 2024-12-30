@@ -10,179 +10,23 @@
     <link rel="stylesheet" href="../css/reset.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="../css/components/purpleButton.css">
-    <style>
-        :root {
-            --colorOrange: #fc7c45;
-        }
-
-        body {
-            height: 100vh;
-        }
-
-        main>.col-6:first-child {
-            background-color: var(--colorHF);
-        }
-
-        main>div>div {
-            width: 50vw;
-        }
-
-        .row {
-            justify-content: center;
-        }
-
-        .login {
-            display: flex;
-            justify-content: center;
-            align-content: center;
-            align-items: start;
-        }
-
-        body {
-            background-image: url(../img/background-main.png);
-            background-size: contain;
-            background-repeat: repeat;
-            background: #8f6cf2;
-        }
-
-        .imgs {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .login {
-            height: 100%;
-            background: rgba(255, 255, 255, 1);
-            padding: 1rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: #f2f2f2;
-        }
-
-        .containerLogin {
-            position: relative;
-            padding: 1rem;
-            background: white;
-            border-radius: 1rem;
-            border-radius: 1rem;
-            border: solid 1px #e8d8ff;
-        }
-
-        form {
-            padding: 1rem 0.5rem;
-
-            max-width: 350px;
-        }
-
-        [type='submit'] {
-            width: 100%;
-            margin-top: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        label>span , .validations > span{
-            color: #ff5d5d;
-        }
-
-        .notValid{
-            border: solid 2px #ff5d5d;
-        }
-
-
-
-        .style {
-            position: absolute;
-            top: 30px;
-            right: -9px;
-            height: 130px;
-            border-radius: 0.2rem;
-            background: green;
-            width: 10px;
-            background-image:
-                linear-gradient(360deg, #a868f4 25%, #701bb7 25% 50%, #8b32d5 50% 75%, #8b60ea 75% 100%);
-        }
-
-        .linkCreateAccount {
-            color: var(--colorHF);
-            font-weight: bold;
-        }
-
-       
-        #carouselExampleCaptions{
-            width: 90%;
-        }
-    </style>
+    <link rel="stylesheet" href="../css/components/semanticTag.css">
+    <link rel="stylesheet" href="../css/components/headerMain.css">
+    <link rel="stylesheet" href="./css/reponsive.css">
+    <link rel="stylesheet" href="./css/indexLoginCreate.css">
+    <link rel="stylesheet" href="./css/components/validation.css">
+<style>
+    
+</style>
 </head>
 
 <body>
-    <main class="h-100">
-        <div class="row m-0 h-100 gap-0">
-        <div class="col-6 imgs">
-                <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0"
-                            class="active" aria-current="true" aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
-                            aria-label="Slide 2"></button>
-                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
-                            aria-label="Slide 3"></button>
-                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3"
-                            aria-label="Slide 4"></button>
-                    </div>
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="../img/backgroundPurple.png" class="d-block w-100" alt="...">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5><b>Panel de control para profesionales</b></h5>
-                                <p>Los profesionales pueden crear cuentas personalizadas para sus hijos, establecer
-                                    metas de aprendizaje y monitorear su progreso.</p>
-                            </div>
-                        </div>
+<?php  include './include/headerLoginCreateMore.php'; ?>
 
-                        <div class="carousel-item">
-                            <img src="../img/backgroundPurple.png" class="d-block w-100" alt="...">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5><b>Informes detallados de progreso</b></h5>
-                                <p>Genera informes personalizados que muestran el desempeño del niño a lo largo del
-                                    tiempo, identificando fortalezas y áreas de mejora.</p>
-                            </div>
-                        </div>
-
-                        <div class="carousel-item">
-                            <img src="../img/backgroundPurple.png" class="d-block w-100" alt="...">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5><b>Experiencia de aprendizaje personalizada</b></h5>
-                                <p>Ajusta la dificultad de las lecciones para adaptarse al ritmo de aprendizaje de cada
-                                    niño.</p>
-                            </div>
-                        </div>
-
-                        <div class="carousel-item">
-                            <img src="../img/backgroundPurple.png" class="d-block w-100" alt="...">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5><b>Privacidad y seguridad</b></h5>
-                                <p>Protegemos la información de los niños y cumplimos con los más altos estándares de
-                                    seguridad.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
-                        data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
-                        data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                </div>
-            </div>
-            <div class="col-6 login">
-                <section class="containerLogin">
-                    <form action="../php/login.php" method="post" class="formLogin">
+    <main class="">
+        <div class="login">
+            <section class="containerLogin">
+                    <form action="../php/login.php" method="post" class="formLogin ">
                         <div class="text-center mb-2">
                             <b class="fs-3"><span style="color:var(--colorHF)">Inicia</span> 
                             <span style="color:var(--colorOrange)">sesion</span>
@@ -217,14 +61,16 @@
                     <div class="style">
 
                     </div>
-                </section>
-            </div>
+            </section>
+        </div>
     </main>
+    <?php include  './include/footer.php';?>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
         </script>
     <script src="./../js/validations/login.js" type="module"></script>
-
+   
 </body>
 
 </html>

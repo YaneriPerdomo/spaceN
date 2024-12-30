@@ -35,12 +35,11 @@ include './../../../php/validations/authorizedChild.php';
                 deleniti cum? Sequi delectus consequuntur doloremque deleniti magnam reprehenderit saepe, impedit rerum
                 consequatur possimus! Atque, dolores expedita.</p>
             <hr>
-            <div class="showMore">
-                <?php
-                include "../../../php/user/showHistory.php";
-                showHistorys(false);
+            <?php
+                    include './../../../php/user/showHistory.php';
+                    showHistorys();
                 ?>
-            </div>
+           
         </div>
     </main>
 
@@ -49,9 +48,7 @@ include './../../../php/validations/authorizedChild.php';
     <?php include './../../include/user/offcanvasAplication.php' ?>
 
 </body>
-
-<script src="../../../js/helpers/jquery.js"></script>
-
 <script src="./../../../js/helpers/bootstrap.js"></script>
+<script src="../../../js/user/showHistorysUser.js" type="module"></script>
 
 </html>

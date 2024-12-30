@@ -1,5 +1,4 @@
-/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
-
+ 
 .purpleButton {
   background: #8f6cf2;
   padding: 0.5rem 2rem;
@@ -8,7 +7,13 @@
 }
 :root {
   --colorHF: #9470f7;
-  --colorBlack: rgb(47, 47, 47)
+  --colorBlack: rgb(47, 47, 47);
+  --colorOrange: #fc7c45;
+
+}
+
+.colorOrange{
+  color:var(--colorOrange);
 }
 
 /* Document

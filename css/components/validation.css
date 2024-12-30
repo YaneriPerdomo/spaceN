@@ -1,0 +1,9 @@
+
+label>span,
+.validations>span {
+    color: #ff5d5d;
+}
+
+.notValid {
+    border: solid 2px #ff5d5d;
+}

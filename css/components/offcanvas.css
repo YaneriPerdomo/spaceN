@@ -20,6 +20,12 @@
     clip-path: circle(40% at 50% 50%);
 }
 
+.offcanvas-body > a{
+  margin: 0.5rem 0rem;
+  display: block;
+  color: var(--colorBlack);
+  text-decoration: none;
+}
 
 
 

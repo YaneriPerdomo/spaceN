@@ -23,8 +23,10 @@ function showHistorys($showPageLearn = false)
                         <small  style='color: #6f6f6f;'> " . $value["fecha_hora"] . " </small>
             </div> <hr>";            
             }
-            if($count > 3 ){
-                echo "<small> <a href='./history.php'> Ver todas</a></small>";
+            if($showPageLearn == true){
+                if($count >= 3 ){
+                    echo "<small> <a href='./history.php'> Ver todas</a></small>";
+                }
             }
         } else {
             echo "<div> No se han encontrado historiales registrados </div>";
