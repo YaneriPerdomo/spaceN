@@ -73,7 +73,11 @@ try {
                     break;
             }
         } else {
-            echo "no encontrado";
+            echo "
+                <script> 
+                    alert('Lo sentimos, no pudimos encontrar una cuenta con esos datos.')
+                    window.location.href = './../view/login.php';
+                </script>";
         }
     }
 
