@@ -21,6 +21,7 @@ include './../../../php/validations/authorizedChild.php';
     <link rel="stylesheet" href="../../../css/components/offcanvas.css">
     <link rel="stylesheet" href="../../../css/components/header.css">
     <link rel="stylesheet" href="../../../css/components/semanticTag.css">
+    <link rel="stylesheet" href="../../../css/components/content.css">
     <link rel="stylesheet" href="../../../css/admin/addAndModifyChild.css">
 
 </head>

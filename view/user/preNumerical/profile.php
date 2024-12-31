@@ -161,6 +161,7 @@ echo '  <div class="row ContainerProgress">
     <link rel="stylesheet" href="../../../css/components/semanticTag.css">
     <link rel="stylesheet" href="../../../css/admin/addAndModifyChild.css">
     <link rel="stylesheet" href="../../../css/user/profile.css">
+    <link rel="stylesheet" href="../../../css/components/content.css">
     <style>
         .one{
             max-width: 170px;

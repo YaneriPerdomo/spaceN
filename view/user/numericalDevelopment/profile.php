@@ -155,25 +155,26 @@ echo '  <div class="row ContainerProgress">
         rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-
     <link rel="stylesheet" href="../../../css/components/offcanvas.css">
     <link rel="stylesheet" href="../../../css/components/header.css">
     <link rel="stylesheet" href="../../../css/components/semanticTag.css">
     <link rel="stylesheet" href="../../../css/admin/addAndModifyChild.css">
     <link rel="stylesheet" href="../../../css/user/profile.css">
+    <link rel="stylesheet" href="../../../css/components/content.css">
+
     <style>
         .one{
             max-width: 170px;
-  min-width: 120px;
+            min-width: 120px;
         }
 
         .resultMyAbilities{
             color: white;
-  font-weight: bold;
-  display: inherit;
-  background: #ff7d45;
-  border-radius: 0rem 0rem 1rem 1rem;
-  margin-top: 0.3rem;
+            font-weight: bold;
+            display: inherit;
+            background: #ff7d45;
+            border-radius: 0rem 0rem 1rem 1rem;
+            margin-top: 0.3rem;
         }
     </style>
 

@@ -29,10 +29,7 @@ include './../../../php/validations/authorizedChild.php';
     <link rel="stylesheet" href="../../../css/components/row.css">
     <link rel="stylesheet" href="../../../css/bootstrap/bootstrapMin.css">
     <link rel="stylesheet" href="../../../css/user/read.css">
-    <style>
 
-
-    </style>
 </head>
 
 <body>

@@ -1,5 +1,5 @@
 <?php
-include './../../../php/validations/authorizedChild.php';
+    include './../../../php/validations/authorizedChild.php';
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -22,7 +22,7 @@ include './../../../php/validations/authorizedChild.php';
     <link rel="stylesheet" href="../../../css/components/header.css">
     <link rel="stylesheet" href="../../../css/components/semanticTag.css">
     <link rel="stylesheet" href="../../../css/admin/addAndModifyChild.css">
-
+    <link rel="stylesheet" href="../../../css/components/content.css">
 </head>
 
 <body>
