@@ -75,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 $oldPassword = $_POST["oldPassword"]; // Contraseña anterior del usuario
                 $newPassword = $_POST["newPassword"]; // Nueva contraseña del usuario
                 $passwordAgain = $_POST["passwordAgain"]; // Confirmación de la nueva contraseña
-                $id = $_SESSION["id_usuario"]; // ID del usuario logueado (obtenido de la sesión)
+                $id = $_SESSION["id_admin"]; // ID del usuario logueado (obtenido de la sesión)
 
                 // Preparamos la consulta SQL para actualizar la contraseña del usuario
                 $sql = "UPDATE usuarios SET clave = :newPassword WHERE id_usuario = :id";
@@ -92,7 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
                 // Verificamos si se actualizaron filas
                 if ($stmt->rowCount() > 0) {
-                    echo "<script>alert('La contraseña se actualizó correctamente'); window.location.href = './../view/admin/user/changesPassword.php';</script>";
+                    echo "<script>alert('La contraseña se actualizó correctamente'); window.location.href = './../../view/admin/user/changesPassword.php';</script>";
                 } else {
                     echo 'No se pudo actualizar la contraseña.';
                     // Aquí podrías agregar lógica adicional para manejar el caso en que no se actualizó la contraseña, como mostrar un mensaje de error más específico o registrar el error en un log.
