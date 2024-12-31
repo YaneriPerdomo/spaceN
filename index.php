@@ -28,7 +28,7 @@
             <section>
                 <h1 class="title" style="color:var(--colorHF)"><strong>Espacio <span style="  color: var(--colorOrange);">N</span></strong></h1>
                 <h2><b>¡Descubre un mundo de posibilidades matemáticas!</b></h2>
-                <p>Ofrece un panel de control para profesionales, informes detallados de progreso, experiencia de aprendizaje personalizada y muchos más.</p>
+                <p>Ofrecemos un panel de control para profesionales, informes detallados de progreso, experiencia de aprendizaje personalizada y muchos más.</p>
                 <button class="purpleButton" style="  min-width: 200px;   
   font-weight: bold;">
                     <a href="./view/login.php" class="text-white text-decoration-none ">Acceder</a>
