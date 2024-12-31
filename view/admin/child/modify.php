@@ -82,11 +82,12 @@ function showChild()
         echo "<label for=''>Datos personales:</label><br>";
         echo "</div>";
         echo "<div class='col-8'>";
-        echo "<input type='hidden' name='id_user' value = '" . $row["usuarios_id_usuario"] . "'";
+        echo "<input type='hidden' name='id_user' value = '" . $row["usuarios_id_usuario"] . "'>";
+        echo "<input type='hidden' name='id_child' value = '" . $id_child . "'>";
         echo "<label for=''>Nombre<span>*</span></label><br>";
         echo "<div class='input-group mb-3'>";
         echo "<span class='input-group-text' id='basic-addon1'><i class='bi bi-person'></i></span>";
-        echo "<input type='text' name='name' class='form-control' placeholder='¿Como se llama tu niño/a? 🤔' aria-label='Username' aria-describedby='basic-addon1'  value='" . $row["usuario"] . "'>";
+        echo "<input type='text' name='name' class='form-control' placeholder='¿Como se llama tu niño/a? 🤔' aria-label='Username' aria-describedby='basic-addon1'  value='" . $row["nombre"] . "'>";
         echo " </div>";
         echo "<label for=''>Apellido<span>*</span></label><br>";
         echo "<div class='input-group mb-3'>";

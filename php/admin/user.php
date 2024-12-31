@@ -15,7 +15,7 @@ if ($pdo->errorCode() != 0) {
 $function = $_POST["valueFunction"];
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
-   try {
+    try {
         switch ($function) {
             case 'update':
                 // Obtenemos los datos enviados desde el formulario
@@ -26,6 +26,60 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 $lastName = $_POST["lastname"];
                 $mail = $_POST["mail"];
                 $center = $_POST["center"];
+
+                $sqlOriginalData = "SELECT usuarios.usuario, profesionales.id_cargo, 
+                profesionales.nombre, profesionales.apellido, profesionales.correo_electronico, profesionales.centro_educativo
+                FROM profesionales INNER JOIN usuarios ON profesionales.id_usuario = usuarios.id_usuario 
+                WHERE usuarios.id_usuario = :id_user";
+                $queryOriginalData = $pdo->prepare($sqlOriginalData);
+                $queryOriginalData->bindParam(':id_user', $userId, PDO::PARAM_INT);
+                $queryOriginalData->execute();
+                $originalData = $queryOriginalData->fetch(PDO::FETCH_ASSOC);
+
+
+                $isModified = false;
+                if (
+                    $user == $originalData['usuario'] &&
+                    $cargo == $originalData['id_cargo'] &&
+                    $name == $originalData['nombre'] &&
+                    $lastName == $originalData['apellido'] &&
+                    $mail == $originalData['correo_electronico'] &&
+                    $center == $originalData['centro_educativo']
+                ) {
+                    return Header("Location:./../../view/admin/user/profile.php");
+                }
+ 
+
+                if ($user != $_SESSION["usuario"]) {
+                    $sqlFindUser = "SELECT usuario FROM usuarios WHERE usuario = :user AND id_usuario != :id_user; ";
+                    $queryFindUser = $pdo->prepare($sqlFindUser);
+                    $queryFindUser->bindParam('user', $user, PDO::PARAM_STR);
+                    $queryFindUser->bindParam('id_user', $userId, PDO::PARAM_INT);                    
+                    $queryFindUser->execute();
+                    if ($queryFindUser->rowCount() > 0) {
+                        echo "<script> 
+                                    alert('Lo sentimos, el nombre de usuario \"$user\" ya está en uso.')
+                                    window.location.href = './../../view/admin/user/profile.php';
+                             </script>";
+                        exit();
+                    }
+                }
+
+                if ($mail != $_SESSION['correo']) {
+                    $sqlMail = "SELECT correo_electronico FROM profesionales WHERE correo_electronico = :mail AND id_usuario != :id_user";
+                    $queryMail = $pdo->prepare($sqlMail);
+                    $queryMail->bindParam('mail', $mail, PDO::PARAM_STR);
+                    $queryMail->bindParam('id_user', $userId, PDO::PARAM_STR);
+
+                    $queryMail->execute();
+                    if ($queryMail->rowCount() > 0) {
+                        echo "<script> 
+                            alert('Lo sentimos, la dirección de correo electrónico \"$mail\" ya está en uso.')
+                            window.location.href = './../../view/admin/user/profile.php';
+                         </script>";
+                        exit();
+                    }
+                }
 
                 $pdo->beginTransaction();
                 // Preparamos la consulta para actualizar la tabla "usuarios"
@@ -54,21 +108,15 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 $stmt2->bindParam(':userId', $userId, PDO::PARAM_INT);
                 $stmt2->execute(); //Ejecutamos la consulta
 
-                // Verificamos si ambas actualizaciones se realizaron correctamente
-                if ($stmt->rowCount() > 0 || $stmt2->rowCount() > 0) {
-                    $pdo->commit();
-                    echo "<script>alert('Datos actualizados'); window.location.href = './../../view/admin/user/profile.php';</script>";
-                    $_SESSION["usuario"] = $user;
-                    $_SESSION["nombre"] = $name;
-                    $_SESSION["apellido"] = $lastName;
-                    $_SESSION["id_cargo"] = $cargo;
-                    $_SESSION['correo'] = $mail;
-                    $_SESSION['centro'] = $center;
-                } else {
-                    // Obtener información más detallada del error
-                    $errorInfo = $stmt->errorInfo();
-                    echo "Error al actualizar los datos: " . $errorInfo[2];
-                }
+                $pdo->commit();
+                echo "<script>alert('Datos actualizados'); window.location.href = './../../view/admin/user/profile.php';</script>";
+                $_SESSION["usuario"] = $user;
+                $_SESSION["nombre"] = $name;
+                $_SESSION["apellido"] = $lastName;
+                $_SESSION["id_cargo"] = $cargo;
+                $_SESSION['correo'] = $mail;
+                $_SESSION['centro'] = $center;
+
                 break;
             case 'changesPassword':
                 // Obtenemos los valores enviados desde el formulario
@@ -128,9 +176,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 # code...
                 break;
         }
-   } catch (PDOException $e) {
+    } catch (PDOException $e) {
         echo $e->getMessage();
-   }
+    }
     $pdo = null;
 }
 ?>

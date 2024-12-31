@@ -99,21 +99,21 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                         }
                         break;
                     case '3':
-                             $lecciones = [
-                                [9, 'en_espera'],
-                                [10, 'bloqueado'],
-                                [11, 'bloqueado'],
-                                [12, 'bloqueado']
-                            ];
-                            $sqlLesson = "INSERT INTO estado_lecciones (id_usuario, id_leccion, completado) VALUES (:id_user, :id_lesson, :statuLesson)";
-                            $queryLesson = $pdo->prepare($sqlLesson);
-                            foreach ($lecciones as $key => $value) {
-                                $queryLesson->bindParam('id_user', $last_id, PDO::PARAM_INT);
-                                $queryLesson->bindParam('id_lesson', $value[0], PDO::PARAM_INT);
-                                $queryLesson->bindParam('statuLesson', $value[1], PDO::PARAM_STR);
-                                $queryLesson->execute();
-                            }
-     
+                        $lecciones = [
+                            [9, 'en_espera'],
+                            [10, 'bloqueado'],
+                            [11, 'bloqueado'],
+                            [12, 'bloqueado']
+                        ];
+                        $sqlLesson = "INSERT INTO estado_lecciones (id_usuario, id_leccion, completado) VALUES (:id_user, :id_lesson, :statuLesson)";
+                        $queryLesson = $pdo->prepare($sqlLesson);
+                        foreach ($lecciones as $key => $value) {
+                            $queryLesson->bindParam('id_user', $last_id, PDO::PARAM_INT);
+                            $queryLesson->bindParam('id_lesson', $value[0], PDO::PARAM_INT);
+                            $queryLesson->bindParam('statuLesson', $value[1], PDO::PARAM_STR);
+                            $queryLesson->execute();
+                        }
+
                         break;
                     default:
                         # code...
@@ -126,24 +126,62 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 }
                 break;
             case 'modify':
-              
                 $id_user = $_POST["id_user"];
+                $id_child = $_POST["id_child"];
                 $user = trim($_POST["user"]);
                 $name = trim($_POST["name"]);
                 $lastName = trim($_POST["lastName"]);
                 $date = $_POST["date"];
                 $accessLevel = $_POST["accessLevel"];
                 $gender = $_POST["gender"];
-
+                $password = $_POST["password"] ?? '';
                 if (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $date)) {
                     throw new Exception("Fecha inválida");
                 }
 
+                $sqlOriginalData = "SELECT usuarios.usuario, ninos.id_genero, ninos.id_categoria_actividades, ninos.nombre, ninos.apellido, 
+                ninos.fecha_nacimiento FROM ninos INNER JOIN usuarios ON ninos.id_usuario = usuarios.id_usuario 
+                WHERE usuarios.id_usuario = :id_user";
+                $queryOriginalData = $pdo->prepare($sqlOriginalData);
+                $queryOriginalData->bindParam(':id_user', $id_user, PDO::PARAM_INT);
+                $queryOriginalData->execute();
+                $originalData = $queryOriginalData->fetch(PDO::FETCH_ASSOC);
+
+                // Comparar los datos y establecer la bandera $isModified
+                $isModified = false;
+                if (
+                    $user == $originalData['usuario'] &&
+                    $name == $originalData['nombre'] &&
+                    $lastName == $originalData['apellido'] &&
+                    $date == $originalData['fecha_nacimiento'] &&
+                    $accessLevel == $originalData['id_categoria_actividades'] &&
+                    $gender == $originalData['id_genero'] &&
+                    $password == ""
+                ) {
+                    return Header("Location:./../../view/admin/dashboard.php?page=1");
+                }
+
+                $sqlFindUser = "SELECT usuario FROM usuarios WHERE usuario = :user AND id_usuario != :id;";
+                $queryFindUser = $pdo->prepare($sqlFindUser);
+                $queryFindUser->bindParam('user', $user, PDO::PARAM_STR);
+                $queryFindUser->bindParam('id', $id_user, PDO::PARAM_STR);
+                $queryFindUser->execute();
+                if ($queryFindUser->rowCount() > 0) {
+                    echo "<script> 
+                                alert('Lo sentimos, el nombre de usuario \"$user\" ya está en uso.')
+                                window.location.href = './../../view/admin/child/modify.php?id=" . $id_child . "';
+                              </script>";
+                    return;
+                }
+
+
+
+                $pdo->beginTransaction();
                 $sqlAccessLevel = "SELECT id_categoria_actividades FROM ninos WHERE id_usuario =:id_user";
                 $queryAccessLevel = $pdo->prepare($sqlAccessLevel);
                 $queryAccessLevel->bindParam('id_user', $id_user, PDO::PARAM_INT);
                 $queryAccessLevel->execute();
-               
+
                 if ($queryAccessLevel->rowCount() > 0) {
                     $resultAccess = $queryAccessLevel->fetch(PDO::FETCH_ASSOC);
                     if ($resultAccess["id_categoria_actividades"] != $accessLevel) {
@@ -156,46 +194,40 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                         $queryUpdateProgress->execute();
                         switch ($resultAccess["id_categoria_actividades"]) {
                             case '1':
-                                $leccionesOld = [1,2,3,4];
-                            break;
+                                $leccionesOld = [1, 2, 3, 4];
+                                break;
                             case '2':
-                                $leccionesOld = [5,6,7,8];
-                            break;
+                                $leccionesOld = [5, 6, 7, 8];
+                                break;
                             case '3':
-                                $leccionesOld = [9,10,11,12];
-                            break;
+                                $leccionesOld = [9, 10, 11, 12];
+                                break;
                         }
                         switch ($accessLevel) {
                             case '1':
-                                $leccionesNew = [1,2,3,4];
-                            break;
+                                $leccionesNew = [1, 2, 3, 4];
+                                break;
                             case '2':
-                                $leccionesNew = [5,6,7,8];
-                            break;
+                                $leccionesNew = [5, 6, 7, 8];
+                                break;
                             case '3':
-                                $leccionesNew = [9,10,11,12];
-                            break;
+                                $leccionesNew = [9, 10, 11, 12];
+                                break;
                         }
-                    $sqlLessonUpdate = 'UPDATE estado_lecciones SET id_leccion = :idLessonNew, completado = :completado, porcentaje = 0, 
+                        $sqlLessonUpdate = 'UPDATE estado_lecciones SET id_leccion = :idLessonNew, completado = :completado, porcentaje = 0, 
                                     diamantes_obtenidos = 0, tiempo = "00:00" , fallida = NULL WHERE id_usuario = :idUser AND id_leccion = :idLessonOld';
-                    $queryUpdate = $pdo->prepare($sqlLessonUpdate);
-                    $statu = ["en_espera", "bloqueado", "bloqueado","bloqueado"];
-                    for ($i = 0; $i < count($statu); $i++) {
-                        $queryUpdate->bindParam('idLessonOld', $leccionesOld[$i], PDO::PARAM_INT);
-                        $queryUpdate->bindParam('idLessonNew', $leccionesNew[$i], PDO::PARAM_INT);
-                        $queryUpdate->bindParam('completado', $statu[$i], PDO::PARAM_STR);
-                        $queryUpdate->bindParam('idUser', $id_user, PDO::PARAM_INT);
-                        $queryUpdate->execute();
-                    }
-                    $pdo->commit();
+                        $queryUpdate = $pdo->prepare($sqlLessonUpdate);
+                        $statu = ["en_espera", "bloqueado", "bloqueado", "bloqueado"];
+                        for ($i = 0; $i < count($statu); $i++) {
+                            $queryUpdate->bindParam('idLessonOld', $leccionesOld[$i], PDO::PARAM_INT);
+                            $queryUpdate->bindParam('idLessonNew', $leccionesNew[$i], PDO::PARAM_INT);
+                            $queryUpdate->bindParam('completado', $statu[$i], PDO::PARAM_STR);
+                            $queryUpdate->bindParam('idUser', $id_user, PDO::PARAM_INT);
+                            $queryUpdate->execute();
+                        }
                     }
                 }
-                $pdo->beginTransaction();
-                $sqlUser = "UPDATE usuarios SET usuario = :user WHERE id_usuario = :id_user ";
-                $stmt = $pdo->prepare($sqlUser);
-                $stmt->bindParam('user', $user, PDO::PARAM_STR);
-                $stmt->bindParam('id_user', $id_user, PDO::PARAM_INT);
-                $stmt->execute();
+
                 $sqlChild = "UPDATE ninos SET 
                     id_genero = :id_genero, 
                     id_categoria_actividades = :id_accessLevel, 
@@ -210,16 +242,32 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 $stmt2->bindParam('lastname', $lastName, PDO::PARAM_STR);
                 $stmt2->bindParam('dateBirth', $date, PDO::PARAM_STR);
                 $stmt2->bindParam('id_user', $id_user, PDO::PARAM_INT);
-
                 $stmt2->execute();
-                if ($stmt->rowCount() > 0 || $stmt2->rowCount() > 0) {
-                    $pdo->commit();
-                    echo "<script>window.location.href = './../../view/admin/dashboard.php?page=1';</script>";
+
+                if (!($password == "")) {
+                    $sqlUser = "UPDATE usuarios SET clave = :contrasena WHERE id_usuario = :id_user ";
+                    $stmt = $pdo->prepare($sqlUser);
+                    $stmt->bindParam('contrasena', $password, PDO::PARAM_STR);
+                    $stmt->bindParam('id_user', $id_user, PDO::PARAM_INT);
+                    $stmt->execute();
                 } else {
-                    echo "<script>alert('Eror de actualizacion'); window.location.href = '../../view/admin/dashboard.php';</>";
+                    $sqlUser = "UPDATE usuarios SET usuario = :user WHERE id_usuario = :id_user ";
+                    $stmt = $pdo->prepare($sqlUser);
+                    $stmt->bindParam('user', $user, PDO::PARAM_STR);
+                    $stmt->bindParam('id_user', $id_user, PDO::PARAM_INT);
+                    $stmt->execute();
                 }
-            
-            break;
+
+
+                if ($stmt->rowCount() > 0 or $stmt2->rowCount() > 0) {
+                    $pdo->commit();
+                    Header("Location:./../../view/admin/dashboard.php?page=1");
+                } else {
+                    $pdo->rollBack();
+                    return "<script>alert('Error de actualizacion'); window.location.href = '../../view/admin/dashboard.php';</>";
+                }
+
+                break;
             case 'delete':
                 $id_childC = $_POST["id_childC"];
                 $id_childU = $_POST["id_childU"];
@@ -251,14 +299,14 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 $stmt2->bindParam('id_usuario', $id_childU, PDO::PARAM_INT);
                 $stmt2->execute();
 
-                $sqlHistoryUser = "DELETE FROM historiales WHERE `id_usuario` = :id_usuario";
+                $sqlHistoryUser = "DELETE FROM historiales WHERE `id_nino` = :id_nino";
                 $stmt6 = $pdo->prepare($sqlHistoryUser);
-                $stmt6->bindParam('id_usuario', $id_childU, PDO::PARAM_INT);
+                $stmt6->bindParam('id_nino', $id_childC, PDO::PARAM_INT);
                 $stmt6->execute();
 
                 if (
                     ($stmt->rowCount() > 0 && $stmt2->rowCount() > 0 && $stmt4->rowCount() > 0 && $stmt5->rowCount() > 0)
-                    || $stmt3->rowCount() > 0 
+                    || $stmt3->rowCount() > 0 || $stmt6->rowCount() > 0
                 ) {
                     $pdo->commit();
                     echo "<script>window.location.href = './../../view/admin/dashboard.php';</script>";
@@ -269,7 +317,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 break;
             case 'sendNotification':
                 $id_child = $_POST["id_child"];
-                $id_profesional =  $_SESSION["id_profesional"] ;
+                $id_profesional = $_SESSION["id_profesional"];
                 $messenger = $_POST["messenger"];
 
                 if (empty($id_child) || empty($id_profesional) || empty($messenger)) {
@@ -281,7 +329,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 $stmt->bindParam('id_profesional', $id_profesional, PDO::PARAM_INT);
                 $stmt->bindParam('messenger', $messenger, PDO::PARAM_STR);
                 $stmt->execute();
-                if($stmt->rowCount() > 0){
+                if ($stmt->rowCount() > 0) {
                     echo "<script>alert('Notificacion enviada con exito'); window.location.href = './../../view/admin/dashboard.php?page=1';</script>";
                 }
                 break;

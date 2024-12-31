@@ -5,8 +5,8 @@ include "./connectionBD.php";
 try {
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $user = $_POST["user"];
-        $password = $_POST["password"];
+        $user = trim($_POST["user"]);
+        $password = trim($_POST["password"]);
 
         $sql = "SELECT * FROM usuarios WHERE usuario = :user AND clave=:clave";
         $query = $pdo->prepare($sql);
