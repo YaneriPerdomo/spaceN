@@ -12,12 +12,9 @@
     <link rel="stylesheet" href="../css/components/purpleButton.css">
     <link rel="stylesheet" href="../css/components/semanticTag.css">
     <link rel="stylesheet" href="../css/components/headerMain.css">
-    <link rel="stylesheet" href="./css/reponsive.css">
-    <link rel="stylesheet" href="./css/indexLoginCreate.css">
-    <link rel="stylesheet" href="./css/components/validation.css">
-<style>
-    
-</style>
+    <link rel="stylesheet" href="../css/reponsive.css">
+    <link rel="stylesheet" href="../css/indexLoginCreate.css">
+    <link rel="stylesheet" href="../css/components/validation.css">
 </head>
 
 <body>
@@ -27,7 +24,7 @@
         <div class="login">
             <section class="containerLogin">
                     <form action="../php/login.php" method="post" class="formLogin ">
-                        <div class="text-center mb-2">
+                        <div class="text-center mb-3">
                             <b class="fs-3"><span style="color:var(--colorHF)">Inicia</span> 
                             <span style="color:var(--colorOrange)">sesion</span>
                             </b>

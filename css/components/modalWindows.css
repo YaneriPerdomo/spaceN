@@ -7,7 +7,8 @@
 
 
 .containerSendNotification,
-.containerDeleteChild {
+.containerDeleteChild, 
+.containerDeleteAccount {
     width: 100vw;
     height: 100vh;
     position: absolute;
@@ -36,7 +37,8 @@
 
 .containerSendNotification>.content,
 .containerDeleteChild>.content,
-.containerSearchChilds>.content {
+.containerSearchChilds>.content,
+.containerDeleteAccount > .content {
     max-width: 500px;
     background: white;
     min-width: 200px;
@@ -99,19 +101,20 @@
 
 }
 
-.yesButtonDelete {
+.yesButtonDelete , .yesButtonDeleteAccount, .btnDeleteAccount{
     background: #ff4b4b;
     color: white;
     border: 0rem;
 }
 
-.yesButtonDelete:hover {
+.yesButtonDelete:hover , .btnDeleteAccount:hover,.yesButtonDeleteAccount:hover {
     transition: all 0.5s;
     background: rgb(215, 59, 59) !important;
     color: white !important;
 }
 
-.containerDeleteChild>div>div>div>p {
+.containerDeleteChild>div>div>div>p ,
+.containerDeleteAccount > div > div > div >p{
     padding: 0.5rem;
     margin: 0rem;
 }
@@ -154,6 +157,15 @@
     margin: 0rem;
     padding: 1rem;
     color: white;
+}
+form {
+    padding: 1rem;
+}
+
+.modal-content{
+    padding: 0rem;
+    margin: 0rem;
+    border: 0;
 }
 
 #search {

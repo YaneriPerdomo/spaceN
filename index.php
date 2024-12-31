@@ -26,9 +26,13 @@
        <div class="row h-100 presentationIndex">
         <div class="col-lg-6 col-12 information">
             <section>
-                <h1 class="title"><strong>Espacio N</strong></h1>
+                <h1 class="title" style="color:var(--colorHF)"><strong>Espacio <span style="  color: var(--colorOrange);">N</span></strong></h1>
                 <h2><b>¡Descubre un mundo de posibilidades matemáticas!</b></h2>
                 <p>Ofrece un panel de control para profesionales, informes detallados de progreso, experiencia de aprendizaje personalizada y muchos más.</p>
+                <button class="purpleButton" style="  min-width: 200px;   
+  font-weight: bold;">
+                    <a href="./view/login.php" class="text-white text-decoration-none ">Acceder</a>
+                </button>
             </section>   
         </div>
         <div class="col-lg-6 col-12">
@@ -44,9 +48,7 @@
     ?>
 
     
-    <div class="ButtonTopScroll scroll_top_btn hidden">
-        <i class="bi bi-arrow-up"></i>
-    </div>
+   
     <script>
         function scrollYy() {
             document.addEventListener("scroll", (e) => {

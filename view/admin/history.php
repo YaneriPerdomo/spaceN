@@ -17,6 +17,8 @@ include './../../php/validations/authorizedUser.php';
     <link rel="stylesheet" href="../../css/components/row.css">
     <link rel="stylesheet" href="../../css/components/offcanvas.css">
     <link rel="stylesheet" href="../../css/admin/helpReportsActivity.css">
+    <link rel="stylesheet" href="../../css/components/content.css">
+
 </head>
 
 <body>
@@ -78,6 +80,9 @@ include './../../php/validations/authorizedUser.php';
                     if ($inicio + 4 < $totalMensajes) {
                         echo "<small class='show'> <a href=''> Mostrar más </a></small>";
                     }
+                }else{
+                  
+                        echo "<div> No se han encontrado historiales registrados </div>";
                 }
             ?>
         

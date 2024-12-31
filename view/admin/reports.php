@@ -24,6 +24,8 @@ include './../../php/validations/authorizedUser.php';
     <link rel="stylesheet" href="../../css/components/purpleButton.css">
     <link rel="stylesheet" href="../../css/admin/helpReportsActivity.css">
     <link rel="stylesheet" href="../../css/admin/reports.css">
+    <link rel="stylesheet" href="../../css/components/content.css">
+
 </head>
 
 
@@ -34,7 +36,7 @@ include './../../php/validations/authorizedUser.php';
             <h1><b>Reportes</b></h1>
             <p>Un seguimiento ágil del desempeño de los niños, de forma personalizada que incluye el nombre completo del niño, su edad y un indicador de su progreso en relación a la plataforma de aprendizaje.</p>
             <hr>
-            <div class='w-100  d-flex justify-content-center align-content-center'>
+            <div class='w-100  d-flex  align-content-center'>
                 <form action="../../php/admin/reports.php" method="post">
                     <div class="d-flex gap-1 flex-wrap reportHistory">
                         <label for="1" class="checked" data-checked="true">
@@ -54,7 +56,9 @@ include './../../php/validations/authorizedUser.php';
                         </label>
                     </div>
                     <br>
+                    <div>
                     <input type="submit" class="purpleButton" value="Generar reportes">
+                    </div>
                 </form>
             </div>
         </div>

@@ -8,12 +8,12 @@
     let $idChildD = document.querySelector(`[name="id_childU"]`);
     let $modalSearchChilds =document.querySelector(".OpenSearchChilds");
     let $containerSearchChilds = document.querySelector(".containerSearchChilds");
-    
+    let $contentDeleteAccount =  document.querySelector(".containerDeleteAccount  > .content");
     let $contentSearch = document.querySelector(".containerSearchChilds > .content");
     let $searchInputS = document.querySelector("#searchS");
     let $resultsChilds =document.querySelector(".resultsChilds")
-
-    
+    let $containerDeleteAccount = document.querySelector(".containerDeleteAccount");
+    let $btnDeleteAccount = document.querySelector(".btnDeleteAccount");
     document.addEventListener("click", e => {
 
         if (e.target.matches(".OpenSearchChilds")) {
@@ -21,7 +21,14 @@
             $contentSearch.classList.add("openModal")
         }
 
-    
+        if(e.target.matches(".btnDeleteAccount")){
+            $contentDeleteAccount.classList.add("openModal")
+            $containerDeleteAccount.removeAttribute("style");
+        }
+
+        if(e.target.matches(".CancelModalDeletAccount")){
+             $containerDeleteAccount.style.display = "none";
+        }
 
         if (e.target.matches(".containerSearchChilds") || e.target.matches(".cancelSearch")) {
             $containerSearchChilds.style.display = "none"
@@ -31,6 +38,10 @@
         }
         if (e.target.matches(".CancelSendN")) {
             $containerSendNotification.style.display = "none";
+        }
+
+        if(e.target.matches(".yesButtonDeleteAccount")){
+
         }
         if (e.target.matches(".OpenDeleteChild")) {
             $containerDeleteChild.removeAttribute("style");
@@ -58,17 +69,4 @@
 
     })
 
-
-    $searchInputS.addEventListener("input", e => {
-        if(e.target.value.length < 0){
-            $resultsChilds.innerHTML = "";
-        }else if (e.target.value.length > 0) {
-            let $searchTerm = e.target.value;
-            $.get('./../../php/admin/searchChild.php',
-                { search: $searchTerm },
-                function (mensaje, estado) {
-                    $resultsChilds.innerHTML = mensaje;
-                })
-        }
-    })
-    
+ 

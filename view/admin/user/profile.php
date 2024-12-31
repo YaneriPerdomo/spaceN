@@ -15,6 +15,7 @@ include './../../../php/validations/authorizedUser.php';
     <link rel="stylesheet" href="../../../css/components/header.css">
     <link rel="stylesheet" href="../../../css/components/semanticTag.css">
     <link rel="stylesheet" href="../../../css/admin/profile.css">
+
 </head>
 <body>
     <?php include "./../../include/admin/user/header.php" ?>
@@ -109,7 +110,9 @@ include './../../../php/validations/authorizedUser.php';
                         </div>
                     </div>
                     <hr>
-                        <input type="submit" value="Actualizar perfil" class='purpleButton'>
+                    <div class="btnFlexCenter">
+                    <input type="submit" value="Actualizar perfil" class='purpleButton'>
+                    </div>
                     </form>
                 </div>
             </div>
@@ -119,6 +122,8 @@ include './../../../php/validations/authorizedUser.php';
 </body>
 <?php include "./../../include/admin/user/offcanvasAplication.php" ?>
 <?php include "./../../include/admin/user/offcanvasUser.php" ?>
+<?php include "./../../include/admin/modalWindows/deleteAccount.php" ?>
+
 <script src="./../../../js/helpers/bootstrap.js"></script>
 
 

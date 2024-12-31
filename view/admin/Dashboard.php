@@ -71,7 +71,7 @@ include './../../php/validations/authorizedUser.php';
                 </section>
             </div>
             <div class="col-12 col-lg-9">
-                <div>
+                <section class="panelAdministrativo">
                     <section class="childs">
                         <h1 class="m-2">Panel administrativo</h1>
                         <div class="containerAddChilds">
@@ -220,7 +220,7 @@ include './../../php/validations/authorizedUser.php';
                     ?>
 
 
-                </div>
+                </section>
             </div>
         </div>
     </main>
@@ -239,6 +239,6 @@ include './../../php/validations/authorizedUser.php';
 <script src="./../../js/helpers/modalWindows.js"></script>
 <script src="./../../js/helpers/jquery.js"></script>
 <script src="./../../js/helpers/bootstrap.js"></script>
-
+<script src="./../../js/helpers/admin/modalWindowSearh" type="module"></script>
 
 </html>

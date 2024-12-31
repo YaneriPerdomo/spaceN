@@ -77,9 +77,6 @@
     ?>
 
     
-    <div class="ButtonTopScroll scroll_top_btn hidden">
-        <i class="bi bi-arrow-up"></i>
-    </div>
    
 </body>
 <script src="./../js/helpers/bootstrap.js"></script>

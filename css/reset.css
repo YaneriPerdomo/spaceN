@@ -4,16 +4,26 @@
   padding: 0.5rem 2rem;
   color: white;
   border: 0rem;
+  border-radius: 0.5rem;
+
 }
 :root {
   --colorHF: #9470f7;
   --colorBlack: rgb(47, 47, 47);
   --colorOrange: #fc7c45;
-
+  --colorRed-: #ff4b4b;
 }
 
+.flexComun{
+  display: flex;
+justify-content: center;
+align-items: center;
+gap:1rem;
+}
+
+
 .colorOrange{
-  color:var(--colorOrange);
+  color: var(--colorOrange);
 }
 
 /* Document

@@ -174,6 +174,8 @@ function showChild()
     <link rel="stylesheet" href="../../../css/components/header.css">
     <link rel="stylesheet" href="../../../css/components/semanticTag.css">
     <link rel="stylesheet" href="../../../css/admin/addAndModifyChild.css">
+    <link rel="stylesheet" href="../../../css/components/content.css">
+
 </head>
  
 

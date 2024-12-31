@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="../../../css/components/header.css">
     <link rel="stylesheet" href="../../../css/components/semanticTag.css">
     <link rel="stylesheet" href="../../../css/admin/profile.css">
+    <link rel="stylesheet" href="../../../css/components/modalWindows.css">
+ 
 </head>
 
 <body>
@@ -29,10 +31,10 @@
         <?php include "./../../include/admin/user/configurationProfile.php" ?>
 
             <div class="col-9">
-                <div class="accordion accordion-flush content" id="accordionFlushExample">
+                <div class="accordion accordion-flush content " id="accordionFlushExample">
                     <div class="accordion-item">
                         <h2 class="accordion-header">
-                           <button class="p-0 m-1 accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                           <button class="p-0 m-1 accordion-button youDeleteAccount collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#flush-collapseOne" aria-expanded="false"
                                 aria-controls="flush-collapseOne">
                                                          <legend>
@@ -48,11 +50,8 @@
                                     que hayas creado, también serán eliminados</b> por lo que no podrán acceder a la plataforma
                                     de aprendizaje.
                                 </p>
-                                <form action="./../../../php/admin/user.php" method="post">
-                                    <input type="hidden" name="valueFunction" value="deleteAccount">
-                                    <button>Eliminar</button>
-                                </form>
-                            </div>
+                                <button class="btn btnDeleteAccount ">Eliminar</button>
+                             </div>
                         </div>
                     </div>
                 </div>
@@ -63,6 +62,10 @@
 </body>
 <?php include "./../../include/admin/user/offcanvasAplication.php" ?>
 <?php include "./../../include/admin/user/offcanvasUser.php" ?>
+<?php include "./../../include/admin/modalWindows/deleteAccount.php" ?>
+
 <script src="./../../../js/helpers/bootstrap.js"></script>
+<script src="./../../../js/helpers/modalWindows.js"></script>
+ 
 
 </html>

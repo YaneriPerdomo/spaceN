@@ -56,7 +56,9 @@ include './../../../php/validations/authorizedUser.php';
                                 placeholder="¿Como se llama tu niño/a? 🤔" aria-label="Username"
                                 aria-describedby="basic-addon1">
                         </div><hr>
-                        <input type="submit" value="Cambiar">
+                        <div class="btnFlexEnd">
+                            <input type="submit" class="purpleButton" value="Cambiar">
+                        </div>
                     </form>
                 </div>
             </div>

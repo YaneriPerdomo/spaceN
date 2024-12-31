@@ -36,8 +36,8 @@ include './../../../php/validations/authorizedChild.php';
                 consequatur possimus! Atque, dolores expedita.</p>
             <hr>
             <div class="showMore">
-                <?php
-                include '../../../php/user/showNotificacion.php';
+            <?php
+                    include '../../../php/user/showNotificacion.php';
                 ?>
             </div>
            
@@ -50,6 +50,7 @@ include './../../../php/validations/authorizedChild.php';
     <?php include './../../include/user/offcanvasAplication.php' ?>
 
 </body>
+<script src="../../../js/helpers/showNotification.js" type="module"></script>
 
 <script src="../../../js/helpers/jquery.js"></script>
 

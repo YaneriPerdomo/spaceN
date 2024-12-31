@@ -14,7 +14,8 @@
     <link rel="stylesheet" href="../css/components/headerMain.css">
     <link rel="stylesheet" href="../css/indexLoginCreate.css">
     <link rel="stylesheet" href="../css/reponsive.css">
- 
+    <link rel="stylesheet" href="../css/components/validation.css">
+
     <style>
         
     </style>
@@ -101,7 +102,7 @@
                         </div>
                     </div>
 
-
+    
                     <input type="submit" value="Registrate" class="purpleButton">
                     <div class="createC text-center">
                         <span>¿Tienes una cuenta? <a href="./login.php"

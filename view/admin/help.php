@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="../../css/components/row.css">
     <link rel="stylesheet" href="../../css/components/offcanvas.css">
     <link rel="stylesheet" href="../../css/admin/helpReportsActivity.css">
+    <link rel="stylesheet" href="../../css/components/content.css">
+
 </head>
 
 <body>

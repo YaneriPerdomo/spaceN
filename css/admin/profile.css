@@ -10,6 +10,36 @@ main>div {
     padding: 1rem;
 }
 
+.btnFlexCenter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btnFlexEnd{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+.youDeleteAccount{
+    background: #ff4b4b;
+    padding: 0.5rem !important;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.youDeleteAccount > legend{
+    background: #ff4b4b;
+    padding: 0rem;
+    margin: 0rem;
+}
+
+[aria-expanded="true"] {
+    background: #ff4b4b !important;
+    color: white !important;
+}
+
 .configurationProfile .content >div {
     display: flex;
     align-items: center;
