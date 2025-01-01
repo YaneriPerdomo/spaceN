@@ -1,10 +1,8 @@
- import { $spanValidation2,
-    $oldPassword, $newPassword, $passwordAgain, $inputGroupAll,
-    $form, arrayFormChangesPassword
+ import {$oldPassword, $newPassword, $passwordAgain, $inputGroupAll,
+    $form, arrayFormChangesPassword, $spanValidation2
   } from "./variables.js";
  
     let $spanValidation = document.querySelector(".validations > .one");
-
  // Evento de envío del formulario
  $form.addEventListener("submit", e => {
      e.preventDefault();
@@ -116,7 +114,7 @@
          }
      }
 
-     //Si no hay algun error entonces se enviara los datos al servidor(PHP) pero mas que todo la contraseña nueva
+     //Si no hay algun error entonces se enviara los datos al servidor(PHP) pero mas que todo la contraseña nueva para que pueda ser actualizada.:3
      if (!error) {
          $form.submit();
      }

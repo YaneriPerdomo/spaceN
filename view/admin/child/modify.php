@@ -48,30 +48,30 @@ function showChild()
                                     <img src='../../../img/childs/girl.png' alt='' class='checked'>
                                 </label>
                             </p>"
-        ;
+                ;
                 break;
         }
         switch ($row["id_categoria_actividades"]) {
             case 1:
                 $accessLevel = "<select name='accessLevel' class='form-control'><br>
-        <option value='1' selected>Pre numerico</option>
-        <option value='2'>Numerico emergente</option>
-        <option value='3'>Desarrollo numerico</option>
-    </select><br>";
+                                    <option value='1' selected>Pre numerico</option>
+                                    <option value='2'>Numerico emergente</option>
+                                    <option value='3'>Desarrollo numerico</option>
+                                </select><br>";
                 break;
             case 2:
                 $accessLevel = "<select name='accessLevel' class='form-control'><br>
-        <option value='1'>Pre numerico</option>
-        <option value='2' selected>Numerico emergente</option>
-        <option value='3'>Desarrollo numerico</option>
-    </select><br>";
+                                    <option value='1'>Pre numerico</option>
+                                    <option value='2' selected>Numerico emergente</option>
+                                    <option value='3'>Desarrollo numerico</option>
+                                </select><br>";
                 break;
             case 3:
                 $accessLevel = "<select name='accessLevel' class='form-control'><br>
-        <option value='1'>Pre numerico</option>
-        <option value='2' >Numerico emergente</option>
-        <option value='3' selected>Desarrollo numerico</option>
-        </select><br>";
+                                    <option value='1'>Pre numerico</option>
+                                    <option value='2' >Numerico emergente</option>
+                                    <option value='3' selected>Desarrollo numerico</option>
+                                </select><br>";
                 break;
             default:
                 break;
@@ -97,7 +97,7 @@ function showChild()
         echo "<label for=''>Fecha de nacimiento <span>*</span></label><br>";
         echo "<div class='input-group mb-3'>";
         echo "<span class='input-group-text' id='basic-addon1'><i class='bi bi-calendar3-event'></i></span>";
-        echo "<input type='date' name='date' class='form-control' aria-label='Username' value = '" . date('Y-m-d', strtotime($row["fecha_nacimiento"])) . "' aria-describedby='basic-addon1'>";
+        echo "<input type='date' name='date' onblur='validateBirthDate()' class='form-control' aria-label='Username' value = '" . date('Y-m-d', strtotime($row["fecha_nacimiento"])) . "' aria-describedby='basic-addon1'>";
         echo "</div>";
         echo "<label for=''>Genero<span>*</span></label><br>";
         echo $gender;
@@ -178,40 +178,41 @@ function showChild()
     <link rel="stylesheet" href="../../../css/components/content.css">
 
 </head>
- 
+
 
 <body>
 
-<?php include "./../../include/admin/user/header.php" ?>
+    <?php include "./../../include/admin/user/header.php" ?>
 
-<main>
-   <div class="content">
-   <h1>Actualizar usuario</h1>
-        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsa sunt officia totam temporibus sint repellat
-            voluptas adipisci, ut omnis a deserunt, distinctio vitae maxime, vel nam quos? Ad, labore recusandae!</p>
+    <main>
+        <div class="content">
+            <h1>Actualizar usuario</h1>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsa sunt officia totam temporibus sint
+                repellat
+                voluptas adipisci, ut omnis a deserunt, distinctio vitae maxime, vel nam quos? Ad, labore recusandae!
+            </p>
             <hr>
             <form action="../../../php/admin/child.php" method="post">
-            <input type="hidden" name="valueFunction" value="modify">
-            <?php showChild(); ?>
-             <a href='./../dashboard.php'></a>
+                <input type="hidden" name="valueFunction" value="modify">
+                <?php showChild(); ?>
+                <a href='./../dashboard.php'></a>
                 <div class='d-flex justify-content-center gap-4 align-items-center'>
                     <div class=''>
-                        <a href='./../dashboard.php'><span><i class='bi bi-arrow-left-square'></i>  Volver</span></a>
+                        <a href='./../dashboard.php'><span><i class='bi bi-arrow-left-square'></i> Volver</span></a>
                     </div>
                     <div class=''>
                         <input type='submit' class='purpleButton' value='Registrar'>
                     </div>
                 </div>
-        </form>
-   </div>
+            </form>
+        </div>
     </main>
     <?php include "./../../include/footer.php" ?>
 </body>
 <?php include "./../../include/admin/user/offcanvasAplication.php" ?>
 <?php include "./../../include/admin/user/offcanvasUser.php" ?>
 <script src="../../../js/helpers/selectionGenderChild.js"></script>
-
+<script src="./../../../js/helpers/validations/validateBirthDate.js"></script>
 <script src="./../../../js/helpers/bootstrap.js"></script>
 
 </html>
- 
