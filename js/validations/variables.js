@@ -12,17 +12,20 @@ export const $inputGroupAll = document.querySelectorAll(".input-group-text");
 export let $oldPassword = document.querySelector("[name = 'oldPassword']");
 export let $newPassword = document.querySelector("[name='newPassword'");
 export let $passwordAgain = document.querySelector("[name='passwordAgain']")
-//Obtener referencias a los elementos del formulario: Actualizar perfil/Administrativo
+
 export let $user = document.querySelector(`[name="user"]`);
 export let $name = document.querySelector("[name='name']");
 export let $lastname = document.querySelector("[name='lastname']");
 export let $mail = document.querySelector("[name='mail']");
 export let $center = document.querySelector("[name = 'center']");
+export let $password = document.querySelector("[name='password']");
+
 
 //Arreglos
 export let arrayFormLogin = [$formUser, $formPassword];
 export  let arrayFormChangesPassword = [$oldPassword, $newPassword, $passwordAgain];
-export let arrayFormLoginProfessionalProfile = [$user, $name, $lastname, $mail, $center]
+export let arrayFormModifyProfessionalProfile = [$user, $name, $lastname, $mail, $center]
+export let arrayFormCreateProfessionalProfile = [$user, $name, $lastname, $mail, $center, $password, $passwordAgain]
 
 //Expresiones regulares
 export const patternUser = new RegExp("[A-Za-z0-9]{6,30}$");

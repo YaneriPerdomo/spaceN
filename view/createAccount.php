@@ -17,12 +17,12 @@
     <link rel="stylesheet" href="../css/components/validation.css">
 
     <style>
-        
+
     </style>
 </head>
 
 <body>
-<?php  include './include/headerLoginCreateMore.php'; ?>
+    <?php include './include/headerLoginCreateMore.php'; ?>
     <main class="">
         <div class="login">
             <section class="containerLogin">
@@ -32,6 +32,11 @@
                             <span style="color:var(--colorHF)">Crea una</span>
                             <span style="color:var(--colorOrange)">cuenta</span>
                         </b>
+                        <div class="validations">
+                            <span class="one"></span>
+                            <span class="two"></span>
+                            <span class="thren"></span>
+                        </div>
                         <br><br>
                     </div>
                     <div class="row ">
@@ -46,7 +51,7 @@
                             <label for="user">Apellido<span>*</span></label><br>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1"><i class="bi bi-person"></i></span>
-                                <input type="text" name="lastName" class="form-control" placeholder="Hola...✋"
+                                <input type="text" name="lastname" class="form-control" placeholder="Hola...✋"
                                     aria-label="Username" aria-describedby="basic-addon1">
                             </div>
                             <label for="user">Correo electronico<span>*</span></label><br>
@@ -96,13 +101,13 @@
                                 <span class="input-group-text" id="basic-addon1">
                                     <i class="bi bi-key"></i></i>
                                 </span>
-                                <input type="text" name="passwordAgain" class="form-control" placeholder="Hola...✋"
+                                <input type="password" name="passwordAgain" class="form-control" placeholder="Hola...✋"
                                     aria-label="Username" aria-describedby="basic-addon1">
                             </div>
                         </div>
                     </div>
 
-    
+
                     <input type="submit" value="Registrate" class="purpleButton">
                     <div class="createC text-center">
                         <span>¿Tienes una cuenta? <a href="./login.php"
@@ -120,6 +125,7 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
         </script>
 
+    <script  src="./../js/validations/createAccountProfessional.js" type="module"></script>
 </body>
 
 </html>

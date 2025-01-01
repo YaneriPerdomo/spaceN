@@ -6,7 +6,7 @@ try {
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $user = trim($_POST["user"]);
         $name = trim($_POST["name"]);
-        $lastName = trim($_POST["lastName"]);
+        $lastName = trim($_POST["lastname"]);
         $mail = trim($_POST["mail"]);
         $professionalPosition = $_POST["professionalPosition"];
         $center = trim($_POST["center"]);
