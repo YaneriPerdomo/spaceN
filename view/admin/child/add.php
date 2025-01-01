@@ -62,7 +62,7 @@ include './../../../php/validations/authorizedUser.php';
                             <span class="input-group-text" id="basic-addon1"><i
                                     class="bi bi-calendar3-event"></i></span>
                             <input type="date" name="date" class="form-control" aria-label="Username"
-                                aria-describedby="basic-addon1">
+                                aria-describedby="basic-addon1" onblur="validateBirthDate()">
                         </div>
                         <label for="">Genero<span>*</span></label><br>
                         <p class="d-flex gap-2 selectionGender">
@@ -141,11 +141,12 @@ include './../../../php/validations/authorizedUser.php';
     </main>
     <?php include "./../../include/footer.php" ?>
 </body>
- 
+
 
 <?php include "./../../include/admin/user/offcanvasAplication.php" ?>
 <?php include "./../../include/admin/user/offcanvasUser.php" ?>
 <script src="./../../../js/helpers/bootstrap.js"></script>
-
+<script src="./../../../js/helpers/validations/validateBirthDate.js" ></script>
 <script src="../../../js/helpers/selectionGenderChild.js"></script>
+
 </html>
