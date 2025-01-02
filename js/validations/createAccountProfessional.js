@@ -1,7 +1,8 @@
 import { 
     $form, $spanValidation, $spanValidation2, $spanValidation3,
     $password, $passwordAgain, $user, $name, $lastname, $center, $mail, $inputGroupAll, 
-    arrayFormCreateProfessionalProfile
+    arrayFormCreateProfessionalProfile, 
+    patternEmail, patternLetters, patternUser
  } from "./variables.js";
 
 //Evento de JS para el formulario antes del envio de los datos al servidos (PHP)
@@ -37,7 +38,7 @@ import {
     } else if (!(patternUser.exec($user.value))) {// Si no cumple con el patrón del usuario
         $user.classList.add("notValid")
         $inputGroupAll[5].classList.add("notValid");
-        count++;
+        count = count + 2;
         if ($user.value.length < 6) {
             messageValidation2 += "Tu usuario debe tener entre 6 y 30 caracteres <br>"
             error = true;
@@ -59,6 +60,7 @@ import {
         $inputGroupAll[0].classList.add("notValid")
         $name.classList.add("notValid")
         invalidFields.push("nombre");
+        count = count + 2;
         console.info(invalidFields)
         console.info('invalido el nombre');
         count++;
@@ -74,11 +76,12 @@ import {
         $lastname.classList.add("notValid")
     } else if (!(patternLetters.exec($lastname.value))) { // Si no cumple con el patrón del apellido
         error = true;
+        count = count + 2;
+
         $inputGroupAll[1].classList.add("notValid")
         invalidFields.push("apellido");
         $lastname.classList.add("notValid");
-        count++;
-    }
+     }
     //Valida el campo correo electronico
     if ($mail.value == "") {
         messageValidation += "No puede dejar el campo de correo electrónico vacío <br>";
@@ -91,7 +94,8 @@ import {
         $inputGroupAll[2].classList.add("notValid")
         invalidFields.push("correo electronico");
         $mail.classList.add("notValid");
-        count++;
+        count = count + 2;
+
     }
     //Valida el campo de centro educativo
     if ($center.value == "") {
@@ -103,7 +107,8 @@ import {
     } else if (!(patternLetters.exec($center.value))) { // Si no cumple con el patrón, para el campo "contro educativo"
         $inputGroupAll[4].classList.add("notValid")
         error = true;
-        count++;
+        count = count + 2;
+
         invalidFields.push("centro")
         $center.classList.add("notValid")
     }
@@ -128,7 +133,8 @@ import {
     if ($password.value != $passwordAgain.value) {
         messageValidation2 += "No coinciden las contraseñas <br>";
         error = true;
-        count++;
+        count = count + 2;
+
         $password.classList.add("notValid")
         $passwordAgain.classList.add("notValid")
         $inputGroupAll[6].classList.add("notValid")

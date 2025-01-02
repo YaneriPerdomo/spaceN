@@ -46,44 +46,29 @@ include './../../../php/validations/authorizedUser.php';
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="basic-addon1"><i class="bi bi-person"></i></span>
                             <input type="text" name="name" class="form-control"
-                                placeholder="¿Como se llama tu niño/a? 🤔" 
-                                aria-label="Username"
+                                placeholder="¿Como se llama tu niño/a? 🤔" aria-label="Username"
                                 aria-describedby="basic-addon1">
                         </div>
 
                         <label for="">Apellido<span>*</span></label><br>
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="basic-addon1"><i class="bi bi-person"></i></span>
-                            <input 
-                                type="text" 
-                                name="lastName" 
-                                class="form-control"
-                                placeholder="¿Y cual es su apellido? 🤔" 
-                                aria-label="Username"
+                            <input type="text" name="lastname" class="form-control"
+                                placeholder="¿Y cual es su apellido? 🤔" aria-label="Username"
                                 aria-describedby="basic-addon1">
                         </div>
                         <label for="">Fecha de nacimiento <span>*</span></label><br>
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="basic-addon1"><i
                                     class="bi bi-calendar3-event"></i></span>
-                            <input type="date" 
-                                name="date" 
-                                class="form-control" 
-                                aria-label="Username"
-                                aria-describedby="basic-addon1" 
-                                onblur="validateBirthDate()">
+                            <input type="date" name="date" class="form-control" aria-label="Username"
+                                aria-describedby="basic-addon1" onblur="validateBirthDate()">
                         </div>
                         <label for="">Genero<span>*</span></label><br>
                         <p class="d-flex gap-2 selectionGender">
                             <label for="M" data-checked="true">
-                                <input  type="radio" 
-                                        id="M" 
-                                        name="gender" 
-                                        value="1" 
-                                        checked>
-                                <img    src="../../../img/childs/boy.png" 
-                                      alt="" 
-                                      class="checked">
+                                <input type="radio" id="M" name="gender" value="1" checked>
+                                <img src="../../../img/childs/boy.png" alt="" class="checked">
                             </label>
                             <label for="F">
                                 <input type="radio" id="F" name="gender" value="2">
@@ -161,7 +146,27 @@ include './../../../php/validations/authorizedUser.php';
 <?php include "./../../include/admin/user/offcanvasAplication.php" ?>
 <?php include "./../../include/admin/user/offcanvasUser.php" ?>
 <script src="./../../../js/helpers/bootstrap.js"></script>
-<script src="./../../../js/helpers/validations/validateBirthDate.js" ></script>
+<script src="./../../../js/helpers/validations/validateBirthDate.js"></script>
 <script src="../../../js/helpers/selectionGenderChild.js"></script>
+
+
+<script>
+
+
+    let $form = document.querySelector("form");
+    let $password = document.querySelector("[name='password']");
+    let $user = document.querySelector(`[name="user"]`);
+    let $name = document.querySelector("[name='name']");
+    let $lastname = document.querySelector("[name='lastname']");
+    let $passwordAgain = document.querySelector("[name='passwordAgain']")
+
+    let arrayFormAddChild = [$name, $lastname, $user, $password];
+    
+    $form.addEventListener("click",  e => {
+
+        e.preventDefault();
+        
+    })
+</script>
 
 </html>

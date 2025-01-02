@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 $user = trim($_POST["user"]); // Obtiene el nombre de usuario del formulario
                 $clue = trim($_POST["password"]); // Obtiene la contraseña del formulario
                 $name = trim($_POST["name"]); // Obtiene el nombre del niño
-                $lastName = trim($_POST["lastName"]); // Obtiene el apellido del niño
+                $lastName = trim($_POST["lastname"]); // Obtiene el apellido del niño
                 $date = $_POST["date"]; // Obtiene la fecha de nacimiento del niño
                 $accessLevel = $_POST["accessLevel"]; // Obtiene el nivel de acceso
                 $gender = $_POST["gender"]; // Obtiene el género del niño

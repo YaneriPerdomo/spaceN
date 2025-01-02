@@ -46,7 +46,7 @@
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1"><i class="bi bi-person"></i></span>
                                 <input type="text" name="name" class="form-control" placeholder="Hola...✋"
-                                    aria-label="Username" aria-describedby="basic-addon1">
+                                    aria-label="Username" aria-describedby="basic-addon1" autofocus="true">
                             </div>
                             <label for="user">Apellido<span>*</span></label><br>
                             <div class="input-group mb-3">
@@ -93,7 +93,7 @@
                                 <span class="input-group-text" id="basic-addon1">
                                     <i class="bi bi-key"></i></i>
                                 </span>
-                                <input type="text" name="password" class="form-control" placeholder="Hola...✋"
+                                <input type="password" name="password" class="form-control" placeholder="Hola...✋"
                                     aria-label="Username" aria-describedby="basic-addon1">
                             </div>
                             <label for="user">Confirmar contraseña<span>*</span></label><br>
