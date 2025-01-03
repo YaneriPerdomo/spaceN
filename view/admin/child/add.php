@@ -19,6 +19,7 @@ include './../../../php/validations/authorizedUser.php';
     <link rel="stylesheet" href="../../../css/components/semanticTag.css">
     <link rel="stylesheet" href="../../../css/admin/addAndModifyChild.css">
     <link rel="stylesheet" href="../../../css/components/content.css">
+    <link rel="stylesheet" href="../../../css/components/validation.css">
 
 </head>
 
@@ -33,6 +34,11 @@ include './../../../php/validations/authorizedUser.php';
                 los desafíos de las matemáticas! Nuestra plataforma de aprendizaje ofrece
                 ejercicios personalizados <em>segun sus necesidades.</em>
             </p>
+            <div class="validations text-center">
+                <span class="one"></span>
+                <span class="two"></span>
+                <span class="thren"></span>
+            </div>
             <hr>
             <form action="../../../php/admin/child.php" method="post">
                 <input type="hidden" value="<?php echo $_SESSION["id_profesional"]; ?>">
@@ -61,7 +67,7 @@ include './../../../php/validations/authorizedUser.php';
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="basic-addon1"><i
                                     class="bi bi-calendar3-event"></i></span>
-                            <input type="date" name="date" class="form-control" aria-label="Username"
+                            <input type="date" name="date" class="form-control" aria-label="Username" required
                                 aria-describedby="basic-addon1" onblur="validateBirthDate()">
                         </div>
                         <label for="">Genero<span>*</span></label><br>
@@ -150,23 +156,6 @@ include './../../../php/validations/authorizedUser.php';
 <script src="../../../js/helpers/selectionGenderChild.js"></script>
 
 
-<script>
-
-
-    let $form = document.querySelector("form");
-    let $password = document.querySelector("[name='password']");
-    let $user = document.querySelector(`[name="user"]`);
-    let $name = document.querySelector("[name='name']");
-    let $lastname = document.querySelector("[name='lastname']");
-    let $passwordAgain = document.querySelector("[name='passwordAgain']")
-
-    let arrayFormAddChild = [$name, $lastname, $user, $password];
-    
-    $form.addEventListener("click",  e => {
-
-        e.preventDefault();
-        
-    })
-</script>
+<script src="../../../js/validations/addChild.js" type="module"></script>
 
 </html>

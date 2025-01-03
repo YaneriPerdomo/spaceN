@@ -19,13 +19,14 @@ export let $lastname = document.querySelector("[name='lastname']");
 export let $mail = document.querySelector("[name='mail']");
 export let $center = document.querySelector("[name = 'center']");
 export let $password = document.querySelector("[name='password']");
-
+export    let $date = document.querySelector("[name='date']");
 
 //Arreglos
 export let arrayFormLogin = [$formUser, $formPassword];
 export  let arrayFormChangesPassword = [$oldPassword, $newPassword, $passwordAgain];
 export let arrayFormModifyProfessionalProfile = [$user, $name, $lastname, $mail, $center]
 export let arrayFormCreateProfessionalProfile = [$user, $name, $lastname, $mail, $center, $password, $passwordAgain]
+export     let arrayFormAddChild = [$name, $lastname, $user, $password, $passwordAgain];
 
 //Expresiones regulares
 export const patternUser = new RegExp("[A-Za-z0-9]{6,30}$");
