@@ -5,6 +5,6 @@ label>span,
 }
 
 .notValid {
-    transition: border 0.5s linear;
+    transition: border 0.1 linear;
     border: solid 2px #ff5d5d !important;
 }

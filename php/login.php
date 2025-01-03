@@ -61,13 +61,13 @@ try {
 
                     switch ($resultsChild["id_categoria_actividades"]) {
                         case '1':
-                            header("Location: ../view/user/preNumerical/read.php");
+                            header("Location: ../view/user/preNumerical/read.php",  true, 301);
                             break;
                         case '2':
-                            header("Location: ../view/user/numericoEmerging/read.php");
+                            header("Location: ../view/user/numericoEmerging/read.php",  true, 301);
                             break;
                         case '3':
-                            header("Location: ../view/user/numericalDevelopment/read.php");
+                             header("Location: ../view/user/numericalDevelopment/read.php",  true, 301);
                             break;
                     }
                     break;

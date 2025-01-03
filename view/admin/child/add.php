@@ -90,6 +90,7 @@ include './../../../php/validations/authorizedUser.php';
                     </div>
                     <div class="col-8">
                         <label for="">Nombre de usuario<span>*</span></label><br>
+                        <small>Debe tener entre 6 y 10 caracteres. </small>
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="basic-addon1">
                                 <i class="bi bi-person-workspace"></i></i>
@@ -152,10 +153,9 @@ include './../../../php/validations/authorizedUser.php';
 <?php include "./../../include/admin/user/offcanvasAplication.php" ?>
 <?php include "./../../include/admin/user/offcanvasUser.php" ?>
 <script src="./../../../js/helpers/bootstrap.js"></script>
-<script src="./../../../js/helpers/validations/validateBirthDate.js"></script>
 <script src="../../../js/helpers/selectionGenderChild.js"></script>
 
-
+<script src="../../../js/validations/validateBirthDate.js" type="module"></script>
 <script src="../../../js/validations/addChild.js" type="module"></script>
 
 </html>

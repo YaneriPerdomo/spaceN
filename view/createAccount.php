@@ -26,7 +26,7 @@
     <main class="">
         <div class="login">
             <section class="containerLogin">
-                <form action="./../php/profileAdministrator.php" class="" method="POST">
+                <form action="./../php/createAccount.php" class="" method="POST">
                     <div class="text-center">
                         <b class="fs-3">
                             <span style="color:var(--colorHF)">Crea una</span>

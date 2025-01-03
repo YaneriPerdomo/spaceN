@@ -127,7 +127,7 @@ $form.addEventListener("submit", e => {
             // Si solo hay un campo vacío
             if (!iguales) {
                 if ($password.value == "" && $passwordAgain.value == "") {
-                    return $spanValidation2.innerHTML = "Complete el campo de contraseña correctamente"
+                    return $spanValidation2.innerHTML = "Complete el campo de la contraseña correctamente"
                 }
                 return $spanValidation2.innerHTML = messageValidation2
             }

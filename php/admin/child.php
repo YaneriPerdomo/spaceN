@@ -132,7 +132,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 $id_child = $_POST["id_child"];
                 $user = trim($_POST["user"]);
                 $name = trim($_POST["name"]);
-                $lastName = trim($_POST["lastName"]);
+                $lastName = trim($_POST["lastname"]);
                 $date = $_POST["date"];
                 $accessLevel = $_POST["accessLevel"];
                 $gender = $_POST["gender"];

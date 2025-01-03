@@ -92,12 +92,12 @@ function showChild()
         echo "<label for=''>Apellido<span>*</span></label><br>";
         echo "<div class='input-group mb-3'>";
         echo "<span class='input-group-text' id='basic-addon1'><i class='bi bi-person'></i></span>";
-        echo "<input type='text' name='lastName' class='form-control' placeholder='¿Y cual es su apellido? 🤔' aria-label='Username' aria-describedby='basic-addon1'  value='" . $row["apellido"] . "'>";
+        echo "<input type='text' name='lastname' class='form-control' placeholder='¿Y cual es su apellido? 🤔' aria-label='Username' aria-describedby='basic-addon1'  value='" . $row["apellido"] . "'>";
         echo "</div>";
         echo "<label for=''>Fecha de nacimiento <span>*</span></label><br>";
         echo "<div class='input-group mb-3'>";
         echo "<span class='input-group-text' id='basic-addon1'><i class='bi bi-calendar3-event'></i></span>";
-        echo "<input type='date' name='date' onblur='validateBirthDate()' class='form-control' aria-label='Username' value = '" . date('Y-m-d', strtotime($row["fecha_nacimiento"])) . "' aria-describedby='basic-addon1'>";
+        echo "<input type='date' name='date' required onblur='validateBirthDate()' class='form-control' aria-label='Username' value = '" . date('Y-m-d', strtotime($row["fecha_nacimiento"])) . "' aria-describedby='basic-addon1'>";
         echo "</div>";
         echo "<label for=''>Genero<span>*</span></label><br>";
         echo $gender;
@@ -108,6 +108,7 @@ function showChild()
         echo "</div>";
         echo "<div class='col-8'>";
         echo "<label for=''>Nombre de usuario<span>*</span></label><br>";
+        echo "<small>Debe tener entre 6 y 10 caracteres. </small>";
         echo "<div class='input-group mb-3'>";
         echo "<span class='input-group-text' id='basic-addon1'>";
         echo "<i class='bi bi-person-workspace'></i></i>";
@@ -137,7 +138,7 @@ function showChild()
         echo "<label for=''>Confirma tu contraseña<span>*</span></label>";
         echo "<div class='input-group mb-3'>
                 <span class='input-group-text' id='basic-addon1'>
-                    <i class='bi bi-ke'></i></i>
+                    <i class='bi bi-key'></i></i>
                 </span>
                 <input 
                     type='password'
@@ -176,6 +177,7 @@ function showChild()
     <link rel="stylesheet" href="../../../css/components/semanticTag.css">
     <link rel="stylesheet" href="../../../css/admin/addAndModifyChild.css">
     <link rel="stylesheet" href="../../../css/components/content.css">
+    <link rel="stylesheet" href="../../../css/components/validation.css">
 
 </head>
 
@@ -191,6 +193,11 @@ function showChild()
                 repellat
                 voluptas adipisci, ut omnis a deserunt, distinctio vitae maxime, vel nam quos? Ad, labore recusandae!
             </p>
+            <div class="validations">
+                <span class="one"></span>
+                <span class="two"></span>
+                <span class="thren"></span>
+            </div>
             <hr>
             <form action="../../../php/admin/child.php" method="post">
                 <input type="hidden" name="valueFunction" value="modify">
@@ -211,8 +218,8 @@ function showChild()
 </body>
 <?php include "./../../include/admin/user/offcanvasAplication.php" ?>
 <?php include "./../../include/admin/user/offcanvasUser.php" ?>
-<script src="../../../js/helpers/selectionGenderChild.js"></script>
-<script src="./../../../js/helpers/validations/validateBirthDate.js"></script>
+<script src="../../../js/helpers/selectionGenderChild.js" type="module"></script>
 <script src="./../../../js/helpers/bootstrap.js"></script>
-
+<script src="../../../js/validations/validateBirthDate.js" type="module"></script>
+<script src="../../../js/validations/modifyChild.js" type="module"></script>
 </html>
