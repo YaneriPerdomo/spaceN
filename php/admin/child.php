@@ -26,7 +26,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 $accessLevel = $_POST["accessLevel"]; // Obtiene el nivel de acceso
                 $gender = $_POST["gender"]; // Obtiene el género del niño
                 $idProfesional = $_SESSION["id_profesional"]; // Obtiene el ID del profesional desde la sesión
-
+                if (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $date)) {
+                    throw new Exception("Fecha inválida");
+                }
                 $sqlUserValidation = "SELECT usuario FROM usuarios WHERE usuario = :user";
                 $queryUserValidation = $pdo->prepare($sqlUserValidation);
                 $queryUserValidation->bindParam('user', $user, PDO::PARAM_STR);
