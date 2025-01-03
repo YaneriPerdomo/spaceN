@@ -10,7 +10,7 @@ $accessLevel = $_POST["accessLevel"];
 $id_admin = $_SESSION["id_profesional"];
 
 $sql = "SELECT usuario, nombre, apellido from ninos INNER join usuarios on ninos.id_usuario = usuarios.id_usuario 
-        WHERE ninos.id_categoria_actividades = :accessLevel and id_profesional = :idP";
+        WHERE ninos.id_nivel_acceso = :accessLevel and id_profesional = :idP";
 
 $pdfE = $pdo->prepare($sql);
 $pdfE->bindParam('accessLevel', $accessLevel, PDO::PARAM_INT);

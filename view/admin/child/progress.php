@@ -12,7 +12,7 @@ function showInformationChild()
     try {
 
         $id_child = $_GET["id"];
-        $sqlChild = 'SELECT id_categoria_actividades, id_genero,  id_usuario, nombre, apellido, COALESCE(ultimo_acceso, "Aún no ha iniciado sesión en la plataforma") as ultimo_acceso from ninos WHERE id_nino=:id_child';
+        $sqlChild = 'SELECT id_nivel_acceso, id_genero,  id_usuario, nombre, apellido, COALESCE(ultimo_acceso, "Aún no ha iniciado sesión en la plataforma") as ultimo_acceso from ninos WHERE id_nino=:id_child';
         $stmt01 = $pdo->prepare($sqlChild);
         $stmt01->bindParam(':id_child', $id_child, PDO::PARAM_INT);
         $stmt01->execute();
@@ -49,7 +49,7 @@ function showInformationChild()
         // Obtenemos el resultado de la consulta como un array asociativo
         $lecciones_completadas = $queryCount->fetch(PDO::FETCH_ASSOC);
 
-        switch ($row["id_categoria_actividades"]) {
+        switch ($row["id_nivel_acceso"]) {
             case '1':
                 $accessLevel = 'Pre numerico';
                 break;
@@ -122,7 +122,7 @@ function showInformationChild()
                                                 "            
                                                 ></circle>
                                             <div class="num">
-                                                <h2> ' . $row03["porcentaje"] . '<span>%</span></h2>
+                                                <h2> ' . $row03["porcentaje"]  . '<span>%</span></h2>
                                             </div>
                                         </svg>
                                     </div>

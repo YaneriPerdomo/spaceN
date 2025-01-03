@@ -4,7 +4,7 @@
 $host = "localhost"; // El servidor de la base de datos (en este caso, local)
 $user = "root"; // El usuario con privilegios para acceder a la base de datos
 $password = ""; // La contraseña del usuario (debería ser una cadena vacía si no hay contraseña)
-$baseDatos = "eres_capaz"; // El nombre de la base de datos a la que queremos conectar
+$baseDatos = "spacen"; // El nombre de la base de datos a la que queremos conectar
 
 
 // Creamos una cadena de conexión (DSN)

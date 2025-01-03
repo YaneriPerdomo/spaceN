@@ -9,6 +9,7 @@ function showHistorys($showPageLearn = false)
     try {
         $showPageLearn == true ? $sqlHistorial = "SELECT mensaje, fecha_hora from historiales WHERE id_nino = :id ORDER BY fecha_hora DESC LIMIT 3 " : $sqlHistorial = "SELECT mensaje, fecha_hora from historiales WHERE id_nino = :id ";
 
+
         $id_child = $_SESSION["id_Child"];
         $query = $pdo->prepare($sqlHistorial);
         $query->bindParam('id', $id_child, PDO::PARAM_INT);
@@ -24,7 +25,13 @@ function showHistorys($showPageLearn = false)
             </div> <hr>";            
             }
             if($showPageLearn == true){
-                if($count >= 3 ){
+                $sqlCountHistory = "SELECT COUNT(mensaje) AS TotalHistoriales FROM historiales WHERE id_nino = :id ";
+                $queryCountH = $pdo->prepare($sqlCountHistory);
+                $queryCountH->bindParam('id', $id_child, PDO::PARAM_INT);
+                $queryCountH->execute();
+                $results = $queryCountH->fetch(PDO::FETCH_ASSOC);
+
+                if($results["TotalHistoriales"] > 3 ){
                     echo "<small> <a href='./history.php'> Ver todas</a></small>";
                 }
             }

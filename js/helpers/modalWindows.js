@@ -1,19 +1,19 @@
-    let $containerDeleteChild = document.querySelector(".containerDeleteChild");
-    let $containerSendNotification = document.querySelector(".containerSendNotification");
-    let $contentSend = document.querySelector(".containerSendNotification > .content");
-    let $contentDelete = document.querySelector(".containerDeleteChild > .content");
-    let $htmlIdChild = document.querySelector('.id_child');
-    let $idChildDelete = document.querySelector("[name='id_childC']")
-    let $nameChildS = document.querySelector(".nameChildS");
-    let $idChildD = document.querySelector(`[name="id_childU"]`);
-    let $modalSearchChilds =document.querySelector(".OpenSearchChilds");
-    let $containerSearchChilds = document.querySelector(".containerSearchChilds");
-    let $contentDeleteAccount =  document.querySelector(".containerDeleteAccount  > .content");
-    let $contentSearch = document.querySelector(".containerSearchChilds > .content");
-    let $searchInputS = document.querySelector("#searchS");
-    let $resultsChilds =document.querySelector(".resultsChilds")
-    let $containerDeleteAccount = document.querySelector(".containerDeleteAccount");
-    let $btnDeleteAccount = document.querySelector(".btnDeleteAccount");
+    let $containerDeleteChild = document.querySelector(".containerDeleteChild") || 0;
+    let $containerSendNotification = document.querySelector(".containerSendNotification") || 0;
+    let $contentSend = document.querySelector(".containerSendNotification > .content") || 0;
+    let $contentDelete = document.querySelector(".containerDeleteChild > .content") || 0;
+    let $htmlIdChild = document.querySelector('.id_child') || 0;
+    let $idChildDelete = document.querySelector("[name='id_childC']") || 0
+    let $nameChildS = document.querySelector(".nameChildS") || 0;
+    let $idChildD = document.querySelector(`[name="id_childU"]`) || 0;
+    let $modalSearchChilds =document.querySelector(".OpenSearchChilds") || 0;
+    let $containerSearchChilds = document.querySelector(".containerSearchChilds") || 0;
+    let $contentDeleteAccount =  document.querySelector(".containerDeleteAccount  > .content") || 0;
+    let $contentSearch = document.querySelector(".containerSearchChilds > .content") || 0;
+    let $searchInputS = document.querySelector("#searchS") || 0;
+    let $resultsChilds =document.querySelector(".resultsChilds") || 0
+    let $containerDeleteAccount = document.querySelector(".containerDeleteAccount") || 0;
+    let $btnDeleteAccount = document.querySelector(".btnDeleteAccount") || 0;
     document.addEventListener("click", e => {
 
         if (e.target.matches(".OpenSearchChilds")) {

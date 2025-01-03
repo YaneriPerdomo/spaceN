@@ -11,7 +11,8 @@
         $query->bindParam('id',$id, PDO::PARAM_INT);
         $query->execute();
         if($query->rowCount() > 0){
-            echo "<script>alert('El historial de aprendizaje seleccionado ha sido eliminado.'); window.location.href = './../../view/admin/dashboard.php?page=1';</script>";
+            echo "<script>alert('El historial de aprendizaje seleccionado ha sido eliminado.');
+             window.location.href = './../../view/admin/history.php';</script>";
         }else{
             echo "sucedio un error";
         }

@@ -28,29 +28,29 @@ include './../../php/validations/authorizedUser.php';
     <link rel="stylesheet" href="../../css/admin/dashboard.css">
 
     <style>
-       @media screen and (max-width: 992px) {
-            .col-lg-3 > .historyChilds{
+        @media screen and (max-width: 992px) {
+            .col-lg-3>.historyChilds {
                 height: 200px !important;
                 margin-bottom: 1rem !important;
             }
 
-            .col-lg-3{
+            .col-lg-3 {
                 height: 200px !important;
             }
 
-            .row{
+            .row {
                 height: auto !important;
-                gap:1rem
+                gap: 1rem
             }
 
-            .historyChilds > div{
+            .historyChilds>div {
                 justify-content: space-between;
             }
 
-            .reportHistory{
-                            justify-content: center;
+            .reportHistory {
+                justify-content: center;
             }
-       }
+        }
     </style>
 </head>
 
@@ -115,7 +115,7 @@ include './../../php/validations/authorizedUser.php';
                         $total_paginas = ceil($total_registros / $registros_por_pagina);
                         // Verificamos si se encontraron resultados
                     
-                        $sqlSelect = 'SELECT id_nino, ninos.id_usuario as id_usuario_nino, usuario, nombre, apellido, id_categoria_actividades, fecha_nacimiento FROM ninos 
+                        $sqlSelect = 'SELECT id_nino, ninos.id_usuario as id_usuario_nino, usuario, nombre, apellido, id_nivel_acceso, fecha_nacimiento FROM ninos 
                                 INNER JOIN usuarios ON ninos.id_usuario = usuarios.id_usuario WHERE id_profesional = :id
                                 LIMIT :inicio, :registros_por_pagina
                                 ';
@@ -136,7 +136,7 @@ include './../../php/validations/authorizedUser.php';
                             foreach ($result as $row) {
                                 // Obtenemos la categoría de actividad y la asignamos a una variable
                     
-                                switch ($row["id_categoria_actividades"]) {
+                                switch ($row["id_nivel_acceso"]) {
                                     case 1:
                                         $showA = "Pre Numerico";
                                         break;
@@ -239,6 +239,8 @@ include './../../php/validations/authorizedUser.php';
 <script src="./../../js/helpers/modalWindows.js"></script>
 <script src="./../../js/helpers/jquery.js"></script>
 <script src="./../../js/helpers/bootstrap.js"></script>
-<script src="./../../js/helpers/admin/modalWindowSearh" type="module"></script>
+<script src="./../../js/helpers/modalWindows.js"></script>
+<script src="./../../js/helpers/searchChild.js" type="module"></script>
+
 
 </html>

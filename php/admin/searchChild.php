@@ -15,14 +15,14 @@ if ($pdo->errorCode() != 0) {
 }
 
 // Obtiene el término de búsqueda enviado por el usuario a través de la URL.
-$searchTerm = $_GET['search'];
+$searchTerm = $_POST['search'];
 
 // Obtiene el ID del profesional de la sesión actual.
 $id = $_SESSION["id_profesional"];
 
 // Prepara la consulta SQL para buscar niños por nombre y ID del profesional.
 // Los signos de interrogación (?) son marcadores de posición para los valores que se vincularán más adelante.
-$sqlSeach = "SELECT usuario, nombre, apellido,  id_categoria_actividades FROM `ninos`
+$sqlSeach = "SELECT usuario, nombre, apellido,  id_nivel_acceso FROM `ninos`
 INNER JOIN usuarios ON ninos.id_usuario = usuarios.id_usuario
 WHERE `nombre` LIKE ?  AND `id_profesional` = ?";
 $query = $pdo->prepare($sqlSeach);
@@ -58,7 +58,7 @@ if ($query->execute()) {
                             </thead>";
         // Itera sobre cada resultado y muestra el nombre y apellido del niño.
         foreach ($result as $value) {
-            switch ($value["id_categoria_actividades"]) {
+            switch ($value["id_nivel_acceso"]) {
                 case 1:
                     $showA = "Pre Numerico";
                     break;

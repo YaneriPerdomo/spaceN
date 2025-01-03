@@ -32,7 +32,7 @@ try {
                     $_SESSION["id_cargo"] = $row2["id_cargo"];
                     $_SESSION['correo'] = $row2["correo_electronico"];
                     $_SESSION['centro'] = $row2["centro_educativo"];
-                    header("Location: ../view/admin/dashboard.php?page=1");
+                    header("Location: ../view/admin/dashboard.php?page=1", true, 301);
                     break;
                 case '2':
                     $sqlChild = "SELECT * FROM ninos WHERE id_usuario = :id";
@@ -49,7 +49,7 @@ try {
 
                     $_SESSION["id_Child"] = $resultsChild["id_nino"];
                     $_SESSION["gender"] = $resultsChild["id_genero"];
-                    $_SESSION["accessLevel"] = $resultsChild["id_categoria_actividades"];
+                    $_SESSION["accessLevel"] = $resultsChild["id_nivel_acceso"];
                     $_SESSION["user"] = $user;
                     $_SESSION["id_user"] = $resultsChild["id_usuario"];
                     $_SESSION["dateOfBirth"] = $resultsChild["fecha_nacimiento"];
@@ -59,7 +59,7 @@ try {
                     $_SESSION["id_profesional"] = $resultsChild["id_profesional"];
                     $_SESSION["accountCreationDate"] = substr($row["fecha_hora_creacion"], 0, 10);
 
-                    switch ($resultsChild["id_categoria_actividades"]) {
+                    switch ($resultsChild["id_nivel_acceso"]) {
                         case '1':
                             header("Location: ../view/user/preNumerical/read.php",  true, 301);
                             break;

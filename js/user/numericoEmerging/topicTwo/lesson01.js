@@ -223,7 +223,7 @@ document.addEventListener("click", async e => {
             $ButtonsNum.forEach(element => {
                 element.disabled = true;
             });
-            $squareBlue.classList.add("correctShownNumber");
+            $containerPlayer.classList.add("correctShownNumber");
             $showNumberSpan02[4].innerHTML = e.target.textContent;
             setTimeout(() => {
                 $ButtonsNum.forEach(element => {
@@ -232,14 +232,14 @@ document.addEventListener("click", async e => {
                 $showNumberSpan.forEach(el => {
                     el.innerHTML = "?";
                 })
-                $squareBlue.classList.remove("correctShownNumber")
+                $containerPlayer.classList.remove("correctShownNumber")
                 randomNumber10();
                 e.target.classList.remove("correct")
             }, 2000);
         } else {
             failed++;
             console.info(e.target.textContent)
-            $squareBlue.classList.add("incorrectShowNumber");
+            $containerPlayer.classList.add("incorrectShowNumber");
             e.target.classList.add("incorrect");
             $incorrectMp3.play()
             $ButtonsNum.forEach(element => {
@@ -256,7 +256,7 @@ document.addEventListener("click", async e => {
                     element.removeAttribute("disabled")
                 });
                 randomNumber10();
-                $squareBlue.classList.remove("incorrectShowNumber");
+                $containerPlayer.classList.remove("incorrectShowNumber");
                 e.target.classList.remove("incorrect")
             }, 2000);
         }
@@ -356,7 +356,7 @@ document.addEventListener("click", async e => {
                 let $operation = ['<i class="bi bi-airplane-engines"></i> <i class="bi bi-airplane-engines"></i> <i class="bi bi-airplane-engines"></i>',
                     "+",
                     '<i class="bi bi-airplane-engines"></i> <i class="bi bi-airplane-engines"></i>'];
-                subtractionAddition($operation, $numbers, 1)
+                subtractionAddition($operation, $numbers, 5)
             }, 3000);
         }, 1000);
 

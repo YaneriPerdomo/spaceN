@@ -54,84 +54,84 @@ function randomNumber10() {
 
     switch (randomNumber10) {
         case 0:
-            let fraction = {
-                imgMain: './../../../../../img/fractions/1-9.png',
-                span: [1, 9, 3, 9,2,10],
-                answer: 1
+            let fraccionImg = {
+                main: [2,3], 
+                img: '', 
+                answer:2
             }
-            fractions(fraction.imgMain, fraction.span, fraction.answer);
+            fraccion2(fraccionImg.main, fraccionImg.img, fraccionImg.answer);
             break;
         case 1:
-            let fraction1 = {
-                imgMain: './../../../../../img/fractions/3-12.png',
-                span: [2, 2, 2,10,3, 12],
-                answer: 3
+            let fraccionImg1 = {
+                main: [2,3], 
+                img: '', 
+                answer:2
             }
-            fractions(fraction1.imgMain, fraction1.span, fraction1.answer);
+            fraccion2(fraccionImg1.main, fraccionImg1.img, fraccionImg1.answer);
             break;
         case 3:
-            let fraction2 = {
-                imgMain: './../../../../../img/fractions/2-9.png',
-                span: [2, 10, 2, 9, 10,12],
-                answer: 2
+            let fraccionImg2 = {
+                main: [2,3], 
+                img: '', 
+                answer:2
             }
-            fractions(fraction2.imgMain, fraction2.span, fraction2.answer);
+            fraccion2(fraccionImg2.main, fraccionImg2.img, fraccionImg2.answer);
             break;
         case 4:
-            let fraction3 = {
-                imgMain: './../../../../../img/fractions/2-3.png',
-                span: [2, 3, 2, 4, 2,5],
-                answer: 1
+            let fraccionImg3 = {
+                main: [2,3], 
+                img: '', 
+                answer:2
             }
-            fractions(fraction3.imgMain, fraction3.span, fraction3.answer);
+            fraccion2(fraccionImg3.main, fraccionImg3.img, fraccionImg3.answer);
             break;
         case 5:
-            let fraction4 = {
-                imgMain: './../../../../../img/fractions/3-4.png',
-                span: [3, 4,3,20, 2, 3],
-                answer: 2
+            let fraccionImg4 = {
+                main: [2,3], 
+                img: '', 
+                answer:2
             }
-            fractions(fraction4.imgMain, fraction4.span, fraction4.answer);
+            fraccion2(fraccionImg4.main, fraccionImg4.img, fraccionImg4.answer);
             break;
         case 6:
-            let fraction5 = {
-                imgMain: './../../../../../img/fractions/1-4.png',
-                span: [1, 4, 3,5, 2, 3],
-                answer: 1
+            let fraccionImg5 = {
+                main: [2,3], 
+                img: '', 
+                answer:2
             }
-            fractions(fraction5.imgMain, fraction5.span, fraction5.answer);
+            fraccion2(fraccionImg5.main, fraccionImg5.img, fraccionImg5.answer);
             break;
         case 7:
-            let fraction6 = {
-                imgMain: './../../../../../img/fractions/3-4.png',
-                span: [1, 4, 30,2, 3, 4],
-                answer: 3
+            let fraccionImg6 = {
+                main: [2,3], 
+                img: '', 
+                answer:2
             }
-            fractions(fraction6.imgMain, fraction6.span, fraction6.answer);
+            fraccion2(fraccionImg6.main, fraccionImg6.img, fraccionImg6.answer);
             break;
         case 8:
-            let fraction7 = {
-                imgMain: './../../../../../img/fractions/5-7.png',
-                span: [5, 7, 3, 5,3,5],
-                answer: 1
+            let fraccionImg7 = {
+                main: [2,3], 
+                img: '', 
+                answer:2
             }
-            fractions(fraction7.imgMain, fraction7.span, fraction7.answer);
+            fraccion2(fraccionImg7.main, fraccionImg7.img, fraccionImg7.answer);
             break
         case 9:
-            let fraction8 = {
-                imgMain: './../../../../../img/fractions/3-9.png',
-                span: [3, 7, 3, 9,4,8],
-                answer: 2
+            let fraccionImg8 = {
+                main: [2,3], 
+                img: '', 
+                answer:2
             }
-            fractions(fraction8.imgMain, fraction8.span, fraction8.answer);
+            fraccion2(fraccionImg8.main, fraccionImg8.img, fraccionImg8.answer);
             break
         case 10:
-            let fraction10 = {
-                imgMain: './../../../../../img/fractions/6-8.png',
-                span: [6, 8, 7,8,3, 5],
-                answer: 3
+            let fraccionImg9 = {
+                main: [2,3], 
+                img: '', 
+                answer:2
             }
-            fractions(fraction10.imgMain, fraction10.span, fraction10.answer);
+            fraccion2(fraccionImg9.main, fraccionImg9.img, fraccionImg9.answer);
             break
         default:
             break;

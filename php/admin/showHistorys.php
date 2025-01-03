@@ -10,6 +10,7 @@ function showHistorys($showPageLearn = false)
         $showPageLearn == true ? $sqlHistorial = "SELECT id_historial, mensaje, fecha_hora from historiales WHERE id_profesional = :id ORDER BY fecha_hora DESC LIMIT 3 "
             : $sqlHistorial = "SELECT id_historial, mensaje, fecha_hora from historiales WHERE id_profesional = :id ";
 
+        
         $id_profesional = $_SESSION["id_profesional"];
         $query = $pdo->prepare($sqlHistorial);
         $query->bindParam('id', $id_profesional, PDO::PARAM_INT);
@@ -34,10 +35,15 @@ function showHistorys($showPageLearn = false)
                                 <li><a class='dropdown-item' href='./../../php/admin/deleteHistory.php?id=" . $value["id_historial"] . "'><i class='bi bi-trash'></i> Borrar</a></li>
                             </ul>
                 </div><hr>";
-                    if ($count >= 3) {
-                        echo "<small> <a href='./history.php'> Ver todas</a></small>";
-                    }
+                }
+                $sqlCountHistory = "SELECT COUNT(mensaje) AS TotalHistoriales FROM historiales WHERE id_profesional = :id ";
+                $queryCountH = $pdo->prepare($sqlCountHistory);
+                $queryCountH->bindParam('id', $id_profesional, PDO::PARAM_INT);
+                $queryCountH->execute();
+                $results = $queryCountH->fetch(PDO::FETCH_ASSOC);
 
+                if($results["TotalHistoriales"] > 3 ){
+                    echo "<small> <a href='./history.php'> Ver todas</a></small>";
                 }
             } else {
                 foreach ($results as $value) {

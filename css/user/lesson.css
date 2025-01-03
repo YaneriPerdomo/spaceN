@@ -9,6 +9,13 @@
   flex-grow: 2;
 }
 
+
+body > header > main{
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .time,
 .timeResult {
   border-radius: 0.5rem;

@@ -9,7 +9,7 @@
             $sqlShowTableC = "SELECT usuario, total_diamantes,  usuarios.id_usuario as id_usuario_nino
                                  FROM progresos JOIN 
                                 usuarios ON progresos.id_usuario = usuarios.id_usuario 
-                                WHERE id_categoria_actividades = :Access AND total_diamantes != 0 LIMIT 5 ";
+                                WHERE id_nivel_acceso = :Access AND total_diamantes != 0 LIMIT 5 ";
 
             $query = $pdo->prepare($sqlShowTableC);
             $query->bindParam("Access", $typeAccess, PDO::PARAM_INT);

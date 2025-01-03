@@ -9,7 +9,7 @@ include "../connectionBD.php";
 
 $id_child = $_POST["id_nino"];
 
-$sqlChild = 'SELECT  id_categoria_actividades, id_genero,  id_usuario, nombre, apellido, COALESCE(ultimo_acceso, "Aún no ha iniciado sesión en la plataforma") as ultimo_acceso from ninos WHERE id_nino=:id_child';
+$sqlChild = 'SELECT  id_nivel_acceso, id_genero,  id_usuario, nombre, apellido, COALESCE(ultimo_acceso, "Aún no ha iniciado sesión en la plataforma") as ultimo_acceso from ninos WHERE id_nino=:id_child';
 $stmt01 = $pdo->prepare($sqlChild);
 $stmt01->bindParam(':id_child', $id_child, PDO::PARAM_INT);
 $stmt01->execute();
@@ -45,7 +45,7 @@ $queryCount->execute();
 // Obtenemos el resultado de la consulta como un array asociativo
 $lecciones_completadas = $queryCount->fetch(PDO::FETCH_ASSOC);
 
-switch ($row["id_categoria_actividades"]) {
+switch ($row["id_nivel_acceso"]) {
     case '1':
         $accessLevel = 'Pre numerico';
         break;

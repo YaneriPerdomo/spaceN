@@ -37,8 +37,8 @@ try {
         } 
         
         $pdo->beginTransaction();
-        $sqlAddUser = "INSERT INTO usuarios (id_rol, usuario, clave, estado, permisos, 
-            fecha_hora_creacion) VALUES ( 1,  :user,  :clue,  1,  1,  NOW())";
+        $sqlAddUser = "INSERT INTO usuarios (id_rol, usuario, clave, estado, 
+            fecha_hora_creacion) VALUES ( 1,  :user,  :clue, 1, NOW())";
         $stmt = $pdo->prepare($sqlAddUser);
         $stmt->bindParam('user',$user, PDO::PARAM_STR);
         $stmt->bindParam('clue',$password, PDO::PARAM_STR);

@@ -98,7 +98,7 @@ include './../../../../../php/connectionBD.php';
                         <h1 class="text-center">Progreso Actual</h1>
                         <?php
                         include '../../../../../php/user/auxiliar.php';
-                        echo getLessonData($_SESSION["id_user"], 5);
+                        echo getLessonData($_SESSION["id_user"], 8);
                         ?>
                     </div>
                 </div>

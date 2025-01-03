@@ -152,16 +152,17 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 $id = $_SESSION["id_admin"]; // Obtenemos el ID del usuario de la sesión
 
                 // Preparamos la consulta SQL para desactivar la cuenta del usuario
-                $sql = "UPDATE usuarios SET estado = 0 WHERE id_usuario = :id";
-
-                // Preparamos la sentencia SQL para evitar inyecciones SQL
+                $sql = "DELETE FROM usuarios WHERE id_usuario = :id";
                 $stmt = $pdo->prepare($sql);
-
-                // Vinculamos el parámetro :id a la variable $id (el ID del usuario)
                 $stmt->bindParam(':id', $id, PDO::PARAM_INT); // El ID es un entero
-
-                // Ejecutamos la consulta
                 $stmt->execute();
+
+                $sqlProfesional = "DELETE FROM usuarios WHERE id_profesional = :id";
+                $stmtProfesional = $pdo->prepare($sql);
+                $stmtProfesional->bindParam(':id', $id, PDO::PARAM_INT); // El ID es un entero
+                $stmtProfesional->execute();
+
+
 
                 // Verificamos si se actualizó alguna fila
                 if ($stmt->rowCount() > 0) {

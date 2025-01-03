@@ -35,11 +35,12 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 $queryUserValidation->execute();
 
                 if ($queryUserValidation->rowCount() > 0) {
-                    echo "<script> alert('¡Nombre de usuario ocupado! Prueba con otro.'); window.location.href = './../../view/admin/child/add.php';</script></script>";
+                    echo "<script> alert('¡Nombre de usuario ocupado! Prueba con otro.'); 
+                    window.location.href = './../../view/admin/child/add.php';</script></script>";
                     exit();
                 }
                 $pdo->beginTransaction();
-                $sqlUser = "INSERT INTO usuarios (id_rol, usuario, clave, estado, permisos, fecha_hora_creacion) VALUES (2, :user,:clue,1, 1, NOW())";
+                $sqlUser = "INSERT INTO usuarios (id_rol, usuario, clave, estado,  fecha_hora_creacion) VALUES (2, :user,:clue, 1, NOW())";
 
                 $stmt = $pdo->prepare($sqlUser); //Preparamos la consulta
                 $stmt->bindParam('user', $user, PDO::PARAM_STR);
@@ -47,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 $stmt->execute(); //Ejecutamos la consulta
 
                 $last_id = $pdo->lastInsertId();
-                $sqlChild = "INSERT INTO ninos (id_genero, id_categoria_actividades, id_usuario , id_profesional, nombre, apellido, fecha_nacimiento)
+                $sqlChild = "INSERT INTO ninos (id_genero, id_nivel_acceso, id_usuario , id_profesional, nombre, apellido, fecha_nacimiento)
                                 VALUES (:id_genero, :id_accessLevel, :id_user, :id_profesional, :nombre, :lastname,:dateBirth )";
 
                 $stmt2 = $pdo->prepare($sqlChild);
@@ -60,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 $stmt2->bindParam('dateBirth', $date, PDO::PARAM_STR);
                 $stmt2->execute();
 
-                $sqlProgress = "INSERT INTO progresos (id_usuario, id_categoria_actividades) VALUES (:id_user, :id_accessLevel)";
+                $sqlProgress = "INSERT INTO progresos (id_usuario, id_nivel_acceso) VALUES (:id_user, :id_accessLevel)";
                 $queryProgress = $pdo->prepare($sqlProgress);
                 $queryProgress->bindParam('id_accessLevel', $accessLevel, PDO::PARAM_INT);
                 $queryProgress->bindParam('id_user', $last_id, PDO::PARAM_INT);
@@ -141,7 +142,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                     throw new Exception("Fecha inválida");
                 }
 
-                $sqlOriginalData = "SELECT usuarios.usuario, ninos.id_genero, ninos.id_categoria_actividades, ninos.nombre, ninos.apellido, 
+                $sqlOriginalData = "SELECT usuarios.usuario, ninos.id_genero, ninos.id_nivel_acceso, ninos.nombre, ninos.apellido, 
                 ninos.fecha_nacimiento FROM ninos INNER JOIN usuarios ON ninos.id_usuario = usuarios.id_usuario 
                 WHERE usuarios.id_usuario = :id_user";
                 $queryOriginalData = $pdo->prepare($sqlOriginalData);
@@ -156,7 +157,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                     $name == $originalData['nombre'] &&
                     $lastName == $originalData['apellido'] &&
                     $date == $originalData['fecha_nacimiento'] &&
-                    $accessLevel == $originalData['id_categoria_actividades'] &&
+                    $accessLevel == $originalData['id_nivel_acceso'] &&
                     $gender == $originalData['id_genero'] &&
                     $password == ""
                 ) {
@@ -178,23 +179,34 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 
 
-                $pdo->beginTransaction();
-                $sqlAccessLevel = "SELECT id_categoria_actividades FROM ninos WHERE id_usuario =:id_user";
+             
+                $sqlAccessLevel = "SELECT id_nivel_acceso, id_nino FROM ninos WHERE id_usuario =:id_user";
                 $queryAccessLevel = $pdo->prepare($sqlAccessLevel);
                 $queryAccessLevel->bindParam('id_user', $id_user, PDO::PARAM_INT);
                 $queryAccessLevel->execute();
 
                 if ($queryAccessLevel->rowCount() > 0) {
+                    $pdo->beginTransaction();
                     $resultAccess = $queryAccessLevel->fetch(PDO::FETCH_ASSOC);
-                    if ($resultAccess["id_categoria_actividades"] != $accessLevel) {
-                        $pdo->beginTransaction();
-                        $sqlUpdateProgress = "UPDATE progresos SET id_categoria_actividades = :id_C , porcentaje = 0, total_diamantes = 0
+                    if ($resultAccess["id_nivel_acceso"] != $accessLevel) {
+                        $id_child = $resultAccess["id_nino"];
+                        $sqlDeleteHistory = 'DELETE FROM historiales WHERE id_nino = :id';
+                        $queryDeleteHistorys = $pdo->prepare($sqlDeleteHistory);
+                        $queryDeleteHistorys->bindParam('id', $id_child, PDO::PARAM_INT);
+                        $queryDeleteHistorys->execute();
+
+                        $sqlDeleteNotification = 'DELETE FROM notificaciones WHERE id_nino = :id';
+                        $queryDeleteNotification = $pdo->prepare($sqlDeleteNotification);
+                        $queryDeleteNotification->bindParam('id', $id_child, PDO::PARAM_INT);
+                        $queryDeleteNotification->execute();
+
+                        $sqlUpdateProgress = "UPDATE progresos SET id_nivel_acceso = :id_C , porcentaje = 0, total_diamantes = 0
                             WHERE id_usuario = :id_user";
                         $queryUpdateProgress = $pdo->prepare($sqlUpdateProgress);
                         $queryUpdateProgress->bindParam('id_user', $id_user, PDO::PARAM_INT);
                         $queryUpdateProgress->bindParam('id_C', $accessLevel, PDO::PARAM_INT);
                         $queryUpdateProgress->execute();
-                        switch ($resultAccess["id_categoria_actividades"]) {
+                        switch ($resultAccess["id_nivel_acceso"]) {
                             case '1':
                                 $leccionesOld = [1, 2, 3, 4];
                                 break;
@@ -232,7 +244,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
                 $sqlChild = "UPDATE ninos SET 
                     id_genero = :id_genero, 
-                    id_categoria_actividades = :id_accessLevel, 
+                    id_nivel_acceso = :id_accessLevel, 
                     nombre = :nombre,
                     apellido = :lastname,
                     fecha_nacimiento = :dateBirth

@@ -17,7 +17,7 @@ $tema = $_POST["tema"];
 $leccion = $_POST["lesson"];
 $modulo = $_POST["modulo"];
 $accessLevel = $_POST["accessLevel"];
-function addHistory( $statu, $leccion, $tema, $modulo)
+function addHistory($statu, $leccion, $tema, $modulo)
 {
     include './../connectionBD.php';
     $sqlHistorial = "INSERT INTO historiales (id_nino, id_profesional, mensaje, fecha_hora)
@@ -55,14 +55,16 @@ try {
             $queryWait->bindParam('failed', $failed, PDO::PARAM_INT);
             $queryWait->execute();
             $nextLesson = $idLesson + 1;
-            echo $nextLesson;
             addHistory("awaiting", $leccion, $tema, $modulo);
             $numberNext = match ($accessLevel) {
-                'Pre_Numerico' => 5 ,
-                'Numerico_emergente' => 9 ,
-                'desarrollo_numerico' => 13 , 
+                'Pre_Numerico' => 5,
+                'Numerico_emergente' => 9,
+                'desarrollo_numerico' => 13,
             };
-            if ($nextLesson < $numberNext) {
+            if ($idLesson == 4 || $idLesson == 8 || $idLesson == 12) {
+                addHistory("completeTotal", $leccion, $tema, $modulo);
+            }
+            if ($nextLesson < $numberNext ) {
                 $sqlNext = "UPDATE estado_lecciones SET  completado = 'en_espera'
                             WHERE id_usuario = :id_user AND id_leccion = :id_lesson";
                 $queryNext = $pdo->prepare($sqlNext);
@@ -86,35 +88,47 @@ try {
                 $queryUpdateProgress->execute();
 
                 if ($queryWait->rowCount() > 0 && $queryNext->rowCount() > 0 && $queryUpdateProgress->rowCount() > 0) {
-                    echo "Completed this lesson";
+                    echo "Completed this lesson 0";
                 } else {
                     throw new PDOException("Error updating lesson status");
                 }
             } else {
-
-                $sqlSelectProgressNow = "SELECT total_diamantes from  progresos WHERE id_usuario =:id_user";
+               
+                $sqlSelectProgressNow = "SELECT total_diamantes, porcentaje from  progresos WHERE id_usuario =:id_user";
                 $querySelectProgressNow = $pdo->prepare($sqlSelectProgressNow);
                 $querySelectProgressNow->bindParam("id_user", $idUser, PDO::PARAM_INT);
                 $querySelectProgressNow->execute();
                 $resultSelect = $querySelectProgressNow->fetch(PDO::FETCH_ASSOC);
                 $totalDiamantes = $resultSelect["total_diamantes"] + $gems;
+                $porcentajeTotal = $resultSelect["porcentaje"] + 25;
 
-                $sqlUpdateProgress = "UPDATE progresos SET total_diamantes = :gemsT WHERE id_usuario = :id_user";
-                $queryUpdateProgress = $pdo->prepare($sqlUpdateProgress);
-                $queryUpdateProgress->bindParam("gemsT", $totalDiamantes, PDO::PARAM_INT);
-                $queryUpdateProgress->bindParam("id_user", $idUser, PDO::PARAM_INT);
-                $queryUpdateProgress->execute();
+                if ($porcentajeTotal == 100){
+                    $sqlUpdateProgress = "UPDATE progresos SET porcentaje = :porcentageTotal, total_diamantes = :gemsT
+                    WHERE id_usuario = :id_user";
+                    $queryUpdateProgress = $pdo->prepare($sqlUpdateProgress);
+                    $queryUpdateProgress->bindParam("porcentageTotal", $porcentajeTotal, PDO::PARAM_INT);
+                    $queryUpdateProgress->bindParam("gemsT", $totalDiamantes, PDO::PARAM_INT);
+                    $queryUpdateProgress->bindParam("id_user", $idUser, PDO::PARAM_INT);
+                    $queryUpdateProgress->execute();
+                } else{
+                    $sqlUpdateProgress = "UPDATE progresos SET total_diamantes = :gemsT WHERE id_usuario = :id_user";
+                    $queryUpdateProgress = $pdo->prepare($sqlUpdateProgress);
+                    $queryUpdateProgress->bindParam("gemsT", $totalDiamantes, PDO::PARAM_INT);
+                    $queryUpdateProgress->bindParam("id_user", $idUser, PDO::PARAM_INT);
+                    $queryUpdateProgress->execute();
+                }
+
+            
 
                 if ($queryWait->rowCount() > 0 && $queryUpdateProgress->rowCount() > 0) {
-                    echo "completed this lesson.";
-                    addHistory("completeTotal",$leccion, $tema, $modulo);
+                    echo "completed this lesson. 1";
                 } else {
                     throw new PDOException("Error updating lesson status");
                 }
             }
 
             break;
-            case "completado":
+        case "completado":
 
             $sqlComplete = "UPDATE estado_lecciones SET porcentaje = :porcentage, diamantes_obtenidos = :gems,
                 tiempo = :timeV, fallida = :failed WHERE id_usuario = :id_user AND id_leccion = :id_lesson";
@@ -134,14 +148,14 @@ try {
             $resultSelect = $querySelectProgressNow->fetch(PDO::FETCH_ASSOC);
             $totalDiamantes = $resultSelect["total_diamantes"] + $gems;
 
-            $sqlUpdateProgress = "UPDATE progresos SET  total_diamantes = :gemsT WHERE id_usuario = :id_user";
+            $sqlUpdateProgress = "UPDATE progresos SET total_diamantes = :gemsT WHERE id_usuario = :id_user";
             $queryUpdateProgress = $pdo->prepare($sqlUpdateProgress);
             $queryUpdateProgress->bindParam("gemsT", $totalDiamantes, PDO::PARAM_INT);
             $queryUpdateProgress->bindParam("id_user", $idUser, PDO::PARAM_INT);
             $queryUpdateProgress->execute();
 
             if ($queryUpdateProgress->rowCount() > 0 && $queryCompleta->rowCount() > 0) {
-                echo "Completado this lesson";
+                echo "Completado this lesson 2";
                 addHistory("completed", $leccion, $tema, $modulo);
             } else {
                 throw new PDOException("Error updating lesson status");

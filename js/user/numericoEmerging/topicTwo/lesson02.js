@@ -343,7 +343,7 @@ async function endOfLesson() {
     await fetch("./../../../../../php/user/unlockUpdateLesson.php", {
         method: 'POST',
         body: new URLSearchParams({
-            typeAccess: "Numerico_emergente",
+            accessLevel: "Numerico_emergente",
             statu: searchParams.get("statu"),
             id_lesson: 8,
             failed: failed,
