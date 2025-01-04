@@ -131,7 +131,7 @@ $form.addEventListener("submit", e => {
                 }
                 return $spanValidation2.innerHTML = messageValidation2
             }
-            $spanValidation.innerHTML = "Complete el campo que falta <br>"; // Muestra mensaje indicando que falta un campo
+            $spanValidation.innerHTML = "Complete el campo que falta correctamente<br>"; // Muestra mensaje indicando que falta un campo
         } else if (count > 1) {
             // Si hay varios campos con errores
             console.info(invalidFields); // Imprime en la consola la lista de campos inválidos (solo para debug)

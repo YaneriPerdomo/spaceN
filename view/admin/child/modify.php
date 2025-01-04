@@ -116,7 +116,7 @@ function showChild()
         echo "<input type='text' name='user' class='form-control' placeholder='¡Oh 😲...!' aria-label='Username' aria-describedby='basic-addon1'  value='" . $row["usuario"] . "'>";
         echo "</div>";
         echo "<label for=''>Nivel de acceso<span>*</span></label><br>";
-        echo "<small>Si cambia el nivel de acceso del usuario actual perderá todo el progreso, incluyendo su historial.<br> 
+        echo "<small>Si cambia el nivel de acceso del usuario actual perderá todo el progreso
          que haya realizado anteriormente.</small>";
         echo "<div class='input-group mb-3'>";
         echo "<span class='input-group-text' id='basic-addon1'><i class='bi bi-door-open'></i></span>";
@@ -220,6 +220,6 @@ function showChild()
 <?php include "./../../include/admin/user/offcanvasUser.php" ?>
 <script src="../../../js/helpers/selectionGenderChild.js" type="module"></script>
 <script src="./../../../js/helpers/bootstrap.js"></script>
-<script src="../../../js/validations/validateBirthDate.js" type="module"></script>
+<script src="../../../js/validations/validateBirthDate.js" ></script>
 <script src="./../../../js/validations/modifyChild.js" type="module"></script>
 </html>

@@ -1,5 +1,6 @@
 import { $searchInputS, $resultsChilds } from "../helpers/modalWindows.js";
 $searchInputS.addEventListener("input", (e) => {
+  alert("hola")
   if (e.target.value.length < 0) {
     $resultsChilds.innerHTML = "";
   } else if (e.target.value.length > 0) {

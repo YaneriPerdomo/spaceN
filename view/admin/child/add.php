@@ -155,7 +155,7 @@ include './../../../php/validations/authorizedUser.php';
 <script src="./../../../js/helpers/bootstrap.js"></script>
 <script src="../../../js/helpers/selectionGenderChild.js"></script>
 
-<script src="../../../js/validations/validateBirthDate.js" type="module"></script>
+<script src="../../../js/validations/validateBirthDate.js" ></script>
 <script src="../../../js/validations/addChild.js" type="module"></script>
 
 </html>

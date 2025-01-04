@@ -1,4 +1,4 @@
-import { $searchInputS } from "./modalWindows";
+let $searchInputS = document.querySelector("#searchS") ;
 
 $searchInputS.addEventListener("input", e => {
     console.info(e.target.value)

@@ -61,9 +61,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 $stmt2->bindParam('dateBirth', $date, PDO::PARAM_STR);
                 $stmt2->execute();
 
-                $sqlProgress = "INSERT INTO progresos (id_usuario, id_nivel_acceso) VALUES (:id_user, :id_accessLevel)";
+                $sqlProgress = "INSERT INTO progresos (id_usuario, id_nivel_acceso ,id_profesional) VALUES (:id_user, :id_accessLevel, :id_profesional)";
                 $queryProgress = $pdo->prepare($sqlProgress);
                 $queryProgress->bindParam('id_accessLevel', $accessLevel, PDO::PARAM_INT);
+                $queryProgress->bindParam('id_profesional', $idProfesional, PDO::PARAM_INT);
                 $queryProgress->bindParam('id_user', $last_id, PDO::PARAM_INT);
                 $queryProgress->execute();
 
@@ -76,10 +77,12 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                             [3, 'bloqueado'],
                             [4, 'bloqueado']
                         ];
-                        $sqlLesson = "INSERT INTO estado_lecciones (id_usuario, id_leccion, completado) VALUES (:id_user, :id_lesson, :statuLesson)";
+                        $sqlLesson = "INSERT INTO estado_lecciones (id_usuario, id_leccion, id_profesional, completado) 
+                                VALUES (:id_user, :id_lesson, :id_profesional, :statuLesson)";
                         $queryLesson = $pdo->prepare($sqlLesson);
                         foreach ($lecciones as $key => $value) {
                             $queryLesson->bindParam('id_user', $last_id, PDO::PARAM_INT);
+                            $queryLesson->bindParam('id_profesional', $idProfesional, PDO::PARAM_INT);
                             $queryLesson->bindParam('id_lesson', $value[0], PDO::PARAM_INT);
                             $queryLesson->bindParam('statuLesson', $value[1], PDO::PARAM_STR);
                             $queryLesson->execute();
@@ -92,11 +95,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                             [7, 'bloqueado'],
                             [8, 'bloqueado']
                         ];
-                        $sqlLesson = "INSERT INTO estado_lecciones (id_usuario, id_leccion, completado) VALUES (:id_user, :id_lesson, :statuLesson)";
+                        $sqlLesson = "INSERT INTO estado_lecciones (id_usuario, id_leccion, id_profesional, completado) 
+                            VALUES (:id_user, :id_lesson, :id_profesional, :statuLesson)";
                         $queryLesson = $pdo->prepare($sqlLesson);
                         foreach ($lecciones as $key => $value) {
                             $queryLesson->bindParam('id_user', $last_id, PDO::PARAM_INT);
                             $queryLesson->bindParam('id_lesson', $value[0], PDO::PARAM_INT);
+                            $queryLesson->bindParam('id_profesional', $idProfesional, PDO::PARAM_INT);
                             $queryLesson->bindParam('statuLesson', $value[1], PDO::PARAM_STR);
                             $queryLesson->execute();
                         }
@@ -108,11 +113,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                             [11, 'bloqueado'],
                             [12, 'bloqueado']
                         ];
-                        $sqlLesson = "INSERT INTO estado_lecciones (id_usuario, id_leccion, completado) VALUES (:id_user, :id_lesson, :statuLesson)";
+                        $sqlLesson = "INSERT INTO estado_lecciones (id_usuario, id_leccion,id_profesional, completado) 
+                            VALUES (:id_user, :id_lesson,:id_profesiona, :statuLesson)";
                         $queryLesson = $pdo->prepare($sqlLesson);
                         foreach ($lecciones as $key => $value) {
                             $queryLesson->bindParam('id_user', $last_id, PDO::PARAM_INT);
                             $queryLesson->bindParam('id_lesson', $value[0], PDO::PARAM_INT);
+                            $queryLesson->bindParam('id_profesional', $idProfesional, PDO::PARAM_INT);
                             $queryLesson->bindParam('statuLesson', $value[1], PDO::PARAM_STR);
                             $queryLesson->execute();
                         }
@@ -286,7 +293,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 $id_childC = $_POST["id_childC"];
                 $id_childU = $_POST["id_childU"];
 
-                $pdo->beginTransaction();
+
                 $sqlDeleteChildN = "DELETE FROM notificaciones WHERE id_nino = :id";
                 $stmt3 = $pdo->prepare($sqlDeleteChildN);
                 $stmt3->bindParam('id', $id_childC, PDO::PARAM_INT);

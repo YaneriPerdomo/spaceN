@@ -10,8 +10,8 @@
     let $containerSearchChilds = document.querySelector(".containerSearchChilds") || 0;
     let $contentDeleteAccount =  document.querySelector(".containerDeleteAccount  > .content") || 0;
     let $contentSearch = document.querySelector(".containerSearchChilds > .content") || 0;
-    let $searchInputS = document.querySelector("#searchS") || 0;
-    let $resultsChilds =document.querySelector(".resultsChilds") || 0
+    let $searchInputS = document.querySelector("#searchS") ;
+    let $resultsChilds =document.querySelector(".resultsChilds") ;
     let $containerDeleteAccount = document.querySelector(".containerDeleteAccount") || 0;
     let $btnDeleteAccount = document.querySelector(".btnDeleteAccount") || 0;
     document.addEventListener("click", e => {

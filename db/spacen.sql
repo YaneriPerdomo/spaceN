@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-01-2025 a las 00:37:12
+-- Tiempo de generación: 04-01-2025 a las 01:12:01
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -422,7 +422,7 @@ ALTER TABLE `cargos`
 -- AUTO_INCREMENT de la tabla `estado_lecciones`
 --
 ALTER TABLE `estado_lecciones`
-  MODIFY `id_estado_leccion` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_estado_leccion` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `generos`
@@ -434,7 +434,7 @@ ALTER TABLE `generos`
 -- AUTO_INCREMENT de la tabla `historiales`
 --
 ALTER TABLE `historiales`
-  MODIFY `id_historial` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id_historial` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `lecciones`
@@ -452,7 +452,7 @@ ALTER TABLE `modulos`
 -- AUTO_INCREMENT de la tabla `ninos`
 --
 ALTER TABLE `ninos`
-  MODIFY `id_nino` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_nino` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `niveles_acceso`
@@ -464,19 +464,19 @@ ALTER TABLE `niveles_acceso`
 -- AUTO_INCREMENT de la tabla `notificaciones`
 --
 ALTER TABLE `notificaciones`
-  MODIFY `id_notificacion` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_notificacion` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `profesionales`
 --
 ALTER TABLE `profesionales`
-  MODIFY `id_profesional` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_profesional` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `progresos`
 --
 ALTER TABLE `progresos`
-  MODIFY `id_progreso` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_progreso` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
@@ -494,7 +494,7 @@ ALTER TABLE `temas`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_usuario` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restricciones para tablas volcadas

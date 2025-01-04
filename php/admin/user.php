@@ -150,27 +150,70 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 // Verificamos si se ha enviado un formulario (método POST)
 
                 $id = $_SESSION["id_admin"]; // Obtenemos el ID del usuario de la sesión
-
+                $idProfesional =  $_SESSION["id_profesional"];
                 // Preparamos la consulta SQL para desactivar la cuenta del usuario
-                $sql = "DELETE FROM usuarios WHERE id_usuario = :id";
-                $stmt = $pdo->prepare($sql);
-                $stmt->bindParam(':id', $id, PDO::PARAM_INT); // El ID es un entero
-                $stmt->execute();
+               
+                
+                $sqlGetIds = 'SELECT id_usuario FROM  ninos WHERE id_profesional = :id';
+                $queryGetIds = $pdo->prepare($sqlGetIds);
+                $queryGetIds->bindParam('id', $idProfesional, pdo::PARAM_INT);
+                $queryGetIds->execute();
+                $resultsGetIdChilds = $queryGetIds->fetchAll(PDO::FETCH_COLUMN);
+                $childrenIds = join(",", $resultsGetIdChilds);
 
-                $sqlProfesional = "DELETE FROM usuarios WHERE id_profesional = :id";
-                $stmtProfesional = $pdo->prepare($sql);
-                $stmtProfesional->bindParam(':id', $id, PDO::PARAM_INT); // El ID es un entero
+
+                $pdo->beginTransaction();
+                $sqlLesson = "DELETE FROM estado_lecciones WHERE id_profesional = :id";
+                $stmtLesson = $pdo->prepare($sqlLesson);
+                $stmtLesson->bindParam(':id', $idProfesional, PDO::PARAM_INT); // El ID es un entero
+                $stmtLesson->execute();
+
+                $sqlHistorys = "DELETE FROM historiales WHERE id_profesional = :id";
+                $stmtHistory = $pdo->prepare($sqlHistorys);
+                $stmtHistory->bindParam(':id', $idProfesional, PDO::PARAM_INT); // El ID es un entero
+                $stmtHistory->execute();
+
+                $sqlNotification = "DELETE FROM notificaciones WHERE id_profesional = :id";
+                $stmtNotification = $pdo->prepare($sqlNotification);
+                $stmtNotification->bindParam(':id', $idProfesional, PDO::PARAM_INT); // El ID es un entero
+                $stmtNotification->execute();
+
+                $sqlProgress = "DELETE FROM progresos WHERE id_profesional = :id";
+                $stmtProgress = $pdo->prepare($sqlProgress);
+                $stmtProgress->bindParam(':id', $idProfesional, PDO::PARAM_INT); // El ID es un entero
+                $stmtProgress->execute();
+
+                $sqlChild = "DELETE FROM ninos WHERE id_profesional = :id";
+                $stmtChild = $pdo->prepare($sqlChild);
+                $stmtChild->bindParam(':id', $idProfesional, PDO::PARAM_INT); // El ID es un entero
+                $stmtChild->execute();
+
+            
+                $sqlProfesional = "DELETE FROM profesionales WHERE id_profesional = :id";
+                $stmtProfesional = $pdo->prepare($sqlProfesional);
+                $stmtProfesional->bindParam(':id', $idProfesional, PDO::PARAM_INT); // El ID es un entero
                 $stmtProfesional->execute();
 
+                $sqlDeleteUserChild = "DELETE FROM usuarios WHERE id_usuario IN (:childrenIds)";
+                $stmtUserChild = $pdo->prepare($sqlDeleteUserChild);
+                $stmtUserChild->bindParam(':childrenIds', $childrenIds); // El ID es un entero
+                $stmtUserChild->execute();
 
+                $sqlDeleteUser = "DELETE FROM usuarios WHERE id_usuario = :id";
+                $stmtUser = $pdo->prepare($sqlDeleteUser);
+                $stmtUser->bindParam(':id', $id, PDO::PARAM_INT); // El ID es un entero
+                $stmtUser->execute();
 
                 // Verificamos si se actualizó alguna fila
-                if ($stmt->rowCount() > 0) {
+                if ($stmtUser->rowCount() > 0) {
+                    $pdo->commit();
+                    session_unset();
                     // Si se actualizó una fila, significa que la cuenta se desactivó correctamente
-                    echo "<script>alert('Cuenta eliminada'); window.location.href = '../view/login.php';</script>";
+                    echo "<script>alert('Cuenta eliminada'); window.location.href = '../../view/login.php';</script>";
                 } else {
                     // Si no se actualizó ninguna fila, algo salió mal
                     echo 'No se pudo eliminar tu contraseña.';
+                    $pdo->rollBack();
                 }
                 break;
             default:
@@ -179,6 +222,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         }
     } catch (PDOException $e) {
         echo $e->getMessage();
+        $pdo->rollBack();
     }
     $pdo = null;
 }

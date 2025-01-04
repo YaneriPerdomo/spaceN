@@ -239,8 +239,7 @@ include './../../php/validations/authorizedUser.php';
 <script src="./../../js/helpers/modalWindows.js"></script>
 <script src="./../../js/helpers/jquery.js"></script>
 <script src="./../../js/helpers/bootstrap.js"></script>
-<script src="./../../js/helpers/modalWindows.js"></script>
-<script src="./../../js/helpers/searchChild.js" type="module"></script>
+<script src="./../../js/helpers/searchJChild.js"></script>
 
 
 </html>
