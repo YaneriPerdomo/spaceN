@@ -1,6 +1,6 @@
-let $searchInputS = document.querySelector("#searchS") ;
+let $searchInputS2 = document.querySelector("#searchS") ;
 
-$searchInputS.addEventListener("input", e => {
+$searchInputS2.addEventListener("input", e => {
     console.info(e.target.value)
     fetch("./../../php/admin/searchChild.php", {
         method: "POST",
