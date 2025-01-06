@@ -7,7 +7,7 @@ include './../../../php/validations/authorizedChild.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil | :3</title>
+    <title>Notificacion | Espacio N </title>
     <link rel="stylesheet" href="../../../css/reset.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">

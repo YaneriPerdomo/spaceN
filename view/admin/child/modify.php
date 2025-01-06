@@ -78,10 +78,10 @@ function showChild()
         }
         ;
         echo "<div class='row'>";
-        echo "<div class='col-4'>";
+        echo "<div class='col-lg-4 col-12'>";
         echo "<label for=''>Datos personales:</label><br>";
         echo "</div>";
-        echo "<div class='col-8'>";
+        echo "<div class='col-lg-8 col-12'>";
         echo "<input type='hidden' name='id_user' value = '" . $row["usuarios_id_usuario"] . "'>";
         echo "<input type='hidden' name='id_child' value = '" . $id_child . "'>";
         echo "<label for=''>Nombre<span>*</span></label><br>";
@@ -103,10 +103,10 @@ function showChild()
         echo $gender;
         echo "</div></div><hr>";
         echo "<div class='row'>";
-        echo "<div class='col-4'>";
+        echo "<div class='col-lg-4 col-12'>";
         echo "<label for=''>Datos para la plataforma:</label><br>";
         echo "</div>";
-        echo "<div class='col-8'>";
+        echo "<div class='col-lg-8 col-12'>";
         echo "<label for=''>Nombre de usuario<span>*</span></label><br>";
         echo "<small>Debe tener entre 6 y 10 caracteres. </small>";
         echo "<div class='input-group mb-3'>";
@@ -167,7 +167,7 @@ function showChild()
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Modificar usuario | Espacio N </title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -179,6 +179,36 @@ function showChild()
     <link rel="stylesheet" href="../../../css/components/content.css">
     <link rel="stylesheet" href="../../../css/components/validation.css">
 
+    <style>
+        @media screen and (max-width: 992px) {
+            .col-lg-3>.content {
+                height: 200px !important;
+                margin-bottom: 1rem !important;
+            }
+
+            .col-lg-3 {
+                height: 200px !important;
+            }
+
+            .row {
+                height: auto !important;
+                gap: 1rem;
+            }
+
+
+
+
+            [type="text"],
+            select,
+            [type="password"] {
+                max-width: 90% !important;
+            }
+
+            .btnFlexEnd {
+                justify-content: center !important;
+            }
+        }
+    </style>
 </head>
 
 
@@ -220,6 +250,7 @@ function showChild()
 <?php include "./../../include/admin/user/offcanvasUser.php" ?>
 <script src="../../../js/helpers/selectionGenderChild.js" type="module"></script>
 <script src="./../../../js/helpers/bootstrap.js"></script>
-<script src="../../../js/validations/validateBirthDate.js" ></script>
+<script src="../../../js/validations/validateBirthDate.js"></script>
 <script src="./../../../js/validations/modifyChild.js" type="module"></script>
+
 </html>

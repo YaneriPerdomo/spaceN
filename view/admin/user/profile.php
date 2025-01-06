@@ -7,7 +7,7 @@ include './../../../php/validations/authorizedUser.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tu perfil | Espacio N</title>
+    <title>Tu perfil | Espacio N </title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -18,14 +18,39 @@ include './../../../php/validations/authorizedUser.php';
     <link rel="stylesheet" href="../../../css/components/validation.css">
     <link rel="stylesheet" href="../../../css/admin/profile.css">
 
+    <style>
+        @media screen and (max-width: 992px) {
+            .col-lg-3>.content {
+                height: 200px !important;
+                margin-bottom: 1rem !important;
+            }
+
+            .col-lg-3 {
+                height: 200px !important;
+            }
+
+            .row {
+                height: auto !important;
+                gap: 1rem;
+            }
+
+            main > .userM0{
+                margin: 0 !important;
+            }
+
+            [type="text"] , select{
+  max-width: 90% !important;
+}
+        }
+    </style>
 </head>
 
 <body>
     <?php include "./../../include/admin/user/header.php" ?>
     <main class="">
-        <div class="row h-100">
+        <div class="row h-100 userM0">
             <?php include "./../../include/admin/user/configurationProfile.php" ?>
-            <div class="col-9">
+            <div class="col-12 col-lg-9">
                 <div class="content">
                     <form action="./../../../php/admin/user.php" class="personalInformation" method="POST">
                         <legend class="p-0 m-1">Perfil</legend>
@@ -42,10 +67,10 @@ include './../../../php/validations/authorizedUser.php';
 
                         </div>
                         <div class="row">
-                            <div class="col-4">
+                            <div class="col-lg-4 col-12">
                                 <label for="">Datos personales:</label><br>
                             </div>
-                            <div class="col-8">
+                            <div class="col-lg-8 col-12">
                                 <label for="">Nombre<span>*</span></label><br>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text" id="basic-addon1"><i class="bi bi-person"></i></span>
@@ -100,10 +125,10 @@ include './../../../php/validations/authorizedUser.php';
                         </div>
                         <hr>
                         <div class="row">
-                            <div class="col-4">
+                            <div class="col-lg-4 col-12">
                                 <label for="">Datos de la cuenta:</label>
                             </div>
-                            <div class="col-8">
+                            <div class="col-lg-4 col-12">
                                 <label for="">Usuario<span>*</span></label><br>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text" id="basic-addon1"><i class="bi bi-person"></i></span>

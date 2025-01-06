@@ -88,7 +88,7 @@ try {
         <section class='theContent'>
             <section class='temaOneInformation'>
                 <span><b>" . $lessonsInformation["tema"][0] . " </b></span>
-                <div class='d-flex flex-direction-row gap-4 lessons'>
+                <div class='d-flex flex-direction-row gap-4 lessons flex-wrap'>
                     <div class='one p-1 my-3 " . validationFilter($arreglo_indexado[0]) . "'>
                         <a draggable='false' href='./moduleOne/topicOne/lesson1.php?statu=" . $arreglo_indexado[0] . " ' " . validationURL($arreglo_indexado[0]) . " 
                             title='" . $lessonsInformation["moreDetails"][0] . " '>
@@ -115,7 +115,7 @@ try {
             </section>
             <section class='temaTwoInformation'>
                 <span><b>" . $lessonsInformation["tema"][1] . " </b></span>
-                <div class='d-flex flex-direction-row gap-4 lessons'>
+                <div class='d-flex flex-direction-row gap-4 lessons flex-wrap'>
                     <div class='one p-1 my-3 " . validationFilter($arreglo_indexado[2]) . "'>
                         <a draggable='false' href='./moduleOne/topicTwo/lesson1.php?statu=" . $arreglo_indexado[2] . " ' " . validationURL($arreglo_indexado[2]) . " 
                             title='" . $lessonsInformation["moreDetails"][2] . " '>

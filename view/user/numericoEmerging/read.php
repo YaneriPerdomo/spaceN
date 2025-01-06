@@ -10,7 +10,7 @@ include './../../../php/validations/authorizedChild.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil | :3</title>
+    <title>Aprende | Espacio N </title>
     <link rel="stylesheet" href="../../../css/reset.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,7 +29,6 @@ include './../../../php/validations/authorizedChild.php';
     <link rel="stylesheet" href="../../../css/components/row.css">
     <link rel="stylesheet" href="../../../css/bootstrap/bootstrapMin.css">
     <link rel="stylesheet" href="../../../css/user/read.css">
-
 </head>
 
 <body>
@@ -37,8 +36,8 @@ include './../../../php/validations/authorizedChild.php';
     <?php include './../../include/user/header.php' ?>
 
     <main>
-        <div class="row h-100">
-            <div class="col-3 h-100">
+        <div class="row h-100 read">
+            <div class="col-3 d-lg-block d-none h-100">
                 <section class="historyChilds">
                     <h5>Recientes</h5>
                     <hr>
@@ -48,7 +47,7 @@ include './../../../php/validations/authorizedChild.php';
                     ?>
                 </section>
             </div>
-            <div class="col-6">
+            <div class="col-lg-6 col-12 classification-module-style">
                 <div>
                     <?php
                     include "../../../php/user/showEstatusLessons.php";
@@ -56,13 +55,13 @@ include './../../../php/validations/authorizedChild.php';
                     ?>
                 </div>
             </div>
-            <div class="col-3">
+            <div class="col-lg-3 col-12 classification-module-style">
                 <div>
                     <h4 class="clasificaciones">Clasificaciones actuales </h4>
                     <hr>
                     <?php
-                         include "../../../php/user/showTableCRead.php";
-                         showTableRead(2);
+                    include "../../../php/user/showTableCRead.php";
+                    showTableRead(2);
                     ?>
                 </div>
             </div>

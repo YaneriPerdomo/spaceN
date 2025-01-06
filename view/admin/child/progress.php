@@ -6,8 +6,8 @@ function showInformationChild()
 
     include '../../../php/connectionBD.php';
 
-     if ($pdo->errorCode() != 0) {
-         die("Error de conexión a la base de datos: " . $pdo->errorInfo()[2]);
+    if ($pdo->errorCode() != 0) {
+        die("Error de conexión a la base de datos: " . $pdo->errorInfo()[2]);
     }
     try {
 
@@ -63,6 +63,73 @@ function showInformationChild()
                 echo '';
                 break;
         }
+
+        $sqlCapacidades = "SELECT SUM(fallida) as F from estado_lecciones WHERE id_usuario = :id";
+        $queryCapacidades = $pdo->prepare($sqlCapacidades);
+        $queryCapacidades->bindParam('id', $id_child, PDO::PARAM_INT);
+        $queryCapacidades->execute();
+        $result = $queryCapacidades->fetch(PDO::FETCH_ASSOC);
+
+        $estados = [
+            null => "Aún no tenemos datos",
+            0 => 'EXCELENTE',
+            16 => 'BIEN',
+            41 => 'HAY QUE MEJORAR',
+            'default' => 'MUY MALO'
+        ];
+
+        $showStatuC = 'default';
+
+
+        foreach ($estados as $rango => $estado) {
+            if ($result['F'] <= $rango) {
+                $showStatuC = $estado;
+                break;
+            }
+        }
+
+        switch ($row["id_nivel_acceso"]) {
+            case '1':
+                $ability = '
+                       <h4 class="titleMyAbilities">Capacidad </h2>
+                       <div class="d-flex gap-2 containerMyAbilities">
+                            <div class="one">
+                                <div>
+                                    <i class="bi bi-list-ol fs-1"></i>
+                                </div>
+                                <span class="p-1">Pensamiento Numérico Inicial</span>
+                                <span class="resultMyAbilities">' . $showStatuC . '</span>
+                            </div>
+                       </div>';
+                break;
+            case '2':
+                $ability = '
+                       <h4 class="titleMyAbilities">Capacidad </h2>
+                       <div class="d-flex gap-2 containerMyAbilities">
+                            <div class="one">
+                                <div>
+                                    <i class="bi bi-list-ol fs-1"></i>
+                                </div>
+                                <span class="p-1">Descifrando la comprensión numérica</span>
+                                <span class="resultMyAbilities">' . $showStatuC . '</span>
+                            </div>
+                       </div>';
+                break;
+            case '3':
+                $ability = '
+                       <h4 class="titleMyAbilities">Capacidad </h2>
+                       <div class="d-flex gap-2 containerMyAbilities">
+                            <div class="one">
+                                <div>
+                                    <i class="bi bi-list-ol fs-1"></i>
+                                </div>
+                                <span class="p-1">Resolución de problemas numéricos</span>
+                                <span class="resultMyAbilities">' . $showStatuC . '</span>
+                            </div>
+                       </div>';
+                break;
+        }
+        ;
         list($ano, $mes, $dia) = explode("-", $row02["fecha_hora_creacion"]);
         $accountCreationDate = "$dia-$mes-$ano";
 
@@ -80,15 +147,15 @@ function showInformationChild()
 
         $gems = $row03["total_diamantes"];
         if ($row03["total_diamantes"] > 0) {
-            $countgem = "  <span>$gems </span>
+            $countgem = "  <span>$gems </span> <br>
                                 <span>Diamantes</span>
                             </span> ";
         } else {
-            $countgem = "  <span> $gems </span>
+            $countgem = "  <span> $gems </span><br>
                                 <span>Diamante</span>
                             </span> ";
         }
-        echo '<div class="d-flex align-items-center justify-content-between">';
+        echo '<div class="d-flex align-items-center justify-content-between flex-wrap">';
         echo "<div class=''>";
         echo "<h2 class='user m-0'> " . $row02["usuario"] . "</h1>";
         echo "<div class='informationUser'>";
@@ -108,7 +175,7 @@ function showInformationChild()
             <div>
                 <h4 class=" myProgress">PROGRESO</h4>
                 <div class="row ContainerProgress">
-                    <div class="col-4">
+                    <div class="col-sm-4 col-12">
                         <div class="container">
                             <div class="card">
                                 <div class="box">
@@ -122,7 +189,7 @@ function showInformationChild()
                                                 "            
                                                 ></circle>
                                             <div class="num">
-                                                <h2> ' . $row03["porcentaje"]  . '<span>%</span></h2>
+                                                <h2> ' . $row03["porcentaje"] . '<span>%</span></h2>
                                             </div>
                                         </svg>
                                     </div>
@@ -130,56 +197,33 @@ function showInformationChild()
                             </div>
                         </div>
                     </div>
-                    <div class="col-8">
-                        <div class="row">
+                    <div class="col-sm-8 col-12">
+                        <div class="row justify-content-sm-start justify-content-around">
                             <div class="col-4">
-                                <div class="d-flex gap-2 dem">
+                                <div class="d-flex gap-2 dem flex-wrap">
                                     <div>
                                         <i class="bi bi-gem fs-1"></i><br>
                                     </div><br>
                                     <div class="detallsGems">
-                                        '. $countgem.'
+                                        ' . $countgem . '
                                     </div>
                                 </div>
                             </div>
                             <div class="col-4 ">
-                                <div class="d-flex gap-2 lessons">
+                                <div class="d-flex gap-2 lessons flex-wrap">
                                     <div>
                                         <i class="bi bi-person-video3 fs-1"></i>
                                     </div>
                                     <div class="detallsLessons">
-                                        ' . $lecciones_completadas["lecciones_completadas"] . '/4
+                                        ' . $lecciones_completadas["lecciones_completadas"] . ' /4 <br>
                                         <span>Lecciones</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <hr>
-                        <section>
-                            <h4 class="titleMyAbilities">Capacidades </h2>
-                                <div class="d-flex gap-2 containerMyAbilities">
-                                    <div class="one">
-                                        <div>
-                                            <i class="bi bi-list-ol fs-1"></i>
-                                        </div>
-                                        <span class="p-1">Denominacion de numeros</span><br>
-                                        <span>Bien</span>
-                                    </div>
-                                    <div class="">
-                                        <div>
-                                            <i class="bi bi-list-ol fs-1"></i>
-                                        </div>
-                                        <span>Denominacion de numeros</span><br>
-                                        <span>Bien</span>
-                                    </div>
-                                    <div>
-                                        <div>
-                                            <i class="bi bi-list-ol fs-1"></i>
-                                        </div>
-                                        <span>Denominacion de numeros</span><br>
-                                        <span>Bien</span>
-                                    </div>
-                                </div>
+                        <section class="d-sm-block d-flex align-items-center flex-column">
+                            ' . $ability . '
                         </section>
                     </div>
                     <div>
@@ -188,6 +232,7 @@ function showInformationChild()
                 <div class="my-3 text-center">
                     <form action="../../../php/admin/reportProgressChild.php" method="POST">
                     <input type="hidden" name="id_nino" value="' . $id_child . '">
+                    
                         <input type="submit" class="btn btn-secondary mt-0 text-decoration-none"
                         value="Imprimir PDF" >
                     </form>
@@ -206,7 +251,7 @@ function showInformationChild()
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Progreso del usuario | Espacio N </title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">

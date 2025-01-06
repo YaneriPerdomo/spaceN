@@ -9,7 +9,7 @@ include './../../../php/validations/authorizedChild.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil | :3</title>
+    <title>Aprende | Espacio N </title>
     <link rel="stylesheet" href="../../../css/reset.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,6 +28,26 @@ include './../../../php/validations/authorizedChild.php';
     <link rel="stylesheet" href="../../../css/components/row.css">
     <link rel="stylesheet" href="../../../css/bootstrap/bootstrapMin.css">
     <link rel="stylesheet" href="../../../css/user/read.css">
+    <style>
+        @media screen and (max-width: 992px) {
+
+            .read {
+                flex-direction: column-reverse;
+                margin: 0 !important; 
+            }
+
+            .row {
+                height: auto !important;
+                gap: 1rem;
+            }
+
+            .lessons{
+                justify-content: center;
+            }
+        }
+
+
+    </style>
 </head>
 
 <body>
@@ -35,32 +55,32 @@ include './../../../php/validations/authorizedChild.php';
     <?php include './../../include/user/header.php' ?>
 
     <main>
-        <div class="row h-100">
-            <div class="col-3 h-100">
+        <div class="row h-100 read">
+            <div class="col-3 d-lg-block d-none h-100 ">
                 <section class="historyChilds">
                     <h5>Recientes</h5>
                     <hr>
                     <?php
-                        include "../../../php/user/showHistory.php";
-                        showHistorys(true);
+                    include "../../../php/user/showHistory.php";
+                    showHistorys(true);
                     ?>
                 </section>
             </div>
-            <div class="col-6">
+            <div class="col-lg-6 col-12 classification-module-style">
                 <div>
                     <?php
-                        include "../../../php/user/showEstatusLessons.php";
-                        showLessons(1);
+                    include "../../../php/user/showEstatusLessons.php";
+                    showLessons(1);
                     ?>
                 </div>
             </div>
-            <div class="col-3">
+            <div class="col-lg-3 col-12 classification-module-style">
                 <div>
                     <h4 class="clasificaciones">Clasificaciones actuales </h4>
                     <hr>
                     <?php
-                        include "../../../php/user/showTableCRead.php";
-                        showTableRead(1);
+                    include "../../../php/user/showTableCRead.php";
+                    showTableRead(1);
                     ?>
                 </div>
             </div>
@@ -77,5 +97,17 @@ include './../../../php/validations/authorizedChild.php';
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
     integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
     crossorigin="anonymous"></script>
+
+<script>
+    window.addEventListener('resize', e => {
+        if (window.innerWidth < 768) {
+            let $read = document.querySelector(".col-3");
+            $read.outerHTML = '';
+        } else {
+            // Apply desktop styles
+            document.getElementById('myImage').style.display = 'block';
+        }
+    });
+</script>
 
 </html>

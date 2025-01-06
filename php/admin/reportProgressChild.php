@@ -28,6 +28,12 @@ $queryProgress->bindParam("id_user", $id_user, PDO::PARAM_INT);
 $queryProgress->execute();
 $row03 = $queryProgress->fetch(PDO::FETCH_ASSOC);
 
+$sqlCapacidades = "SELECT SUM(fallida) as F from estado_lecciones WHERE id_usuario = :id";
+$queryCapacidades = $pdo->prepare($sqlCapacidades);
+$queryCapacidades->bindParam('id', $id_child, PDO::PARAM_INT);
+$queryCapacidades->execute();
+$result = $queryCapacidades->fetch(PDO::FETCH_ASSOC);
+
 $sqlCount = "SELECT COUNT(completado) as lecciones_completadas 
 FROM estado_lecciones 
 WHERE completado = 'completado' 
@@ -83,6 +89,56 @@ if ($row03["total_diamantes"] > 0) {
                                 <span>Diamante</span>
                             </span> ";
 }
+
+$estados = [
+    null => "Aún no tenemos datos",
+    0 => 'EXCELENTE',
+    16 => 'BIEN',
+    41 => 'HAY QUE MEJORAR',
+    'default' => 'MUY MALO'
+];
+
+$showStatuC = 'default';
+
+
+foreach ($estados as $rango => $estado) {
+    if ($result['F'] <= $rango) {
+        $showStatuC = $estado;
+        break;
+    }
+}
+
+switch ($row["id_nivel_acceso"]) {
+    case '1':
+        $ability = '
+            <section class="ability"> 
+                <h4 class="colorBlack"> Su capacidad</h2><br>
+               <span> Pensamiento Numerico Inicial </span> <br>
+              <span class="resultMyAbilities">' . $showStatuC . '</span>  
+            </section>
+                ';
+        break;
+    case '2':
+        $ability = '
+         <section class="ability"> 
+                <h4 > Su capacidad  </h2><br>
+               <span> Descifrando la comprensión numérica </span> <br>
+              <span class="resultMyAbilities">' . $showStatuC . '</span>   
+            </section>
+               ';
+        break;
+    case '3':
+        $ability = '
+         <section class="ability">
+                <h4 >Su capacidad </h2><br>
+               <span>Resolución de problemas numéricos </span> <br>
+              <span class="resultMyAbilities">' . $showStatuC . '</span>
+            </section>
+              ';
+        break;
+}
+
+$currentDate = date('Y-m-d');
 //convert png to data
 $gemImg = "data:image/jpg;base64," . base64_encode(file_get_contents("../../img/report/gem.png"));
 $lessonsCount = "data:image/jpg;base64," . base64_encode(file_get_contents("../../img/report/lessonCount.png"));
@@ -101,13 +157,20 @@ $html = '
         background: linear-gradient(0deg, rgba(145, 109, 242, 1) 35%, rgba(139, 103, 238, 1) 84%);
         }
 
-        .titleComplete {
-        color: #bba2ff;
-        }
+       
 
         .nivel {
         color: #d5c5ff;
         }
+
+        .ability{
+            background:rgb(255, 69, 100);
+            color:white;
+            border-radius: 0rem 0rem 1rem 1rem;
+
+        }
+
+       
 
         .myProgress {
             background: #ff7d45;
@@ -165,7 +228,6 @@ $html = '
             background:#cc2e2e;
             margin:0rem;
             color:white;
-            border-radius: 0rem 0rem 1rem 1rem;
         }
 
 
@@ -176,11 +238,15 @@ $html = '
             background: #2d2d2d;
         }
 
-        .informationG, h3, .detallsGems, .flexProgress {
+        .informationG, h3, .detallsGems, .flexProgress, h4 {
             text-align: center;
         }
         body {  
             background: #f2f2f2;
+        }
+
+        .colorGris {
+             color: #bba2ff;
         }
   </style>
 </head>
@@ -190,7 +256,7 @@ $html = '
             <section class="informationG"> 
                 <div class="User"> 
                     <h1> ' . $row02["usuario"] . '</h1>
-                    <span class="titleComplete"> ' . $row["nombre"] . ' ' . $row["apellido"] . '</span><br>
+                    <span class="colorGris"> ' . $row["nombre"] . ' ' . $row["apellido"] . '</span><br>
                     <span class="nivel"> Nivel de acceso: ' . $accessLevel . ' </span><br>
                     <span class="nivel"> Ultimo acceso: ' . $row["ultimo_acceso"] . ' </span>
                 </div>
@@ -220,6 +286,11 @@ $html = '
                             </span>
                         </div> 
                     </div>
+                    <div class="ability">
+                        ' . $ability . '
+                    </div>
+                    
+                   <small class="currentDate">  '. $currentDate.' </small>
                 </div>
             </section>
         </div>

@@ -10,7 +10,7 @@
 }
 
 
-body > header > main{
+body > main{
   text-align: center;
   display: flex;
   justify-content: center;

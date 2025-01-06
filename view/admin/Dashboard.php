@@ -9,7 +9,7 @@ include './../../php/validations/authorizedUser.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Panel administrativo | Espacio N  </title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -58,7 +58,7 @@ include './../../php/validations/authorizedUser.php';
 
     <?php include './../include/admin/header.php' ?>
     <main class="">
-        <div class="row h-100">
+        <div class="row h-100 m-0">
             <div class="col-12 col-lg-3 h-100">
                 <section class="historyChilds">
                     <h5>Recientes</h5>

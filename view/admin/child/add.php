@@ -8,7 +8,7 @@ include './../../../php/validations/authorizedUser.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Registrar usuario | Espacio N </title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -21,6 +21,33 @@ include './../../../php/validations/authorizedUser.php';
     <link rel="stylesheet" href="../../../css/components/content.css">
     <link rel="stylesheet" href="../../../css/components/validation.css">
 
+    <style>
+         @media screen and (max-width: 992px) {
+            .col-lg-3>.content {
+                height: 200px !important;
+                margin-bottom: 1rem !important;
+            }
+
+            .col-lg-3 {
+                height: 200px !important;
+            }
+
+            .row {
+                height: auto !important;
+                gap: 1rem;
+            }
+
+             
+
+            
+            [type="text"] , select, [type="password"]{
+                max-width: 90% !important;
+                }
+        .btnFlexEnd{
+            justify-content: center !important;  
+        }
+        }
+    </style>
 </head>
 
 <body>
@@ -44,10 +71,10 @@ include './../../../php/validations/authorizedUser.php';
                 <input type="hidden" value="<?php echo $_SESSION["id_profesional"]; ?>">
                 <input type="hidden" name="valueFunction" value="add">
                 <div class="row">
-                    <div class="col-4">
+                    <div class="col-lg-4 col-12">
                         <label for="">Datos personales:</label><br>
                     </div>
-                    <div class="col-8">
+                    <div class="col-lg-8 col-12">
                         <label for="">Nombre<span>*</span></label><br>
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="basic-addon1"><i class="bi bi-person"></i></span>
@@ -85,10 +112,10 @@ include './../../../php/validations/authorizedUser.php';
                 </div>
                 <hr>
                 <div class="row">
-                    <div class="col-4">
+                    <div class="col-lg-4 col-12">
                         <label for="">Datos para la plataforma:</label><br>
                     </div>
-                    <div class="col-8">
+                    <div class="col-lg-8 col-12">
                         <label for="">Nombre de usuario<span>*</span></label><br>
                         <small>Debe tener entre 6 y 10 caracteres. </small>
                         <div class="input-group mb-3">
