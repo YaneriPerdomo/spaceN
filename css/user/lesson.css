@@ -10,13 +10,13 @@
   flex-grow: 2;
 }
 
-
-body > main{
+body>main {
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 .time,
 .timeResult {
   border-radius: 0.5rem;
@@ -34,15 +34,15 @@ body > main{
   filter: drop-shadow(2px 3px #222);
 }
 
-
 .pause {
   background: #cecece !important;
   outline-color: #cecece !important;
   outline-offset: none !important;
   transition: all 1s;
-  color:rgb(47, 47, 47);
+  color: rgb(47, 47, 47);
   transform: perspective(5rem) scale(1);
 }
+
 .porcentage,
 .porcentageResult {
   outline-color: #cc673b;
@@ -96,7 +96,7 @@ body > main{
   color: #3f8a3d;
 }
 
-.Back > button {
+.Back>button {
   background: none;
 }
 
@@ -125,12 +125,12 @@ body > main{
   color: white;
 }
 
-.gem > div > span,
-.time > div > span,
-.porcentage > div > span,
-.porcentageResult > div > span,
-.gemsResult > div > span,
-.timeResult > div > span {
+.gem>div>span,
+.time>div>span,
+.porcentage>div>span,
+.porcentageResult>div>span,
+.gemsResult>div>span,
+.timeResult>div>span {
   padding-right: 1rem;
 }
 
@@ -140,14 +140,12 @@ body > main{
   background: #9571f9;
   transition: all 0.5s;
   position: relative;
-  background-image: linear-gradient(
-    45deg,
-    rgb(121, 198, 12) 30%,
-    rgb(107 175 11) 30% 50%,
-    rgb(121, 198, 12) 50% 60%,
-    rgb(107 175 11) 60% 65%,
-    rgb(121, 198, 12) 55% 100%
-  );
+  background-image: linear-gradient(45deg,
+      rgb(121, 198, 12) 30%,
+      rgb(107 175 11) 30% 50%,
+      rgb(121, 198, 12) 50% 60%,
+      rgb(107 175 11) 60% 65%,
+      rgb(121, 198, 12) 55% 100%);
   background: var(--colorHF);
 }
 
@@ -173,7 +171,7 @@ main {
   flex-grow: 2;
 }
 
-main > div {
+main>div {
   max-width: 1000px;
   min-width: 100px;
   max-height: 700px;
@@ -240,7 +238,7 @@ main > div {
   }
 }
 
-.Back > button {
+.Back>button {
   border: none;
 }
 
@@ -260,7 +258,7 @@ main > div {
   border: 0rem;
 }
 
-.containerBack > div > div > div > p {
+.containerBack>div>div>div>p {
   padding: 0.5rem;
   margin: 0rem;
 }
@@ -334,7 +332,7 @@ main > div {
   color: white;
 }
 
-.guide > button {
+.guide>button {
   background: none;
   border: none;
   color: white;
@@ -344,7 +342,6 @@ h1 {
   color: white;
   font-weight: bold;
 }
-
 
 .cuadroAzul {
   cursor: pointer;
@@ -394,7 +391,7 @@ h1 {
   flex-direction: row;
 }
 
-.operations{
+.operations {
   max-width: 600px;
 }
 
@@ -479,7 +476,9 @@ h1 {
 
 /*Juego */
 
-.ButtonsNum > button, select, .ButtonsNum2 > button {
+.ButtonsNum>button,
+select,
+.ButtonsNum2>button {
   background: #3f8ddf;
   border-radius: 100%;
   border-radius: 0.5rem;
@@ -497,15 +496,16 @@ h1 {
   filter: drop-shadow(2px 3px #222);
 }
 
-
-.ButtonsNum2{
+.ButtonsNum2 {
   justify-content: center;
   align-content: center;
   display: flex;
   gap: 1rem;
 }
 
-.ButtonsNum > button:hover, select:hover, .ButtonsNum2 > button:hover {
+.ButtonsNum>button:hover,
+select:hover,
+.ButtonsNum2>button:hover {
   background: #3f8ddf;
 
   outline-color: #3f8ddf;
@@ -517,7 +517,7 @@ h1 {
   transition: background 0.5s, outline-color 0.5s;
 }
 
-.showNumber > strong {
+.showNumber>strong {
   cursor: pointer;
   display: flex;
   flex-direction: row-reverse;
@@ -574,7 +574,7 @@ h1 {
   outline-color: #d55252 !important;
 }
 
-.ButtonsNum > button > i {
+.ButtonsNum>button>i {
   background: none;
   padding: 0rem;
   border-radius: none;
@@ -583,6 +583,7 @@ h1 {
 .contentTableC {
   background: #d2c2ff;
 }
+
 .contentTableC td {
   padding: 0.5rem;
 }
@@ -606,7 +607,7 @@ h4 {
   border: solid 1px #e8d8ff;
 }
 
-.ButtonsNum > div {
+.ButtonsNum>div {
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -709,7 +710,7 @@ main {
   background: rgb(32, 32, 32);
 }
 
-.modal-body > p {
+.modal-body>p {
   padding: 0.5rem;
   margin: 0rem;
 }
@@ -743,7 +744,7 @@ main {
   align-items: center;
 }
 
-.FromOneToThree > strong {
+.FromOneToThree>strong {
   background: none;
   padding: 2rem;
   border-radius: 100%;
@@ -759,7 +760,7 @@ main {
   width: 100px;
 }
 
-.FromOneToThree > strong > h2 {
+.FromOneToThree>strong>h2 {
   filter: drop-shadow(2px 2px #7a5bd2);
   font-weight: bold;
 }
@@ -836,23 +837,31 @@ main {
   transform: perspective(5rem) scale(1.1);
 }
 
-   
+.frac {
+  display: flex;
+  flex-direction: column;
+}
+
+.fractionShow  > strong > span > img{
+  width: 150px;
+}
+
 @media screen and (max-width: 768px) {
-  .activityContainer{
-      justify-content: center;
+  .activityContainer {
+    justify-content: center;
   }
 }
 
 @media screen and (max-width: 576px) {
-  .objetivo{
-      display: none;
-  }
-  
-  .detalls{
-      width: auto;
+  .objetivo {
+    display: none;
   }
 
-  main > div{
-      max-height: none;
+  .detalls {
+    width: auto;
+  }
+
+  main>div {
+    max-height: none;
   }
 }

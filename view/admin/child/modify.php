@@ -79,7 +79,7 @@ function showChild()
         ;
         echo "<div class='row'>";
         echo "<div class='col-lg-4 col-12'>";
-        echo "<label for=''>Datos personales:</label><br>";
+        echo "<label for='' class='colorPurple'>Datos personales:</label><br>";
         echo "</div>";
         echo "<div class='col-lg-8 col-12'>";
         echo "<input type='hidden' name='id_user' value = '" . $row["usuarios_id_usuario"] . "'>";
@@ -104,7 +104,7 @@ function showChild()
         echo "</div></div><hr>";
         echo "<div class='row'>";
         echo "<div class='col-lg-4 col-12'>";
-        echo "<label for=''>Datos para la plataforma:</label><br>";
+        echo "<label for='' class='colorPurple'>Datos para la plataforma:</label><br>";
         echo "</div>";
         echo "<div class='col-lg-8 col-12'>";
         echo "<label for=''>Nombre de usuario<span>*</span></label><br>";
@@ -223,7 +223,7 @@ function showChild()
                 repellat
                 voluptas adipisci, ut omnis a deserunt, distinctio vitae maxime, vel nam quos? Ad, labore recusandae!
             </p>
-            <div class="validations">
+            <div class="validations fw-bold text-center">
                 <span class="one"></span>
                 <span class="two"></span>
                 <span class="thren"></span>

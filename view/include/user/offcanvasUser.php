@@ -20,12 +20,12 @@ function notificationOffcanvas ()
 
         if ($query->rowCount() > 0) {
             echo '<a href="./notification.php">
-            <i class="bi bi-filetype-pdf"></i>
+           <i class="bi bi-bell"></i>
             Notificaciones <i class="bi bi-bell" style="color: rgb(47,47,47);"></i>
         </a>';
         } else {
             echo '<a href="./notification.php">
-        <i class="bi bi-filetype-pdf"></i>
+       <i class="bi bi-bell"></i>
         Notificaciones 
     </a>';
         }
@@ -65,8 +65,8 @@ function notificationOffcanvas ()
     <hr style="margin:0.1rem">
     <div class="offcanvas-body">
         <a href="./profile.php">
-            <i class="bi bi-person"></i>
-            Tu Perfil
+        <i class="bi bi-person"></i>
+            Tu perfil
         </a>
         <?php
         notificationOffcanvas();

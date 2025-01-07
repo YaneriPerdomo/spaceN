@@ -17,32 +17,6 @@ include './../../../php/validations/authorizedUser.php';
     <link rel="stylesheet" href="../../../css/components/semanticTag.css">
     <link rel="stylesheet" href="../../../css/components/validation.css">
     <link rel="stylesheet" href="../../../css/admin/profile.css">
-
-    <style>
-        @media screen and (max-width: 992px) {
-            .col-lg-3>.content {
-                height: 200px !important;
-                margin-bottom: 1rem !important;
-            }
-
-            .col-lg-3 {
-                height: 200px !important;
-            }
-
-            .row {
-                height: auto !important;
-                gap: 1rem;
-            }
-
-            main > .userM0{
-                margin: 0 !important;
-            }
-
-            [type="text"] , select{
-  max-width: 90% !important;
-}
-        }
-    </style>
 </head>
 
 <body>
@@ -126,7 +100,7 @@ include './../../../php/validations/authorizedUser.php';
                         <hr>
                         <div class="row">
                             <div class="col-lg-4 col-12">
-                                <label for="">Datos de la cuenta:</label>
+                                <label for="" class="colorPurple">Datos de la cuenta:</label>
                             </div>
                             <div class="col-lg-4 col-12">
                                 <label for="">Usuario<span>*</span></label><br>

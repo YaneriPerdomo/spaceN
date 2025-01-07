@@ -24,13 +24,6 @@ include './../../../../../php/connectionBD.php';
     <link rel="stylesheet" href="../../../../../css/admin/dashboard.css">
     <link rel="stylesheet" href="../../../../../css/components/row.css">
     <link rel="stylesheet" href="../../../../../css/user/lesson.css">
-
-    <style>
-        .frac {
-            display: flex;
-            flex-direction: column;
-        }
-    </style>
 </head>
 
 <body>
@@ -79,7 +72,7 @@ include './../../../../../php/connectionBD.php';
                 <div class="row w-100 h-100">
                     <div class="col-12 align-items-center justify-content-center d-flex">
                         <div class="containerPlayer align-items-center justify-content-center">
-                            <div class="showNumber">
+                            <div class="showNumber fractionShow">
                                 <strong style="flex-direction: row;">
                                     <span><img src="" alt=""></span>
                                 </strong>

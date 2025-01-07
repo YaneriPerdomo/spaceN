@@ -61,7 +61,7 @@ include './../../../php/validations/authorizedUser.php';
                 los desafíos de las matemáticas! Nuestra plataforma de aprendizaje ofrece
                 ejercicios personalizados <em>segun sus necesidades.</em>
             </p>
-            <div class="validations text-center">
+            <div class="validations text-center fw-bold">
                 <span class="one"></span>
                 <span class="two"></span>
                 <span class="thren"></span>
@@ -72,7 +72,7 @@ include './../../../php/validations/authorizedUser.php';
                 <input type="hidden" name="valueFunction" value="add">
                 <div class="row">
                     <div class="col-lg-4 col-12">
-                        <label for="">Datos personales:</label><br>
+                        <label for="" class="colorPurple">Datos personales:</label><br>
                     </div>
                     <div class="col-lg-8 col-12">
                         <label for="">Nombre<span>*</span></label><br>
@@ -113,7 +113,7 @@ include './../../../php/validations/authorizedUser.php';
                 <hr>
                 <div class="row">
                     <div class="col-lg-4 col-12">
-                        <label for="">Datos para la plataforma:</label><br>
+                        <label for="" class="colorPurple">Datos para la plataforma:</label><br>
                     </div>
                     <div class="col-lg-8 col-12">
                         <label for="">Nombre de usuario<span>*</span></label><br>

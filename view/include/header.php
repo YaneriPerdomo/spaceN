@@ -7,10 +7,11 @@
                 <img src="./img/burgerMenu.png" class="img-fluid burgerMenu" alt="">
             </a>
             <section class="logo">
-                <figure>
-                    <img src="" alt="">
-                    <span>Logo</span>
+               <a href="./index.php">
+               <figure class="m-0">
+                    <img src="./img/logo.png"  class="heightLogo" alt="">
                 </figure>
+               </a>
             </section>
         </section>
         <nav class="starNow flexComun">

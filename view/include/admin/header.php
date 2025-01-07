@@ -4,10 +4,11 @@
         <img src="../../img/burgerMenu.png" class="img-fluid burgerMenu" alt="">
     </a>
     <section class="logo">
-        <figure>
-            <img src="" alt="">
+        <figure class="m-0">
+            <img src="./../../img/logo.png" class="heightLogo" alt="">
         </figure>
     </section>
+
     <section class="searchChilds ">
         <div class="input-group  OpenSearchChilds">
             <span class="input-group-text icoSearch" id="basic-addon1">
@@ -19,7 +20,7 @@
     </section>
     <section class="userPerfil">
         <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
-            aria-controls="offcanvasRight"><img src="../../img/for/representative.png" class="img-fluid userImg" alt="">
+            aria-controls="offcanvasRight"><img src="../../img/admin/childs-and-teacher.png" class="img-fluid userImg" alt="">
         </button>
     </section>
 </header>

@@ -168,7 +168,7 @@ function showInformationChild()
                 </div>";
         echo "<div class=''>";
         echo "<label for='' data-checked='true'>
-            <img src='" . $gender . "' alt=''>
+            <img src='" . $gender . "' alt='' style='height: 100px;'>
           </label>";
         echo "</div>";
         echo '  </div>

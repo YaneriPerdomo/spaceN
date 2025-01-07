@@ -49,26 +49,7 @@
 
     
    
-    <script>
-        function scrollYy() {
-            document.addEventListener("scroll", (e) => {
-                let ButtonTopScroll = document.querySelector(".ButtonTopScroll");
-                if (scrollY > 300) {
-                    ButtonTopScroll.classList.remove("hidden");
-                }
-                else {
-                    ButtonTopScroll.classList.add("hidden");
-                }
-                ButtonTopScroll.addEventListener("click", (e) => {
-                    window.scrollTo({
-                        behavior: "smooth",
-                        top: 0,
-                    });
-                });
-            });
-        }
-        scrollYy()
-    </script>
+ 
 </body>
 <script src="./js/helpers/bootstrap.js"></script>
 

@@ -1,10 +1,8 @@
 
 <div class="offcanvas offcanvas-start" tabindex="-1" id="offCanvasSpaceN" aria-labelledby="offCanvasSpaceN">
     <div class="offcanvas-header">
-        <div class="d-flex">
-            <div class="d-flex">
-                <img src="../../../img/for/representative.png" class="img-fluid LogoImg" alt="">
-            </div>
+        <div class="d-flex  ">
+            <img src="./../../../img/logo.png" class="img-fluid offImgLogo" alt="">
         </div>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
@@ -16,7 +14,7 @@
         </a>
         <a href="./../history.php">
             <i class="bi bi-arrow-clockwise"></i>
-            History
+            Historial
         </a>
         <a href="./../reports.php">
             <i class="bi bi-filetype-pdf"></i>

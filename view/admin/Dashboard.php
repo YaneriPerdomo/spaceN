@@ -76,7 +76,7 @@ include './../../php/validations/authorizedUser.php';
                         <h1 class="m-2">Panel administrativo</h1>
                         <div class="containerAddChilds">
                             <div>
-                                <a href="./child/add.php">Agregar niño</a>
+                                <a href="./child/add.php">Agregar usuario</a>
                             </div>
                         </div>
                     </section>

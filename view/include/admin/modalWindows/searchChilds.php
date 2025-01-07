@@ -3,7 +3,7 @@
             <div class="modal-header">
                 <div class="text-center w-100">
                     <h1 class="modal-title modalTitleSearch fs-5 text-center" id="exampleModalLabel">
-                        <b>Buscar niños...</b>
+                        <b>Buscar usuarios...</b>
                     </h1>
                 </div>
             </div>

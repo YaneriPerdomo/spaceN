@@ -18,27 +18,6 @@
     <link rel="stylesheet" href="../../../css/components/semanticTag.css">
     <link rel="stylesheet" href="../../../css/admin/profile.css">
     <link rel="stylesheet" href="../../../css/components/modalWindows.css">
- <style>
-     @media screen and (max-width: 992px) {
-            .col-lg-3>.content {
-                height: 200px !important;
-                margin-bottom: 1rem !important;
-            }
-
-            .col-lg-3 {
-                height: 200px !important;
-            }
-
-            .row {
-                height: auto !important;
-                gap: 1rem;
-            }
-
-            main > .userM0{
-                margin: 0 !important;
-            }
-        }
- </style>
 </head>
 
 <body>

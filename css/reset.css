@@ -21,11 +21,27 @@ align-items: center;
 gap:1rem;
 }
 
+.offImgLogo{
+  height: 36px !important;
+  clip-path: none !important;
+  width: auto !important;
+
+}
 
 .colorOrange{
   color: var(--colorOrange);
 }
 
+.heightLogo{
+  height: 50px;
+  clip-path: none !important;
+  width: auto !important;
+
+}
+
+header{
+  height: 71px;
+}
 /* Document
    ========================================================================== */
 

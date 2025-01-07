@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="../css/reponsive.css">
     <link rel="stylesheet" href="../css/indexLoginCreate.css">
     <link rel="stylesheet" href="../css/components/validation.css">
+    <link rel="stylesheet" href="../css/components/offcanvas.css">
 </head>
 
 <body>
@@ -29,7 +30,7 @@
                             <span style="color:var(--colorOrange)">sesion</span>
                             </b>
                         <br>
-                        <div class="validations">
+                        <div class="validations fw-bold">
                             <span></span>
                         </div>
                         </div>
@@ -61,7 +62,12 @@
             </section>
         </div>
     </main>
-    <?php include  './include/footer.php';?>
+  
+
+    <?php 
+         include "./include/offcanvasLoginCreateMore.php";
+        include  './include/footer.php';
+    ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">

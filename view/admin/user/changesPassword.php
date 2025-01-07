@@ -17,35 +17,6 @@ include './../../../php/validations/authorizedUser.php';
     <link rel="stylesheet" href="../../../css/components/semanticTag.css">
     <link rel="stylesheet" href="../../../css/components/validation.css">
     <link rel="stylesheet" href="../../../css/admin/profile.css">
-    <style>
-         @media screen and (max-width: 992px) {
-            .col-lg-3>.content {
-                height: 200px !important;
-                margin-bottom: 1rem !important;
-            }
-
-            .col-lg-3 {
-                height: 200px !important;
-            }
-
-            .row {
-                height: auto !important;
-                gap: 1rem;
-            }
-
-            main > .userM0{
-                margin: 0 !important;
-            }
-
-            
-            [type="text"] , select, [type="password"]{
-                max-width: 90% !important;
-                }
-        .btnFlexEnd{
-            justify-content: center !important;  
-        }
-        }
-    </style>
 </head>
 
 <body>
@@ -63,7 +34,7 @@ include './../../../php/validations/authorizedUser.php';
                         <p>Actualiza tu contraseña de forma regular para mantener tu cuenta segura. Puedes hacerlo en
                             cualquier momento, con solo unos clics.</p>
                         <hr>
-                        <div class="validations">
+                        <div class="validations fw-bold">
                             <span class="one"></span>
                             <span class="two"></span>
                         </div>
