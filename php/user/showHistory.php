@@ -7,7 +7,8 @@ function showHistorys($showPageLearn = false)
         echo "Error de conexión: " . $pdo->errorInfo()[2];
     }
     try {
-        $showPageLearn == true ? $sqlHistorial = "SELECT mensaje, fecha_hora from historiales WHERE id_nino = :id ORDER BY fecha_hora DESC LIMIT 3 " : $sqlHistorial = "SELECT mensaje, fecha_hora from historiales WHERE id_nino = :id ";
+        $showPageLearn == true ? $sqlHistorial = "SELECT mensaje, fecha_hora from historiales WHERE id_nino = :id ORDER BY fecha_hora DESC LIMIT 3 " 
+        : $sqlHistorial = "SELECT mensaje, fecha_hora from historiales WHERE id_nino = :id ORDER BY fecha_hora DESC  ";
 
 
         $id_child = $_SESSION["id_Child"];

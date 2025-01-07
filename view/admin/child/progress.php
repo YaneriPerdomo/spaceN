@@ -199,7 +199,7 @@ function showInformationChild()
                     </div>
                     <div class="col-sm-8 col-12">
                         <div class="row justify-content-sm-start justify-content-around">
-                            <div class="col-4">
+                            <div class="col-6">
                                 <div class="d-flex gap-2 dem flex-wrap">
                                     <div>
                                         <i class="bi bi-gem fs-1"></i><br>
@@ -209,7 +209,7 @@ function showInformationChild()
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-4 ">
+                            <div class="col-6 ">
                                 <div class="d-flex gap-2 lessons flex-wrap">
                                     <div>
                                         <i class="bi bi-person-video3 fs-1"></i>

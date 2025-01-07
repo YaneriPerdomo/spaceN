@@ -2,7 +2,8 @@
   display: flex;
   align-items: center;
   margin: 0.5rem 1rem;
-  gap: 3rem;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .progress {
@@ -311,6 +312,7 @@ main > div {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .imgWelcome {
@@ -832,4 +834,25 @@ main {
   outline-color: rgb(26 139 87) !important;
   transition: all 1s;
   transform: perspective(5rem) scale(1.1);
+}
+
+   
+@media screen and (max-width: 768px) {
+  .activityContainer{
+      justify-content: center;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .objetivo{
+      display: none;
+  }
+  
+  .detalls{
+      width: auto;
+  }
+
+  main > div{
+      max-height: none;
+  }
 }

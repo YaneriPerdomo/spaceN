@@ -24,6 +24,7 @@ include './../../../../../php/connectionBD.php';
     <link rel="stylesheet" href="../../../../../css/admin/dashboard.css">
     <link rel="stylesheet" href="../../../../../css/components/row.css">
     <link rel="stylesheet" href="../../../../../css/user/lesson.css">
+    
 </head>
 
 <body>
