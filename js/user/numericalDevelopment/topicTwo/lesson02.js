@@ -7,8 +7,6 @@ import {
 
     searchParams,
     $endOfLessonMp3,
-    $incorrectMp3,
-    $correctMp3,
     $beginMp3,
     $gemsResult,
     $porcentageResult,
@@ -19,14 +17,14 @@ import {
     $containerGuideModal,
     $begin,
     $GuidaContent,
-    $containerPlayer,
     $clickMp3,
     FromOneToThree,
     voiceExercise,
     $showNumberStrong,
     fraccion2,
     $ButtonsNum,
-    $buttonsNumImg,
+    reproducirSonido,
+    actualizarPuntaje,
 } from "../../../helpers/lessons.js";
 
 let count = 0;
@@ -154,18 +152,19 @@ function randomNumber10() {
 
 }
 setTimeout(() => {
-    $begin.removeChild($begin.children[7]);
+    $begin.removeChild($begin.children[6]);
 }, 2000);
 
 
 document.addEventListener("click", async (e) => {
 
-    if (e.target.matches(".ButtonsNum > button > img")) {
+    if (e.target.matches(".ButtonsNum > button")) {
         count++;
         if (e.target.getAttribute('data-answer') == 'true') {
             acceptedPoints++;
-            $correctMp3.play();
-            $gem.innerHTML = `${1 + Number.parseInt($gem.textContent)}`;
+            reproducirSonido(true)
+            actualizarPuntaje();
+            
             e.target.classList.add("correct");
             $ButtonsNum.forEach((element) => {
                 element.disabled = true;
@@ -182,20 +181,23 @@ document.addEventListener("click", async (e) => {
         } else {
             failed++;
             e.target.classList.add("incorrect");
-            $correctMp3.pause();
-            $incorrectMp3.play();
-            for(let i = 0; i < $buttonsNumImg.length; i++){
-                $ButtonsNum[i].disabled = true;
-                if($buttonsNumImg[i].getAttribute("data-answer") == 'true'){
-                    $ButtonsNum[i].classList("correct");
+            reproducirSonido(false)
+            $ButtonsNum.forEach(element => {
+                element.disabled = true;
+                if (element.getAttribute('data-answer') == 'true') {
+                    element.classList.add("correct");
+                    setTimeout(() => {
+                        element.classList.remove("correct");
+                    }, 2000);
                 }
-            }
+            });
             $showNumberStrong.classList.add("incorrect")
             setTimeout(() => {
                 $ButtonsNum.forEach((element) => {
                     element.removeAttribute("disabled");
                     element.classList.remove("correct")
                 });
+               
                 randomNumber10();
                 $showNumberStrong.classList.remove("incorrect")
                 e.target.classList.remove("incorrect");

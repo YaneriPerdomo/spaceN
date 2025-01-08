@@ -7,8 +7,6 @@ import {
     $ButtonsNum,
     searchParams,
     $endOfLessonMp3,
-    $incorrectMp3,
-    $correctMp3,
     $beginMp3,
     $gemsResult,
     $porcentageResult,
@@ -30,6 +28,8 @@ import {
     $showNumberStrong,
     $ButtonsNum2,
     $ButtonsNumMain,
+    reproducirSonido,
+    actualizarPuntaje,
 } from "../../../helpers/lessons.js";
 
 let count = 0;
@@ -299,8 +299,8 @@ document.addEventListener("change", async (e) => {
     count++;
     if (e.target.value == e.target.getAttribute("data-answer")) {
         acceptedPoints++;
-        $correctMp3.play();
-        $gem.innerHTML = `${1 + Number.parseInt($gem.textContent)}`;
+        actualizarPuntaje()
+        reproducirSonido(true)
         e.target.classList.add("correct");
         e.target.disabled = true;
     } else {
@@ -310,7 +310,7 @@ document.addEventListener("change", async (e) => {
         });
         e.target.disabled = true;
         await e.target.classList.add("incorrect");
-        $incorrectMp3.play();
+        reproducirSonido(false)
         setTimeout(async () => {
             $selects.forEach((el) => {
                 el.removeAttribute("disabled");
@@ -368,8 +368,8 @@ document.addEventListener("click", async (e) => {
         console.log(1);
         if (`${e.target.textContent}` == `${$containerPlayer.getAttribute("data-num")}`) {
             acceptedPoints++;
-            $correctMp3.play();
-            $gem.innerHTML = `${1 + Number.parseInt($gem.textContent)}`;
+            reproducirSonido(true)
+            actualizarPuntaje()
             e.target.classList.add("correct");
             $ButtonsNum.forEach((element) => {
                 element.disabled = true;
@@ -387,8 +387,7 @@ document.addEventListener("click", async (e) => {
         } else {
             failed++;
             e.target.classList.add("incorrect");
-            $correctMp3.pause();
-            $incorrectMp3.play();
+            reproducirSonido(false)
             $ButtonsNum.forEach(element => {
                 element.disabled = true;
                 if (element.textContent == $containerPlayer.getAttribute("data-num")) {
@@ -434,8 +433,9 @@ document.addEventListener("click", async (e) => {
         count++;
         if (`${e.target.textContent}` == `${$containerPlayer.getAttribute("data-num")}`) {
             acceptedPoints++;
-            $correctMp3.play();
-            $gem.innerHTML = `${1 + Number.parseInt($gem.textContent)}`;
+          
+            reproducirSonido(true)
+            actualizarPuntaje()
             e.target.classList.add("correct");
             $ButtonsNum2.forEach((element) => {
                 element.disabled = true;
@@ -452,8 +452,7 @@ document.addEventListener("click", async (e) => {
         } else {
             failed++;
             e.target.classList.add("incorrect");
-            $correctMp3.pause();
-            $incorrectMp3.play();
+            reproducirSonido(false)
             $ButtonsNum2.forEach(element => {
                 element.disabled = true;
                 if (element.textContent == $containerPlayer.getAttribute("data-num")) {

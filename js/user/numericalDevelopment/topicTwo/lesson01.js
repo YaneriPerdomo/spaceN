@@ -7,8 +7,6 @@ import {
     $ButtonsNum,
     searchParams,
     $endOfLessonMp3,
-    $incorrectMp3,
-    $correctMp3,
     $beginMp3,
     $gemsResult,
     $porcentageResult,
@@ -19,18 +17,13 @@ import {
     $containerGuideModal,
     $begin,
     $GuidaContent,
-    $containerPlayer,
     $clickMp3,
     FromOneToThree,
     voiceExercise,
-    $showNumberSpan,
-    countUp,
-    $selects,
-    advancedOperations1,
     $showNumberStrong,
-    $ButtonsNum2,
-    $ButtonsNumMain,
     fractions,
+    actualizarPuntaje,
+    reproducirSonido,
 } from "../../../helpers/lessons.js";
 
 let count = 0;
@@ -148,8 +141,8 @@ document.addEventListener("click", async (e) => {
         count++;
         if (e.target.getAttribute('data-answer') == 'true') {
             acceptedPoints++;
-            $correctMp3.play();
-            $gem.innerHTML = `${1 + Number.parseInt($gem.textContent)}`;
+            actualizarPuntaje()
+            reproducirSonido(true)
             e.target.classList.add("correct");
             $ButtonsNum.forEach((element) => {
                 element.disabled = true;
@@ -166,8 +159,7 @@ document.addEventListener("click", async (e) => {
         } else {
             failed++;
             e.target.classList.add("incorrect");
-            $correctMp3.pause();
-            $incorrectMp3.play();
+            reproducirSonido(false)
             $ButtonsNum.forEach(element => {
                 element.disabled = true;
                 if (element.getAttribute('data-answer') == 'true') {

@@ -7,8 +7,6 @@ import {
     $ButtonsNum,
     searchParams,
     $endOfLessonMp3,
-    $incorrectMp3,
-    $correctMp3,
     $beginMp3,
     $gemsResult,
     $porcentageResult,
@@ -24,12 +22,10 @@ import {
     FromOneToThree,
     voiceExercise,
     $showNumberSpan,
-    countUp,
-    $selects,
     advancedOperations1,
     $showNumberStrong,
-    $ButtonsNum2,
-    $ButtonsNumMain,
+    actualizarPuntaje,
+    reproducirSonido,
 } from "../../../helpers/lessons.js";
 
 let count = 0;
@@ -426,8 +422,8 @@ document.addEventListener("click", async (e) => {
         console.log(1);
         if (`${e.target.textContent}` == `${$containerPlayer.getAttribute("data-num")}`) {
             acceptedPoints++;
-            $correctMp3.play();
-            $gem.innerHTML = `${1 + Number.parseInt($gem.textContent)}`;
+            reproducirSonido(true)
+            actualizarPuntaje()
             e.target.classList.add("correct");
             $ButtonsNum.forEach((element) => {
                 element.disabled = true;
@@ -445,8 +441,7 @@ document.addEventListener("click", async (e) => {
         } else {
             failed++;
             e.target.classList.add("incorrect");
-            $correctMp3.pause();
-            $incorrectMp3.play();
+            reproducirSonido(false)
             $ButtonsNum.forEach(element => {
                 element.disabled = true;
                 if (element.textContent == $containerPlayer.getAttribute("data-num")) {

@@ -307,12 +307,24 @@ export function fraccion2(arrayMain, arrayImg, answer){
         c++;
         $ButtonsNumImg[i].src = arrayImg[i];
         if(c == answer){
-            $ButtonsNumImg[i].setAttribute("data-answer", true)
+            $ButtonsNum[i].setAttribute("data-answer", true)
             continue;
         }
-        $ButtonsNumImg[i].setAttribute("data-answer", false)
+        $ButtonsNum[i].setAttribute("data-answer", false)
     }
     for(let i = 0; i < $fracsSpan.length ; i++){
         $fracsSpan[i].innerHTML = arrayMain[i];
     }
+}
+
+export function reproducirSonido(esCorrecta = true) {
+    return esCorrecta ? $correctMp3.play() : $incorrectMp3.play();
+}
+
+export function actualizarPuntaje() {
+    $gem.innerHTML = `${1 + Number.parseInt($gem.textContent)}`;
+}
+
+export function mostrarFeedback(esCorrecta) {
+    // ... lógica para mostrar la clase "correct" o "incorrect"
 }

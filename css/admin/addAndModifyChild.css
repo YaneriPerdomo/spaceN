@@ -63,3 +63,32 @@ label > span{
 .selectionGender{
     padding-top: 0.5rem;
 }
+
+@media screen and (max-width: 992px) {
+    .col-lg-3>.content {
+        height: 200px !important;
+        margin-bottom: 1rem !important;
+    }
+
+    .col-lg-3 {
+        height: 200px !important;
+    }
+
+    .row {
+        height: auto !important;
+        gap: 1rem;
+    }
+
+
+
+
+    [type="text"],
+    select,
+    [type="password"] {
+        max-width: 90% !important;
+    }
+
+    .btnFlexEnd {
+        justify-content: center !important;
+    }
+}

@@ -12,6 +12,7 @@ include './../../../php/validations/authorizedUser.php';
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="../../../css/reset.css">
+    <link rel="icon" type="image/x-icon" href="./../../../img/logo/logo-icono.ico">
     <link rel="stylesheet" href="../../../css/components/offcanvas.css">
     <link rel="stylesheet" href="../../../css/components/header.css">
     <link rel="stylesheet" href="../../../css/components/semanticTag.css">

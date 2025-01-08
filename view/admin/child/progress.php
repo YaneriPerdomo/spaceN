@@ -262,6 +262,7 @@ function showInformationChild()
     <link rel="stylesheet" href="../../../css/admin/addAndModifyChild.css">
     <link rel="stylesheet" href="../../../css/user/profile.css">
     <link rel="stylesheet" href="../../../css/components/content.css">
+    <link rel="icon" type="image/x-icon" href="./../../../img/logo/logo-icono.ico">
 
 </head>
 

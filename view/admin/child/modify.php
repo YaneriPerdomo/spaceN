@@ -172,43 +172,13 @@ function showChild()
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="../../../css/reset.css">
+    <link rel="icon" type="image/x-icon" href="./../../../img/logo/logo-icono.ico">
     <link rel="stylesheet" href="../../../css/components/offcanvas.css">
     <link rel="stylesheet" href="../../../css/components/header.css">
     <link rel="stylesheet" href="../../../css/components/semanticTag.css">
     <link rel="stylesheet" href="../../../css/admin/addAndModifyChild.css">
     <link rel="stylesheet" href="../../../css/components/content.css">
     <link rel="stylesheet" href="../../../css/components/validation.css">
-
-    <style>
-        @media screen and (max-width: 992px) {
-            .col-lg-3>.content {
-                height: 200px !important;
-                margin-bottom: 1rem !important;
-            }
-
-            .col-lg-3 {
-                height: 200px !important;
-            }
-
-            .row {
-                height: auto !important;
-                gap: 1rem;
-            }
-
-
-
-
-            [type="text"],
-            select,
-            [type="password"] {
-                max-width: 90% !important;
-            }
-
-            .btnFlexEnd {
-                justify-content: center !important;
-            }
-        }
-    </style>
 </head>
 
 

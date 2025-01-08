@@ -40,7 +40,7 @@ function notificationHeader ()
             </a>
             <section class="logo">
                 <figure class="m-0">
-                <img src="./../../../img/logo.png" class="heightLogo" alt="">
+                <img src="./../../../img/logo/logo-imagen.png" class="heightLogo" alt="">
             </figure>
         </section>
         </div>

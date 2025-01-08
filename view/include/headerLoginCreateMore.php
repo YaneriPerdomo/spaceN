@@ -9,7 +9,7 @@
             <section class="logo">
                     <a href="./../index.php">
                     <figure class="m-0">
-                     <img src="./../img/logo.png" class="heightLogo"  alt="">
+                     <img src="./../img/logo/logo-imagen.png" class="heightLogo"  alt="">
                  </figure>
                     </a>
             </section>

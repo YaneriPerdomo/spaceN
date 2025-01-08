@@ -11,6 +11,7 @@ include './../../../php/validations/authorizedUser.php';
     <title>Registrar usuario | Espacio N </title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="icon" type="image/x-icon" href="./../../../img/logo/logo-icono.ico">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="../../../css/reset.css">
@@ -20,34 +21,6 @@ include './../../../php/validations/authorizedUser.php';
     <link rel="stylesheet" href="../../../css/admin/addAndModifyChild.css">
     <link rel="stylesheet" href="../../../css/components/content.css">
     <link rel="stylesheet" href="../../../css/components/validation.css">
-
-    <style>
-         @media screen and (max-width: 992px) {
-            .col-lg-3>.content {
-                height: 200px !important;
-                margin-bottom: 1rem !important;
-            }
-
-            .col-lg-3 {
-                height: 200px !important;
-            }
-
-            .row {
-                height: auto !important;
-                gap: 1rem;
-            }
-
-             
-
-            
-            [type="text"] , select, [type="password"]{
-                max-width: 90% !important;
-                }
-        .btnFlexEnd{
-            justify-content: center !important;  
-        }
-        }
-    </style>
 </head>
 
 <body>
@@ -182,7 +155,7 @@ include './../../../php/validations/authorizedUser.php';
 <script src="./../../../js/helpers/bootstrap.js"></script>
 <script src="../../../js/helpers/selectionGenderChild.js"></script>
 
-<script src="../../../js/validations/validateBirthDate.js" ></script>
+<script src="../../../js/validations/validateBirthDate.js"></script>
 <script src="../../../js/validations/addChild.js" type="module"></script>
 
 </html>

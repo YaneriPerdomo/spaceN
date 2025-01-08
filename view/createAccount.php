@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="../css/reponsive.css">
     <link rel="stylesheet" href="../css/components/validation.css">
     <link rel="stylesheet" href="../css/components/offcanvas.css">
-
+    <link rel="icon" type="image/x-icon" href="./../img/logo/logo-icono.ico">
 </head>
 
 <body>
@@ -118,17 +118,17 @@
             </section>
         </div>
     </main>
-    <?php 
-         include "./include/offcanvasLoginCreateMore.php";
-     
+    <?php
+    include "./include/offcanvasLoginCreateMore.php";
+
     ?>
 
     <?php include('./include/footer.php'); ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-        </script>
+    </script>
 
-    <script  src="./../js/validations/createAccountProfessional.js" type="module"></script>
+    <script src="./../js/validations/createAccountProfessional.js" type="module"></script>
 </body>
 
 </html>

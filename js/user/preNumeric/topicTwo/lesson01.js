@@ -1,10 +1,30 @@
-import {$gem, $time, $containerPlay,$containerResultsLesson, 
-    $contentResultsLesson, $ButtonsNum,searchParams,   $endOfLessonMp3, 
-    $incorrectMp3, $correctMp3, $beginMp3 ,$gemsResult, $porcentageResult, $timeResult, $messageResult,  $containerBack, $backContent,
-    $containerGuideModal, $begin, $GuidaContent, $containerPlayer,  $clickMp3,   FromOneToThree, 
-    voiceExercise,  
-    defineNumber01,  
- } from "../../../helpers/lessons.js";
+import {
+  $gem,
+  $time,
+  $containerPlay,
+  $containerResultsLesson,
+  $contentResultsLesson,
+  $ButtonsNum,
+  searchParams,
+  $endOfLessonMp3,
+  $beginMp3,
+  $gemsResult,
+  $porcentageResult,
+  $timeResult,
+  $messageResult,
+  $containerBack,
+  $backContent,
+  $containerGuideModal,
+  $begin,
+  $GuidaContent,
+  $containerPlayer,
+  $clickMp3,
+  FromOneToThree,
+  voiceExercise,
+  defineNumber01,
+  reproducirSonido,
+  actualizarPuntaje,
+} from "../../../helpers/lessons.js";
 
  let count = 0;
  let randomNumber = 0;
@@ -35,8 +55,8 @@ document.addEventListener("click",async e => {
         randomNumber = Math.floor(Math.random() * 4);
         if (e.target.textContent == $containerPlayer.getAttribute("data-num")) {
             acceptedPoints++;
-            $correctMp3.play();
-            $gem.innerHTML = `${1 + Number.parseInt($gem.textContent)}`;
+            reproducirSonido(true);
+            actualizarPuntaje()
             e.target.classList.add("correct");
             $ButtonsNum.forEach(element => {
                 element.disabled = true;
@@ -51,7 +71,7 @@ document.addEventListener("click",async e => {
         } else {
             failed++;
             e.target.classList.add("incorrect");
-            $incorrectMp3.play()
+            reproducirSonido(false)
             $ButtonsNum.forEach(element => {
                 element.disabled = true;
                 if (element.textContent == $containerPlayer.getAttribute("data-num")) {
