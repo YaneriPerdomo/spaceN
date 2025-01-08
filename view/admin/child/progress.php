@@ -26,7 +26,7 @@ function showInformationChild()
         $row02 = $stmt02->fetch(PDO::FETCH_ASSOC);
 
         //Consulta para el ver el progreso % y el total de diamantes que ha ganado el niño
-        $sqlProgressDetalls = "SELECT porcentaje, total_diamantes FROM progresos WHERE id_usuario = :id_user";
+        $sqlProgressDetalls = "SELECT porcentaje, total_diamantes, id_usuario FROM progresos WHERE id_usuario = :id_user";
         $queryProgress = $pdo->prepare($sqlProgressDetalls);
         $queryProgress->bindParam("id_user", $id_user, PDO::PARAM_INT);
         $queryProgress->execute();
@@ -66,7 +66,7 @@ function showInformationChild()
 
         $sqlCapacidades = "SELECT SUM(fallida) as F from estado_lecciones WHERE id_usuario = :id";
         $queryCapacidades = $pdo->prepare($sqlCapacidades);
-        $queryCapacidades->bindParam('id', $id_child, PDO::PARAM_INT);
+        $queryCapacidades->bindParam('id', $row03["id_usuario"], PDO::PARAM_INT);
         $queryCapacidades->execute();
         $result = $queryCapacidades->fetch(PDO::FETCH_ASSOC);
 
@@ -74,7 +74,7 @@ function showInformationChild()
             null => "Aún no tenemos datos",
             0 => 'EXCELENTE',
             16 => 'BIEN',
-            41 => 'HAY QUE MEJORAR',
+            41 => 'TIENE QUE MEJORAR',
             'default' => 'MUY MALO'
         ];
 
@@ -111,7 +111,7 @@ function showInformationChild()
                                     <i class="bi bi-list-ol fs-1"></i>
                                 </div>
                                 <span class="p-1">Descifrando la comprensión numérica</span>
-                                <span class="resultMyAbilities">' . $showStatuC . '</span>
+                                <span class="resultMyAbilities">' . htmlspecialchars($showStatuC) . '</span>
                             </div>
                        </div>';
                 break;
@@ -124,7 +124,7 @@ function showInformationChild()
                                     <i class="bi bi-list-ol fs-1"></i>
                                 </div>
                                 <span class="p-1">Resolución de problemas numéricos</span>
-                                <span class="resultMyAbilities">' . $showStatuC . '</span>
+                                <span class="resultMyAbilities">' . htmlspecialchars($showStatuC) . '</span>
                             </div>
                        </div>';
                 break;

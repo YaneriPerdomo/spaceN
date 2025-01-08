@@ -30,6 +30,10 @@ include './../../../../../php/connectionBD.php';
             display: flex;
             flex-direction: column;
         }
+
+        .buttonNum__img{
+            width: 90px;
+        }
     </style>
 </head>
 
@@ -90,13 +94,13 @@ include './../../../../../php/connectionBD.php';
                             </div>
                             <div class="ButtonsNum">
                                 <button>
-                                    <img src="" alt="">
+                                    <img src="" alt="" class="buttonNum__img">
                                 </button>
                                 <button>
-                                    <img src="" alt="">
+                                    <img src="" alt="" class="buttonNum__img">
                                 </button>
                                 <button>
-                                    <img src="" alt="">
+                                    <img src="" alt="" class="buttonNum__img">
                                 </button>
                             </div>
                         </div><br>

@@ -22,7 +22,7 @@ $stmt02->bindParam(':id_user', $id_user, PDO::PARAM_INT);
 $stmt02->execute();
 $row02 = $stmt02->fetch(PDO::FETCH_ASSOC);
 
-$sqlProgressDetalls = "SELECT porcentaje, total_diamantes FROM progresos WHERE id_usuario = :id_user";
+$sqlProgressDetalls = "SELECT porcentaje, total_diamantes, id_usuario FROM progresos WHERE id_usuario = :id_user";
 $queryProgress = $pdo->prepare($sqlProgressDetalls);
 $queryProgress->bindParam("id_user", $id_user, PDO::PARAM_INT);
 $queryProgress->execute();
@@ -30,7 +30,7 @@ $row03 = $queryProgress->fetch(PDO::FETCH_ASSOC);
 
 $sqlCapacidades = "SELECT SUM(fallida) as F from estado_lecciones WHERE id_usuario = :id";
 $queryCapacidades = $pdo->prepare($sqlCapacidades);
-$queryCapacidades->bindParam('id', $id_child, PDO::PARAM_INT);
+$queryCapacidades->bindParam('id', $row03["id_usuario"], PDO::PARAM_INT);
 $queryCapacidades->execute();
 $result = $queryCapacidades->fetch(PDO::FETCH_ASSOC);
 
@@ -94,7 +94,7 @@ $estados = [
     null => "Aún no tenemos datos",
     0 => 'EXCELENTE',
     16 => 'BIEN',
-    41 => 'HAY QUE MEJORAR',
+    41 => 'TIENE QUE MEJORAR',
     'default' => 'MUY MALO'
 ];
 

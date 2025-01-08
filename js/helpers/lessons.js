@@ -37,6 +37,7 @@ export let $showNumberSpan = document.querySelectorAll(".showNumber > strong > s
 export let $showNumberSpan02 = document.querySelectorAll(".cuadroAzul > strong > span");
 export let $squareBlue = document.querySelector(".cuadroAzul > strong ");
 export let $staqueBlue = document.querySelector(".cuadroAzul");
+export let $buttonsNumImg = document.querySelectorAll(".buttonsNum > button > img")
 let timer;
  let seconds = 0,
     minutes = 0,

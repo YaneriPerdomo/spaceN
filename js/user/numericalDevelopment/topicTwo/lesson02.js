@@ -4,7 +4,7 @@ import {
     $containerPlay,
     $containerResultsLesson,
     $contentResultsLesson,
-    $ButtonsNum,
+
     searchParams,
     $endOfLessonMp3,
     $incorrectMp3,
@@ -23,15 +23,10 @@ import {
     $clickMp3,
     FromOneToThree,
     voiceExercise,
-    $showNumberSpan,
-    countUp,
-    $selects,
-    advancedOperations1,
     $showNumberStrong,
-    $ButtonsNum2,
-    $ButtonsNumMain,
-    fractions,
     fraccion2,
+    $ButtonsNum,
+    $buttonsNumImg,
 } from "../../../helpers/lessons.js";
 
 let count = 0;
@@ -56,79 +51,99 @@ function randomNumber10() {
         case 0:
             let fraccionImg = {
                 main: [2,3], 
-                img: '', 
+                img: [ '../../../../../img/fractions/part-two/1-4.png', 
+                        '../../../../../img/fractions/part-two/2-3.png',
+                        '../../../../../img/fractions/part-two/1-3.png'], 
                 answer:2
             }
             fraccion2(fraccionImg.main, fraccionImg.img, fraccionImg.answer);
             break;
         case 1:
             let fraccionImg1 = {
-                main: [2,3], 
-                img: '', 
-                answer:2
+                main: [3,5], 
+                img: [ '../../../../../img/fractions/part-two/4-4.png', 
+                        '../../../../../img/fractions/part-two/2-4.png',
+                        '../../../../../img/fractions/part-two/3-6.png'], 
+                answer:3
             }
             fraccion2(fraccionImg1.main, fraccionImg1.img, fraccionImg1.answer);
             break;
         case 3:
             let fraccionImg2 = {
-                main: [2,3], 
-                img: '', 
-                answer:2
+                main: [2,5], 
+                img: [ '../../../../../img/fractions/part-two/2-5.png', 
+                        '../../../../../img/fractions/part-two/3-8.png',
+                        '../../../../../img/fractions/part-two/1-6.png'], 
+                answer:1
             }
             fraccion2(fraccionImg2.main, fraccionImg2.img, fraccionImg2.answer);
             break;
         case 4:
             let fraccionImg3 = {
-                main: [2,3], 
-                img: '', 
-                answer:2
+                main: [4,8], 
+                img: [ '../../../../../img/fractions/part-two/4-8.png', 
+                        '../../../../../img/fractions/part-two/5-5.png',
+                        '../../../../../img/fractions/part-two/1-6.png'], 
+                answer:1
             }
             fraccion2(fraccionImg3.main, fraccionImg3.img, fraccionImg3.answer);
             break;
         case 5:
             let fraccionImg4 = {
-                main: [2,3], 
-                img: '', 
+                main: [5,5], 
+                img: [ '../../../../../img/fractions/part-two/4-8.png', 
+                        '../../../../../img/fractions/part-two/5-6.png',
+                        '../../../../../img/fractions/part-two/2-6.png'], 
                 answer:2
             }
             fraccion2(fraccionImg4.main, fraccionImg4.img, fraccionImg4.answer);
             break;
         case 6:
             let fraccionImg5 = {
-                main: [2,3], 
-                img: '', 
-                answer:2
+                main: [6,8], 
+                img: [ '../../../../../img/fractions/part-two/4-8.png', 
+                        '../../../../../img/fractions/part-two/1-3.png',
+                        '../../../../../img/fractions/part-two/6-8.png'], 
+                answer:3
             }
             fraccion2(fraccionImg5.main, fraccionImg5.img, fraccionImg5.answer);
             break;
         case 7:
             let fraccionImg6 = {
-                main: [2,3], 
-                img: '', 
-                answer:2
+                main: [4,4], 
+                img: [ '../../../../../img/fractions/part-two/4-4.png', 
+                        '../../../../../img/fractions/part-two/5-6.png',
+                        '../../../../../img/fractions/part-two/6-8.png'], 
+                answer:1
             }
             fraccion2(fraccionImg6.main, fraccionImg6.img, fraccionImg6.answer);
             break;
         case 8:
             let fraccionImg7 = {
-                main: [2,3], 
-                img: '', 
+                main: [5,5], 
+                img: [ '../../../../../img/fractions/part-two/4-4.png', 
+                        '../../../../../img/fractions/part-two/5-5.png',
+                        '../../../../../img/fractions/part-two/4-8.png'], 
                 answer:2
             }
             fraccion2(fraccionImg7.main, fraccionImg7.img, fraccionImg7.answer);
             break
         case 9:
             let fraccionImg8 = {
-                main: [2,3], 
-                img: '', 
-                answer:2
+                main: [5,6], 
+                img: [ '../../../../../img/fractions/part-two/4-4.png', 
+                        '../../../../../img/fractions/part-two/5-5.png',
+                        '../../../../../img/fractions/part-two/5-6.png'], 
+                answer:3
             }
             fraccion2(fraccionImg8.main, fraccionImg8.img, fraccionImg8.answer);
             break
         case 10:
             let fraccionImg9 = {
-                main: [2,3], 
-                img: '', 
+                main: [3,4], 
+                img: [ '../../../../../img/fractions/part-two/3-3.png', 
+                        '../../../../../img/fractions/part-two/3-4.png',
+                        '../../../../../img/fractions/part-two/5-6.png'], 
                 answer:2
             }
             fraccion2(fraccionImg9.main, fraccionImg9.img, fraccionImg9.answer);
@@ -145,7 +160,7 @@ setTimeout(() => {
 
 document.addEventListener("click", async (e) => {
 
-    if (e.target.matches(".ButtonsNum > button")) {
+    if (e.target.matches(".ButtonsNum > button > img")) {
         count++;
         if (e.target.getAttribute('data-answer') == 'true') {
             acceptedPoints++;
@@ -169,19 +184,17 @@ document.addEventListener("click", async (e) => {
             e.target.classList.add("incorrect");
             $correctMp3.pause();
             $incorrectMp3.play();
-            $ButtonsNum.forEach(element => {
-                element.disabled = true;
-                if (element.getAttribute('data-answer') == 'true') {
-                    element.classList.add("correct");
-                    setTimeout(() => {
-                        element.classList.remove("correct");
-                    }, 2000);
+            for(let i = 0; i < $buttonsNumImg.length; i++){
+                $ButtonsNum[i].disabled = true;
+                if($buttonsNumImg[i].getAttribute("data-answer") == 'true'){
+                    $ButtonsNum[i].classList("correct");
                 }
-            });
+            }
             $showNumberStrong.classList.add("incorrect")
             setTimeout(() => {
                 $ButtonsNum.forEach((element) => {
                     element.removeAttribute("disabled");
+                    element.classList.remove("correct")
                 });
                 randomNumber10();
                 $showNumberStrong.classList.remove("incorrect")
@@ -269,12 +282,7 @@ document.addEventListener("click", async (e) => {
             voiceExercise("Seleccione el elemento que tiene mas cuadrados");
             setTimeout(() => {
                 start()
-                let fraccionImg = {
-                    main: [2,3], 
-                    img: '', 
-                    answer:2
-                }
-                fraccion2(fraccionImg.main, fraccionImg.img, fraccionImg.answer);
+               randomNumber10()
             }, 3000);
         }, 0);
     }

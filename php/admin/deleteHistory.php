@@ -12,7 +12,7 @@
         $query->execute();
         if($query->rowCount() > 0){
             echo "<script>alert('El historial de aprendizaje seleccionado ha sido eliminado.');
-             window.location.href = './../../view/admin/history.php';</script>";
+             window.location.href = './../../view/admin/Dashboard.php';</script>";
         }else{
             echo "sucedio un error";
         }

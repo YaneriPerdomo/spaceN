@@ -32,7 +32,12 @@ function showHistorys($showPageLearn = false)
                                 <span class='visually-hidden'>Toggle Dropdown</span>
                             </button>
                             <ul class='dropdown-menu'>
-                                <li><a class='dropdown-item' href='./../../php/admin/deleteHistory.php?id=" . $value["id_historial"] . "'><i class='bi bi-trash'></i> Borrar</a></li>
+                                <li>
+                                    <a class='dropdown-item' href='./../../php/admin/deleteHistory.php?id=". $value["id_historial"] . "'>
+                                        <i class='bi bi-trash'></i> 
+                                            Borrar
+                                    </a>
+                                </li>
                             </ul>
                 </div><hr>";
                 }
@@ -55,7 +60,7 @@ function showHistorys($showPageLearn = false)
                             <small  style='color: #6f6f6f;'> " . $value["fecha_hora"] . " </small>
                         </div>
                         <div>
-                            <a href='./../../php/admin/deleteHistory.php?id=" . $value["id_historial"] . "' class='deteleHistory'>
+                            <a href='./../../php/admin/deleteHistory.php?id='" . $value["id_historial"] . "' class='deteleHistory'>
                                 <i class='bi bi-x-lg'></i>
                             </a>
                         </div>

@@ -22,6 +22,7 @@ $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 if ($pdo->errorCode() != 0) {
     echo "Error de conexión: " . $pdo->errorInfo()[2];
+    http_response_code(500);
 }
 
 
