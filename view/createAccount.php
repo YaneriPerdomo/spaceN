@@ -38,7 +38,7 @@
                         <br>
                     </div>
                     <div class="row ">
-                        <div class="col-sm-6 col-12">
+                        <div class="col-lg-6 col-12">
                             <b>Datos personales:</b><br>
                             <label for="user">Nombre<span>*</span></label><br>
                             <div class="input-group mb-3">
@@ -77,7 +77,7 @@
                                     aria-label="Username" aria-describedby="basic-addon1">
                             </div>
                         </div>
-                        <div class="col-sm-6 col-12">
+                        <div class="col-lg-6 col-12">
                             <b> Datos de la cuenta: </b><br>
                             <label for="user">Usuario<span>*</span></label><br>
                             <div class="input-group mb-3">
