@@ -171,6 +171,7 @@ form {
 #search {
     background: #815fdf;
     border: solid 1px #b59aff;
+    border-radius: 0rem 0.5rem 0.5rem 0rem;
 }
 
 #search::placeholder {

@@ -29,7 +29,7 @@
                 <button class="buttonWhite">
                     <a  href="./login.php" 
                         class="text-decoration-none text-white">
-                        Comienzar Ahora
+                        Comienza Ahora
                     </a>
                 </button>
         </nav>

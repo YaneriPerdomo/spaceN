@@ -234,7 +234,7 @@ function showInformationChild()
                     <input type="hidden" name="id_nino" value="' . $id_child . '">
                     
                         <input type="submit" class="btn btn-secondary mt-0 text-decoration-none"
-                        value="Imprimir PDF" >
+                        value="Progreso en PDF" >
                     </form>
                 </div>
             </div>

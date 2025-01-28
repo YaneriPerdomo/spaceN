@@ -34,7 +34,7 @@ if ($query->rowCount() > 0) {
         echo "
               <div class='d-flex'>
         <div>
-            <img src='../../../img/for/representative.png'>
+            <img src='../../../img/admin/childs-and-teacher.png' style='width: 100px;'>
         </div>
         <div style='  flex-grow: 1;'>
             <strong> Administrador </strong><br>

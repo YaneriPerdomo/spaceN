@@ -865,3 +865,7 @@ main {
     max-height: none;
   }
 }
+
+.userImgLesson{
+  width: 200px;
+}
